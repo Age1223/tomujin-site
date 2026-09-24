@@ -1,0 +1,6 @@
+# Raw logo downloads the site doesn't use (the finished logos are in assets/unis/)
+assets/unis/src/
+
+# System and tool files
+.DS_Store
+.vercel

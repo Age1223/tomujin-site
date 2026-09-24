@@ -1,0 +1,1037 @@
+<!doctype html>
+<html lang="mn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="assets/logo-icon.jpg">
+<meta property="og:title" content="Томүжин Алтернатив сургууль">
+<meta property="og:description" content="Бид зөвхөн сургууль биш боловсролыг шинэчлэх хөдөлгөөн.">
+<style>[hidden]{display:none!important}</style>
+<!-- page-head -->
+<title>Tomujin Alternative School</title>
+<meta name="description" content="Томүжин Алтернатив сургууль — бид зөвхөн сургууль биш, боловсролыг шинэчлэх хөдөлгөөн.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700;800;900&family=Roboto+Mono:wght@400;500&display=swap">
+<!-- Google Sans, subset to digits, % and + only: the fallback for numbers when Gotham isn't installed (see "TJ Numbers" below) -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400..700&text=0123456789%25%2B&display=swap">
+<style>
+/* Numbers in Gotham, read from the viewer's own installed fonts (no font file is shipped: Gotham needs a
+   Hoefler&Co web licence for that). Viewers without Gotham installed fall back to Google Sans. */
+@font-face{font-family:"TJ Numbers";src:local("Gotham Bold"),local("GothamBold"),local("Gotham-Bold");font-weight:600 1000;unicode-range:U+0025,U+002B,U+0030-0039}
+@font-face{font-family:"TJ Numbers";src:local("Gotham Medium"),local("GothamMedium"),local("Gotham-Medium");font-weight:500 599;unicode-range:U+0025,U+002B,U+0030-0039}
+@font-face{font-family:"TJ Numbers";src:local("Gotham Book"),local("Gotham-Book"),local("GothamBook");font-weight:1 499;unicode-range:U+0025,U+002B,U+0030-0039}
+
+/* ───────── Tomujin tokens (from the Tomujin design system) ───────── */
+:root{
+  --tj-purple:#5c1090; --tj-purple-light:#a855f7;
+  --tj-teal:#00bcd4; --tj-teal-deep:#0e7490;
+  --tj-golden:#f2cd30; --tj-orange:#f97316;
+  --tj-ink:#1c1c1c; --tj-white:#ffffff;
+  --tj-violet-50:#faf7ff; --tj-violet-75:#f7f0ff; --tj-violet-100:#f3eeff; --tj-violet-150:#ede0ff;
+  --tj-violet-200:#e5d8f5; --tj-violet-500:#6e5e8a; --tj-violet-700:#3d1b6e; --tj-violet-800:#2d1b4e;
+  --tj-violet-850:#2a1245; --tj-violet-900:#1a0b2e;
+
+  --color-background:hsl(0 0% 100%);
+  --color-foreground:hsl(0 0% 11%);
+  --color-border:hsl(267 59.2% 90.4%);
+  --color-ring:hsl(276 80% 31.4%);
+  --color-card:hsl(262 100% 98.4%);
+  --color-primary:hsl(276 80% 31.4%);
+  --color-primary-foreground:#fff;
+  --color-muted:hsl(258 100% 96.7%);
+  --color-muted-foreground:hsl(262 19% 45.5%);
+  --color-accent:hsl(49 88.2% 56.9%);
+  --color-accent-foreground:hsl(0 0% 11%);
+  --accent-border:hsl(49 88.2% 48.9%);
+  --primary-border:hsl(276 80% 23.4%);
+
+  --text-body:var(--color-foreground);
+  --text-muted:var(--color-muted-foreground);
+  --text-display:var(--tj-purple);
+  --surface-page:#ffffff;
+  --surface-card:var(--color-card);
+  --surface-alt:#ffffff;
+  --surface-brand:var(--tj-purple);
+  --on-brand-muted:rgba(255,255,255,.82);
+  --header-bg:rgba(255,255,255,.92);
+  --button-outline:rgba(0,0,0,.10);
+  --elevate-1:rgba(0,0,0,.03);
+  --elevate-2:rgba(0,0,0,.08);
+  --block-shadow-color:var(--tj-purple);
+  --grade-face:#fff;
+
+  --font-sans:"TJ Numbers", "Google Sans", Raleway, Roboto, system-ui, sans-serif;
+  --font-mono:"Roboto Mono", ui-monospace, monospace;
+  --tracking-display:-0.02em; --tracking-tight:-0.01em; --tracking-wide:0.05em; --tracking-wider:0.12em;
+
+  --space-1:.25rem; --space-2:.5rem; --space-3:.75rem; --space-4:1rem; --space-5:1.25rem; --space-6:1.5rem;
+  --space-8:2rem; --space-10:2.5rem; --space-12:3rem; --space-16:4rem; --space-20:5rem; --space-24:6rem;
+  --container-max:1180px; --container-gutter:24px; --section-py:96px; --card-padding:1.5rem;
+  --control-height:2.25rem; --control-height-lg:2.5rem; --nav-height:56px;
+
+  --radius-sm:8px; --radius-md:10px; --radius-lg:12px; --radius-xl:16px; --radius-pill:9999px;
+  --shadow:0 1px 3px 0 rgba(0,0,0,.1), 0 1px 2px -1px rgba(0,0,0,.1);
+  --shadow-md:0 4px 6px -1px rgba(0,0,0,.1), 0 2px 4px -2px rgba(0,0,0,.1);
+  --shadow-lg:0 10px 15px -3px rgba(0,0,0,.1), 0 4px 6px -4px rgba(0,0,0,.1);
+  --focus-ring:0 0 0 1px var(--color-ring);
+
+  --duration-fast:120ms; --duration:180ms; --duration-slow:300ms;
+  --ease-standard:cubic-bezier(.4,0,.2,1); --ease-out:cubic-bezier(0,0,.2,1);
+}
+/* Single light theme: the page stays white in every viewer theme. */
+:root{color-scheme:light}
+
+/* ───────── Base ───────── */
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:var(--font-sans);font-size:16px;line-height:1.5;background:var(--surface-page);color:var(--text-body);-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4,p,ul,ol,figure{margin:0}
+ul,ol{padding:0;list-style:none}
+img{max-width:100%;display:block}
+a{color:var(--color-primary);text-decoration:none}
+a:hover{text-decoration:underline;text-underline-offset:4px}
+:focus-visible{outline:none;box-shadow:var(--focus-ring);border-radius:4px}
+@media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important}html{scroll-behavior:auto}}
+
+.wrap{max-width:var(--container-max);margin-inline:auto;padding-inline:var(--container-gutter)}
+@media (max-width:600px){.wrap{padding-inline:16px}}
+.band{padding-block:var(--section-py)}
+.band--dense{padding-block:64px}
+.band--alt{background:var(--surface-alt);border-top:1px solid var(--color-border)}
+.band--brand{background:var(--surface-brand);color:#fff}
+@media (max-width:760px){.band{padding-block:64px}.band--dense{padding-block:48px}}
+
+/* Type */
+.display{font-weight:800;text-transform:uppercase;line-height:.98;letter-spacing:var(--tracking-display);color:var(--text-display);text-align:center;text-wrap:balance}
+.display--lg{font-size:clamp(2rem,6.4vw,5.25rem)}
+.display--md{font-size:clamp(2rem,6vw,4.5rem)}
+.h1{font-size:clamp(1.75rem,3.4vw,2.25rem);line-height:1.15;font-weight:800;letter-spacing:var(--tracking-tight);color:var(--text-display);text-wrap:balance}
+.band--brand .h1{color:#fff}
+.h2{font-size:24px;line-height:32px;font-weight:700;letter-spacing:var(--tracking-tight);text-wrap:balance}
+.h3{font-size:18px;line-height:28px;font-weight:700}
+.lead{font-size:clamp(1.05rem,1.6vw,1.25rem);line-height:1.55;color:var(--text-muted);font-weight:500}
+.muted{color:var(--text-muted)}
+.prose{max-width:65ch;display:grid;gap:var(--space-4)}
+.prose p{line-height:1.65}
+.section-head{display:grid;gap:var(--space-3);justify-items:center;text-align:center;margin-bottom:var(--space-12)}
+.section-head--left{justify-items:start;text-align:left}
+.section-head .lead{max-width:60ch}
+
+/* Buttons (elevate overlay, never a hue swap) */
+.btn{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:8px;height:var(--control-height);padding:0 16px;border-radius:var(--radius-md);font:600 14px/1 var(--font-sans);border:1px solid transparent;cursor:pointer;text-decoration:none!important;white-space:nowrap;isolation:isolate}
+.btn::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;transition:background-color var(--duration-fast) var(--ease-standard)}
+.btn:hover::after{background:var(--elevate-1)}
+.btn:active::after{background:var(--elevate-2)}
+.btn--lg{height:48px;padding:0 24px;font-size:16px}
+.btn--accent{background:var(--color-accent);color:var(--color-accent-foreground);border-color:var(--accent-border)}
+.btn--accent:hover::after{background:rgba(0,0,0,.06)}
+.btn--primary{background:var(--color-primary);color:var(--color-primary-foreground);border-color:var(--primary-border)}
+.btn--outline{background:transparent;color:inherit;border-color:var(--button-outline)}
+.band--brand .btn--outline{border-color:rgba(255,255,255,.35);color:#fff}
+.btn svg{width:16px;height:16px}
+.btn-row{display:flex;flex-wrap:wrap;gap:var(--space-3);justify-content:center}
+
+/* Icons */
+[data-lucide],svg.lucide{width:20px;height:20px;stroke-width:2;flex:none}
+.icon-tile{display:grid;place-items:center;width:44px;height:44px;border-radius:var(--radius-md);background:var(--tj-purple);color:#fff;flex:none}
+.icon-tile--teal{background:var(--tj-teal-deep)}
+.icon-tile--gold{background:var(--tj-golden);color:var(--tj-ink)}
+.icon-tile svg{width:22px;height:22px}
+
+/* Cards (app card language) */
+.card{background:var(--surface-card);border:1px solid var(--color-border);border-radius:var(--radius-xl);box-shadow:var(--shadow);padding:var(--card-padding);display:grid;gap:var(--space-3);align-content:start}
+.grid{display:grid;gap:var(--space-6)}
+.grid-3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.grid-2{grid-template-columns:repeat(2,minmax(0,1fr))}
+@media (max-width:900px){.grid-3{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:640px){.grid-3,.grid-2{grid-template-columns:1fr}}
+
+.split{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:var(--space-12);align-items:start}
+@media (max-width:860px){.split{grid-template-columns:1fr;gap:var(--space-6)}}
+
+.badge{display:inline-flex;align-items:center;gap:6px;height:22px;padding:0 8px;border-radius:var(--radius-sm);font-size:12px;font-weight:600;background:var(--color-muted);color:var(--text-muted);border:1px solid rgba(0,0,0,.05)}
+.badge--placeholder{background:transparent;border:1px dashed var(--color-border)}
+
+/* Empty state */
+.empty{border:1px dashed var(--color-border);border-radius:var(--radius-xl);padding:var(--space-10) var(--space-6);display:grid;justify-items:center;text-align:center;gap:var(--space-2);color:var(--text-muted)}
+.empty .icon-wrap{display:grid;place-items:center;width:40px;height:40px;border-radius:var(--radius-md);background:var(--color-muted);color:var(--color-primary);margin-bottom:var(--space-2)}
+.empty strong{color:var(--text-body);font-size:16px}
+.empty p{font-size:14px;max-width:46ch}
+
+/* Tangram */
+.tangram{height:auto;pointer-events:none;user-select:none}
+
+/* ───────── Header ───────── */
+.site-header{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:var(--header-bg);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border-bottom:1px solid var(--color-border)}
+.site-header .wrap{height:var(--nav-height);display:flex;align-items:center;justify-content:space-between;gap:var(--space-4)}
+.brand{display:flex;align-items:center;border-radius:var(--radius-md)}
+.brand img{height:34px;width:auto}
+.logo-plate{background:#fff;border-radius:var(--radius-md);padding:4px 8px}
+.site-header .logo-plate{padding:0;background:transparent}
+.nav{display:flex;align-items:stretch;gap:2px;align-self:stretch}
+.nav-item{position:relative;display:flex;align-items:center}
+.nav-link{position:relative;display:inline-flex;align-items:center;gap:4px;padding:6px 10px;border-radius:var(--radius-md);font-size:15px;font-weight:500;color:var(--text-muted);text-decoration:none!important;white-space:nowrap}
+.nav-link svg{width:14px;height:14px;transition:transform var(--duration) var(--ease-standard)}
+.nav-link:hover,.nav-item:focus-within .nav-link{background:var(--elevate-1);color:var(--text-body)}
+.nav-link[aria-current="page"]{color:var(--text-body);font-weight:700}
+.nav-link[aria-current="page"]::after{content:"";position:absolute;left:10px;right:10px;bottom:-11px;height:3px;background:var(--color-primary)}
+.dropdown{position:absolute;top:100%;left:0;min-width:260px;padding:8px;display:grid;gap:2px;background:#fff;border:1px solid var(--color-border);border-radius:var(--radius-lg);box-shadow:var(--shadow-lg);opacity:0;visibility:hidden;transform:translateY(4px);transition:opacity var(--duration-fast) var(--ease-standard),transform var(--duration-fast) var(--ease-standard),visibility 0s linear var(--duration-fast)}
+.nav-item:hover .dropdown,.nav-item:focus-within .dropdown{opacity:1;visibility:visible;transform:none;transition-delay:0s}
+.nav-item:hover .nav-link svg,.nav-item:focus-within .nav-link svg{transform:rotate(180deg)}
+.dropdown a{display:block;padding:9px 12px;border-radius:var(--radius-md);font-size:14px;font-weight:500;line-height:1.35;color:var(--text-body);text-decoration:none!important}
+.dropdown a:hover,.dropdown a:focus-visible{background:var(--color-muted);color:var(--color-primary)}
+.header-actions{display:flex;align-items:center;gap:var(--space-2)}
+.menu-btn{display:none;width:36px;height:36px;border-radius:var(--radius-md);border:1px solid var(--button-outline);background:transparent;color:inherit;place-items:center;cursor:pointer}
+.mobile-nav{display:none}
+section[id],article[id]{scroll-margin-top:80px}
+@media (max-width:1080px){.header-cta{display:none}}
+@media (max-width:900px){
+  /* Pages stay in the header as a second row; the menu button opens every section */
+  .site-header .wrap{height:auto;flex-wrap:wrap;row-gap:0}
+  .brand{height:var(--nav-height)}
+  .menu-btn{display:grid}
+  .nav{order:3;flex-basis:100%;min-width:0;height:46px;margin-left:-10px;overflow-x:auto;scrollbar-width:none}
+  .nav::-webkit-scrollbar{display:none}
+  .nav-link svg,.dropdown{display:none}
+  .nav-link[aria-current="page"]::after{bottom:-6px}
+  section[id],article[id]{scroll-margin-top:118px}
+  .mobile-nav:not([hidden]){display:grid;gap:var(--space-4);max-height:70vh;overflow-y:auto;padding:var(--space-4) 16px var(--space-6);border-top:1px solid var(--color-border)}
+  .m-group{display:grid;gap:2px}
+  .m-group > a{padding:8px 12px;border-radius:var(--radius-md);font-weight:700;color:var(--text-body);text-decoration:none}
+  .m-group > a[aria-current="page"]{background:var(--color-muted);color:var(--color-primary)}
+  .m-group .m-sections a{display:block;padding:6px 12px 6px 24px;font-size:14px;color:var(--text-muted);text-decoration:none}
+  .m-group .m-sections a:hover{color:var(--color-primary)}
+}
+
+/* ───────── Page heroes ───────── */
+.page-hero{padding-block:88px 72px;position:relative;overflow:hidden}
+.page-hero .wrap{display:grid;justify-items:center;gap:var(--space-5);text-align:center;position:relative}
+.page-hero .lead{max-width:56ch}
+.hero-tangram{position:absolute;top:50%;transform:translateY(-50%);width:clamp(96px,11vw,150px)}
+.hero-tangram--l{left:var(--container-gutter)}
+.hero-tangram--r{right:var(--container-gutter)}
+@media (max-width:1100px){.hero-tangram{display:none}}
+.home-hero{padding-block:104px 96px}
+.home-hero .display{max-width:15ch}
+.home-hero .wrap{gap:var(--space-6)}
+
+/* ───────── Home ───────── */
+.commitments{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--space-6);counter-reset:c}
+@media (max-width:860px){.commitments{grid-template-columns:1fr}}
+.commitments li{display:grid;grid-template-columns:auto 1fr;grid-template-rows:1fr auto;gap:var(--space-4);align-items:start;font-weight:600;font-size:17px;line-height:1.5}
+.commitments .photo-slot{margin-bottom:0}
+/* Picture slot: swap the placeholder's contents for <img src="assets/..." alt="..."> when photos are ready */
+.photo-slot{grid-column:1/-1;aspect-ratio:4/3;max-width:100%;border-radius:var(--radius-xl);overflow:hidden;display:grid;place-items:center;align-content:center;gap:var(--space-2);background:var(--color-muted);border:1px dashed var(--color-border);color:var(--text-muted);font-size:13px;font-weight:600;margin-bottom:var(--space-2)}
+.photo-slot svg{width:28px;height:28px;color:var(--color-primary);opacity:.6}
+.photo-slot img{width:100%;height:100%;object-fit:cover;grid-area:1/1}
+.photo-slot:has(img){border:0;background:none}
+.commitments .num{display:grid;place-items:center;width:44px;height:44px;border-radius:var(--radius-md);background:var(--tj-golden);color:var(--tj-ink);font-weight:700;font-size:20px}
+.principles{display:grid;margin-top:var(--space-16);border-top:1px solid var(--color-border)}
+.principle{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:var(--space-12);padding-block:var(--space-12);border-bottom:1px solid var(--color-border)}
+.principle-head{display:grid;gap:var(--space-5);align-content:start}
+.principle-head .photo-slot{margin-bottom:0}
+.principle h3{font-size:clamp(1.3rem,2.2vw,1.6rem);line-height:1.25;font-weight:800;color:var(--text-display);letter-spacing:var(--tracking-tight);text-wrap:balance}
+.principle ul{display:grid;gap:var(--space-4);max-width:65ch}
+.principle li{line-height:1.65;padding-left:22px;position:relative}
+.principle li::before{content:"";position:absolute;left:0;top:.62em;width:8px;height:8px;background:var(--tj-teal)}
+@media (max-width:860px){.principle{grid-template-columns:1fr;gap:var(--space-4)}}
+
+.stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--space-10) var(--space-8)}
+@media (max-width:860px){.stats{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:480px){.stats{grid-template-columns:1fr}}
+.stat{display:grid;gap:var(--space-2);align-content:start;border-top:2px solid rgba(255,255,255,.2);padding-top:var(--space-5)}
+.stat .fig{font-size:clamp(2.75rem,5.4vw,4.25rem);font-weight:700;line-height:1;color:var(--tj-golden);letter-spacing:var(--tracking-display);font-variant-numeric:tabular-nums;display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+.stat .unit{font-size:clamp(1rem,1.6vw,1.25rem);font-weight:700;letter-spacing:0}
+.stat p{color:var(--on-brand-muted);font-size:15px;line-height:1.5;max-width:34ch}
+
+.unis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--space-3)}
+.unis li{display:flex;align-items:center;justify-content:center;min-width:0;min-height:112px;padding:var(--space-5) var(--space-4);border:1px solid var(--color-border);border-radius:var(--radius-lg);background:#fff}
+.unis img{max-width:100%;height:auto}
+.unis .u-typed{gap:12px}
+.unis .u-typed img{height:52px;width:auto;flex:none}
+.unis .u-typed span{font-weight:700;font-size:16px;line-height:1.2;max-width:9em}
+@media (max-width:1000px){.unis{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (max-width:640px){.unis{grid-template-columns:repeat(2,minmax(0,1fr))}.unis li{min-height:88px;padding:var(--space-4) var(--space-3)}.unis .u-typed img{height:40px}.unis .u-typed span{font-size:14px}}
+
+.fit{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:var(--space-12);align-items:center}
+@media (max-width:860px){.fit{grid-template-columns:1fr}.fit .fit-art{display:none}}
+.fit-list{display:grid;gap:var(--space-4);margin-block:var(--space-6)}
+.fit-list li{display:grid;grid-template-columns:auto 1fr;gap:var(--space-3);font-size:17px;line-height:1.5}
+.fit-list svg{color:var(--tj-golden);margin-top:2px}
+.band:not(.band--brand) .fit-list svg{color:var(--color-primary)}
+.fit-close{font-size:clamp(1.15rem,2vw,1.4rem);font-weight:800;margin-bottom:var(--space-6)}
+.plinth{background:#fff;border-radius:var(--radius-xl);padding:28px;display:grid;place-items:center}
+
+/* ───────── About ───────── */
+.team{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:var(--space-4)}
+.member{position:relative;aspect-ratio:4/5;max-width:100%;border-radius:var(--radius-xl);overflow:hidden;background:var(--color-muted);border:1px solid var(--color-border);display:grid;place-items:center;color:var(--color-primary)}
+.member>svg{width:40px;height:40px;opacity:.55}
+.member .info{position:absolute;inset:auto 0 0 0;padding:var(--space-4);background:var(--surface-brand);color:#fff;display:grid;gap:2px;transform:translateY(100%);transition:transform var(--duration) var(--ease-out)}
+.member:hover .info,.member:focus-visible .info,.member:focus-within .info{transform:none}
+.member .info strong{font-size:15px}
+.member .info span{font-size:13px;color:var(--on-brand-muted)}
+.member .idx{position:absolute;top:10px;left:12px;font:500 12px/1 var(--font-sans);color:var(--text-muted)}
+
+.timeline{display:grid;gap:0;position:relative}
+.tl-item{display:grid;grid-template-columns:140px minmax(0,1fr) minmax(200px,280px);gap:var(--space-8);align-items:start;padding-block:var(--space-8);border-top:1px solid var(--color-border)}
+.tl-item .photo-slot{grid-column:auto;margin:0}
+@media (max-width:860px){.tl-item{grid-template-columns:120px minmax(0,1fr)}.tl-item .photo-slot{grid-column:2;max-width:360px}}
+.tl-item:last-child{border-bottom:1px solid var(--color-border)}
+.tl-year{font-size:clamp(2.25rem,4vw,3rem);font-weight:700;line-height:1;color:var(--text-display);letter-spacing:var(--tracking-display);font-variant-numeric:tabular-nums}
+.tl-body{display:grid;gap:var(--space-2);max-width:65ch}
+.tl-body h3{font-size:18px;font-weight:700}
+.tl-body p{line-height:1.65}
+@media (max-width:640px){.tl-item{grid-template-columns:1fr;gap:var(--space-3)}.tl-item .photo-slot{grid-column:auto;max-width:100%}}
+
+/* ───────── Program ───────── */
+.tabs{display:grid;gap:var(--space-6)}
+.tablist{display:inline-flex;gap:4px;padding:4px;border-radius:var(--radius-lg);background:var(--color-muted);justify-self:center;flex-wrap:wrap}
+.tablist button{height:var(--control-height);padding:0 20px;border-radius:var(--radius-md);border:0;background:transparent;font:600 14px/1 var(--font-sans);color:var(--text-muted);cursor:pointer}
+.tablist button[aria-selected="true"]{background:var(--surface-page);color:var(--text-body);box-shadow:var(--shadow)}
+.tabpanel{min-height:0}
+.feature{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:var(--space-12);align-items:start}
+.feature + .feature{margin-top:var(--space-16);padding-top:var(--space-16);border-top:1px solid var(--color-border)}
+.feature .aside{display:grid;gap:var(--space-4);align-content:start}
+.feature .aside .tangram{width:120px}
+.feature .aside .photo-slot{margin:var(--space-2) 0 0}
+@media (max-width:860px){.feature{grid-template-columns:1fr;gap:var(--space-6)}}
+
+/* ───────── Admissions ───────── */
+.grades{display:flex;flex-wrap:wrap;justify-content:center;gap:var(--space-10) var(--space-12);padding-bottom:12px}
+.grade-card{width:200px;background:var(--grade-face);border:2px solid var(--block-shadow-color);box-shadow:8px 8px 0 0 var(--block-shadow-color);display:grid;text-align:center;transition:transform var(--duration) var(--ease-standard),box-shadow var(--duration) var(--ease-standard)}
+.grade-card:hover{transform:translate(-2px,-2px);box-shadow:10px 10px 0 0 var(--block-shadow-color)}
+.grade-card .level{font-size:16px;font-weight:700;padding-top:var(--space-5);color:var(--text-muted)}
+.grade-card .numeral{font-size:76px;font-weight:700;line-height:80px;color:var(--tj-golden);white-space:nowrap;padding:var(--space-2) var(--space-4) var(--space-5);letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.grade-card .numeral--long{font-size:54px}
+.grade-card .label{padding:10px;font-weight:700;font-size:15px}
+.label--orange{background:var(--tj-orange);color:var(--tj-ink)}
+.label--teal{background:var(--tj-teal-deep);color:#fff}
+.label--purple{background:var(--tj-purple);color:#fff}
+
+.steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--space-6);counter-reset:s}
+@media (max-width:1000px){.steps{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:600px){.steps{grid-template-columns:1fr}}
+.step{position:relative;display:grid;gap:var(--space-3);align-content:start;padding:var(--card-padding);border-radius:var(--radius-xl);background:var(--surface-card);border:1px solid var(--color-border)}
+.step .n{display:grid;place-items:center;width:40px;height:40px;border-radius:var(--radius-md);background:var(--tj-purple);color:#fff;font-weight:700;font-size:18px}
+.step h3{font-size:17px;line-height:1.35;font-weight:700}
+.step p,.step li{font-size:14px;line-height:1.55;color:var(--text-muted)}
+.step ul{display:grid;gap:6px}
+.step li{padding-left:16px;position:relative}
+.step li::before{content:"";position:absolute;left:0;top:.6em;width:6px;height:6px;background:var(--tj-teal)}
+
+.fees{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--space-6)}
+@media (max-width:900px){.fees{grid-template-columns:1fr}}
+.fee{display:grid;gap:var(--space-2)}
+.fee .fee-level{font-size:18px;line-height:28px;font-weight:700;color:var(--text-body)}
+.fee .price{font-size:clamp(1.8rem,3vw,2.25rem);font-weight:700;color:var(--text-display);letter-spacing:var(--tracking-tight);font-variant-numeric:tabular-nums;line-height:1.1}
+.fee .per{font-size:13px;color:var(--text-muted)}
+.aid{margin-top:var(--space-12);display:grid;grid-template-columns:auto 1fr;gap:var(--space-6)}
+.aid .prose p{font-size:15px}
+.aid .note{font-size:14px;color:var(--text-muted)}
+@media (max-width:640px){.aid{grid-template-columns:1fr}}
+
+.faq-group + .faq-group{margin-top:var(--space-12)}
+.faq-group h3{font-size:18px;line-height:28px;font-weight:700;color:var(--text-display);margin-bottom:var(--space-2)}
+.faq{border-top:1px solid var(--color-border)}
+.faq details{border-bottom:1px solid var(--color-border)}
+.faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:var(--space-4);padding:18px 4px;font-weight:600;font-size:16px;line-height:1.45}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary .chev{flex:none;width:18px;height:18px;color:var(--text-muted);transition:transform var(--duration) var(--ease-standard)}
+.faq details[open] summary .chev{transform:rotate(180deg)}
+.faq summary:hover{color:var(--color-primary)}
+.faq .answer{padding:0 4px 20px;color:var(--text-muted);line-height:1.65;max-width:70ch}
+.faq-layout{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);gap:var(--space-12)}
+.faq-layout .section-head{position:sticky;top:calc(var(--nav-height) + 32px);align-self:start}
+@media (max-width:860px){.faq-layout{grid-template-columns:1fr;gap:0}.faq-layout .section-head{position:static}}
+
+/* ───────── Outcomes ───────── */
+.big-figure{display:grid;grid-template-columns:auto 1fr;gap:var(--space-12);align-items:center}
+.big-figure .fig{font-size:clamp(4rem,12vw,9rem);font-weight:700;line-height:.9;color:var(--tj-golden);letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.big-figure .fig small{display:block;font-size:.26em;letter-spacing:0;margin-top:.4em}
+.big-figure p{font-size:clamp(1.1rem,2vw,1.35rem);font-weight:600;line-height:1.5;max-width:32ch}
+.big-figure .sub{display:flex;gap:var(--space-8);margin-top:var(--space-6);flex-wrap:wrap}
+.big-figure .sub div{display:grid;gap:2px}
+.big-figure .sub b{font-size:32px;font-weight:700;color:#fff;font-variant-numeric:tabular-nums}
+.big-figure .sub span{font-size:14px;color:var(--on-brand-muted);max-width:26ch}
+@media (max-width:760px){.big-figure{grid-template-columns:1fr;gap:var(--space-6)}}
+.ventures{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:var(--space-4)}
+@media (max-width:1000px){.ventures{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (max-width:560px){.ventures{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.venture{display:grid;gap:var(--space-4);justify-items:start;padding:var(--card-padding);border-radius:var(--radius-xl);background:var(--surface-card);border:1px solid var(--color-border)}
+.venture .mono{display:grid;place-items:center;width:48px;height:48px;border-radius:var(--radius-md);background:var(--tj-purple);color:#fff;font-weight:900;font-size:22px}
+.venture:nth-child(2) .mono{background:var(--tj-teal-deep)}
+.venture:nth-child(3) .mono{background:var(--tj-golden);color:var(--tj-ink)}
+.venture:nth-child(4) .mono{background:var(--tj-orange);color:var(--tj-ink)}
+.venture strong{font-size:17px;font-weight:800}
+
+/* ───────── Footer ───────── */
+.site-footer{background:var(--tj-violet-900);color:#fff;padding-block:56px 40px}
+.site-footer .wrap{display:grid;gap:var(--space-10)}
+.footer-top{display:grid;gap:var(--space-10)}
+.footer-top .logo-plate img{height:40px;width:auto}
+.footer-name{margin-top:var(--space-4);font-size:14px;color:rgba(255,255,255,.75);max-width:32ch}
+.footer-map{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:var(--space-8)}
+.footer-map .f-page{color:#fff;font-size:15px;font-weight:700}
+.footer-map ul{display:grid;gap:8px;margin-top:var(--space-3)}
+.footer-map ul a{color:rgba(255,255,255,.72);font-size:14px;line-height:1.35}
+.footer-map a:hover{color:#fff}
+.footer-bottom a{color:rgba(255,255,255,.8)}
+@media (max-width:900px){.footer-map{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:420px){.footer-map{grid-template-columns:1fr}}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.12);padding-top:var(--space-6);font-size:13px;color:rgba(255,255,255,.6);display:flex;justify-content:space-between;gap:var(--space-4);flex-wrap:wrap}
+
+[data-page]{animation:page-in var(--duration-slow) var(--ease-out)}
+@keyframes page-in{from{opacity:.4}to{opacity:1}}
+</style>
+</head>
+<body>
+
+<!-- ═════════════════ HEADER ═════════════════ -->
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="#home" aria-label="Tomujin Alternative School — нүүр хуудас">
+      <span class="logo-plate"><img src="assets/logo-lockup.png" alt="Tomujin Alternative School"></span>
+    </a>
+    <!-- Filled from SITEMAP in the script at the bottom: every page, with a dropdown of its sections -->
+    <nav class="nav" aria-label="Үндсэн цэс" data-nav-root></nav>
+    <div class="header-actions">
+      <a class="btn btn--accent header-cta" href="https://join.tomujin.edu.mn" target="_blank" rel="noopener">Өргөдлөө илгээгээрэй</a>
+      <button class="menu-btn" id="menu-btn" aria-expanded="false" aria-controls="mobile-nav" aria-label="Бүх хэсгийг харах"><i data-lucide="menu"></i></button>
+    </div>
+  </div>
+  <nav class="mobile-nav" id="mobile-nav" aria-label="Бүх хэсэг" hidden data-mobile-root></nav>
+</header>
+
+<main id="main">
+
+<!-- ═════════════════ 1. НҮҮР / HOME ═════════════════ -->
+<div data-page="home" data-title="Нүүр · Томүжин Алтернатив сургууль">
+
+  <section class="page-hero home-hero">
+    <div class="wrap">
+      <img class="tangram hero-tangram hero-tangram--l" src="assets/tangrams/graduation-cap.png" alt="" aria-hidden="true">
+      <img class="tangram hero-tangram hero-tangram--r" src="assets/tangrams/rocket.png" alt="" aria-hidden="true">
+      <h1 class="display display--lg">Бид зөвхөн сургууль биш боловсролыг шинэчлэх хөдөлгөөн.</h1>
+      <p class="lead">Амьдралд бэлэн хүчирхэг хүмүүсийг бэлдэнэ.</p>
+      <div class="btn-row">
+        <a class="btn btn--accent btn--lg" href="https://join.tomujin.edu.mn" target="_blank" rel="noopener">Өргөдлөө илгээгээрэй</a>
+        <a class="btn btn--outline btn--lg" href="#program">Хөтөлбөртэй танилцах <i data-lucide="arrow-right"></i></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- b. Боловсролын талаарх бидний философи -->
+  <section id="home-philosophy" class="band" style="padding-top:0">
+    <div class="wrap split">
+      <div class="section-head section-head--left" style="margin:0">
+        <h2 class="h1">Сургууль хүүхдүүдийг амьдралд бэлдэхээ больсон. Болиод удаж байна.</h2>
+      </div>
+      <div class="prose">
+        <p>Өнөөдөр бидэнд тулгарч буй сорилтууд өнгөрсөнөөс тэс өөр бөгөөд төвөгтэй. Эдгээр сорилтуудыг зөвхөн өнөөдөрөөр төсөөлөх боломжгүй, цаг хугацаа өнгөрөхийн хэрээр амьдрал илүү хурднаар өөрчлөгдөж байна.</p>
+        <p>Асар хурдацтай хувьсан өөрчлөгдөж буй энэ дэлхийд өсч хөгжихийн тулд сурагчид цаг хугацаа, нөхцөлөөс үл хамааран өөрсдийн хүссэн өөрчлөлтийг авчрах чадварт суралцах хэрэгтэй болоод байна.</p>
+        <p><strong>Тиймээс бид боловсролыг дахин томьёолж, сурагчдаа амьдралд бэлтгэх хөтөлбөрийг боловсруулж байна.</strong></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- c. Томүжингийн арга барил -->
+  <section id="home-approach" class="band" style="padding-top:0">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 class="h1">Бид:</h2>
+      </div>
+      <ol class="commitments">
+        <li><span class="num">1</span><span>Чанартай боловсролыг тэгш хүртээмжтэй болгох зорилготойгоор,</span><div class="photo-slot"><i data-lucide="image"></i><span>Зураг удахгүй нэмэгдэнэ</span></div></li>
+        <li><span class="num">2</span><span>Шалгалтанд биш амьдралд бэлдэх хөтөлбөрөөр,</span><div class="photo-slot"><i data-lucide="image"></i><span>Зураг удахгүй нэмэгдэнэ</span></div></li>
+        <li><span class="num">3</span><span>Хүсэл тэмүүллээр дүүрэн хүүхдүүдтэй ажиллаж мөрөөдөл, зорилгод нь хүргэхээр ажилладаг.</span><div class="photo-slot"><i data-lucide="image"></i><span>Зураг удахгүй нэмэгдэнэ</span></div></li>
+      </ol>
+
+      <div class="principles">
+        <article class="principle">
+          <div class="principle-head">
+            <h3>Хүрээлэл бол чанартай боловсролыг хөдөлгөгч хүч.</h3>
+            <div class="photo-slot"><i data-lucide="image"></i><span>Зураг удахгүй нэмэгдэнэ</span></div>
+          </div>
+          <ul>
+            <li>Сургуулийн хүрээлэл сурагчдад хэрхэн нөлөөлж буй нь суралцахад хамгийн хамааралтай хүчин зүйлсийн нэг. Тийм учраас бид хүсэл эрмэлзэлтэй, тэмүүлэл зорилготой хүүхдүүдээс бүрдсэн хүрээллийг бүтээхийг зорьдог.</li>
+            <li>Бид элсэлтийн үе шатуудаараа бие даан суралцах чадвартай, хүсэл эрмэлзэлдээ түүндээ үнэнч сурагчдыг таньж, ар гэрийн санхүүгийн чадамжаас үл хамааран элсүүлэхийг эрхэмлэдэг.</li>
+          </ul>
+        </article>
+        <article class="principle">
+          <div class="principle-head">
+            <h3>Дэлхий ертөнц өөрчлөгдөхийн хэрээр боловсрол ч мөн өөрчлөгдөх хэрэгтэй.</h3>
+            <div class="photo-slot"><i data-lucide="image"></i><span>Зураг удахгүй нэмэгдэнэ</span></div>
+          </div>
+          <ul>
+            <li>Өнөөдөр бидэнд тулгарч буй сорилтууд өнгөрсөнөөс тэс өөр бөгөөд төвөгтэй байна. Мөн бид ирээдүйд тулгарах сорилтуудыг урьдчилан таамаглах боломжгүй. Цаг хугацаа өнгөрөх тусам өмнө нь хэзээ ч тулгарж байгаагүй шинэ сорилтууд, илүү хурднаар гарч ирж байна.</li>
+            <li>Асар хурдацтай хувьсан өөрчлөгдөж буй энэ дэлхийд өсч хөгжихийн тулд сурагчид цаг хугацаа, нөхцөлөөс үл хамааран өөрсдийн хүссэн өөрчлөлтийг хийх чадварт суралцах хэрэгтэй.</li>
+            <li>Тиймээс бид боловсролыг дахин томьёолж, сурагчдаа амьдралд бэлтгэж байна.</li>
+          </ul>
+        </article>
+        <article class="principle">
+          <div class="principle-head">
+            <h3>Өөрчлөлт түүчээлэх зорилготой нэгэнд шаардлагатай мэдлэг чадварыг эзэмшүүлэх ёстой.</h3>
+            <div class="photo-slot"><i data-lucide="image"></i><span>Зураг удахгүй нэмэгдэнэ</span></div>
+          </div>
+          <ul>
+            <li>Юу мэддэг байхаасаа илүү мэдлэгээрээ юуг хийж бүтээх нь илүү чухал.</li>
+            <li>Сурагчид дан ганц ирээдүйд эзэмших мэргэжил, гүйцэтгэх ажлынхаа төлөө биш, харин жинхэнэ амьдралд тулгардаг асуудлуудыг шийдэхэд бэлтгэгдэх ёстой гэдэгт бид итгэдэг. Уур амьсгалын өөрчлөлттэй тэмцэх, бодлого боловсруулах, шинэ санаа гаргах зэрэг аль нь ч бай сурагчдынхаа өөрсдөөсөө ч том асуудлуудыг шийдэх эрмэлзэлийг бид суулгадаг, хөгжүүлдэг, дэмждэг.</li>
+            <li>Манай сурагчид тогтвортой хөгжлийн бодлогод нийцэх олон төрлийн төслүүдийг санаачилж, хэрэгжүүлдэг.</li>
+            <li>Томүжин Алтернатив сургуулийн төгсөгчид томоохон бизнес болон нийгэмд тустай хөдөлгөөнүүдийг санаачилдаг.</li>
+            <li>Манай сургалтын хөтөлбөр нийгэмд ээлтэй, асуудал бодитоор шийдвэрлэх арга замыг багтаасан байдаг.</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- d. Чухал тоонууд -->
+  <section id="home-numbers" class="band band--brand">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 class="h1">Чухал тоонууд</h2>
+      </div>
+      <div class="stats">
+        <div class="stat"><div class="fig">551</div><p>Төгсөгч</p></div>
+        <div class="stat"><div class="fig">24.8<span class="unit">тэрбум ₮</span></div><p>Томүжингаас сурагчдадаа олгосон санхүүгийн дэмжлэг</p></div>
+        <div class="stat"><div class="fig">93.7%</div><p>Санхүүгийн дэмжлэгтэйгээр Томүжинд суралцдаг сурагчдын хувь</p></div>
+        <div class="stat"><div class="fig">165+</div><p>Дэлхийн ТОП их дээд сургуулиудад тэнцсэн тэнцэлтийн тоо</p></div>
+        <div class="stat"><div class="fig">87+<span class="unit">тэрбум ₮</span></div><p>Дэлхийн ТОП их дээд сургуулиудаас авсан тэтгэлгийн хэмжээ</p></div>
+        <div class="stat"><div class="fig">20%</div><p>Нийт сурагчдын 20%-ийг 21 аймгийн сурагчид бүрдүүлдэг</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- e. Тэнцсэн их сургуулиуд -->
+  <section id="home-universities" class="band">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 class="h1">Тэнцсэн их сургуулиуд</h2>
+      </div>
+      <ul class="unis" data-unis></ul>
+      <div class="btn-row" style="margin-top:var(--space-8)">
+        <a class="btn btn--outline" href="#outcomes">Бидний үр дүн <i data-lucide="arrow-right"></i></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- f. Хэвлэл дээрх нийтлэлүүд -->
+  <section id="home-press" class="band" style="padding-top:0">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 class="h1">Хэвлэл дээрх нийтлэлүүд</h2>
+      </div>
+      <div class="empty">
+        <span class="icon-wrap"><i data-lucide="newspaper"></i></span>
+        <strong>Нийтлэлийн холбоосууд удахгүй нэмэгдэнэ</strong>
+        <p>Томүжингийн тухай хэвлэлд гарсан нийтлэлүүдийн холбоосыг энд байршуулна.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- g. Чамд тохирох сургууль байна уу? -->
+  <section id="home-fit" class="band band--brand">
+    <div class="wrap fit">
+      <div>
+        <h2 class="h1">Чамд тохирох сургууль байна уу?</h2>
+        <p style="margin-top:var(--space-6);font-weight:700;font-size:17px">Хэрвээ чи:</p>
+        <ul class="fit-list" data-fit-list></ul>
+        <p class="fit-close">Томүжин та 2 бие биендээ төгс тохирч магад.</p>
+        <a class="btn btn--accent btn--lg" href="https://join.tomujin.edu.mn" target="_blank" rel="noopener">Өргөдлөө илгээгээрэй</a>
+      </div>
+      <div class="fit-art plinth"><img class="tangram" src="assets/tangrams/star.png" alt="" aria-hidden="true" style="width:160px"></div>
+    </div>
+  </section>
+</div>
+
+<!-- ═════════════════ 2. БИДНИЙ ТУХАЙ / ABOUT ═════════════════ -->
+<div data-page="about" data-title="Бидний тухай · Томүжин" hidden>
+  <section class="page-hero">
+    <div class="wrap">
+      <img class="tangram hero-tangram hero-tangram--l" src="assets/tangrams/person.png" alt="" aria-hidden="true">
+      <img class="tangram hero-tangram hero-tangram--r" src="assets/tangrams/tree.png" alt="" aria-hidden="true">
+      <h1 class="display display--md">Бидний тухай.</h1>
+      <p class="lead">2015 онд Томүжин Академиар эхэлсэн аялал өнөөдөр 1-р ангиас 12-р анги хүртэлх Томүжин Алтернатив сургууль болжээ.</p>
+    </div>
+  </section>
+
+  <!-- a. Баг хамт олон -->
+  <section id="about-team" class="band" style="padding-top:0">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 class="h1">Томүжин Алтернатив сургууль</h2>
+        <p class="lead">Багийн танилцуулга</p>
+        <span class="badge badge--placeholder"><i data-lucide="image" style="width:14px;height:14px"></i> 22 хүний зураг, нэр удахгүй нэмэгдэнэ</span>
+      </div>
+      <ul class="team" data-team></ul>
+    </div>
+  </section>
+
+  <!-- b. Бидний түүх -->
+  <section id="about-history" class="band band--alt">
+    <div class="wrap">
+      <div class="section-head section-head--left">
+        <h2 class="h1">2015 оноос хойшхи түүх</h2>
+      </div>
+      <ol class="timeline">
+        <li class="tl-item"><span class="tl-year">2015</span><div class="tl-body"><h3>Томүжин Академи</h3><p>Их сургуулийн өргөдлийн системд бэлдэх цогц хөтөлбөртэйгээр Монголд анхдагч болон үүсгэн байгуулагдаж үйл ажиллагаагаа эхлүүлэв.</p></div><div class="photo-slot"><i data-lucide="image"></i><span>Зураг удахгүй нэмэгдэнэ</span></div></li>
+        <li class="tl-item"><span class="tl-year">2017</span><div class="tl-body"><h3>GAP Year хөтөлбөр</h3><p>Томүжин Академи 8 сарын хугацаатай завсар жилийн хөтөлбөрийг хэрэгжүүлж үр дүнд нь анх удаа улсын сургуулийн төгсөгч Харвардын их сургуульд тэнцэв. Уг хөтөлбөрийн төгсөгчид Harvard, MIT, Yale, UC Berkeley гэх дэлхийн топ их сургуулиудад сурч төгссөн.</p></div><div class="photo-slot"><i data-lucide="image"></i><span>Зураг удахгүй нэмэгдэнэ</span></div></li>
+        <li class="tl-item"><span class="tl-year">2020</span><div class="tl-body"><h3>Томүжин Алтернатив сургууль</h3><p>Монголын анхны “төсөлд суурилсан сургалттай” (project-based-learning) сургууль анхныхаа хичээлийн жилийг 200 сурагчтайгаар эхлүүллээ.</p></div><div class="photo-slot"><i data-lucide="image"></i><span>Зураг удахгүй нэмэгдэнэ</span></div></li>
+        <li class="tl-item"><span class="tl-year">2024</span><div class="tl-body"><h3>Дэлхийн шилдэг их сургуулиуд</h3><p>Үүсгэн байгуулагдсанаас 4 жилийн дотор Harvard, Stanford, Swarthmore, NYU гэх их сургуулиудад сурагчид маань тэнцэн суралцав.</p></div><div class="photo-slot"><i data-lucide="image"></i><span>Зураг удахгүй нэмэгдэнэ</span></div></li>
+        <li class="tl-item"><span class="tl-year">2026</span><div class="tl-body"><h3>1-р анги</h3><p>Амьдралд бэлтгэх 12 жилийн аялалыг эхлүүлж анхны 1-р ангийн сурагчдаа хүлээн авлаа.</p></div><div class="photo-slot"><i data-lucide="image"></i><span>Зураг удахгүй нэмэгдэнэ</span></div></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- c. Алсын хараа -->
+  <section id="about-vision" class="band">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 class="h1">Алсын хараа</h2>
+      </div>
+      <div class="empty">
+        <span class="icon-wrap"><i data-lucide="telescope"></i></span>
+        <strong>Удахгүй нэмэгдэнэ</strong>
+        <p>Томүжингийн алсын харааны агуулга бэлтгэгдэж байна.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- d. Ажлын байр -->
+  <section id="about-careers" class="band band--alt">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 class="h1">Нээлттэй ажлын байр</h2>
+      </div>
+      <div class="empty" style="background:var(--surface-page)">
+        <span class="icon-wrap"><i data-lucide="briefcase"></i></span>
+        <strong>Одоогоор нээлттэй ажлын байр зарлагдаагүй байна</strong>
+        <p>Нээлттэй ажлын байр гарвал энд нийтлэгдэнэ.</p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ═════════════════ 3. ХӨТӨЛБӨР / PROGRAM ═════════════════ -->
+<div data-page="program" data-title="Хөтөлбөр · Томүжин" hidden>
+  <section class="page-hero">
+    <div class="wrap">
+      <img class="tangram hero-tangram hero-tangram--l" src="assets/tangrams/scholar.png" alt="" aria-hidden="true">
+      <img class="tangram hero-tangram hero-tangram--r" src="assets/tangrams/steps.png" alt="" aria-hidden="true">
+      <h1 class="display display--md">Хөтөлбөр.</h1>
+      <p class="lead">Амьдралд бэлтгэх Томүжин хөтөлбөр</p>
+    </div>
+  </section>
+
+  <section class="band band--alt">
+    <div class="wrap">
+      <!-- b. PBL хөтөлбөр -->
+      <article class="feature" id="program-pbl">
+        <div class="aside">
+          <h2 class="h1">Төсөлд суурилсан сурах аргачлал</h2>
+          <div class="photo-slot"><i data-lucide="image"></i><span>Зураг удахгүй нэмэгдэнэ</span></div>
+        </div>
+        <div class="prose">
+          <p><strong>Project-Based-Learning</strong> буюу төсөлд суурилсан сурах аргачлал нь бодит амьдрал дээрх нөхцөл байдал, асуудал, үйл явдалд үндэслэж тэдгээрт дүн шинжилгээ хийх, дүгнэлт гаргах, шийдэл олох замаар суралцах нэгэн төрлийн идэвхтэй суралцах (Active Learning) арга барил юм.</p>
+          <p>Томүжингийн сурагчид эдгээр төсүүдийг хэрэгжүүлэхдээ онолын мэдлэгээ бататгахын сацуу асуудлыг тодорхойлох, судалгаа хийх, асуудлын шийдлийг гаргах замаар шүүмжлэлт сэтгэлгээ, багаар үр дүнтэй ажиллах, шийдвэр гаргах, хөрвөх гэх 21-р зуунд амжилттай амьдрахад шаардагдах мэдлэг болон чадваруудад суралцдаг.</p>
+        </div>
+      </article>
+
+      <!-- c. Хаус систем -->
+      <article class="feature" id="program-house">
+        <div class="aside">
+          <h2 class="h1">Хаус систем</h2>
+          <div class="photo-slot"><i data-lucide="image"></i><span>Зураг удахгүй нэмэгдэнэ</span></div>
+        </div>
+        <div class="prose">
+          <p>Бид ажил, амьдрал дээр гараад хэзээ ч нэг насныхаа л хүмүүсээр хүрээлэгддэггүй. Томүжингийн сурагчид анги бус Хаусаар зохион байгуулагддаг. Уламжлалт сургуулиудын анги гэх ойлголтоос ялгаатай нь Хауст нэг насны, адилхан амьдралын туршлагатай хүүхдүүд байдаггүй. Хауст 6-с 12-р ангийн төрөл бүрийн хүсэл сонирхол, зан араншин, туршлагатай хүүхдүүд хуваарьлагдан орсон байдаг.</p>
+          <p>Ийнхүү Хаусыг бүрэлдүүлж буй сурагчдыг олон янз байлгаснаар бид хүрээллээ илүү олон янз болгодог билээ. Томүжинд нийт 8 хаус байдаг бөгөөд эдгээр Хаусууд нь хичээлийн жилийн хугацаанд бие биетэйгээ нөхөрсөгөөр өрсөлддөг. Сурагчид үүний явцад хүрээллийн олон янз байдлын төлөвшүүлдэг олон чадваруудад суралцдаг.</p>
+        </div>
+      </article>
+
+      <!-- d. Коллеж Преп -->
+      <article class="feature" id="program-college-prep">
+        <div class="aside">
+          <h2 class="h1">Их сургуулийн өргөдлийн бэлтгэл</h2>
+          <div class="photo-slot"><i data-lucide="image"></i><span>Зураг удахгүй нэмэгдэнэ</span></div>
+        </div>
+        <div class="prose">
+          <p>Томүжин Алтернатив сургууль нь их сургуулийн өргөдлийн бэлтгэл хөтөлбөрийг ахлах ангийн үндсэн хөтөлбөрт шингээсэн анхны сургуулиудын нэг. Сурагчид 10-р ангиас эхлэн АНУ-ын шилдэг их дээд сургуулиудад өргөдлөө илгээхэд олон талаас бэлддэг.</p>
+          <p>Хичээлээс гадуурх үйл ажиллагаа, төсөл, стандартчилсан шалгалтуудын бэлтгэл, өргөдлийн болон мэргэжлийн чиглэлийн ганцаарчилсан зөвлөгөө гэх зүйлс үндсэн хөтөлбөрт багтсан байдаг. Энэхүү хөтөлбөрийн үр дүн нь 100% бидний сурагчдын амжилтаас харагдна.</p>
+        </div>
+      </article>
+
+      <!-- e. Том Инк -->
+      <article class="feature" id="program-tom-ink">
+        <div class="aside">
+          <h2 class="h1">ТОМ ИНК — Томүжин Инкубатор</h2>
+          <div class="photo-slot"><i data-lucide="image"></i><span>Зураг удахгүй нэмэгдэнэ</span></div>
+        </div>
+        <div class="prose">
+          <p>Нийгэмд ээлтэй боловсролын байгууллагын хувьд бид сурагчдадаа мэдлэг олгоод зогсохгүй, мэдлэгээ ашиглаж бодит амьдрал дээр эерэг өөрчлөлт авчрахад нь чиглүүлж энэхүү төслийн тэмцээнийг 2024-2025 оноос санаачлан хэрэгжүүлсэн. Сурагчид маань эрүүл мэнд, боловсрол, байгаль орчин зэрэг өөрийн хувь нэмэр оруулахыг хүсдэг салбараа сонгож, өөрөөсөө давсан том зорилгын төлөө, бодит асуудлуудыг шийдээсэй хэмээн "ТОМ ИНК" (Томүжин Инкубатор) гэх нөлөөллийн төслийн тэмцээнийг бид санаачилсан билээ.</p>
+          <p>Энэхүү санаачилгын хүрээнд бид НҮБ-ын тогтвортой хөгжлийн зорилгуудтай уялдуулж сурагчид сонгосон салбартаа хэн илүү нөлөөлөл, өөрчлөлт авчрахаараа өрсөлдөж байгаа билээ.</p>
+          <p>Сүүлийн 2 жилийн хугацаанд сурагчдын гаргасан амжилтуудаас дурдвал:</p>
+          <div class="card" style="grid-template-columns:auto 1fr;align-items:center;gap:var(--space-4)">
+            <span class="icon-tile icon-tile--gold"><i data-lucide="file-bar-chart"></i></span>
+            <div><strong style="display:block">Impact Report</strong><span class="muted" style="font-size:14px">Тайлан удахгүй нийтлэгдэнэ</span></div>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+</div>
+
+<!-- ═════════════════ 4. ЭЛСЭЛТ / ADMISSIONS ═════════════════ -->
+<div data-page="admissions" data-title="Элсэлт · Томүжин" hidden>
+  <section class="page-hero">
+    <div class="wrap">
+      <img class="tangram hero-tangram hero-tangram--l" src="assets/tangrams/gate.png" alt="" aria-hidden="true">
+      <img class="tangram hero-tangram hero-tangram--r" src="assets/tangrams/paper-plane.png" alt="" aria-hidden="true">
+      <h1 class="display display--md">Томүжин чиний хайж байгаа сургууль мөн үү?</h1>
+    </div>
+  </section>
+
+  <!-- a. Fit -->
+  <section id="admissions-fit" class="band" style="padding-top:0">
+    <div class="wrap" style="max-width:820px">
+      <div class="card" style="padding:var(--space-10);gap:0">
+        <p style="font-weight:700;font-size:17px">Хэрвээ чи:</p>
+        <ul class="fit-list" data-fit-list></ul>
+        <p class="fit-close" style="color:var(--text-display)">Томүжин та 2 бие биендээ төгс тохирч магад.</p>
+        <div><a class="btn btn--accent btn--lg" href="https://join.tomujin.edu.mn" target="_blank" rel="noopener">Өргөдлөө илгээгээрэй</a></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- b. Элсэлт авах анги -->
+  <section id="admissions-grades" class="band band--alt">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 class="h1">Элсэлт авах анги:</h2>
+      </div>
+      <div class="grades">
+        <div class="grade-card"><span class="level">Бага</span><span class="numeral">1</span><span class="label label--orange">1-р анги</span></div>
+        <div class="grade-card"><span class="level">Дунд</span><span class="numeral">6–9</span><span class="label label--teal">6–9-р анги</span></div>
+        <div class="grade-card"><span class="level">Ахлах</span><span class="numeral numeral--long">10–11</span><span class="label label--purple">10–11-р анги</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- c. Элсэлтийн процессийн тайлбар -->
+  <section id="admissions-process" class="band">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 class="h1">Элсэлтийн процессийн тайлбар</h2>
+      </div>
+      <ol class="steps">
+        <li class="step"><span class="n">1</span><h3>Бүртгэлийн анкет / Цахим өргөдөл</h3>
+          <ul><li>Хувийн мэдээлэл</li><li>Сурагчтай танилцах асуултууд</li><li>Сурагчийн Томүжинд суралцах хүслийг мэдэх асуултууд</li></ul></li>
+        <li class="step"><span class="n">2</span><h3>Бататгах шалгалт</h3>
+          <p>Энэ нь таны цахим өргөдөлдөө бичсэн мэдээлэл үнэн, бодит болохыг баталгаажуулах зорилготой байна. 2026-2027 хичээлийн жилийн хувьд математик, монгол хэл, англи хэл, нийгмийн хичээлүүдээр бичгэн шалгалт авч байгаа. Бүртгэлийн анкетийг бөглөж дуусгасны дараа тэнцсэн тохиолдолд сургуулиас цаг товлож явуулна.</p></li>
+        <li class="step"><span class="n">3</span><h3>Уулзалт, ярилцлага</h3>
+          <p>Шаардлагатай тохиолдолд сургуулиас нэмэлт ярилцлага товлон уулздаг. Мөн тэнцсэн сурагчдын асран хамгаалагч, эцэг эхчүүд ганцаарчилсан уулзалтууд товлох боломжтой.</p></li>
+        <li class="step"><span class="n">4</span><h3>Баталгаажуулалт, гэрээ</h3>
+          <p>Суудал баталгаажуулж, гэрээ хийснээр Томүжингийн шинэхэн гишүүн болно.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- d. Томүжин ямар хүүхдийг хайдаг вэ? -->
+  <section id="admissions-student" class="band" style="padding-top:0">
+    <div class="wrap split" style="align-items:center">
+      <div class="section-head section-head--left" style="margin:0">
+        <img class="tangram" src="assets/tangrams/sprout.png" alt="" aria-hidden="true" style="width:96px">
+        <h2 class="h1">Томүжин ямар хүүхдийг хайдаг вэ?</h2>
+      </div>
+      <div class="prose"><p style="font-size:18px">Томүжинг тодорхойлдог хамгийн чухал зүйл бидний итгэл үнэмшил, боловсролыг харах өнцөг. Үүн дээр нэмээд Томүжинг бүрдүүлэгч бүтээлч, хөдөлмөрч, хүсэл эрмэлзэлтэй сурагчдын хүрээлэл. Манай элсэлтийн үйл явц нь бидний итгэл үнэмшил, үнэт зүйлсэд итгэж нэгдэх, бидний хүрээлэлд тохирох сурагчдыг элсүүлэхийг зорьдог.</p></div>
+    </div>
+  </section>
+
+  <!-- e. Сургалтын төлбөр ба санхүүгийн дэмжлэг -->
+  <section id="admissions-fees" class="band band--alt">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 class="h1">Сургалтын төлбөр ба санхүүгийн дэмжлэг</h2>
+      </div>
+      <div class="fees">
+        <div class="card fee"><span class="fee-level">Бага</span><span class="price">18,900,000₮</span><span class="per">Жилийн сургалтын төлбөр</span></div>
+        <div class="card fee"><span class="fee-level">Дунд</span><span class="price">23,900,000₮</span><span class="per">Жилийн сургалтын төлбөр</span></div>
+        <div class="card fee"><span class="fee-level">Ахлах</span><span class="price">29,900,000₮</span><span class="per">Жилийн сургалтын төлбөр</span></div>
+      </div>
+      <div class="aid">
+        <span class="icon-tile"><i data-lucide="hand-heart"></i></span>
+        <div class="prose">
+          <h3 class="h2">Санхүүгийн дэмжлэг</h3>
+          <p>Таны илгээсэн санхүүгийн дэмжлэгийн өргөдөлийг үндэслэн тооцсон тооцоолол дээр тулгуурлаж хэрэгцээт санхүүгийн дэмжлэг/сургалтын төлбөрийн хөнгөлөлтийг олгоно.</p>
+          <p>Бид хамгийн шилдэг боловсролыг хүн бүхэнд тэгш хүртээмжтэй болгох зорилготой. Тиймдээ ч бид үүсгэн байгуулагдсан цагаасаа хойш тэнцүүлсэн сурагчдынхаа санхүүгийн нөхцөл байдлыг харгалзан үзэж, сургалтын төлбөрөөс төлж чадахгүй хэмжээнээс нь чөлөөлж, санхүүгийн дэмжлэгтэйгээр Томүжиндаа сургадаг.</p>
+          <p class="note">*Санхүүгийн дэмжлэг авах хүсэлтийг өргөдөл дээрээ илэрхийлж, тусдаа өргөдөл бөглөснөөр шийдвэрлэгддэг.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- f. FAQ -->
+  <section id="admissions-faq" class="band">
+    <div class="wrap faq-layout">
+      <div class="section-head section-head--left">
+        <h2 class="h1">Түгээмэл асуултууд</h2>
+      </div>
+      <div data-faq></div>
+    </div>
+  </section>
+</div>
+
+<!-- ═════════════════ 5. ҮР ДҮН БА ТӨГСӨГЧИД / OUTCOMES ═════════════════ -->
+<div data-page="outcomes" data-title="Бидний үр дүн · Томүжин" hidden>
+  <section class="page-hero">
+    <div class="wrap">
+      <img class="tangram hero-tangram hero-tangram--l" src="assets/tangrams/flag.png" alt="" aria-hidden="true">
+      <img class="tangram hero-tangram hero-tangram--r" src="assets/tangrams/pinwheel.png" alt="" aria-hidden="true">
+      <h1 class="display display--md">Бидний үр дүн.</h1>
+    </div>
+  </section>
+
+  <!-- a. Тэнцсэн сургуулиуд -->
+  <section id="outcomes-universities" class="band" style="padding-top:0">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 class="h1">Томүжингийн төгсөгчдийн тэнцсэн сургуулиуд</h2>
+      </div>
+      <ul class="unis" data-unis></ul>
+    </div>
+  </section>
+
+  <!-- b. Сурагчдын нийт тэтгэлгийн дүн -->
+  <section id="outcomes-scholarships" class="band band--brand">
+    <div class="wrap big-figure">
+      <div class="fig">87+<small>тэрбум ₮</small></div>
+      <div>
+        <p>Дэлхийн ТОП их дээд сургуулиудаас манай сурагчдын авсан тэтгэлгийн нийт хэмжээ.</p>
+        <div class="sub">
+          <div><b>165+</b><span>Дэлхийн ТОП их дээд сургуулиудад тэнцсэн тэнцэлт</span></div>
+          <div><b>551</b><span>Төгсөгч</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- c. Төгсөгчдийн хэрэгжүүлж яваа бизнесүүд -->
+  <section id="outcomes-ventures" class="band">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 class="h1">Төгсөгчдийн хэрэгжүүлж яваа бизнесүүд</h2>
+      </div>
+      <ul class="ventures">
+        <li class="venture"><span class="mono" aria-hidden="true">S</span><strong>Serenity</strong></li>
+        <li class="venture"><span class="mono" aria-hidden="true">Z</span><strong>Zogsoltgui</strong></li>
+        <li class="venture"><span class="mono" aria-hidden="true">S</span><strong>SuriyAI</strong></li>
+        <li class="venture"><span class="mono" aria-hidden="true">A</span><strong>AdmitBoost</strong></li>
+        <li class="venture"><span class="mono" aria-hidden="true">E</span><strong>EssayGo</strong></li>
+      </ul>
+    </div>
+  </section>
+</div>
+
+</main>
+
+<!-- ═════════════════ FOOTER ═════════════════ -->
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-top">
+      <div>
+        <span class="logo-plate" style="display:inline-block"><img src="assets/logo-lockup.png" alt="Tomujin Alternative School"></span>
+        <p class="footer-name">Томүжин Алтернатив сургууль — бид зөвхөн сургууль биш боловсролыг шинэчлэх хөдөлгөөн.</p>
+      </div>
+      <nav class="footer-map" aria-label="Сайтын бүтэц" data-footer-root></nav>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Tomujin Alternative School</span>
+      <a href="https://join.tomujin.edu.mn" target="_blank" rel="noopener">join.tomujin.edu.mn</a>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/lucide@0.474.0/dist/umd/lucide.min.js"></script>
+<script>
+(function(){
+  /* ── Site map: every page and its sections. Drives the header, the menu and the footer. ── */
+  var SITEMAP = [
+    {id:"home", label:"Нүүр", sections:[
+      ["home-philosophy","Боловсролын философи"], ["home-approach","Томүжингийн арга барил"], ["home-numbers","Чухал тоонууд"],
+      ["home-universities","Тэнцсэн их сургуулиуд"], ["home-press","Хэвлэл дээрх нийтлэлүүд"], ["home-fit","Чамд тохирох сургууль байна уу?"]]},
+    {id:"about", label:"Бидний тухай", sections:[
+      ["about-team","Баг хамт олон"], ["about-history","Бидний түүх"], ["about-vision","Алсын хараа"], ["about-careers","Ажлын байр"]]},
+    {id:"program", label:"Хөтөлбөр", sections:[
+      ["program-pbl","PBL хөтөлбөр"], ["program-house","Хаус систем"],
+      ["program-college-prep","Коллеж Преп"], ["program-tom-ink","Том Инк"]]},
+    {id:"admissions", label:"Элсэлт", sections:[
+      ["admissions-fit","Томүжин чиний сургууль мөн үү?"], ["admissions-grades","Элсэлт авах анги"], ["admissions-process","Элсэлтийн процесс"],
+      ["admissions-student","Томүжин ямар хүүхдийг хайдаг вэ?"], ["admissions-fees","Сургалтын төлбөр ба санхүүгийн дэмжлэг"], ["admissions-faq","Түгээмэл асуултууд"]]},
+    {id:"outcomes", label:"Бидний үр дүн", sections:[
+      ["outcomes-universities","Тэнцсэн сургуулиуд"], ["outcomes-scholarships","Сурагчдын нийт тэтгэлэг"], ["outcomes-ventures","Төгсөгчдийн бизнесүүд"]]}
+  ];
+
+  function sectionLinks(pg){ return pg.sections.map(function(x){ return '<a href="#'+x[0]+'">'+x[1]+'</a>'; }).join(""); }
+  var navRoot = document.querySelector("[data-nav-root]");
+  navRoot.innerHTML = SITEMAP.map(function(pg){
+    return '<div class="nav-item"><a class="nav-link" href="#'+pg.id+'" data-nav="'+pg.id+'">'+pg.label+'<i data-lucide="chevron-down"></i></a>'+
+      '<div class="dropdown" aria-label="'+pg.label+'">'+sectionLinks(pg)+'</div></div>';
+  }).join("");
+  document.querySelector("[data-mobile-root]").innerHTML = SITEMAP.map(function(pg){
+    return '<div class="m-group"><a href="#'+pg.id+'" data-nav="'+pg.id+'">'+pg.label+'</a><div class="m-sections">'+sectionLinks(pg)+'</div></div>';
+  }).join("") + '<a class="btn btn--accent btn--lg" href="https://join.tomujin.edu.mn" target="_blank" rel="noopener">Өргөдлөө илгээгээрэй</a>';
+  document.querySelector("[data-footer-root]").innerHTML = SITEMAP.map(function(pg){
+    return '<div><a class="f-page" href="#'+pg.id+'">'+pg.label+'</a><ul>'+pg.sections.map(function(x){ return '<li><a href="#'+x[0]+'">'+x[1]+'</a></li>'; }).join("")+'</ul></div>';
+  }).join("");
+
+  /* ── Shared content ── */
+  /* University logos: file in assets/unis/, full name (alt text), width/height ratio of the image.
+     Every logo is icon + name. Where no official lockup exists, the file pairs the official seal/emblem with the official wordmark.
+     A 4th value means the file is the icon only and the name is typed next to it, in that colour.
+     Order = prestige: average position in QS World University Rankings 2027 and THE World University Rankings 2026
+     (NYU Abu Dhabi and NYU Shanghai take NYU's position). World rankings don't cover liberal arts colleges or
+     specialist schools, so Swarthmore, Minerva, Berklee, Lafayette and Franklin & Marshall are placed by judgement. */
+  var UNIS = [
+    ["stanford","Stanford University",3.63], ["harvard","Harvard University",3.62], ["peking-icon","Peking University",1,"#8f0f14"],
+    ["tsinghua","Tsinghua University",3.18], ["cornell","Cornell University",4], ["uoft","University of Toronto",2.78],
+    ["columbia","Columbia University",6.49], ["swarthmore","Swarthmore College",4.2], ["umich","University of Michigan",5],
+    ["cmu","Carnegie Mellon University",4.91], ["sydney","The University of Sydney",2.88], ["nyuad","NYU Abu Dhabi",3.88],
+    ["nyush","NYU Shanghai",1], ["ubc","University of British Columbia",4.5], ["yonsei","Yonsei University",5.41],
+    ["ucsd","UC San Diego",3.49], ["purdue","Purdue University",5.56], ["korea","Korea University",2.63],
+    ["vanderbilt","Vanderbilt University",4.59], ["minerva","Minerva University",1.16], ["berklee","Berklee College of Music",3.97],
+    ["lehigh-icon","Lehigh University",0.73,"#502d0e"], ["lafayette","Lafayette College",2.91], ["fandm","Franklin & Marshall College",3.69]
+  ];
+  var FIT = [
+    "Амьдралд хэрэглэх мэдлэг, ур чадвар, туршлагыг эзэмшмээр байвал",
+    "Ирээдүйд хийж бүтээх зүйлээ хүсэж мөрөөддөг, түүн рүүгээ тэмүүлдэг бол",
+    "Хүсэл тэмүүлэл, эрмэлзлээр дүүрэн үе тэнгийхэн, ах эгч, дүү нараараа хүрээлүүлмээр байгаа бол"
+  ];
+  var FAQ = [
+    {group:"Элсэлтийн талаар", items:[
+      ["1-р шатанд шалгарсан эсэхийг имэйл хаяг руу явуулах уу?","Тийм ээ, давхар сануулах мэссэж очиж байгаа."],
+      ["Дүүргийн олимпиадын алт, хошой, хүрэл, нийслэлийн олимпиадын хүрэл медальтай бол Томүжинд ороход давуу тал болох уу?","Сурагч заавал амжилт үзүүлсэн байж Томүжинд орж ирдэггүй, хамгийн гол нь өөрийн хүсэл эрмэлзлэлтэй байх нь чухал. Гэхдээ мэдээж тууштай байж, тодорхой амжилт үзүүлсэн бол давуу тал болох боломжтой."],
+      ["Хичээлийн дүн хамааралтай юу?","1-р шатанд дүнгийн хуулга авч байгаа. Дүн нь харгалзан үзэх 10 үзүүлэлтийн л нэг юм."],
+      ["Англи хэлний мэдлэг хэр их хэрэгтэй вэ?","12-р ангийн бүх сурагчид АНУ-ын топ, их дээд сургуулиуд руу өргөдөлдөө бэлдэж явуулдаг. Тийм учраас суурь сайн байх хэрэгтэй. Гэхдээ англи хэлний мэдлэг нь шууд тэнцэх, эсвэл шууд тэнцэхгүй байх шалтгаан болохгүй."],
+      ["12-р ангидаа элсэн орох боломжтой юу, орж аав ээжийнхээ мөрөөдлийг биелүүлэх хүсэлтэй байна.","12-р ангид элсэлт авахгүй. Зөвхөн манай зуны сургууль, зуслангийн хөтөлбөрөөс цөөн тоогоор элсэх боломжтой байдаг."]
+    ]},
+    {group:"Төлбөр, санхүүгийн дэмжлэгийн талаар", items:[
+      ["Төлбөрийн мэдээлэл","Жилийн сургалтын төлбөр: Бага анги 18,900,000₮, Дунд анги 23,900,000₮, Ахлах анги 29,900,000₮. Санхүүгийн өргөдөл бөглөж тухайн гэр бүлийн санхүү дээр үндэслэн санхүүгийн дэмжлэгийн хэмжээ тогтоогддог."],
+      ["Санхүүгийн дэмжлэг яаж өгөх вэ?","Санхүүгийн дэмжлэгийг санхүүгийн дэмжлэгийн өргөдөл дээр үндэслэж тогтооно."],
+      ["Улсын болон Олон Улсын хэмжээний тэмцээнд амжилт гаргасан тохиолдолд тэтгэлэг олгох уу?","Тэнцэхэд тодорхой давуу тал болно, санхүүгийн дэмжлэг дээр харгалзан үзэх боломжтой."],
+      ["Сургалтын төлбөрт юу юу багтдаг вэ?","Сургалтын үндсэн төлбөрт сургалтын үйл ажиллагааг явуулахад шаардлагатай бүхий л материал, хэрэгслүүд багтсан. Хоолны зардал болон нэмэлт дүрэмт хувцасны зардлууд багтаагүй."]
+    ]},
+    {group:"Сургуулийн үйл ажиллагаатай холбоотой", items:[
+      ["Томүжинд бусад сургуульд ордоггүй хичээл байдаг уу?","Мэдээж байгаа. Харилцааны ур чадвар, бизнес судлал, төсөлт хичээлүүд, их сургуулийн бэлтгэл хичээлүүд, ганцаарчилсан зөвлөгөө гээд л байна даа."],
+      ["Сургуулийн хичээлийн цаг ямар байдаг вэ?","Хичээлийн ерөнхий үйл ажиллагаа 08:30–15:30 хооронд явагддаг. Түүнээс цааш сурагчдын клуб, хөгжүүлэх хөтөлбөр, бие даан өөрийн зүйлсээ хийх гээд Даваа–Ням гарагт 20 цаг хүртэл, багш, асран хамгаалагчийн зөвшөөрөлтэй бол түүнээс оройтож суух боломжтой байдаг."],
+      ["Хичээлээс гадуурх ямар ямар дугуйлан байдаг вэ?","Сагсан бөмбөг, гарбөмбөг, ширээний теннис, цэнгээнт бүжиг, фитнесс, иога, мутай, усан сэлэлт, бийрэн бичлэг, сэтгэлзүй гэх мэт хөтөлбөрүүд байгаа."],
+      ["Сурагчдын клубууд байдаг уу?","Сурагчдын сонирхлын, өөрөө удирддаг 20 гаруй клуб байдаг. Сурагчид өөрсдийн хүсэлтээр клубээ нээх бүрэн боломжтой."],
+      ["Хичээлүүдээ сонгож сурдаг уу эсвэл тодорхой хуваарийн дагуу ордог уу, чөлөөт цаг хэр гарах бол?","Сонгон судлах хичээл байгаа, ихэнхдээ тодорхой хуваарийн дагуу явна. Чөлөөт цаг тухайн сурагчаас л хамаарна даа."],
+      ["Дотуур байр байгаа юу?","Дотуур байр байхгүй, гэхдээ нийт сурагчдын 20% хөдөө орон нутгаас байдаг тул хотод байрлах байргүй сурагч нар сургуулиас нэг багшийн хамт байр түрээслэдэг. Хэдүүлээ, ямар байранд орохоос хамаарч нэг сурагчаас гарах зардал сарын 300–500 мянгын хооронд байдаг."],
+      ["Хүүхдүүд сургууль дээрээ яаж/яагаад хонодог юм бол?","Хаусаараа, ангиараа дотносох үйл ажиллагаа хийх үед төлөвлөөд хонож болдог. Мөн их сургууль руу өргөдлөө явуулах үед төгсөх ангийнхан цагаа хэмнэх үүднээс бөөндөө 4–5 хоногоор сургууль дээрээ байрлаж хонодог."],
+      ["Хичээл нь ямар арга барилаар ордог вэ?","Илүү бие даан суралцах чадвар хэрэгтэй. Төсөлд суурилж хичээлүүд явагдана, семинар хичээлүүд мөн ордог."],
+      ["Сургуулийн автобус явдаг уу?","Сурагчид тарсан ч сургууль дээр сууж хичээл, төслөө хийдэг учраас тогтмол цагт харьдаггүй. Тиймээс автобус хэрэглэх сурагчид бага байдаг. Хичээлийн жил бүрийн эхэнд чиглэлийн судалгаа авч автобус явах эсэх шийдэгддэг."]
+    ]}
+  ];
+
+  function esc(s){return s.replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"}[c];});}
+
+  document.querySelectorAll("[data-unis]").forEach(function(ul){
+    /* Equal visual area per logo, so wide lockups and square marks look balanced */
+    ul.innerHTML = UNIS.map(function(u){
+      if (u[3]) return '<li class="u-typed" title="'+esc(u[1])+'"><img src="assets/unis/'+u[0]+'.png" alt="" loading="lazy"><span style="color:'+u[3]+'">'+esc(u[1])+'</span></li>';
+      var area = u[2] < 1.5 ? 5000 : 7000;
+      var w = Math.round(Math.sqrt(area * u[2]));
+      return '<li title="'+esc(u[1])+'"><img src="assets/unis/'+u[0]+'.png" alt="'+esc(u[1])+'" style="width:'+w+'px" loading="lazy"></li>';
+    }).join("");
+  });
+  document.querySelectorAll("[data-fit-list]").forEach(function(ul){
+    ul.innerHTML = FIT.map(function(t){return '<li><i data-lucide="circle-check"></i><span>'+esc(t)+"</span></li>";}).join("");
+  });
+  var team = document.querySelector("[data-team]");
+  if (team){
+    var html = "";
+    for (var i=1;i<=22;i++){
+      html += '<li class="member" tabindex="0" aria-label="Багийн гишүүн '+i+'"><span class="idx">'+(i<10?"0":"")+i+'</span><i data-lucide="user-round"></i><div class="info"><strong>Нэр</strong><span>Албан тушаал</span></div></li>';
+    }
+    team.innerHTML = html;
+  }
+  var faq = document.querySelector("[data-faq]");
+  if (faq){
+    faq.innerHTML = FAQ.map(function(g, gi){
+      return '<div class="faq-group"><h3>'+esc(g.group)+'</h3><div class="faq">'+
+        g.items.map(function(q, qi){
+          return '<details id="faq-'+gi+'-'+qi+'"'+(gi===0&&qi===0?" open":"")+'><summary>'+esc(q[0])+'<i class="chev" data-lucide="chevron-down"></i></summary><p class="answer">'+esc(q[1])+"</p></details>";
+        }).join("")+"</div></div>";
+    }).join("");
+  }
+
+  /* ── Tabs ── */
+  document.querySelectorAll("[data-tabs]").forEach(function(root){
+    var tabs = Array.prototype.slice.call(root.querySelectorAll('[role="tab"]'));
+    function select(t, focus){
+      tabs.forEach(function(x){
+        var on = x===t;
+        x.setAttribute("aria-selected", on);
+        x.tabIndex = on ? 0 : -1;
+        document.getElementById(x.getAttribute("aria-controls")).hidden = !on;
+      });
+      if (focus) t.focus();
+    }
+    tabs.forEach(function(t, i){
+      t.addEventListener("click", function(){select(t);});
+      t.addEventListener("keydown", function(e){
+        if (e.key==="ArrowRight") select(tabs[(i+1)%tabs.length], true);
+        if (e.key==="ArrowLeft") select(tabs[(i-1+tabs.length)%tabs.length], true);
+      });
+    });
+  });
+
+  /* ── Router: #home #about … opens a page; a section id (e.g. #admissions-faq) opens its page and scrolls to it ── */
+  var pages = Array.prototype.slice.call(document.querySelectorAll("[data-page]"));
+  var ids = pages.map(function(p){return p.getAttribute("data-page");});
+  var menuBtn = document.getElementById("menu-btn");
+  var mobileNav = document.getElementById("mobile-nav");
+  function closeMenu(){ mobileNav.hidden = true; menuBtn.setAttribute("aria-expanded","false"); }
+  function route(){
+    var h = (location.hash || "").replace("#","");
+    var id = ids.indexOf(h) !== -1 ? h : null, target = null;
+    if (!id && h){
+      target = document.getElementById(h);
+      var owner = target && target.closest("[data-page]");
+      if (owner) id = owner.getAttribute("data-page"); else target = null;
+    }
+    if (!id) id = "home";
+    pages.forEach(function(p){ p.hidden = p.getAttribute("data-page") !== id; });
+    document.querySelectorAll("[data-nav]").forEach(function(a){
+      if (a.getAttribute("data-nav")===id) a.setAttribute("aria-current","page"); else a.removeAttribute("aria-current");
+    });
+    document.title = pages[ids.indexOf(id)].getAttribute("data-title");
+    closeMenu();
+    if (target){
+      if (target.tagName === "DETAILS") target.open = true;
+      requestAnimationFrame(function(){ target.scrollIntoView({block:"start"}); });
+    } else {
+      window.scrollTo(0,0);
+    }
+  }
+  window.addEventListener("hashchange", route);
+  /* Clicking a link to the section you're already on still scrolls there; dropdowns close after a click */
+  document.addEventListener("click", function(e){
+    var a = e.target.closest && e.target.closest('a[href^="#"]');
+    if (!a) return;
+    if (a.closest(".dropdown")) a.blur();
+    if (a.getAttribute("href") === location.hash){ e.preventDefault(); route(); }
+  });
+  menuBtn.addEventListener("click", function(){
+    var open = mobileNav.hidden;
+    mobileNav.hidden = !open;
+    menuBtn.setAttribute("aria-expanded", String(open));
+  });
+  route();
+
+  if (window.lucide) window.lucide.createIcons();
+})();
+</script>
+</body>
+</html>
