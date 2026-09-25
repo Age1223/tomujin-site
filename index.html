@@ -160,7 +160,6 @@ a:hover{text-decoration:underline;text-underline-offset:4px}
 .empty p{font-size:14px;max-width:46ch}
 
 /* Tangram */
-.tangram{height:auto;pointer-events:none;user-select:none}
 
 /* ───────── Header ───────── */
 .site-header{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:var(--header-bg);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border-bottom:1px solid var(--color-border)}
@@ -208,10 +207,6 @@ section[id],article[id]{scroll-margin-top:80px}
 .page-hero{padding-block:88px 72px;position:relative;overflow:hidden}
 .page-hero .wrap{display:grid;justify-items:center;gap:var(--space-5);text-align:center;position:relative}
 .page-hero .lead{max-width:56ch}
-.hero-tangram{position:absolute;top:50%;transform:translateY(-50%);width:clamp(96px,11vw,150px)}
-.hero-tangram--l{left:var(--container-gutter)}
-.hero-tangram--r{right:var(--container-gutter)}
-@media (max-width:1100px){.hero-tangram{display:none}}
 .home-hero{padding-block:104px 96px}
 .home-hero .display{max-width:15ch}
 .home-hero .wrap{gap:var(--space-6)}
@@ -254,14 +249,13 @@ section[id],article[id]{scroll-margin-top:80px}
 @media (max-width:1000px){.unis{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media (max-width:640px){.unis{grid-template-columns:repeat(2,minmax(0,1fr))}.unis li{min-height:88px;padding:var(--space-4) var(--space-3)}.unis .u-typed img{height:40px}.unis .u-typed span{font-size:14px}}
 
-.fit{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:var(--space-12);align-items:center}
-@media (max-width:860px){.fit{grid-template-columns:1fr}.fit .fit-art{display:none}}
+.fit{display:grid;grid-template-columns:minmax(0,1fr);gap:var(--space-12);align-items:center}
+@media (max-width:860px){.fit{grid-template-columns:1fr}}
 .fit-list{display:grid;gap:var(--space-4);margin-block:var(--space-6)}
 .fit-list li{display:grid;grid-template-columns:auto 1fr;gap:var(--space-3);font-size:17px;line-height:1.5}
 .fit-list svg{color:var(--tj-golden);margin-top:2px}
 .band:not(.band--brand) .fit-list svg{color:var(--color-primary)}
 .fit-close{font-size:clamp(1.15rem,2vw,1.4rem);font-weight:800;margin-bottom:var(--space-6)}
-.plinth{background:#fff;border-radius:var(--radius-xl);padding:28px;display:grid;place-items:center}
 
 /* ───────── About ───────── */
 .team{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:var(--space-4)}
@@ -293,7 +287,6 @@ section[id],article[id]{scroll-margin-top:80px}
 .feature{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:var(--space-12);align-items:start}
 .feature + .feature{margin-top:var(--space-16);padding-top:var(--space-16);border-top:1px solid var(--color-border)}
 .feature .aside{display:grid;gap:var(--space-4);align-content:start}
-.feature .aside .tangram{width:120px}
 .feature .aside .photo-slot{margin:var(--space-2) 0 0}
 @media (max-width:860px){.feature{grid-template-columns:1fr;gap:var(--space-6)}}
 
@@ -410,8 +403,6 @@ section[id],article[id]{scroll-margin-top:80px}
 
   <section class="page-hero home-hero">
     <div class="wrap">
-      <img class="tangram hero-tangram hero-tangram--l" src="assets/tangrams/graduation-cap.png" alt="" aria-hidden="true">
-      <img class="tangram hero-tangram hero-tangram--r" src="assets/tangrams/rocket.png" alt="" aria-hidden="true">
       <h1 class="display display--lg">Бид зөвхөн сургууль биш боловсролыг шинэчлэх хөдөлгөөн.</h1>
       <p class="lead">Амьдралд бэлэн хүчирхэг хүмүүсийг бэлдэнэ.</p>
       <div class="btn-row">
@@ -540,7 +531,6 @@ section[id],article[id]{scroll-margin-top:80px}
         <p class="fit-close">Томүжин та 2 бие биендээ төгс тохирч магад.</p>
         <a class="btn btn--accent btn--lg" href="https://join.tomujin.edu.mn" target="_blank" rel="noopener">Өргөдлөө илгээгээрэй</a>
       </div>
-      <div class="fit-art plinth"><img class="tangram" src="assets/tangrams/star.png" alt="" aria-hidden="true" style="width:160px"></div>
     </div>
   </section>
 </div>
@@ -549,8 +539,6 @@ section[id],article[id]{scroll-margin-top:80px}
 <div data-page="about" data-title="Бидний тухай · Томүжин" hidden>
   <section class="page-hero">
     <div class="wrap">
-      <img class="tangram hero-tangram hero-tangram--l" src="assets/tangrams/person.png" alt="" aria-hidden="true">
-      <img class="tangram hero-tangram hero-tangram--r" src="assets/tangrams/tree.png" alt="" aria-hidden="true">
       <h1 class="display display--md">Бидний тухай.</h1>
       <p class="lead">2015 онд Томүжин Академиар эхэлсэн аялал өнөөдөр 1-р ангиас 12-р анги хүртэлх Томүжин Алтернатив сургууль болжээ.</p>
     </div>
@@ -617,8 +605,6 @@ section[id],article[id]{scroll-margin-top:80px}
 <div data-page="program" data-title="Хөтөлбөр · Томүжин" hidden>
   <section class="page-hero">
     <div class="wrap">
-      <img class="tangram hero-tangram hero-tangram--l" src="assets/tangrams/scholar.png" alt="" aria-hidden="true">
-      <img class="tangram hero-tangram hero-tangram--r" src="assets/tangrams/steps.png" alt="" aria-hidden="true">
       <h1 class="display display--md">Хөтөлбөр.</h1>
       <p class="lead">Амьдралд бэлтгэх Томүжин хөтөлбөр</p>
     </div>
@@ -686,8 +672,6 @@ section[id],article[id]{scroll-margin-top:80px}
 <div data-page="admissions" data-title="Элсэлт · Томүжин" hidden>
   <section class="page-hero">
     <div class="wrap">
-      <img class="tangram hero-tangram hero-tangram--l" src="assets/tangrams/gate.png" alt="" aria-hidden="true">
-      <img class="tangram hero-tangram hero-tangram--r" src="assets/tangrams/paper-plane.png" alt="" aria-hidden="true">
       <h1 class="display display--md">Томүжин чиний хайж байгаа сургууль мөн үү?</h1>
     </div>
   </section>
@@ -741,7 +725,6 @@ section[id],article[id]{scroll-margin-top:80px}
   <section id="admissions-student" class="band" style="padding-top:0">
     <div class="wrap split" style="align-items:center">
       <div class="section-head section-head--left" style="margin:0">
-        <img class="tangram" src="assets/tangrams/sprout.png" alt="" aria-hidden="true" style="width:96px">
         <h2 class="h1">Томүжин ямар хүүхдийг хайдаг вэ?</h2>
       </div>
       <div class="prose"><p style="font-size:18px">Томүжинг тодорхойлдог хамгийн чухал зүйл бидний итгэл үнэмшил, боловсролыг харах өнцөг. Үүн дээр нэмээд Томүжинг бүрдүүлэгч бүтээлч, хөдөлмөрч, хүсэл эрмэлзэлтэй сурагчдын хүрээлэл. Манай элсэлтийн үйл явц нь бидний итгэл үнэмшил, үнэт зүйлсэд итгэж нэгдэх, бидний хүрээлэлд тохирох сурагчдыг элсүүлэхийг зорьдог.</p></div>
@@ -786,8 +769,6 @@ section[id],article[id]{scroll-margin-top:80px}
 <div data-page="outcomes" data-title="Бидний үр дүн · Томүжин" hidden>
   <section class="page-hero">
     <div class="wrap">
-      <img class="tangram hero-tangram hero-tangram--l" src="assets/tangrams/flag.png" alt="" aria-hidden="true">
-      <img class="tangram hero-tangram hero-tangram--r" src="assets/tangrams/pinwheel.png" alt="" aria-hidden="true">
       <h1 class="display display--md">Бидний үр дүн.</h1>
     </div>
   </section>
