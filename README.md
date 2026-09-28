@@ -22,6 +22,7 @@ assets/
   logo-lockup.png   Tomujin logo (header, footer)
   logo-icon.jpg     browser tab icon
   photos/           school photos, cropped to 3:2 and compressed for the web
+  press/            preview images for the "Хэвлэл дээрх нийтлэлүүд" links
   tangrams/         tangram figures from the Tomujin design system
   unis/             university logos
 ```

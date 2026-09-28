@@ -267,14 +267,13 @@ section[id],article[id]{scroll-margin-top:80px}
 .fit-close{font-size:clamp(1.15rem,2vw,1.4rem);font-weight:800;margin-bottom:var(--space-6)}
 
 .press{border-top:1px solid var(--color-border)}
-.press-item{display:grid;grid-template-columns:200px minmax(0,1fr) auto;gap:var(--space-6);align-items:center;padding:var(--space-5) var(--space-3);border-bottom:1px solid var(--color-border);color:var(--text-body);text-decoration:none!important;transition:background-color var(--duration-fast) var(--ease-standard)}
+.press-item{display:grid;grid-template-columns:180px minmax(0,1fr) auto;gap:var(--space-6);align-items:center;padding:var(--space-4) var(--space-3);border-bottom:1px solid var(--color-border);color:var(--text-body);text-decoration:none!important;transition:background-color var(--duration-fast) var(--ease-standard)}
 .press-item:hover{background:var(--color-muted)}
 .press-item:hover .press-title{color:var(--color-primary)}
-.press-meta{display:grid;gap:2px;font-size:14px;color:var(--text-muted)}
-.press-meta strong{color:var(--text-body);font-size:15px}
+.press-thumb{width:100%;aspect-ratio:3/2;height:auto;object-fit:cover;border-radius:var(--radius-md);background:var(--color-muted);outline:1px solid var(--color-border);outline-offset:-1px}
 .press-title{font-size:17px;font-weight:700;line-height:1.4;text-wrap:pretty}
 .press-item svg{color:var(--text-muted)}
-@media (max-width:640px){.press-item{grid-template-columns:minmax(0,1fr) auto;gap:var(--space-2) var(--space-4);padding-inline:var(--space-1)}.press-meta{grid-column:1/-1;display:flex;gap:var(--space-2)}.press-title{font-size:16px}}
+@media (max-width:640px){.press-item{grid-template-columns:112px minmax(0,1fr);gap:var(--space-4);padding-inline:var(--space-1)}.press-item svg{display:none}.press-title{font-size:15px}}
 
 /* ───────── About ───────── */
 .team{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:var(--space-4)}
@@ -535,27 +534,27 @@ section[id],article[id]{scroll-margin-top:80px}
       <!-- Newest first. Each link opens the article in a new tab. -->
       <ul class="press">
         <li><a class="press-item" href="https://unread.today/c/insight-tomujin-story" target="_blank" rel="noopener">
-          <span class="press-meta"><strong>Unread Today</strong><span>2024.03.13</span></span>
+          <img class="press-thumb" src="assets/press/unread-2024.jpg" alt="" width="600" height="400" loading="lazy" decoding="async">
           <span class="press-title">Дэлхийн шилдэг их сургуулиудаас 100 хувийн тэтгэлэг хүртсэн 3 монгол сурагчийн туршлага</span>
           <i data-lucide="arrow-up-right"></i>
         </a></li>
         <li><a class="press-item" href="https://ikon.mn/n/2u0a" target="_blank" rel="noopener">
-          <span class="press-meta"><strong>iKon.mn</strong><span>2023.04.10</span></span>
+          <img class="press-thumb" src="assets/press/ikon-2023.jpg" alt="" width="600" height="400" loading="lazy" decoding="async">
           <span class="press-title">Сүхбаатараас Стэнфордод элссэн анхны сурагчтай танилц</span>
           <i data-lucide="arrow-up-right"></i>
         </a></li>
         <li><a class="press-item" href="https://business.mn/2021/03/15/b-batjin-mergejil-huuchirdag-harin-husel-ermelzel-hezee-ch-modanaas-gardaggui" target="_blank" rel="noopener">
-          <span class="press-meta"><strong>Business.mn</strong><span>2021.03.15</span></span>
+          <img class="press-thumb" src="assets/press/business-2021.jpg" alt="" width="600" height="400" loading="lazy" decoding="async">
           <span class="press-title">Б.Батжин: Мэргэжил хуучирна, харин хүсэл эрмэлзэл хэзээ ч моданаас гарахгүй</span>
           <i data-lucide="arrow-up-right"></i>
         </a></li>
         <li><a class="press-item" href="https://ub.life/p/bbatjingiin-yariltslagaas-ontslokh-13-eshlel" target="_blank" rel="noopener">
-          <span class="press-meta"><strong>UB Life</strong><span>2020.04.20</span></span>
+          <img class="press-thumb" src="assets/press/ublife-2020.jpg" alt="" width="600" height="400" loading="lazy" decoding="async">
           <span class="press-title">Б.Батжингийн ярилцлагаас онцлох 13 эшлэл</span>
           <i data-lucide="arrow-up-right"></i>
         </a></li>
         <li><a class="press-item" href="https://unread.today/c/spotlight-tomujin-highschool" target="_blank" rel="noopener">
-          <span class="press-meta"><strong>Unread Today</strong><span>2020.04.13</span></span>
+          <img class="press-thumb" src="assets/press/unread-2020.jpg" alt="" width="600" height="400" loading="lazy" decoding="async">
           <span class="press-title">“Томүжин” алтернатив ахлах сургууль — Хүчирхэгжсэн хувь хүнийг бэлтгэнэ</span>
           <i data-lucide="arrow-up-right"></i>
         </a></li>
