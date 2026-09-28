@@ -49,6 +49,18 @@ vercel.json         lets browsers keep the images for a day, so repeat visits lo
   - Put several `<img>` in one box and it becomes a small gallery, with arrows in the corner and swiping on phones.
   - Photo boxes are 3:2 (the shape of most camera photos). Photos about 1200×800 pixels look sharp; anything much larger only slows the page down.
 
+## Lead form
+
+The "Дэлгэрэнгүй мэдээлэл авах бол..." form on the homepage is being moved off Google Forms, to a Google Sheet the school owns. `tools/lead-form.gs` is the small Google Apps Script that receives each answer and adds it as a row. To set it up:
+
+1. Create a new Google Sheet in the school's Google account, e.g. "Tomujin website leads".
+2. In the sheet, open **Extensions → Apps Script**. Delete the code that's there and paste in everything from `tools/lead-form.gs`. To get an email for every new lead, put the address in `NOTIFY_EMAIL`. Save.
+3. Click **Deploy → New deployment**. Next to "Select type", click the gear and choose **Web app**. Set **Execute as: Me** and **Who has access: Anyone**, then click **Deploy**.
+4. Google asks you to authorize the script. Because it's your own script, it may warn that the app isn't verified: click **Advanced**, then **Go to … (unsafe)**, then **Allow**.
+5. Copy the **Web app URL** (it ends in `/exec`). The site's form sends to that address.
+
+If you later edit the script, use **Deploy → Manage deployments → Edit → New version**, so the web app URL stays the same.
+
 ## Fonts
 
 - **Raleway** (text) and **Google Sans** (numbers) load from Google Fonts.
