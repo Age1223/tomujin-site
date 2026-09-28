@@ -268,6 +268,17 @@ section[id],article[id]{scroll-margin-top:80px}
 .fit-close{font-size:clamp(1.15rem,2vw,1.4rem);font-weight:800;margin-bottom:var(--space-6)}
 .fit-close:has(+ .btn[hidden]){margin-bottom:0}
 
+.alumni{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--space-6)}
+@media (max-width:860px){.alumni{grid-template-columns:1fr}}
+#home-alumni .h1{max-width:34ch}
+.alumni-next{margin-top:var(--space-20)}
+.alum{margin:0;display:grid;grid-template-rows:auto 1fr;background:var(--surface-card);border:1px solid var(--color-border);border-radius:var(--radius-xl);overflow:hidden}
+.alum img{width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;background-size:cover;background-position:center}
+.alum figcaption{display:grid;grid-template-rows:1fr auto;gap:var(--space-5);padding:var(--space-6)}
+.alum blockquote{margin:0;font-size:16px;line-height:1.7}
+.alum-who{display:grid;gap:2px;padding-top:var(--space-4);border-top:1px solid var(--color-border);font-size:14px;line-height:1.45;color:var(--text-muted)}
+.alum-who strong{font-size:16px;color:var(--text-display)}
+
 .press{border-top:1px solid var(--color-border)}
 .press-item{display:grid;grid-template-columns:180px minmax(0,1fr) auto;gap:var(--space-6);align-items:center;padding:var(--space-4) var(--space-3);border-bottom:1px solid var(--color-border);color:var(--text-body);text-decoration:none!important;transition:background-color var(--duration-fast) var(--ease-standard)}
 .press-item:hover{background:var(--color-muted)}
@@ -544,7 +555,51 @@ section[id],article[id]{scroll-margin-top:80px}
     </div>
   </section>
 
-  <!-- f. Хэвлэл дээрх нийтлэлүүд -->
+  <!-- f. Төгсөгчдийн түүх (text from join.tomujin.edu.mn) -->
+  <section id="home-alumni" class="band band--alt">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 class="h1">Дэлхийн шилдэг их сургуульд суралцах бол нэмэлт хожил, #1 зорилго биш.</h2>
+      </div>
+      <div class="alumni">
+        <figure class="alum">
+          <img src="assets/alumni/anujin-1200.webp" srcset="assets/alumni/anujin-800.webp 800w, assets/alumni/anujin-1200.webp 1200w" sizes="(max-width: 860px) 100vw, 560px" alt="Н.Анужин" width="1200" height="675" loading="lazy" decoding="async" style="background-image:url(data:image/webp;base64,UklGRvYAAABXRUJQVlA4IOoAAADQBQCdASogABIAPu1iqU2ppaOiMAgBMB2JQBWEKcfMH1o6lVJhCX/Er4kf/qb0WrRH117IMOYAAP7XUOyKr0Vvi01rBc7T9jDUW818jvl4Uk1UMdYlHW5pNxGB8/yIuH+tnVHA84NXT1YGAaVfRDfKNATPfeo7d4TRvwo3v75Ve/HPnc/hBjKoQvYlg+ZNaijx/WGfv+m1ZWCiIz/yQ0nFqTGGFIgulmYyqFyOsvglwAPEdi7cXGpwXjRYL26LA0/KcQqbgfC6LYZWD3GDaXSk4L8WRdXDJlMXq9s0CDX0aS9ujokOfPTkAAA=)">
+          <figcaption>
+            <blockquote>“Томүжингаас олж авсан хамгийн чухал зүйл маань болохоор ХҮРЭЭЛЭЛ. Тасралтгүй дэмждэг хүрээлэл байсан. Багш нар маань, дээд ангийн ах эгч нар маань, ангийнхан маань ямар ч хэцүү зүйлс тохиолдсон үргэлж дэмжихэд бэлэн. Өөрт байгаа бүхий л зүйлсээ зориулахад бэлэн байдаг тийм хүрээлэл.”</blockquote>
+            <p class="alum-who"><strong>Н.Анужин</strong><span>2022 оны төгсөгч</span><span>Stanford University, Class of 2027</span></p>
+          </figcaption>
+        </figure>
+        <figure class="alum">
+          <img src="assets/alumni/gandi-1200.webp" srcset="assets/alumni/gandi-800.webp 800w, assets/alumni/gandi-1200.webp 1200w" sizes="(max-width: 860px) 100vw, 560px" alt="Б.Ганди" width="1200" height="675" loading="lazy" decoding="async" style="background-image:url(data:image/webp;base64,UklGRgABAABXRUJQVlA4IPQAAADQBQCdASogABIAPu1iqU2ppaOiMAgBMB2JZAC07AgdgNdAxKnpxcyG17vmBm4HSjcJapriGPzoAPkbkh2hIO92l/7CFQPgdGrL1khAiTrrZq9INdM4ydOGUspk9yZVF7+4o0eDg6prB5ipFv9tsY0GhscX8v1UdL6HBDQMTK/0AL8VYnoRaD6eIm9kNTZnT2d0/8kbMDcGZI1k7bXf0CiQGCUVSwnlb29k2ca55O9nq0Wi4czzmSCqb23sUMz9BAPPiZTqlmGv1BfyP+FEef4I//d6/dniAUOz+zZCvUm9akZ4nu+5cY0xlLw7nwBUcXVAgAAA)">
+          <figcaption>
+            <blockquote>“Томүжин хүрээлэл байсан болохоор Харвард руу өргөдлөө явуулах зориг нь байсан. Тэр хүмүүс чи чадна шүү гээд итгүүлж байсан болохоор. Энэ хүрээлэлд байсан болохоор Харвардын 2028 оны төгсөгч, ХАРВАРДЫН оюутан болох гэж байна.”</blockquote>
+            <p class="alum-who"><strong>Б.Ганди</strong><span>2024 оны төгсөгч</span><span>Harvard University, Class of 2028</span></p>
+          </figcaption>
+        </figure>
+      </div>
+      <div class="section-head alumni-next">
+        <h2 class="h1">Амжилттай карьер бас өөр нэг нэмэлт хожил.</h2>
+      </div>
+      <div class="alumni">
+        <figure class="alum">
+          <img src="assets/alumni/buyankhishig-1200.webp" srcset="assets/alumni/buyankhishig-800.webp 800w, assets/alumni/buyankhishig-1200.webp 1200w" sizes="(max-width: 860px) 100vw, 560px" alt="О.Буянхишиг" width="1200" height="675" loading="lazy" decoding="async" style="background-image:url(data:image/webp;base64,UklGRuQAAABXRUJQVlA4INgAAABwBQCdASogABIAPu1kqk2ppaQiMAgBMB2JaAC1GzLuzSOAf6k9PsT7jo1j02WKBCPpReIAAP7qmDy30b4t3Agqxi63nsofc8cjRWE6JW9KIP3vJBbgGRNiGOzpk3fl6KY2tiMnEs6FHEsdJ7PaykO0qwRY0I7DL6C6ldcl2ThUbROkfl4TmPLcZfylmHvPO27r9mrqqKlRiSKYGlkSosAFHxj0MMWHGXWwg4/JJVLVCd7wobHOBOB9Lin73jDu9B+CLJZgXvPn+BghG1wc4KLt2IwE/MAAAAA=)">
+          <figcaption>
+            <blockquote>“Би Багануурт улсын сургуулиас Томүжинд шилжиж ирэхэд тэс өөр ертөнцөд ирсэн мэт санагддаг байлаа. Өөрт гарсан эерэг өөрчлөлтөө бодоод орон нутагт суугаа мянга мянган сурагчдад хувь нэмэр оруулахсан гэж хүссэн. Томүжингийнхаа ачаар би 22 насандаа Монгол орны 21 аймгийг 2 удаа тойрон аялж, сургалт хийсэн.”</blockquote>
+            <p class="alum-who"><strong>О.Буянхишиг</strong><span>2021 оны төгсөгч</span><span>Томүжин Академи COO, “Хөтөлье” (@hutli) үүсгэн байгуулагч</span></p>
+          </figcaption>
+        </figure>
+        <figure class="alum">
+          <img src="assets/alumni/dulguun-1200.webp" srcset="assets/alumni/dulguun-800.webp 800w, assets/alumni/dulguun-1200.webp 1200w" sizes="(max-width: 860px) 100vw, 560px" alt="Ч.Дөлгөөн" width="1200" height="675" loading="lazy" decoding="async" style="background-image:url(data:image/webp;base64,UklGRiwBAABXRUJQVlA4ICABAABQBgCdASogABIAPu1iqE2ppaOiMAgBMB2JagCw+iOTsBW/6qVXuc5G+sB7qubLvWAXaFJTHXc28uTyFAD+vDmXjTv3nbCHbWah92I/luTAvSLBhS5SV8IqjCIMVJEzw81gYd0YyCh4y6fofwKCQJovaAQ9ucGlIS6iAbh8EX/gxnE/hLHzS9I0viqPoPhJEXHGhhRGJdJ4FKJF05m8+pLPqQbaY9Jg4o2zzQVwO4o6YwyjepksVPzj6nJSnzKCWJTKciap8lkqZvwYR1QK1uD9VK0bLlEDqUiI+FSfHKPono36UFHPrhnPi+Rxyh5DzGQoeRCvGtCHcmAA3QteYo5mMkOXw3OfWsHQsmV+rvmniiqsX7mzu9vTZSrPjy6wAAA=)">
+          <figcaption>
+            <blockquote>“Би ч болоогүй, мэдэхгүй, чадахгүй гэх бодлуудыг Томүжингийн хүрээлэлд орсноор л эвдэж чадсан. Бусдын түүхээс урам зориг авч, чадах юм байна гэсэн итгэл төрөөд @admitboost-ийг эхлүүлж байсан. Одоо @admitboost маань Монголын хамгийн том гадаадад сурах хүсэлтэй хүүхдүүдийн онлайн коммюнити болсон.”</blockquote>
+            <p class="alum-who"><strong>Ч.Дөлгөөн</strong><span>2023 оны төгсөгч</span><span>“Admit Boost” @admitboost үүсгэн байгуулагч</span></p>
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- g. Хэвлэл дээрх нийтлэлүүд -->
   <section id="home-press" class="band" style="padding-top:0">
     <div class="wrap">
       <div class="section-head">
@@ -586,7 +641,7 @@ section[id],article[id]{scroll-margin-top:80px}
     </div>
   </section>
 
-  <!-- g. Чамд тохирох сургууль байна уу? -->
+  <!-- h. Чамд тохирох сургууль байна уу? -->
   <section id="home-fit" class="band band--brand">
     <div class="wrap fit">
       <div>
@@ -954,7 +1009,7 @@ section[id],article[id]{scroll-margin-top:80px}
   var SITEMAP = [
     {id:"home", label:"Нүүр", sections:[
       ["home-philosophy","Боловсролын философи"], ["home-approach","Томүжингийн арга барил"], ["home-numbers","Чухал тоонууд"],
-      ["home-universities","Тэнцсэн их сургуулиуд"], ["home-press","Хэвлэл дээрх нийтлэлүүд"], ["home-fit","Чамд тохирох сургууль байна уу?"]]},
+      ["home-universities","Тэнцсэн их сургуулиуд"], ["home-alumni","Төгсөгчдийн түүх"], ["home-press","Хэвлэл дээрх нийтлэлүүд"], ["home-fit","Чамд тохирох сургууль байна уу?"]]},
     {id:"about", label:"Бидний тухай", sections:[
       ["about-team","Баг хамт олон"], ["about-history","Бидний түүх"], ["about-vision","Алсын хараа"], ["about-careers","Ажлын байр"]]},
     {id:"program", label:"Хөтөлбөр", sections:[

@@ -29,6 +29,7 @@ assets/
   logo-lockup.png   Tomujin logo (header, footer)
   logo-icon.jpg     browser tab icon
   photos/           school photos: 3:2 WebP, each in two sizes (-800 and -1200)
+  alumni/           graduate photos for the homepage stories (from join.tomujin.edu.mn)
   press/            preview images for the "Хэвлэл дээрх нийтлэлүүд" links (WebP)
   tangrams/         tangram figures from the Tomujin design system
   unis/             university logos (WebP)
