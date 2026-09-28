@@ -262,7 +262,7 @@ section[id],article[id]{scroll-margin-top:80px}
 @media (max-width:1000px){.unis{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media (max-width:640px){.unis{grid-template-columns:repeat(2,minmax(0,1fr))}.unis li{min-height:88px;padding:var(--space-4) var(--space-3)}.unis .u-typed img{height:40px}.unis .u-typed span{font-size:14px}}
 
-.fit{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,440px);gap:var(--space-12) var(--space-16);align-items:center}
+.fit{display:grid;grid-template-columns:minmax(0,1fr);gap:var(--space-12);align-items:center}
 @media (max-width:860px){.fit{grid-template-columns:1fr}.lead-card{padding:var(--space-6)}}
 .fit-list{display:grid;gap:var(--space-4);margin-block:var(--space-6)}
 .fit-list li{display:grid;grid-template-columns:auto 1fr;gap:var(--space-3);font-size:17px;line-height:1.5}
@@ -286,6 +286,20 @@ section[id],article[id]{scroll-margin-top:80px}
 .lead-status{font-size:14px;color:#c62828;text-align:center}
 .lead-status:empty{display:none}
 .lead-done{display:grid;justify-items:center;gap:var(--space-4);padding-block:var(--space-8);text-align:center;font-size:18px;font-weight:700}
+/* Floating lead form: a button in the bottom-right corner that opens the form above it */
+.lead-float{position:fixed;right:20px;bottom:20px;z-index:60;display:flex;flex-direction:column;align-items:flex-end;gap:12px}
+.lead-fab{display:inline-flex;align-items:center;gap:10px;height:52px;padding:0 22px 0 18px;border-radius:var(--radius-pill);border:1px solid var(--accent-border);background:var(--color-accent);color:var(--tj-ink);font:700 15px/1 var(--font-sans);box-shadow:0 12px 28px -10px rgba(0,0,0,.45);cursor:pointer;transition:transform var(--duration) var(--ease-standard),box-shadow var(--duration) var(--ease-standard)}
+.lead-fab:hover{transform:translateY(-2px);box-shadow:0 16px 32px -10px rgba(0,0,0,.5)}
+.lead-fab svg{width:20px;height:20px}
+.lead-fab .i-close,.lead-fab[aria-expanded="true"] .i-open{display:none}
+.lead-fab[aria-expanded="true"] .i-close{display:block}
+.lead-panel{position:relative;width:min(380px,calc(100vw - 40px));max-height:calc(100vh - 110px);overflow:auto;padding:var(--space-6);border:1px solid var(--color-border);transform-origin:bottom right;animation:lead-in var(--duration-slow) var(--ease-out)}
+.lead-panel:focus{outline:none}
+.lead-panel .lead h3{padding-right:32px}
+.lead-close{position:absolute;top:14px;right:14px;display:grid;place-items:center;width:32px;height:32px;padding:0;border:0;border-radius:var(--radius-pill);background:transparent;color:var(--text-muted);cursor:pointer}
+.lead-close:hover{background:var(--color-muted);color:var(--text-body)}
+@keyframes lead-in{from{opacity:0;transform:translateY(8px) scale(.98)}to{opacity:1;transform:none}}
+@media (max-width:640px){.lead-float{left:12px;right:12px;bottom:12px}.lead-panel{width:100%;max-height:calc(100vh - 90px)}.lead-fab{height:48px;font-size:14px}}
 
 .alumni{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--space-6)}
 @media (max-width:860px){.alumni{grid-template-columns:1fr}}
@@ -673,35 +687,6 @@ section[id],article[id]{scroll-margin-top:80px}
         <p class="fit-close">Томүжин та 2 бие биендээ төгс тохирч магад.</p>
         <a class="btn btn--accent btn--lg" hidden data-later href="https://join.tomujin.edu.mn" target="_blank" rel="noopener">Өргөдлөө илгээгээрэй</a>
       </div>
-      <!-- Lead form: our design, but answers go to the school's Google Form
-           ("Дэлгэрэнгүй мэдээлэл авах бол...", docs.google.com/forms/d/e/1FAIpQLSdg0TVM3QCfNARthsnJvk0cCBlT9sv9k3Otn1ClLYbLKSI27Q).
-           Each "name" is that form's field id; if a question is changed in Google Forms, update it here too. -->
-      <div class="lead-card">
-        <form class="lead" data-lead action="https://docs.google.com/forms/d/e/1FAIpQLSdg0TVM3QCfNARthsnJvk0cCBlT9sv9k3Otn1ClLYbLKSI27Q/formResponse" method="post" novalidate>
-          <h3>Дэлгэрэнгүй мэдээлэл авах бол...</h3>
-          <div class="field">
-            <label for="lead-phone">Утасны дугаар</label>
-            <input id="lead-phone" name="entry.1099199351" type="tel" inputmode="tel" autocomplete="tel" required data-error="Утасны дугаараа зөв оруулна уу (8 оронтой).">
-            <p class="field-error" hidden></p>
-          </div>
-          <div class="field">
-            <label for="lead-school">Одоо сурч буй сургууль</label>
-            <input id="lead-school" name="entry.1495343477" type="text" autocomplete="off" required data-error="Сургуулийнхаа нэрийг оруулна уу.">
-            <p class="field-error" hidden></p>
-          </div>
-          <div class="field">
-            <label for="lead-grade">Хэддүгээр анги вэ?</label>
-            <select id="lead-grade" name="entry.2139527475" required data-error="Ангиа сонгоно уу."><option value="" selected disabled>Сонгох</option><option>1-р анги</option><option>2-р анги</option><option>3-р анги</option><option>4-р анги</option><option>5-р анги</option><option>6-р анги</option><option>7-р анги</option><option>8-р анги</option><option>9-р анги</option><option>10-р анги</option><option>11-р анги</option><option>12-р анги</option></select>
-            <p class="field-error" hidden></p>
-          </div>
-          <button class="btn btn--accent btn--lg" type="submit">Илгээх</button>
-          <p class="lead-status" role="status" aria-live="polite"></p>
-        </form>
-        <div class="lead-done" hidden>
-          <span class="icon-tile icon-tile--gold"><i data-lucide="check"></i></span>
-          <p>Бид тантай тун удахгүй холбогдох болно. ❤️</p>
-        </div>
-      </div>
     </div>
   </section>
 </div>
@@ -1024,6 +1009,41 @@ section[id],article[id]{scroll-margin-top:80px}
 
 </main>
 
+<!-- ═════════════════ FLOATING LEAD FORM ═════════════════ -->
+<!-- Always in the bottom-right corner; the button opens the form above it.
+     The form still sends to the school's Google Form ("Дэлгэрэнгүй мэдээлэл авах бол...",
+     docs.google.com/forms/d/e/1FAIpQLSdg0TVM3QCfNARthsnJvk0cCBlT9sv9k3Otn1ClLYbLKSI27Q); each "name" is that form's field id. -->
+<div class="lead-float" data-lead-float>
+  <div class="lead-panel lead-card" id="lead-panel" role="dialog" aria-labelledby="lead-title" tabindex="-1" hidden>
+    <button class="lead-close" type="button" aria-label="Хаах"><i data-lucide="x"></i></button>
+    <form class="lead" data-lead action="https://docs.google.com/forms/d/e/1FAIpQLSdg0TVM3QCfNARthsnJvk0cCBlT9sv9k3Otn1ClLYbLKSI27Q/formResponse" method="post" novalidate>
+      <h3 id="lead-title">Дэлгэрэнгүй мэдээлэл авах бол...</h3>
+      <div class="field">
+        <label for="lead-phone">Утасны дугаар</label>
+        <input id="lead-phone" name="entry.1099199351" type="tel" inputmode="tel" autocomplete="tel" required data-error="Утасны дугаараа зөв оруулна уу (8 оронтой).">
+        <p class="field-error" hidden></p>
+      </div>
+      <div class="field">
+        <label for="lead-school">Одоо сурч буй сургууль</label>
+        <input id="lead-school" name="entry.1495343477" type="text" autocomplete="off" required data-error="Сургуулийнхаа нэрийг оруулна уу.">
+        <p class="field-error" hidden></p>
+      </div>
+      <div class="field">
+        <label for="lead-grade">Хэддүгээр анги вэ?</label>
+        <select id="lead-grade" name="entry.2139527475" required data-error="Ангиа сонгоно уу."><option value="" selected disabled>Сонгох</option><option>1-р анги</option><option>2-р анги</option><option>3-р анги</option><option>4-р анги</option><option>5-р анги</option><option>6-р анги</option><option>7-р анги</option><option>8-р анги</option><option>9-р анги</option><option>10-р анги</option><option>11-р анги</option><option>12-р анги</option></select>
+        <p class="field-error" hidden></p>
+      </div>
+      <button class="btn btn--accent btn--lg" type="submit">Илгээх</button>
+      <p class="lead-status" role="status" aria-live="polite"></p>
+    </form>
+    <div class="lead-done" hidden>
+      <span class="icon-tile icon-tile--gold"><i data-lucide="check"></i></span>
+      <p>Бид тантай тун удахгүй холбогдох болно. ❤️</p>
+    </div>
+  </div>
+  <button class="lead-fab" type="button" aria-expanded="false" aria-controls="lead-panel"><i data-lucide="message-circle" class="i-open"></i><i data-lucide="x" class="i-close"></i><span>Дэлгэрэнгүй мэдээлэл авах</span></button>
+</div>
+
 <!-- ═════════════════ FOOTER ═════════════════ -->
 <footer class="site-footer">
   <div class="wrap">
@@ -1267,6 +1287,24 @@ section[id],article[id]{scroll-margin-top:80px}
       }).then(function(){ btn.disabled = false; btn.textContent = "Илгээх"; });
     });
   });
+
+  /* ── Floating lead form: the corner button opens it; ✕, Esc or the button again close it ── */
+  (function(){
+    var root = document.querySelector("[data-lead-float]");
+    if (!root) return;
+    var fab = root.querySelector(".lead-fab"), panel = root.querySelector(".lead-panel");
+    function setOpen(open){
+      panel.hidden = !open;
+      fab.setAttribute("aria-expanded", String(open));
+      if (!open) return;
+      var first = panel.querySelector("form:not([hidden]) input");
+      /* On phones, wait for a tap so the keyboard doesn't pop up by itself */
+      if (first && window.matchMedia("(pointer: fine)").matches) first.focus(); else panel.focus();
+    }
+    fab.addEventListener("click", function(){ setOpen(panel.hidden); });
+    root.querySelector(".lead-close").addEventListener("click", function(){ setOpen(false); fab.focus(); });
+    document.addEventListener("keydown", function(e){ if (e.key === "Escape" && !panel.hidden){ setOpen(false); fab.focus(); } });
+  })();
 
   /* ── Photo galleries: a .photo-slot with several <img> shows one at a time ── */
   document.querySelectorAll(".photo-slot").forEach(function(slot){
