@@ -274,7 +274,7 @@ section[id],article[id]{scroll-margin-top:80px}
 .fit-close{font-size:clamp(1.15rem,2vw,1.4rem);font-weight:800;margin-bottom:var(--space-6)}
 .fit-close:has(+ .btn[hidden]){margin-bottom:0}
 .lead-card{background:#fff;color:var(--text-body);border-radius:var(--radius-xl);padding:var(--space-8);box-shadow:0 20px 40px -12px rgba(0,0,0,.35)}
-.lead{display:grid;gap:var(--space-5)}
+.lead{position:relative;display:grid;gap:var(--space-5)}
 .lead h3{font-size:22px;line-height:1.3;font-weight:800;color:var(--text-display)}
 .field{display:grid;gap:6px}
 .field label{font-size:14px;font-weight:700}
@@ -286,6 +286,7 @@ section[id],article[id]{scroll-margin-top:80px}
 .field-error{font-size:13px;font-weight:600;color:#c62828}
 .lead .btn{width:100%;margin-top:var(--space-1)}
 .lead .btn[disabled]{opacity:.7;cursor:progress}
+.lead-hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
 .lead-status{font-size:14px;color:#c62828;text-align:center}
 .lead-status:empty{display:none}
 .lead-done{display:grid;justify-items:center;gap:var(--space-4);padding-block:var(--space-8);text-align:center;font-size:18px;font-weight:700}
@@ -1022,28 +1023,30 @@ section[id],article[id]{scroll-margin-top:80px}
 
 <!-- ═════════════════ FLOATING LEAD FORM ═════════════════ -->
 <!-- Always in the bottom-right corner; the button opens the form above it.
-     The form still sends to the school's Google Form ("Дэлгэрэнгүй мэдээлэл авах бол...",
-     docs.google.com/forms/d/e/1FAIpQLSdg0TVM3QCfNARthsnJvk0cCBlT9sv9k3Otn1ClLYbLKSI27Q); each "name" is that form's field id. -->
+     Answers go to the "Tomujin website leads" Apps Script (tools/lead-form.gs), which adds each one
+     as a row in the Leads tab of "TAS | Admissions Data 2026-2027". -->
 <div class="lead-float" data-lead-float>
   <div class="lead-panel lead-card" id="lead-panel" role="dialog" aria-labelledby="lead-title" tabindex="-1" hidden>
     <button class="lead-close" type="button" aria-label="Хаах"><i data-lucide="x"></i></button>
-    <form class="lead" data-lead action="https://docs.google.com/forms/d/e/1FAIpQLSdg0TVM3QCfNARthsnJvk0cCBlT9sv9k3Otn1ClLYbLKSI27Q/formResponse" method="post" novalidate>
+    <form class="lead" data-lead action="https://script.google.com/macros/s/AKfycbyRRHLedjKYPAqEX9BgxXp13Gy8RJSSJcAPtkto7dB2ybplTJEiBZe53Qh2O5bAwl-K/exec" method="post" novalidate>
       <h3 id="lead-title">Хүлээлгийн жагсаалтад орох</h3>
       <div class="field">
         <label for="lead-phone">Утасны дугаар</label>
-        <input id="lead-phone" name="entry.1099199351" type="tel" inputmode="tel" autocomplete="tel" required data-error="Утасны дугаараа зөв оруулна уу (8 оронтой).">
+        <input id="lead-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" required data-error="Утасны дугаараа зөв оруулна уу (8 оронтой).">
         <p class="field-error" hidden></p>
       </div>
       <div class="field">
         <label for="lead-school">Одоо сурч буй сургууль</label>
-        <input id="lead-school" name="entry.1495343477" type="text" autocomplete="off" required data-error="Сургуулийнхаа нэрийг оруулна уу.">
+        <input id="lead-school" name="school" type="text" autocomplete="off" required data-error="Сургуулийнхаа нэрийг оруулна уу.">
         <p class="field-error" hidden></p>
       </div>
       <div class="field">
         <label for="lead-grade">Хэддүгээр анги вэ?</label>
-        <select id="lead-grade" name="entry.2139527475" required data-error="Ангиа сонгоно уу."><option value="" selected disabled>Сонгох</option><option>1-р анги</option><option>2-р анги</option><option>3-р анги</option><option>4-р анги</option><option>5-р анги</option><option>6-р анги</option><option>7-р анги</option><option>8-р анги</option><option>9-р анги</option><option>10-р анги</option><option>11-р анги</option><option>12-р анги</option></select>
+        <select id="lead-grade" name="grade" required data-error="Ангиа сонгоно уу."><option value="" selected disabled>Сонгох</option><option>1-р анги</option><option>2-р анги</option><option>3-р анги</option><option>4-р анги</option><option>5-р анги</option><option>6-р анги</option><option>7-р анги</option><option>8-р анги</option><option>9-р анги</option><option>10-р анги</option><option>11-р анги</option><option>12-р анги</option></select>
         <p class="field-error" hidden></p>
       </div>
+      <!-- Hidden from people; spam bots fill it in and the script ignores those -->
+      <div class="lead-hp" aria-hidden="true"><label>Website <input name="website" type="text" tabindex="-1" autocomplete="off"></label></div>
       <button class="btn btn--accent btn--lg" type="submit">Илгээх</button>
       <p class="lead-status" role="status" aria-live="polite"></p>
     </form>
@@ -1264,7 +1267,7 @@ section[id],article[id]{scroll-margin-top:80px}
   });
   route();
 
-  /* ── Lead form: checks the answers, sends them to the Google Form in the background, then says thanks ── */
+  /* ── Lead form: checks the answers, sends them to the Leads sheet in the background, then says thanks ── */
   document.querySelectorAll("[data-lead]").forEach(function(form){
     var status = form.querySelector(".lead-status"), btn = form.querySelector('button[type="submit"]');
     var done = form.parentNode.querySelector(".lead-done");
@@ -1278,7 +1281,7 @@ section[id],article[id]{scroll-margin-top:80px}
       err.textContent = msg; err.hidden = !msg;
       if (msg) el.setAttribute("aria-invalid", "true"); else el.removeAttribute("aria-invalid");
     }
-    var fields = Array.prototype.slice.call(form.querySelectorAll("input, select"));
+    var fields = Array.prototype.slice.call(form.querySelectorAll(".field input, .field select"));
     fields.forEach(function(el){
       el.addEventListener(el.tagName === "SELECT" ? "change" : "input", function(){ if (el.hasAttribute("aria-invalid")) show(el, problem(el)); });
     });
@@ -1290,8 +1293,10 @@ section[id],article[id]{scroll-margin-top:80px}
       btn.disabled = true; btn.textContent = "Илгээж байна…"; status.textContent = "";
       var data = new URLSearchParams();
       fields.forEach(function(el){ data.append(el.name, el.value.trim()); });
-      /* Google Forms doesn't allow reading its reply from another site ("no-cors"), so a completed request counts as sent */
-      fetch(form.action, {method: "POST", mode: "no-cors", body: data}).then(function(){
+      data.append("website", form.querySelector('[name="website"]').value);
+      /* The script replies {"ok":true} once the row is in the sheet */
+      fetch(form.action, {method: "POST", body: data}).then(function(r){ return r.json(); }).then(function(res){
+        if (!res || !res.ok) throw new Error("not saved");
         form.hidden = true; done.hidden = false;
       }).catch(function(){
         status.textContent = "Илгээж чадсангүй. Интернэтээ шалгаад дахин оролдоно уу.";

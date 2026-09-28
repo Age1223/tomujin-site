@@ -51,15 +51,19 @@ vercel.json         lets browsers keep the images for a day, so repeat visits lo
 
 ## Lead form
 
-The "Дэлгэрэнгүй мэдээлэл авах бол..." form on the homepage is being moved off Google Forms, to a Google Sheet the school owns. `tools/lead-form.gs` is the small Google Apps Script that receives each answer and adds it as a row. To set it up:
+The "Хүлээлгийн жагсаалтад орох" form floats in the bottom-right corner and settles into the "Чамд тохирох сургууль байна уу?" section when you scroll there. Each answer goes to the **Tomujin website leads** Apps Script (a standalone project in the school's Google account; its code is `tools/lead-form.gs`). The script adds a row to the **Leads** tab of "TAS | Admissions Data 2026-2027":
 
-1. Create a new Google Sheet in the school's Google account, e.g. "Tomujin website leads".
-2. In the sheet, open **Extensions → Apps Script**. Delete the code that's there and paste in everything from `tools/lead-form.gs`. To get an email for every new lead, put the address in `NOTIFY_EMAIL`. Save.
-3. Click **Deploy → New deployment**. Next to "Select type", click the gear and choose **Web app**. Set **Execute as: Me** and **Who has access: Anyone**, then click **Deploy**.
-4. Google asks you to authorize the script. Because it's your own script, it may warn that the app isn't verified: click **Advanced**, then **Go to … (unsafe)**, then **Allow**.
-5. Copy the **Web app URL** (it ends in `/exec`). The site's form sends to that address.
+| Leads column | What goes in |
+|---|---|
+| Холбогдсон огноо | the date the lead arrived |
+| Сонирхсон анги | the grade number from the form |
+| Одоогийн сургууль | the school from the form |
+| Хаагуур холбогдсон | Website |
+| Утасны дугаар | the phone number |
 
-If you later edit the script, use **Deploy → Manage deployments → Edit → New version**, so the web app URL stays the same.
+It finds the columns by their header names, so moving columns around is fine, but renaming one of those headers breaks it. It fills the first row where those columns are empty and adds rows when the sheet runs out.
+
+The form sends to the web app address in its `action` attribute in `index.html`. If you change the script, publish it with **Deploy → Manage deployments → Edit → New version** so that address stays the same.
 
 ## Fonts
 
