@@ -217,17 +217,26 @@ section[id],article[id]{scroll-margin-top:80px}
 .commitments li{display:grid;grid-template-columns:auto 1fr;grid-template-rows:1fr auto;gap:var(--space-4);align-items:start;font-weight:600;font-size:17px;line-height:1.5}
 .commitments .photo-slot{margin-bottom:0}
 /* Picture slot: swap the placeholder's contents for <img src="assets/..." alt="..."> when photos are ready */
-.photo-slot{grid-column:1/-1;aspect-ratio:4/3;max-width:100%;border-radius:var(--radius-xl);overflow:hidden;display:grid;place-items:center;align-content:center;gap:var(--space-2);background:var(--color-muted);border:1px dashed var(--color-border);color:var(--text-muted);font-size:13px;font-weight:600;margin-bottom:var(--space-2)}
-.photo-slot svg{width:28px;height:28px;color:var(--color-primary);opacity:.6}
+.photo-slot{position:relative;grid-column:1/-1;aspect-ratio:3/2;max-width:100%;border-radius:var(--radius-xl);overflow:hidden;display:grid;place-items:center;align-content:center;gap:var(--space-2);background:var(--color-muted);border:1px dashed var(--color-border);color:var(--text-muted);font-size:13px;font-weight:600;margin-bottom:var(--space-2)}
+.photo-slot > svg{width:28px;height:28px;color:var(--color-primary);opacity:.6}
 .photo-slot img{width:100%;height:100%;object-fit:cover;grid-area:1/1}
-.photo-slot:has(img){border:0;background:none}
+.photo-slot:has(img){border:0}
+/* Several <img> in one slot become a gallery: one photo at a time, arrows in the corner, swipe on touch screens */
+.photo-slot--gallery{touch-action:pan-y}
+.photo-slot--gallery img{opacity:0;visibility:hidden;transition:opacity 0s linear var(--duration-slow),visibility 0s linear var(--duration-slow)}
+.photo-slot--gallery img.is-on{opacity:1;visibility:visible;z-index:1;transition:opacity var(--duration-slow) var(--ease-standard)}
+.ps-nav{position:absolute;right:12px;bottom:12px;z-index:2;display:flex;align-items:center;gap:2px;padding:3px;border-radius:var(--radius-pill);background:rgba(255,255,255,.94);box-shadow:var(--shadow-md);color:var(--tj-ink);font-size:13px;font-weight:600;line-height:1}
+.ps-nav button{display:grid;place-items:center;width:30px;height:30px;padding:0;border:0;border-radius:var(--radius-pill);background:transparent;color:inherit;cursor:pointer}
+.ps-nav button:hover{background:var(--color-muted)}
+.ps-nav svg{width:18px;height:18px}
+.ps-count{min-width:3.4em;text-align:center;font-variant-numeric:tabular-nums}
 .commitments .num{display:grid;place-items:center;width:44px;height:44px;border-radius:var(--radius-md);background:var(--tj-golden);color:var(--tj-ink);font-weight:700;font-size:20px}
 .principles{display:grid;margin-top:var(--space-16);border-top:1px solid var(--color-border)}
 .principle{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:var(--space-12);padding-block:var(--space-12);border-bottom:1px solid var(--color-border)}
 .principle-head{display:grid;gap:var(--space-5);align-content:start}
 .principle-head .photo-slot{margin-bottom:0}
 .principle h3{font-size:clamp(1.3rem,2.2vw,1.6rem);line-height:1.25;font-weight:800;color:var(--text-display);letter-spacing:var(--tracking-tight);text-wrap:balance}
-.principle ul{display:grid;gap:var(--space-4);max-width:65ch}
+.principle ul{display:grid;gap:var(--space-4);align-content:start;max-width:65ch}
 .principle li{line-height:1.65;padding-left:22px;position:relative}
 .principle li::before{content:"";position:absolute;left:0;top:.62em;width:8px;height:8px;background:var(--tj-teal)}
 @media (max-width:860px){.principle{grid-template-columns:1fr;gap:var(--space-4)}}
@@ -433,16 +442,16 @@ section[id],article[id]{scroll-margin-top:80px}
         <h2 class="h1">Бид:</h2>
       </div>
       <ol class="commitments">
-        <li><span class="num">1</span><span>Чанартай боловсролыг тэгш хүртээмжтэй болгох зорилготойгоор,</span><div class="photo-slot"><i data-lucide="image"></i><span>Зураг удахгүй нэмэгдэнэ</span></div></li>
-        <li><span class="num">2</span><span>Шалгалтанд биш амьдралд бэлдэх хөтөлбөрөөр,</span><div class="photo-slot"><i data-lucide="image"></i><span>Зураг удахгүй нэмэгдэнэ</span></div></li>
-        <li><span class="num">3</span><span>Хүсэл тэмүүллээр дүүрэн хүүхдүүдтэй ажиллаж мөрөөдөл, зорилгод нь хүргэхээр ажилладаг.</span><div class="photo-slot"><i data-lucide="image"></i><span>Зураг удахгүй нэмэгдэнэ</span></div></li>
+        <li><span class="num">1</span><span>Чанартай боловсролыг тэгш хүртээмжтэй болгох зорилготойгоор,</span><div class="photo-slot"><img src="assets/photos/community2.jpg" alt="Томүжингийн сурагчид болон багш нар" width="1200" height="800" loading="lazy" decoding="async"></div></li>
+        <li><span class="num">2</span><span>Шалгалтанд биш амьдралд бэлдэх хөтөлбөрөөр,</span><div class="photo-slot"><img src="assets/photos/community4.jpg" alt="Сурагчид ширээний ард хамтран даалгавар гүйцэтгэж байна" width="1200" height="800" loading="lazy" decoding="async"></div></li>
+        <li><span class="num">3</span><span>Хүсэл тэмүүллээр дүүрэн хүүхдүүдтэй ажиллаж мөрөөдөл, зорилгод нь хүргэхээр ажилладаг.</span><div class="photo-slot"><img src="assets/photos/community3.jpg" alt="Инээмсэглэж буй Томүжингийн сурагчид" width="1200" height="800" loading="lazy" decoding="async"></div></li>
       </ol>
 
       <div class="principles">
         <article class="principle">
           <div class="principle-head">
             <h3>Хүрээлэл бол чанартай боловсролыг хөдөлгөгч хүч.</h3>
-            <div class="photo-slot"><i data-lucide="image"></i><span>Зураг удахгүй нэмэгдэнэ</span></div>
+            <div class="photo-slot"><img src="assets/photos/community1.jpg" alt="Арга хэмжээний тайзан дээр цугларсан Томүжингийн хамт олон" width="1200" height="800" loading="lazy" decoding="async"></div>
           </div>
           <ul>
             <li>Сургуулийн хүрээлэл сурагчдад хэрхэн нөлөөлж буй нь суралцахад хамгийн хамааралтай хүчин зүйлсийн нэг. Тийм учраас бид хүсэл эрмэлзэлтэй, тэмүүлэл зорилготой хүүхдүүдээс бүрдсэн хүрээллийг бүтээхийг зорьдог.</li>
@@ -452,7 +461,7 @@ section[id],article[id]{scroll-margin-top:80px}
         <article class="principle">
           <div class="principle-head">
             <h3>Дэлхий ертөнц өөрчлөгдөхийн хэрээр боловсрол ч мөн өөрчлөгдөх хэрэгтэй.</h3>
-            <div class="photo-slot"><i data-lucide="image"></i><span>Зураг удахгүй нэмэгдэнэ</span></div>
+            <div class="photo-slot"><img src="assets/photos/community6.jpg" alt="Үзэсгэлэнгийн танхимд уулзалтад оролцож буй сурагчид" width="1200" height="800" loading="lazy" decoding="async"></div>
           </div>
           <ul>
             <li>Өнөөдөр бидэнд тулгарч буй сорилтууд өнгөрсөнөөс тэс өөр бөгөөд төвөгтэй байна. Мөн бид ирээдүйд тулгарах сорилтуудыг урьдчилан таамаглах боломжгүй. Цаг хугацаа өнгөрөх тусам өмнө нь хэзээ ч тулгарж байгаагүй шинэ сорилтууд, илүү хурднаар гарч ирж байна.</li>
@@ -463,7 +472,7 @@ section[id],article[id]{scroll-margin-top:80px}
         <article class="principle">
           <div class="principle-head">
             <h3>Өөрчлөлт түүчээлэх зорилготой нэгэнд шаардлагатай мэдлэг чадварыг эзэмшүүлэх ёстой.</h3>
-            <div class="photo-slot"><i data-lucide="image"></i><span>Зураг удахгүй нэмэгдэнэ</span></div>
+            <div class="photo-slot"><img src="assets/photos/community5.jpg" alt="Хотын төвийн талбайд цугларсан Томүжингийн сурагчид" width="1200" height="800" loading="lazy" decoding="async"></div>
           </div>
           <ul>
             <li>Юу мэддэг байхаасаа илүү мэдлэгээрээ юуг хийж бүтээх нь илүү чухал.</li>
@@ -567,7 +576,14 @@ section[id],article[id]{scroll-margin-top:80px}
         <li class="tl-item"><span class="tl-year">2017</span><div class="tl-body"><h3>GAP Year хөтөлбөр</h3><p>Томүжин Академи 8 сарын хугацаатай завсар жилийн хөтөлбөрийг хэрэгжүүлж үр дүнд нь анх удаа улсын сургуулийн төгсөгч Харвардын их сургуульд тэнцэв. Уг хөтөлбөрийн төгсөгчид Harvard, MIT, Yale, UC Berkeley гэх дэлхийн топ их сургуулиудад сурч төгссөн.</p></div><div class="photo-slot"><i data-lucide="image"></i><span>Зураг удахгүй нэмэгдэнэ</span></div></li>
         <li class="tl-item"><span class="tl-year">2020</span><div class="tl-body"><h3>Томүжин Алтернатив сургууль</h3><p>Монголын анхны “төсөлд суурилсан сургалттай” (project-based-learning) сургууль анхныхаа хичээлийн жилийг 200 сурагчтайгаар эхлүүллээ.</p></div><div class="photo-slot"><i data-lucide="image"></i><span>Зураг удахгүй нэмэгдэнэ</span></div></li>
         <li class="tl-item"><span class="tl-year">2024</span><div class="tl-body"><h3>Дэлхийн шилдэг их сургуулиуд</h3><p>Үүсгэн байгуулагдсанаас 4 жилийн дотор Harvard, Stanford, Swarthmore, NYU гэх их сургуулиудад сурагчид маань тэнцэн суралцав.</p></div><div class="photo-slot"><i data-lucide="image"></i><span>Зураг удахгүй нэмэгдэнэ</span></div></li>
-        <li class="tl-item"><span class="tl-year">2026</span><div class="tl-body"><h3>1-р анги</h3><p>Амьдралд бэлтгэх 12 жилийн аялалыг эхлүүлж анхны 1-р ангийн сурагчдаа хүлээн авлаа.</p></div><div class="photo-slot"><i data-lucide="image"></i><span>Зураг удахгүй нэмэгдэнэ</span></div></li>
+        <li class="tl-item"><span class="tl-year">2026</span><div class="tl-body"><h3>1-р анги</h3><p>Амьдралд бэлтгэх 12 жилийн аялалыг эхлүүлж анхны 1-р ангийн сурагчдаа хүлээн авлаа.</p></div><div class="photo-slot">
+          <img src="assets/photos/primary.jpg" alt="Ахлах ангийн сурагчид 1-р ангийнхнаа алга ташин угтаж байна" width="1200" height="800" loading="lazy" decoding="async">
+          <img src="assets/photos/primary1.jpg" alt="1-р ангийн сурагчид ахлах ангийнхантайгаа алга ташилцаж байна" width="1200" height="800" loading="lazy" decoding="async">
+          <img src="assets/photos/primary2.jpg" alt="Хичээлийн шинэ жилийн эхний өдөр 1-р ангийн сурагчид" width="1200" height="800" loading="lazy" decoding="async">
+          <img src="assets/photos/primary3.jpg" alt="1-р ангийн сурагчид ангидаа тоглож байна" width="1200" height="800" loading="lazy" decoding="async">
+          <img src="assets/photos/primary4.jpg" alt="1-р ангийн сурагчид зурсан зургуудынхаа дэргэд" width="1200" height="800" loading="lazy" decoding="async">
+          <img src="assets/photos/primary5.jpg" alt="1-р ангийн сурагчид хичээл дээрээ" width="1200" height="800" loading="lazy" decoding="async">
+        </div></li>
       </ol>
     </div>
   </section>
@@ -616,7 +632,10 @@ section[id],article[id]{scroll-margin-top:80px}
       <article class="feature" id="program-pbl">
         <div class="aside">
           <h2 class="h1">Төсөлд суурилсан сурах аргачлал</h2>
-          <div class="photo-slot"><i data-lucide="image"></i><span>Зураг удахгүй нэмэгдэнэ</span></div>
+          <div class="photo-slot">
+            <img src="assets/photos/pbl.jpg" alt="2024 оны SIA World Competition тэмцээнд оролцсон Томүжингийн сурагчид" width="1200" height="800" loading="lazy" decoding="async">
+            <img src="assets/photos/pbl1.jpg" alt="Сурагчид монгол гэрт ярилцлага хийж байна" width="378" height="252" loading="lazy" decoding="async">
+          </div>
         </div>
         <div class="prose">
           <p><strong>Project-Based-Learning</strong> буюу төсөлд суурилсан сурах аргачлал нь бодит амьдрал дээрх нөхцөл байдал, асуудал, үйл явдалд үндэслэж тэдгээрт дүн шинжилгээ хийх, дүгнэлт гаргах, шийдэл олох замаар суралцах нэгэн төрлийн идэвхтэй суралцах (Active Learning) арга барил юм.</p>
@@ -628,7 +647,7 @@ section[id],article[id]{scroll-margin-top:80px}
       <article class="feature" id="program-house">
         <div class="aside">
           <h2 class="h1">Хаус систем</h2>
-          <div class="photo-slot"><i data-lucide="image"></i><span>Зураг удахгүй нэмэгдэнэ</span></div>
+          <div class="photo-slot"><img src="assets/photos/house1.jpg" alt="Туузаа зүүсэн сурагчид өргөмжлөлөө барин зогсож байна" width="448" height="299" loading="lazy" decoding="async"></div>
         </div>
         <div class="prose">
           <p>Бид ажил, амьдрал дээр гараад хэзээ ч нэг насныхаа л хүмүүсээр хүрээлэгддэггүй. Томүжингийн сурагчид анги бус Хаусаар зохион байгуулагддаг. Уламжлалт сургуулиудын анги гэх ойлголтоос ялгаатай нь Хауст нэг насны, адилхан амьдралын туршлагатай хүүхдүүд байдаггүй. Хауст 6-с 12-р ангийн төрөл бүрийн хүсэл сонирхол, зан араншин, туршлагатай хүүхдүүд хуваарьлагдан орсон байдаг.</p>
@@ -640,7 +659,11 @@ section[id],article[id]{scroll-margin-top:80px}
       <article class="feature" id="program-college-prep">
         <div class="aside">
           <h2 class="h1">Их сургуулийн өргөдлийн бэлтгэл</h2>
-          <div class="photo-slot"><i data-lucide="image"></i><span>Зураг удахгүй нэмэгдэнэ</span></div>
+          <div class="photo-slot">
+            <img src="assets/photos/collegeprep.jpg" alt="Сурагчид зөөврийн компьютер дээр хамтран ажиллаж байна" width="1200" height="800" loading="lazy" decoding="async">
+            <img src="assets/photos/collegeprep1.jpg" alt="Сурагч зөвлөхтэйгөө ганцаарчлан уулзаж байна" width="448" height="299" loading="lazy" decoding="async">
+            <img src="assets/photos/collegeprep2.jpg" alt="Их сургуулийн танилцуулгын уулзалтад оролцсон сурагчид" width="1200" height="800" loading="lazy" decoding="async">
+          </div>
         </div>
         <div class="prose">
           <p>Томүжин Алтернатив сургууль нь их сургуулийн өргөдлийн бэлтгэл хөтөлбөрийг ахлах ангийн үндсэн хөтөлбөрт шингээсэн анхны сургуулиудын нэг. Сурагчид 10-р ангиас эхлэн АНУ-ын шилдэг их дээд сургуулиудад өргөдлөө илгээхэд олон талаас бэлддэг.</p>
@@ -652,7 +675,10 @@ section[id],article[id]{scroll-margin-top:80px}
       <article class="feature" id="program-tom-ink">
         <div class="aside">
           <h2 class="h1">ТОМ ИНК — Томүжин Инкубатор</h2>
-          <div class="photo-slot"><i data-lucide="image"></i><span>Зураг удахгүй нэмэгдэнэ</span></div>
+          <div class="photo-slot">
+            <img src="assets/photos/tominc1.jpg" alt="ТОМ ИНК тэмцээнд сурагч төслөө танилцуулж байна" width="378" height="252" loading="lazy" decoding="async">
+            <img src="assets/photos/tominc2.jpg" alt="ТОМ ИНК тэмцээний оролцогчид тайзан дээр" width="378" height="252" loading="lazy" decoding="async">
+          </div>
         </div>
         <div class="prose">
           <p>Нийгэмд ээлтэй боловсролын байгууллагын хувьд бид сурагчдадаа мэдлэг олгоод зогсохгүй, мэдлэгээ ашиглаж бодит амьдрал дээр эерэг өөрчлөлт авчрахад нь чиглүүлж энэхүү төслийн тэмцээнийг 2024-2025 оноос санаачлан хэрэгжүүлсэн. Сурагчид маань эрүүл мэнд, боловсрол, байгаль орчин зэрэг өөрийн хувь нэмэр оруулахыг хүсдэг салбараа сонгож, өөрөөсөө давсан том зорилгын төлөө, бодит асуудлуудыг шийдээсэй хэмээн "ТОМ ИНК" (Томүжин Инкубатор) гэх нөлөөллийн төслийн тэмцээнийг бид санаачилсан билээ.</p>
@@ -669,7 +695,13 @@ section[id],article[id]{scroll-margin-top:80px}
       <article class="feature" id="program-clubs">
         <div class="aside">
           <h2 class="h1">Дугуйлан</h2>
-          <div class="photo-slot"><i data-lucide="image"></i><span>Зураг удахгүй нэмэгдэнэ</span></div>
+          <div class="photo-slot">
+            <img src="assets/photos/duguilan.jpg" alt="Дугуйлангийн танилцуулгын ширээний ард сурагчид" width="1200" height="800" loading="lazy" decoding="async">
+            <img src="assets/photos/duguilan1.jpg" alt="Сурагчид цаасаар тогоруу нугалж байна" width="448" height="299" loading="lazy" decoding="async">
+            <img src="assets/photos/duguilan2.jpg" alt="Сурагчид уран бичлэг хийж байна" width="448" height="299" loading="lazy" decoding="async">
+            <img src="assets/photos/duguilan3.jpg" alt="Хаусын тугны доор лего угсарч буй сурагчид" width="1200" height="800" loading="lazy" decoding="async">
+            <img src="assets/photos/duguilan4.jpg" alt="Сурагч том цаасан дээр зураг зурж байна" width="448" height="299" loading="lazy" decoding="async">
+          </div>
         </div>
         <div class="prose">
           <p class="muted">Дугуйлангийн танилцуулга удахгүй нэмэгдэнэ.</p>
@@ -1021,6 +1053,44 @@ section[id],article[id]{scroll-margin-top:80px}
     menuBtn.setAttribute("aria-expanded", String(open));
   });
   route();
+
+  /* ── Photo galleries: a .photo-slot with several <img> shows one at a time ── */
+  document.querySelectorAll(".photo-slot").forEach(function(slot){
+    var imgs = slot.querySelectorAll("img"), n = imgs.length, i = 0;
+    if (n < 2) return;
+    slot.classList.add("photo-slot--gallery");
+    slot.setAttribute("role", "group");
+    slot.setAttribute("aria-label", "Зургийн цомог, " + n + " зураг");
+    var nav = document.createElement("div");
+    nav.className = "ps-nav";
+    nav.innerHTML = '<button type="button" aria-label="Өмнөх зураг"><i data-lucide="chevron-left"></i></button>' +
+      '<span class="ps-count" aria-live="polite"></span>' +
+      '<button type="button" aria-label="Дараагийн зураг"><i data-lucide="chevron-right"></i></button>';
+    slot.appendChild(nav);
+    var count = nav.querySelector(".ps-count"), btns = nav.querySelectorAll("button");
+    function show(k){
+      i = (k + n) % n;
+      imgs.forEach(function(im, j){ im.classList.toggle("is-on", j === i); });
+      count.textContent = (i + 1) + " / " + n;
+    }
+    btns[0].addEventListener("click", function(){ show(i - 1); });
+    btns[1].addEventListener("click", function(){ show(i + 1); });
+    nav.addEventListener("keydown", function(e){
+      if (e.key === "ArrowLeft") show(i - 1);
+      if (e.key === "ArrowRight") show(i + 1);
+    });
+    /* Swipe left or right on touch screens */
+    var x0 = null, y0 = 0;
+    slot.addEventListener("pointerdown", function(e){ if (e.pointerType !== "mouse"){ x0 = e.clientX; y0 = e.clientY; } });
+    slot.addEventListener("pointercancel", function(){ x0 = null; });
+    slot.addEventListener("pointerup", function(e){
+      if (x0 === null) return;
+      var dx = e.clientX - x0, dy = e.clientY - y0;
+      x0 = null;
+      if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) show(dx < 0 ? i + 1 : i - 1);
+    });
+    show(0);
+  });
 
   if (window.lucide) window.lucide.createIcons();
 })();

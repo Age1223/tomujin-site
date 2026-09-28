@@ -21,6 +21,7 @@ index.html          the whole site: page text, styles and script
 assets/
   logo-lockup.png   Tomujin logo (header, footer)
   logo-icon.jpg     browser tab icon
+  photos/           school photos, cropped to 3:2 and compressed for the web
   tangrams/         tangram figures from the Tomujin design system
   unis/             university logos
 ```
@@ -33,7 +34,10 @@ assets/
   - `UNIS`: university logos, in prestige order
   - `FIT`: the "Хэрвээ чи:" checklist
   - `FAQ`: questions and answers
-- **Photos:** each dashed "Зураг удахгүй нэмэгдэнэ" box is a `<div class="photo-slot">`. Replace its contents with `<img src="assets/…" alt="…">`.
+- **Photos:** each photo sits in a `<div class="photo-slot">`.
+  - To fill an empty dashed "Зураг удахгүй нэмэгдэнэ" box, replace its contents with `<img src="assets/photos/…" alt="…">`.
+  - Put several `<img>` in one box and it becomes a small gallery, with arrows in the corner and swiping on phones.
+  - Photo boxes are 3:2 (the shape of most camera photos). Photos about 1200×800 pixels, saved as JPEG, look sharp and load quickly.
 
 ## Fonts
 
