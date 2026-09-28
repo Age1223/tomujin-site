@@ -270,10 +270,14 @@ section[id],article[id]{scroll-margin-top:80px}
 .press-item{display:grid;grid-template-columns:180px minmax(0,1fr) auto;gap:var(--space-6);align-items:center;padding:var(--space-4) var(--space-3);border-bottom:1px solid var(--color-border);color:var(--text-body);text-decoration:none!important;transition:background-color var(--duration-fast) var(--ease-standard)}
 .press-item:hover{background:var(--color-muted)}
 .press-item:hover .press-title{color:var(--color-primary)}
-.press-thumb{width:100%;aspect-ratio:3/2;height:auto;object-fit:cover;border-radius:var(--radius-md);background:var(--color-muted);outline:1px solid var(--color-border);outline-offset:-1px}
+.press-thumb{position:relative;display:block;aspect-ratio:3/2;border-radius:var(--radius-md);overflow:hidden;background:var(--color-muted)}
+.press-thumb::after{content:"";position:absolute;inset:0;border:1px solid var(--color-border);border-radius:inherit;pointer-events:none}
+.press-thumb img{width:100%;height:100%;object-fit:cover}
+.press-play{position:absolute;inset:0;margin:auto;width:40px;height:40px;display:grid;place-items:center;border-radius:var(--radius-pill);background:rgba(0,0,0,.6);color:#fff}
+.press-play svg{width:18px;height:18px;fill:currentColor;margin-left:2px}
 .press-title{font-size:17px;font-weight:700;line-height:1.4;text-wrap:pretty}
-.press-item svg{color:var(--text-muted)}
-@media (max-width:640px){.press-item{grid-template-columns:112px minmax(0,1fr);gap:var(--space-4);padding-inline:var(--space-1)}.press-item svg{display:none}.press-title{font-size:15px}}
+.press-item > svg{color:var(--text-muted)}
+@media (max-width:640px){.press-item{grid-template-columns:112px minmax(0,1fr);gap:var(--space-4);padding-inline:var(--space-1)}.press-item > svg{display:none}.press-title{font-size:15px}}
 
 /* ───────── About ───────── */
 .team{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:var(--space-4)}
@@ -533,29 +537,34 @@ section[id],article[id]{scroll-margin-top:80px}
       </div>
       <!-- Newest first. Each link opens the article in a new tab. -->
       <ul class="press">
+        <li><a class="press-item" href="https://www.facebook.com/reel/2142595626284078" target="_blank" rel="noopener">
+          <span class="press-thumb"><img src="assets/press/reel-tuul.jpg" alt="" width="600" height="400" loading="lazy" decoding="async"><span class="press-play" aria-label="Видео"><i data-lucide="play"></i></span></span>
+          <span class="press-title">Гол усаа цэвэрлэх, хайрлах сэтгэл зүрхтэй мундаг залуус</span>
+          <i data-lucide="arrow-up-right"></i>
+        </a></li>
         <li><a class="press-item" href="https://unread.today/c/insight-tomujin-story" target="_blank" rel="noopener">
-          <img class="press-thumb" src="assets/press/unread-2024.jpg" alt="" width="600" height="400" loading="lazy" decoding="async">
+          <span class="press-thumb"><img src="assets/press/unread-2024.jpg" alt="" width="600" height="400" loading="lazy" decoding="async"></span>
           <span class="press-title">Дэлхийн шилдэг их сургуулиудаас 100 хувийн тэтгэлэг хүртсэн 3 монгол сурагчийн туршлага</span>
           <i data-lucide="arrow-up-right"></i>
         </a></li>
         <li><a class="press-item" href="https://ikon.mn/n/2u0a" target="_blank" rel="noopener">
-          <img class="press-thumb" src="assets/press/ikon-2023.jpg" alt="" width="600" height="400" loading="lazy" decoding="async">
+          <span class="press-thumb"><img src="assets/press/ikon-2023.jpg" alt="" width="600" height="400" loading="lazy" decoding="async"></span>
           <span class="press-title">Сүхбаатараас Стэнфордод элссэн анхны сурагчтай танилц</span>
           <i data-lucide="arrow-up-right"></i>
         </a></li>
-        <li><a class="press-item" href="https://business.mn/2021/03/15/b-batjin-mergejil-huuchirdag-harin-husel-ermelzel-hezee-ch-modanaas-gardaggui" target="_blank" rel="noopener">
-          <img class="press-thumb" src="assets/press/business-2021.jpg" alt="" width="600" height="400" loading="lazy" decoding="async">
-          <span class="press-title">Б.Батжин: Мэргэжил хуучирна, харин хүсэл эрмэлзэл хэзээ ч моданаас гарахгүй</span>
-          <i data-lucide="arrow-up-right"></i>
-        </a></li>
-        <li><a class="press-item" href="https://ub.life/p/bbatjingiin-yariltslagaas-ontslokh-13-eshlel" target="_blank" rel="noopener">
-          <img class="press-thumb" src="assets/press/ublife-2020.jpg" alt="" width="600" height="400" loading="lazy" decoding="async">
-          <span class="press-title">Б.Батжингийн ярилцлагаас онцлох 13 эшлэл</span>
+        <li><a class="press-item" href="https://ikon.mn/n/2snn" target="_blank" rel="noopener">
+          <span class="press-thumb"><img src="assets/press/ikon-2023-17b.jpg" alt="" width="600" height="400" loading="lazy" decoding="async"></span>
+          <span class="press-title">Дэлхийн ТОП их сургуулиуд 17 тэрбум төгрөгөөр Монгол оюуныг үнэллээ</span>
           <i data-lucide="arrow-up-right"></i>
         </a></li>
         <li><a class="press-item" href="https://unread.today/c/spotlight-tomujin-highschool" target="_blank" rel="noopener">
-          <img class="press-thumb" src="assets/press/unread-2020.jpg" alt="" width="600" height="400" loading="lazy" decoding="async">
+          <span class="press-thumb"><img src="assets/press/unread-2020.jpg" alt="" width="600" height="400" loading="lazy" decoding="async"></span>
           <span class="press-title">“Томүжин” алтернатив ахлах сургууль — Хүчирхэгжсэн хувь хүнийг бэлтгэнэ</span>
+          <i data-lucide="arrow-up-right"></i>
+        </a></li>
+        <li><a class="press-item" href="https://ub.life/p/tomujin-giin-bbatjintai-tanilts" target="_blank" rel="noopener">
+          <span class="press-thumb"><img src="assets/press/ublife-2020-batjin.jpg" alt="" width="600" height="400" loading="lazy" decoding="async"></span>
+          <span class="press-title">“Томүжин”-гийн Б.Батжинтай танилц!</span>
           <i data-lucide="arrow-up-right"></i>
         </a></li>
       </ul>
