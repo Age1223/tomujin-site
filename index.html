@@ -265,7 +265,7 @@ section[id],article[id]{scroll-margin-top:80px}
 @media (max-width:1000px){.unis{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media (max-width:640px){.unis{grid-template-columns:repeat(2,minmax(0,1fr))}.unis li{min-height:88px;padding:var(--space-4) var(--space-3)}.unis .u-typed img{height:40px}.unis .u-typed span{font-size:14px}}
 
-.fit{display:grid;grid-template-columns:minmax(0,1fr);gap:var(--space-12);align-items:center}
+.fit{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,440px);gap:var(--space-12) var(--space-16);align-items:center}
 @media (max-width:860px){.fit{grid-template-columns:1fr}.lead-card{padding:var(--space-6)}}
 .fit-list{display:grid;gap:var(--space-4);margin-block:var(--space-6)}
 .fit-list li{display:grid;grid-template-columns:auto 1fr;gap:var(--space-3);font-size:17px;line-height:1.5}
@@ -301,6 +301,10 @@ section[id],article[id]{scroll-margin-top:80px}
 .lead-panel .lead h3{padding-right:32px}
 .lead-close{position:absolute;top:14px;right:14px;display:grid;place-items:center;width:32px;height:32px;padding:0;border:0;border-radius:var(--radius-pill);background:transparent;color:var(--text-muted);cursor:pointer}
 .lead-close:hover{background:var(--color-muted);color:var(--text-body)}
+.lead-dock{min-height:480px;display:grid;align-items:center}
+.lead-dock .lead-panel{width:100%;max-height:none;overflow:visible;padding:var(--space-8);border:0;animation:none}
+.lead-dock .lead-close{display:none}
+.lead-dock .lead-panel .lead h3{padding-right:0}
 @keyframes lead-in{from{opacity:0;transform:translateY(8px) scale(.98)}to{opacity:1;transform:none}}
 @media (max-width:640px){.lead-float{left:12px;right:12px;bottom:12px}.lead-panel{width:100%;max-height:calc(100vh - 90px)}.lead-fab{height:48px;font-size:14px}}
 
@@ -692,6 +696,8 @@ section[id],article[id]{scroll-margin-top:80px}
         <p class="fit-close">Томүжин та 2 бие биендээ төгс тохирч магад.</p>
         <a class="btn btn--accent btn--lg" hidden data-later href="https://join.tomujin.edu.mn" target="_blank" rel="noopener">Өргөдлөө илгээгээрэй</a>
       </div>
+      <!-- The lead form moves in here while this section is on screen, and back to the corner when it isn't -->
+      <div class="lead-dock" data-lead-dock></div>
     </div>
   </section>
 </div>
@@ -1293,12 +1299,15 @@ section[id],article[id]{scroll-margin-top:80px}
     });
   });
 
-  /* ── Floating lead form: the corner button opens it; ✕, Esc or the button again close it ── */
+  /* ── Lead form: floats in the corner (the button opens it) until the "Чамд тохирох сургууль байна уу?"
+        section is on screen, then sits in that section. It's one form moving between the two places,
+        so anything typed stays. ✕, Esc or the button close the floating version. ── */
   (function(){
-    var root = document.querySelector("[data-lead-float]");
+    var root = document.querySelector("[data-lead-float]"), dock = document.querySelector("[data-lead-dock]");
     if (!root) return;
-    var fab = root.querySelector(".lead-fab"), panel = root.querySelector(".lead-panel");
+    var fab = root.querySelector(".lead-fab"), panel = root.querySelector(".lead-panel"), docked = false;
     function setOpen(open){
+      if (docked) return;
       panel.hidden = !open;
       fab.setAttribute("aria-expanded", String(open));
       if (!open) return;
@@ -1306,9 +1315,23 @@ section[id],article[id]{scroll-margin-top:80px}
       /* On phones, wait for a tap so the keyboard doesn't pop up by itself */
       if (first && window.matchMedia("(pointer: fine)").matches) first.focus(); else panel.focus();
     }
+    function setDocked(on){
+      if (on === docked) return;
+      var active = document.activeElement, keepFocus = panel.contains(active);
+      docked = on;
+      if (on){ dock.appendChild(panel); panel.hidden = false; root.hidden = true; }
+      else { root.insertBefore(panel, fab); panel.hidden = true; root.hidden = false; fab.setAttribute("aria-expanded", "false"); }
+      panel.setAttribute("role", on ? "region" : "dialog");
+      if (keepFocus && on) active.focus({preventScroll: true});
+    }
     fab.addEventListener("click", function(){ setOpen(panel.hidden); });
     root.querySelector(".lead-close").addEventListener("click", function(){ setOpen(false); fab.focus(); });
-    document.addEventListener("keydown", function(e){ if (e.key === "Escape" && !panel.hidden){ setOpen(false); fab.focus(); } });
+    document.addEventListener("keydown", function(e){ if (e.key === "Escape" && !docked && !panel.hidden){ setOpen(false); fab.focus(); } });
+    /* Dock once the section's top is about two-thirds of the way up the screen */
+    if (dock && "IntersectionObserver" in window){
+      new IntersectionObserver(function(entries){ setDocked(entries[0].isIntersecting); },
+        {rootMargin: "0px 0px -35% 0px"}).observe(dock.closest("section"));
+    }
   })();
 
   /* ── Photo galleries: a .photo-slot with several <img> shows one at a time ── */
