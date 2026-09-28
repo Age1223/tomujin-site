@@ -262,14 +262,30 @@ section[id],article[id]{scroll-margin-top:80px}
 @media (max-width:1000px){.unis{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media (max-width:640px){.unis{grid-template-columns:repeat(2,minmax(0,1fr))}.unis li{min-height:88px;padding:var(--space-4) var(--space-3)}.unis .u-typed img{height:40px}.unis .u-typed span{font-size:14px}}
 
-.fit{display:grid;grid-template-columns:minmax(0,1fr);gap:var(--space-12);align-items:center}
-@media (max-width:860px){.fit{grid-template-columns:1fr}}
+.fit{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,440px);gap:var(--space-12) var(--space-16);align-items:center}
+@media (max-width:860px){.fit{grid-template-columns:1fr}.lead-card{padding:var(--space-6)}}
 .fit-list{display:grid;gap:var(--space-4);margin-block:var(--space-6)}
 .fit-list li{display:grid;grid-template-columns:auto 1fr;gap:var(--space-3);font-size:17px;line-height:1.5}
 .fit-list svg{color:var(--tj-golden);margin-top:2px}
 .band:not(.band--brand) .fit-list svg{color:var(--color-primary)}
 .fit-close{font-size:clamp(1.15rem,2vw,1.4rem);font-weight:800;margin-bottom:var(--space-6)}
 .fit-close:has(+ .btn[hidden]){margin-bottom:0}
+.lead-card{background:#fff;color:var(--text-body);border-radius:var(--radius-xl);padding:var(--space-8);box-shadow:0 20px 40px -12px rgba(0,0,0,.35)}
+.lead{display:grid;gap:var(--space-5)}
+.lead h3{font-size:22px;line-height:1.3;font-weight:800;color:var(--text-display)}
+.field{display:grid;gap:6px}
+.field label{font-size:14px;font-weight:700}
+.field input,.field select{width:100%;height:48px;padding:0 14px;border:1px solid var(--color-border);border-radius:var(--radius-md);background:#fff;font:500 16px/1.2 var(--font-sans);color:var(--text-body)}
+.field select{appearance:none;-webkit-appearance:none;padding-right:40px;background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='none' stroke='%236e5e8a' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m4 6 4 4 4-4'/%3E%3C/svg%3E") no-repeat right 14px center}
+.field select:invalid{color:var(--text-muted)}
+.field input:focus,.field select:focus{outline:none;border-color:var(--color-primary);box-shadow:0 0 0 3px rgba(92,16,144,.15)}
+.field [aria-invalid="true"]{border-color:#c62828}
+.field-error{font-size:13px;font-weight:600;color:#c62828}
+.lead .btn{width:100%;margin-top:var(--space-1)}
+.lead .btn[disabled]{opacity:.7;cursor:progress}
+.lead-status{font-size:14px;color:#c62828;text-align:center}
+.lead-status:empty{display:none}
+.lead-done{display:grid;justify-items:center;gap:var(--space-4);padding-block:var(--space-8);text-align:center;font-size:18px;font-weight:700}
 
 .alumni{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--space-6)}
 @media (max-width:860px){.alumni{grid-template-columns:1fr}}
@@ -656,6 +672,35 @@ section[id],article[id]{scroll-margin-top:80px}
         <ul class="fit-list" data-fit-list></ul>
         <p class="fit-close">Томүжин та 2 бие биендээ төгс тохирч магад.</p>
         <a class="btn btn--accent btn--lg" hidden data-later href="https://join.tomujin.edu.mn" target="_blank" rel="noopener">Өргөдлөө илгээгээрэй</a>
+      </div>
+      <!-- Lead form: our design, but answers go to the school's Google Form
+           ("Дэлгэрэнгүй мэдээлэл авах бол...", docs.google.com/forms/d/e/1FAIpQLSdg0TVM3QCfNARthsnJvk0cCBlT9sv9k3Otn1ClLYbLKSI27Q).
+           Each "name" is that form's field id; if a question is changed in Google Forms, update it here too. -->
+      <div class="lead-card">
+        <form class="lead" data-lead action="https://docs.google.com/forms/d/e/1FAIpQLSdg0TVM3QCfNARthsnJvk0cCBlT9sv9k3Otn1ClLYbLKSI27Q/formResponse" method="post" novalidate>
+          <h3>Дэлгэрэнгүй мэдээлэл авах бол...</h3>
+          <div class="field">
+            <label for="lead-phone">Утасны дугаар</label>
+            <input id="lead-phone" name="entry.1099199351" type="tel" inputmode="tel" autocomplete="tel" required data-error="Утасны дугаараа зөв оруулна уу (8 оронтой).">
+            <p class="field-error" hidden></p>
+          </div>
+          <div class="field">
+            <label for="lead-school">Одоо сурч буй сургууль</label>
+            <input id="lead-school" name="entry.1495343477" type="text" autocomplete="off" required data-error="Сургуулийнхаа нэрийг оруулна уу.">
+            <p class="field-error" hidden></p>
+          </div>
+          <div class="field">
+            <label for="lead-grade">Хэддүгээр анги вэ?</label>
+            <select id="lead-grade" name="entry.2139527475" required data-error="Ангиа сонгоно уу."><option value="" selected disabled>Сонгох</option><option>1-р анги</option><option>2-р анги</option><option>3-р анги</option><option>4-р анги</option><option>5-р анги</option><option>6-р анги</option><option>7-р анги</option><option>8-р анги</option><option>9-р анги</option><option>10-р анги</option><option>11-р анги</option><option>12-р анги</option></select>
+            <p class="field-error" hidden></p>
+          </div>
+          <button class="btn btn--accent btn--lg" type="submit">Илгээх</button>
+          <p class="lead-status" role="status" aria-live="polite"></p>
+        </form>
+        <div class="lead-done" hidden>
+          <span class="icon-tile icon-tile--gold"><i data-lucide="check"></i></span>
+          <p>Бид тантай тун удахгүй холбогдох болно. ❤️</p>
+        </div>
       </div>
     </div>
   </section>
@@ -1187,6 +1232,41 @@ section[id],article[id]{scroll-margin-top:80px}
     menuBtn.setAttribute("aria-expanded", String(open));
   });
   route();
+
+  /* ── Lead form: checks the answers, sends them to the Google Form in the background, then says thanks ── */
+  document.querySelectorAll("[data-lead]").forEach(function(form){
+    var status = form.querySelector(".lead-status"), btn = form.querySelector('button[type="submit"]');
+    var done = form.parentNode.querySelector(".lead-done");
+    function problem(el){
+      var v = el.value.trim();
+      if (el.type === "tel"){ var d = v.replace(/\D/g, ""); return (d.length === 8 || (d.length === 11 && d.indexOf("976") === 0)) ? "" : el.getAttribute("data-error"); }
+      return v ? "" : el.getAttribute("data-error");
+    }
+    function show(el, msg){
+      var err = el.parentNode.querySelector(".field-error");
+      err.textContent = msg; err.hidden = !msg;
+      if (msg) el.setAttribute("aria-invalid", "true"); else el.removeAttribute("aria-invalid");
+    }
+    var fields = Array.prototype.slice.call(form.querySelectorAll("input, select"));
+    fields.forEach(function(el){
+      el.addEventListener(el.tagName === "SELECT" ? "change" : "input", function(){ if (el.hasAttribute("aria-invalid")) show(el, problem(el)); });
+    });
+    form.addEventListener("submit", function(e){
+      e.preventDefault();
+      var bad = null;
+      fields.forEach(function(el){ var m = problem(el); show(el, m); if (m && !bad) bad = el; });
+      if (bad){ bad.focus(); return; }
+      btn.disabled = true; btn.textContent = "Илгээж байна…"; status.textContent = "";
+      var data = new URLSearchParams();
+      fields.forEach(function(el){ data.append(el.name, el.value.trim()); });
+      /* Google Forms doesn't allow reading its reply from another site ("no-cors"), so a completed request counts as sent */
+      fetch(form.action, {method: "POST", mode: "no-cors", body: data}).then(function(){
+        form.hidden = true; done.hidden = false;
+      }).catch(function(){
+        status.textContent = "Илгээж чадсангүй. Интернэтээ шалгаад дахин оролдоно уу.";
+      }).then(function(){ btn.disabled = false; btn.textContent = "Илгээх"; });
+    });
+  });
 
   /* ── Photo galleries: a .photo-slot with several <img> shows one at a time ── */
   document.querySelectorAll(".photo-slot").forEach(function(slot){
