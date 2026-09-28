@@ -219,7 +219,8 @@ section[id],article[id]{scroll-margin-top:80px}
 /* Picture slot: swap the placeholder's contents for <img src="assets/..." alt="..."> when photos are ready */
 .photo-slot{position:relative;grid-column:1/-1;aspect-ratio:3/2;max-width:100%;border-radius:var(--radius-xl);overflow:hidden;display:grid;place-items:center;align-content:center;gap:var(--space-2);background:var(--color-muted);border:1px dashed var(--color-border);color:var(--text-muted);font-size:13px;font-weight:600;margin-bottom:var(--space-2)}
 .photo-slot > svg{width:28px;height:28px;color:var(--color-primary);opacity:.6}
-.photo-slot img{width:100%;height:100%;object-fit:cover;grid-area:1/1}
+/* The inline background is a tiny blurred preview that shows until the photo arrives */
+.photo-slot img{width:100%;height:100%;object-fit:cover;grid-area:1/1;background-size:cover;background-position:center}
 .photo-slot:has(img){border:0}
 /* Several <img> in one slot become a gallery: one photo at a time, arrows in the corner, swipe on touch screens */
 .photo-slot--gallery{touch-action:pan-y}
@@ -469,16 +470,16 @@ section[id],article[id]{scroll-margin-top:80px}
         <h2 class="h1">Бид:</h2>
       </div>
       <ol class="commitments">
-        <li><span class="num">1</span><span>Чанартай боловсролыг тэгш хүртээмжтэй болгох зорилготойгоор,</span><div class="photo-slot"><img src="assets/photos/community-access.jpg" alt="Их танхимд цугларсан Томүжингийн сурагчид" width="1200" height="800" loading="lazy" decoding="async"></div></li>
-        <li><span class="num">2</span><span>Шалгалтанд биш амьдралд бэлдэх хөтөлбөрөөр,</span><div class="photo-slot"><img src="assets/photos/community-replacement.jpg" alt="Сурагчид зочинтой чөлөөтэй ярилцаж байна" width="1200" height="800" loading="lazy" decoding="async"></div></li>
-        <li><span class="num">3</span><span>Хүсэл тэмүүллээр дүүрэн хүүхдүүдтэй ажиллаж мөрөөдөл, зорилгод нь хүргэхээр ажилладаг.</span><div class="photo-slot"><img src="assets/photos/community3.jpg" alt="Инээмсэглэж буй Томүжингийн сурагчид" width="1200" height="800" loading="lazy" decoding="async"></div></li>
+        <li><span class="num">1</span><span>Чанартай боловсролыг тэгш хүртээмжтэй болгох зорилготойгоор,</span><div class="photo-slot"><img src="assets/photos/community-access-1200.webp" srcset="assets/photos/community-access-800.webp 800w, assets/photos/community-access-1200.webp 1200w" sizes="(max-width: 860px) 100vw, 480px" alt="Их танхимд цугларсан Томүжингийн сурагчид" width="1200" height="800" loading="lazy" decoding="async" style="background-image:url(data:image/webp;base64,UklGRtIAAABXRUJQVlA4IMYAAACQBACdASoYABAAPu1iqU2ppaOiMAgBMB2JYgC1B8BDgbSJBwUCuba6tDcXcgAA/pvoyv+rvIJKORcZQNJkFuLfcbgqRWkrc4oRiFYu7IalCL7vvetKOWZXO0DqPS5eMUtFwVZZMtTolevJrY9rDm2c37VoW6A+1HY4F3h4Cr7GdAG0nR9cU9vN4sjZ+7B5D+ceYx/41w5XCWMYE3KzpmvClkNe+1fO4bpPjoJok7vRnT9ZquSgA/itw9pnRZwRTxb1qJAAAAA=)"></div></li>
+        <li><span class="num">2</span><span>Шалгалтанд биш амьдралд бэлдэх хөтөлбөрөөр,</span><div class="photo-slot"><img src="assets/photos/community-replacement-1200.webp" srcset="assets/photos/community-replacement-800.webp 800w, assets/photos/community-replacement-1200.webp 1200w" sizes="(max-width: 860px) 100vw, 480px" alt="Сурагчид зочинтой чөлөөтэй ярилцаж байна" width="1200" height="800" loading="lazy" decoding="async" style="background-image:url(data:image/webp;base64,UklGRvQAAABXRUJQVlA4IOgAAACwBQCdASoYABAAPu1iqU2ppaOiMAgBMB2JbACdEf/2SqugHEBpAmcxY7DNUMSucLXGTy9NQ24A/l/Ae5FvhwzY+sRilFCOLjdNBnia049CZMThbmsCQR/cCpxHbROJmiPqhtoVz1zNzUaIhi+NrZ/glYa74u5xbYINrgqd1G/xsdsTjiv1HlEqmQwb3vG3GiAOe9UtzNvb7dnMZIOrb0bUU8d+7A8mtRTtDG1a/ANQxHMvHtOUP3YvVBGFMdivd+c5233sKd00cXpTzQWI+TEraHM8i70W6/JWdjWJFhpzGLDUYnmLrAAA)"></div></li>
+        <li><span class="num">3</span><span>Хүсэл тэмүүллээр дүүрэн хүүхдүүдтэй ажиллаж мөрөөдөл, зорилгод нь хүргэхээр ажилладаг.</span><div class="photo-slot"><img src="assets/photos/community3-1200.webp" srcset="assets/photos/community3-800.webp 800w, assets/photos/community3-1200.webp 1200w" sizes="(max-width: 860px) 100vw, 480px" alt="Инээмсэглэж буй Томүжингийн сурагчид" width="1200" height="800" loading="lazy" decoding="async" style="background-image:url(data:image/webp;base64,UklGRtQAAABXRUJQVlA4IMgAAACwBACdASoYABAAPu1iqU2ppaOiMAgBMB2JQBOgO4Fv1saLoTvWsKBc8kR4wnKYAMtC5XQ5q5lp8uzS26syjxHf2ecQC8gIyjJa2YLqlI0+D9T+IbQod1xQoWGymK3jr1gPWYjcgYN4ZyJM+VqR0lLx/MSR059sp80YCAR49x3uI568M3rA035zLQ9Nnk9dSMx9I8DihxHEJnbxdYemYqYCjBHZVWf4Fms41zCaDE1xB50w2QUgJxoe39pr8rvUMkiWnUHsAAAAAA==)"></div></li>
       </ol>
 
       <div class="principles">
         <article class="principle">
           <div class="principle-head">
             <h3>Хүрээлэл бол чанартай боловсролыг хөдөлгөгч хүч.</h3>
-            <div class="photo-slot"><img src="assets/photos/community.jpg" alt="Ижил цамц өмссөн Томүжингийн сурагчид" width="1200" height="800" loading="lazy" decoding="async"></div>
+            <div class="photo-slot"><img src="assets/photos/community-1200.webp" srcset="assets/photos/community-800.webp 800w, assets/photos/community-1200.webp 1200w" sizes="(max-width: 860px) 100vw, 480px" alt="Ижил цамц өмссөн Томүжингийн сурагчид" width="1200" height="800" loading="lazy" decoding="async" style="background-image:url(data:image/webp;base64,UklGRqoAAABXRUJQVlA4IJ4AAABQBACdASoYABAAPu1iqU2ppaOiMAgBMB2JYwCsACP/m7eeZoCKwl5mmQBwAP3inAm61eqtfFAeuBxO7qhhqOTz489wfj/YuXE5OAbQkmiF+BZrw8zWRSakT/mU3GAohU7ZiJo1ETVufdebLAx5TDh8D0o4JdTrp2R9bAbkub3aUz8vwOq9+05P9ggLZMLwmotgcbapOE5CL/NJ1cAAAA==)"></div>
           </div>
           <ul>
             <li>Сургуулийн хүрээлэл сурагчдад хэрхэн нөлөөлж буй нь суралцахад хамгийн хамааралтай хүчин зүйлсийн нэг. Тийм учраас бид хүсэл эрмэлзэлтэй, тэмүүлэл зорилготой хүүхдүүдээс бүрдсэн хүрээллийг бүтээхийг зорьдог.</li>
@@ -488,7 +489,7 @@ section[id],article[id]{scroll-margin-top:80px}
         <article class="principle">
           <div class="principle-head">
             <h3>Дэлхий ертөнц өөрчлөгдөхийн хэрээр боловсрол ч мөн өөрчлөгдөх хэрэгтэй.</h3>
-            <div class="photo-slot"><img src="assets/photos/pbl5.jpg" alt="Сурагч төслөө танилцуулж байна" width="1200" height="800" loading="lazy" decoding="async"></div>
+            <div class="photo-slot"><img src="assets/photos/pbl5-1200.webp" srcset="assets/photos/pbl5-800.webp 800w, assets/photos/pbl5-1200.webp 1200w" sizes="(max-width: 860px) 100vw, 480px" alt="Сурагч төслөө танилцуулж байна" width="1200" height="800" loading="lazy" decoding="async" style="background-image:url(data:image/webp;base64,UklGRuAAAABXRUJQVlA4INQAAADwBACdASoYABAAPu1iqU2ppaOiMAgBMB2JbACsLwEMgmlIiRRh00wm+Awep9Q4ybQA99iUjNXPiFynHDIGYf5nknEM3dZVjK1HmtYV7JBv5fOh8Iz1SkrEZdJ1Jgj50adkNcZ6sVp0tBtKPpfdRUyMvFNhNQt/NDGmUAmK6hmnED3zc8Da76BrzwkV8yj9YqflZv068Tu1XwW5F/gEbr8goiz4u80bJvnL8oZP3km+6LCZ4soOHn1W5vJbuAxfa/6B+D/JxapHBUZVZ9a9z3XRZ8AAAA==)"></div>
           </div>
           <ul>
             <li>Өнөөдөр бидэнд тулгарч буй сорилтууд өнгөрсөнөөс тэс өөр бөгөөд төвөгтэй байна. Мөн бид ирээдүйд тулгарах сорилтуудыг урьдчилан таамаглах боломжгүй. Цаг хугацаа өнгөрөх тусам өмнө нь хэзээ ч тулгарж байгаагүй шинэ сорилтууд, илүү хурднаар гарч ирж байна.</li>
@@ -499,7 +500,7 @@ section[id],article[id]{scroll-margin-top:80px}
         <article class="principle">
           <div class="principle-head">
             <h3>Өөрчлөлт түүчээлэх зорилготой нэгэнд шаардлагатай мэдлэг чадварыг эзэмшүүлэх ёстой.</h3>
-            <div class="photo-slot"><img src="assets/photos/pbl3.jpg" alt="Анги танхимд багаараа ажиллаж буй сурагчид" width="1200" height="800" loading="lazy" decoding="async"></div>
+            <div class="photo-slot"><img src="assets/photos/pbl3-1200.webp" srcset="assets/photos/pbl3-800.webp 800w, assets/photos/pbl3-1200.webp 1200w" sizes="(max-width: 860px) 100vw, 480px" alt="Анги танхимд багаараа ажиллаж буй сурагчид" width="1200" height="800" loading="lazy" decoding="async" style="background-image:url(data:image/webp;base64,UklGRrIAAABXRUJQVlA4IKYAAADwAwCdASoYABAAPu1iqU2ppaOiMAgBMB2JaACdABO8f+n6Xd3utQ0YAP5UTcs12GqIrUNOmfVdPfi+wRjO9VUfXccl9fkUI8BriSi6h9OmHvpye93nBZdXcpRXbwFbPII6bdM0nfSyZZ+q0txoaBQuxM/o/rtAVQHZjUi/uc5X441wtIQl69ITC9rXPcdr8G8TGyPEiAmwKm3NxeACn5KqLPGoAAAA)"></div>
           </div>
           <ul>
             <li>Юу мэддэг байхаасаа илүү мэдлэгээрээ юуг хийж бүтээх нь илүү чухал.</li>
@@ -552,32 +553,32 @@ section[id],article[id]{scroll-margin-top:80px}
       <!-- Newest first. Each link opens the article in a new tab. -->
       <ul class="press">
         <li><a class="press-item" href="https://www.facebook.com/reel/2142595626284078" target="_blank" rel="noopener">
-          <span class="press-thumb"><img src="assets/press/reel-tuul.jpg" alt="" width="600" height="400" loading="lazy" decoding="async"><span class="press-play" aria-label="Видео"><i data-lucide="play"></i></span></span>
+          <span class="press-thumb"><img src="assets/press/reel-tuul.webp" alt="" width="400" height="267" loading="lazy" decoding="async"><span class="press-play" aria-label="Видео"><i data-lucide="play"></i></span></span>
           <span class="press-title">Гол усаа цэвэрлэх, хайрлах сэтгэл зүрхтэй мундаг залуус</span>
           <i data-lucide="arrow-up-right"></i>
         </a></li>
         <li><a class="press-item" href="https://unread.today/c/insight-tomujin-story" target="_blank" rel="noopener">
-          <span class="press-thumb"><img src="assets/press/unread-2024.jpg" alt="" width="600" height="400" loading="lazy" decoding="async"></span>
+          <span class="press-thumb"><img src="assets/press/unread-2024.webp" alt="" width="400" height="267" loading="lazy" decoding="async"></span>
           <span class="press-title">Дэлхийн шилдэг их сургуулиудаас 100 хувийн тэтгэлэг хүртсэн 3 монгол сурагчийн туршлага</span>
           <i data-lucide="arrow-up-right"></i>
         </a></li>
         <li><a class="press-item" href="https://ikon.mn/n/2u0a" target="_blank" rel="noopener">
-          <span class="press-thumb"><img src="assets/press/ikon-2023.jpg" alt="" width="600" height="400" loading="lazy" decoding="async"></span>
+          <span class="press-thumb"><img src="assets/press/ikon-2023.webp" alt="" width="400" height="267" loading="lazy" decoding="async"></span>
           <span class="press-title">Сүхбаатараас Стэнфордод элссэн анхны сурагчтай танилц</span>
           <i data-lucide="arrow-up-right"></i>
         </a></li>
         <li><a class="press-item" href="https://ikon.mn/n/2snn" target="_blank" rel="noopener">
-          <span class="press-thumb"><img src="assets/press/ikon-2023-17b.jpg" alt="" width="600" height="400" loading="lazy" decoding="async"></span>
+          <span class="press-thumb"><img src="assets/press/ikon-2023-17b.webp" alt="" width="400" height="267" loading="lazy" decoding="async"></span>
           <span class="press-title">Дэлхийн ТОП их сургуулиуд 17 тэрбум төгрөгөөр Монгол оюуныг үнэллээ</span>
           <i data-lucide="arrow-up-right"></i>
         </a></li>
         <li><a class="press-item" href="https://unread.today/c/spotlight-tomujin-highschool" target="_blank" rel="noopener">
-          <span class="press-thumb"><img src="assets/press/unread-2020.jpg" alt="" width="600" height="400" loading="lazy" decoding="async"></span>
+          <span class="press-thumb"><img src="assets/press/unread-2020.webp" alt="" width="400" height="267" loading="lazy" decoding="async"></span>
           <span class="press-title">“Томүжин” алтернатив ахлах сургууль — Хүчирхэгжсэн хувь хүнийг бэлтгэнэ</span>
           <i data-lucide="arrow-up-right"></i>
         </a></li>
         <li><a class="press-item" href="https://ub.life/p/tomujin-giin-bbatjintai-tanilts" target="_blank" rel="noopener">
-          <span class="press-thumb"><img src="assets/press/ublife-2020-batjin.jpg" alt="" width="600" height="400" loading="lazy" decoding="async"></span>
+          <span class="press-thumb"><img src="assets/press/ublife-2020-batjin.webp" alt="" width="400" height="267" loading="lazy" decoding="async"></span>
           <span class="press-title">“Томүжин”-гийн Б.Батжинтай танилц!</span>
           <i data-lucide="arrow-up-right"></i>
         </a></li>
@@ -632,12 +633,12 @@ section[id],article[id]{scroll-margin-top:80px}
         <li class="tl-item"><span class="tl-year">2020</span><div class="tl-body"><h3>Томүжин Алтернатив сургууль</h3><p>Монголын анхны “төсөлд суурилсан сургалттай” (project-based-learning) сургууль анхныхаа хичээлийн жилийг 200 сурагчтайгаар эхлүүллээ.</p></div><div class="photo-slot"><i data-lucide="image"></i><span>Зураг удахгүй нэмэгдэнэ</span></div></li>
         <li class="tl-item"><span class="tl-year">2024</span><div class="tl-body"><h3>Дэлхийн шилдэг их сургуулиуд</h3><p>Үүсгэн байгуулагдсанаас 4 жилийн дотор Harvard, Stanford, Swarthmore, NYU гэх их сургуулиудад сурагчид маань тэнцэн суралцав.</p></div><div class="photo-slot"><i data-lucide="image"></i><span>Зураг удахгүй нэмэгдэнэ</span></div></li>
         <li class="tl-item"><span class="tl-year">2026</span><div class="tl-body"><h3>1-р анги</h3><p>Амьдралд бэлтгэх 12 жилийн аялалыг эхлүүлж анхны 1-р ангийн сурагчдаа хүлээн авлаа.</p></div><div class="photo-slot">
-          <img src="assets/photos/primary.jpg" alt="Ахлах ангийн сурагчид 1-р ангийнхнаа алга ташин угтаж байна" width="1200" height="800" loading="lazy" decoding="async">
-          <img src="assets/photos/primary1.jpg" alt="1-р ангийн сурагчид ахлах ангийнхантайгаа алга ташилцаж байна" width="1200" height="800" loading="lazy" decoding="async">
-          <img src="assets/photos/primary2.jpg" alt="Хичээлийн шинэ жилийн эхний өдөр 1-р ангийн сурагчид" width="1200" height="800" loading="lazy" decoding="async">
-          <img src="assets/photos/primary3.jpg" alt="1-р ангийн сурагчид ангидаа тоглож байна" width="1200" height="800" loading="lazy" decoding="async">
-          <img src="assets/photos/primary4.jpg" alt="1-р ангийн сурагчид зурсан зургуудынхаа дэргэд" width="1200" height="800" loading="lazy" decoding="async">
-          <img src="assets/photos/primary5.jpg" alt="1-р ангийн сурагчид хичээл дээрээ" width="1200" height="800" loading="lazy" decoding="async">
+          <img src="assets/photos/primary-1200.webp" srcset="assets/photos/primary-800.webp 800w, assets/photos/primary-1200.webp 1200w" sizes="(max-width: 860px) 100vw, 480px" alt="Ахлах ангийн сурагчид 1-р ангийнхнаа алга ташин угтаж байна" width="1200" height="800" loading="lazy" decoding="async" style="background-image:url(data:image/webp;base64,UklGRuYAAABXRUJQVlA4INoAAADQBACdASoYABAAPu1iqU2ppaOiMAgBMB2JZgCdAdwLfXb7yh+OH6NJR9UMvHe7LAD9sFifMi7jF8mhQiiFztMia83LDw7B+SplWPEgWT1pG1S9wLzUKrai+2ed5okDOIahSDfzv2dKdVaracXCPUSIahxjh+9nirW832H0baJv10vg4ERRvP9WTtF85cvIERs6+Amr7fbyymIFiambx+rYEfcCB+dDsJuOrVrpPoKEThW77DigLjLH5bxYx9HsJ37j3/8grswTwmRbr/TNSygr42Z9DWRG44AAAA==)">
+          <img src="assets/photos/primary1-1200.webp" srcset="assets/photos/primary1-800.webp 800w, assets/photos/primary1-1200.webp 1200w" sizes="(max-width: 860px) 100vw, 480px" alt="1-р ангийн сурагчид ахлах ангийнхантайгаа алга ташилцаж байна" width="1200" height="800" loading="lazy" decoding="async" style="background-image:url(data:image/webp;base64,UklGRsQAAABXRUJQVlA4ILgAAADQBACdASoYABAAPu1iqU2ppaOiMAgBMB2JZQAOcCzuVIaFW4P7tmUPGKOUN+2lAAD+83s/0kGIHiw9KuTuhUJD7N8ubr7mh0YWgwVcPOi78bvPS2Fp8qfsCAzXPmltZicL6aCpy+bmsQxsdzvLfttxU8S4m+3sNZv1/FHhND6ndLrep59gpq1Y3+KO+H/KkhaQcJobQJqqhe1aXSVxJrzGBt7MXavz5Y6vK34teA8W8lj9sqo30AAA)">
+          <img src="assets/photos/primary2-1200.webp" srcset="assets/photos/primary2-800.webp 800w, assets/photos/primary2-1200.webp 1200w" sizes="(max-width: 860px) 100vw, 480px" alt="Хичээлийн шинэ жилийн эхний өдөр 1-р ангийн сурагчид" width="1200" height="800" loading="lazy" decoding="async" style="background-image:url(data:image/webp;base64,UklGRswAAABXRUJQVlA4IMAAAABQBACdASoYABAAPu1iqU2ppaOiMAgBMB2JZQCo9YxY5ZLVv9T9/pP5xjwAAO+vnrNWx7k4Xe7mQc/PrHqoGDUa9nvjWh+rYfcVBqj1859LV+t+p1WmYB4vFNi05+hJifu17dSKQr3mAhdwaOCfP3n3Mgfn0klerytwdvuRv8ww0JNDhCZZi9g9fK+9sFHaj/MrcVkjuJTfOKfjlMRay8QIo9yanzbCVp4TasFQo9EOShZkWVdrxFWG2GgiIymv+AA=)">
+          <img src="assets/photos/primary3-1200.webp" srcset="assets/photos/primary3-800.webp 800w, assets/photos/primary3-1200.webp 1200w" sizes="(max-width: 860px) 100vw, 480px" alt="1-р ангийн сурагчид ангидаа тоглож байна" width="1200" height="800" loading="lazy" decoding="async" style="background-image:url(data:image/webp;base64,UklGRtoAAABXRUJQVlA4IM4AAAAwBQCdASoYABAAPu1iqU2ppaOiMAgBMB2JbACdMoMYJn/sjwrwPeAhoVNBdcJ5fYMOAAD+r60Bc2ApfZYlLfNfAROBoILXJzf+/XbxDwqDorAUrxNCqVTGK/3STrjReR+lO+CO3OcLVRRU3Q7RmmsR/d/fHc/9UnGlt/Rwk39b9nHHD6UP5FDHqoxNgtLGlwbX0LGG7HUDrppbBljC45ysgZvspgINVw4FWJ6J07RXF4+QN7eWYhXL7Y5ZNtIc8mkftTeU7v12qPdo44AAAA==)">
+          <img src="assets/photos/primary4-1200.webp" srcset="assets/photos/primary4-800.webp 800w, assets/photos/primary4-1200.webp 1200w" sizes="(max-width: 860px) 100vw, 480px" alt="1-р ангийн сурагчид зурсан зургуудынхаа дэргэд" width="1200" height="800" loading="lazy" decoding="async" style="background-image:url(data:image/webp;base64,UklGRqoAAABXRUJQVlA4IJ4AAAAQBACdASoYABAAPu1iqU2ppaOiMAgBMB2JbACdL1yBoehmJNQqnuU2AAD+w/3w9OG5C3REEEuz1A/+i9s4dWPraU8SmCn0An2LXuXdYz0IZteh0wPX0vK6spRyAdGyFeuUBCH2Vc85NetkT3aWix16rdZ/hJLHNHofea62HHE/jLXEsuKgtB05szWjpOo65HCfGVnM63+m74FKiAAAAA==)">
+          <img src="assets/photos/primary5-1200.webp" srcset="assets/photos/primary5-800.webp 800w, assets/photos/primary5-1200.webp 1200w" sizes="(max-width: 860px) 100vw, 480px" alt="1-р ангийн сурагчид хичээл дээрээ" width="1200" height="800" loading="lazy" decoding="async" style="background-image:url(data:image/webp;base64,UklGRsgAAABXRUJQVlA4ILwAAABQBACdASoYABAAPu1iqU2ppaOiMAgBMB2JbACdAYww3osiMPC8ndUS+hUwAP6OyrvDrfTgVKu1GaCjfZUTgx//xKLbaMwSiV6/b33vzX5wDk9ibG88th8BIgZMQ44lIeyL06lbwxMqowGr5ZQCf/ByDWInt5xySKV6is95eGtd6xIv7mlXdmOSLRdLPJ24e/f6eHzfoAYQA0e/nWEG2I0DjkngFTQya/JQklYgNGgJO6DUqnCAIu5AGAAAAA==)">
         </div></li>
       </ol>
     </div>
@@ -688,12 +689,12 @@ section[id],article[id]{scroll-margin-top:80px}
         <div class="aside">
           <h2 class="h1">Төсөлд суурилсан сурах аргачлал</h2>
           <div class="photo-slot">
-            <img src="assets/photos/pbl.jpg" alt="2024 оны SIA World Competition тэмцээнд оролцсон Томүжингийн сурагчид" width="1200" height="800" loading="lazy" decoding="async">
-            <img src="assets/photos/pbl1.jpg" alt="Сурагчид монгол гэрт ярилцлага хийж байна" width="1200" height="800" loading="lazy" decoding="async">
-            <img src="assets/photos/pbl2.jpg" alt="Сурагчид шалан дээр суугаад лего угсарч байна" width="1200" height="800" loading="lazy" decoding="async">
-            <img src="assets/photos/pbl3.jpg" alt="Анги танхимд багаараа ажиллаж буй сурагчид" width="1200" height="800" loading="lazy" decoding="async">
-            <img src="assets/photos/pbl4.jpg" alt="Сурагчид төслийн үзэсгэлэн үзэж байна" width="1200" height="800" loading="lazy" decoding="async">
-            <img src="assets/photos/pbl5.jpg" alt="Сурагч төслөө танилцуулж байна" width="1200" height="800" loading="lazy" decoding="async">
+            <img src="assets/photos/pbl-1200.webp" srcset="assets/photos/pbl-800.webp 800w, assets/photos/pbl-1200.webp 1200w" sizes="(max-width: 860px) 100vw, 480px" alt="2024 оны SIA World Competition тэмцээнд оролцсон Томүжингийн сурагчид" width="1200" height="800" loading="lazy" decoding="async" style="background-image:url(data:image/webp;base64,UklGRp4AAABXRUJQVlA4IJIAAABQBACdASoYABAAPu1iqU2ppaOiMAgBMB2JYwDA3Yvgphrdite3rY4VVWEAAP7XP41Ij+XsWdq4kSziaY38+UtUvzzMuJVldliJBd+No9KFt3zfflA0Ldp+u3RPCwPkvt/5wROt/CGYw4DZVSA0xNtFx15k2kqUEyXtKnV/JA8OnIBHHDLD3j+4Twq8ndhwWoCGAA==)">
+            <img src="assets/photos/pbl1-1200.webp" srcset="assets/photos/pbl1-800.webp 800w, assets/photos/pbl1-1200.webp 1200w" sizes="(max-width: 860px) 100vw, 480px" alt="Сурагчид монгол гэрт ярилцлага хийж байна" width="1200" height="800" loading="lazy" decoding="async" style="background-image:url(data:image/webp;base64,UklGRqgAAABXRUJQVlA4IJwAAABwBACdASoYABAAPu1iqU2ppaQiMAgBMB2JYgC7AYxi33RVMO0yvg1mYmwHIAD+6ocJJDuuxcAuxlnKmfwZf0lDFAqbZ8MIznkW/QW3TYk0DDUcRZG5qvrJKPV5doNOL33hky7siDeQh+vKmfu9XAURgiB0Mz/KlPPPfxDZU7Gj8IUzKRflpvYrafp+WalHcH7+9nYYrVkoBL2gAAA=)">
+            <img src="assets/photos/pbl2-1200.webp" srcset="assets/photos/pbl2-800.webp 800w, assets/photos/pbl2-1200.webp 1200w" sizes="(max-width: 860px) 100vw, 480px" alt="Сурагчид шалан дээр суугаад лего угсарч байна" width="1200" height="800" loading="lazy" decoding="async" style="background-image:url(data:image/webp;base64,UklGRvQAAABXRUJQVlA4IOgAAAAwBQCdASoYABAAPu1iqU2ppaOiMAgBMB2JbACdMoMYA+gayJF0p2fi63F+XW+FcjDJEAD+YRDQJ5DSZge+yHtuGAIXnDDc6ZFkL0E4zb/da7pttPwALxLgtBMI1p6VBuDhST2V+sSDPVkw494sif2rVjjTE/ljMQ+Likj24CwgN1R2yFTdVyPGrP/4Wvv71qEgre6CPgDiee4TqbQIbWQ7yvVjeqC/eQ9cIcj9ZqFupyVbjWokKWQNpLa7v8VfZ651F2RGfGpR5SuZGl5qY9s0VsFoRsVO0FSkMFXjUl3H5oSwgrOdAAAA)">
+            <img src="assets/photos/pbl3-1200.webp" srcset="assets/photos/pbl3-800.webp 800w, assets/photos/pbl3-1200.webp 1200w" sizes="(max-width: 860px) 100vw, 480px" alt="Анги танхимд багаараа ажиллаж буй сурагчид" width="1200" height="800" loading="lazy" decoding="async" style="background-image:url(data:image/webp;base64,UklGRrIAAABXRUJQVlA4IKYAAADwAwCdASoYABAAPu1iqU2ppaOiMAgBMB2JaACdABO8f+n6Xd3utQ0YAP5UTcs12GqIrUNOmfVdPfi+wRjO9VUfXccl9fkUI8BriSi6h9OmHvpye93nBZdXcpRXbwFbPII6bdM0nfSyZZ+q0txoaBQuxM/o/rtAVQHZjUi/uc5X441wtIQl69ITC9rXPcdr8G8TGyPEiAmwKm3NxeACn5KqLPGoAAAA)">
+            <img src="assets/photos/pbl4-1200.webp" srcset="assets/photos/pbl4-800.webp 800w, assets/photos/pbl4-1200.webp 1200w" sizes="(max-width: 860px) 100vw, 480px" alt="Сурагчид төслийн үзэсгэлэн үзэж байна" width="1200" height="800" loading="lazy" decoding="async" style="background-image:url(data:image/webp;base64,UklGRugAAABXRUJQVlA4INwAAAAwBQCdASoYABAAPu1iqU2ppaOiMAgBMB2JbACdMoEUiI0DagIdCAP4rvuTtjpR41pXAAD44EWaSzg5g02niqs4/BgbhRkd/BrGzGmGfK7CDiT+hYFJscC57qkUc+lZ9RLwhvdtLA8oJxX+d75262yoz09CGGRI+rPA1CMJZCHj5RHoBJgq5D4ZS+Vb1HUSauJq/LsZ3vg4O5+i/XnXq1DcKZll7PEReHclQlWlCebjjSD+6OrGmIu+bJ/JeVTj8fwuG6BHD/k3FKwT/yh85DQZA8lPJIzOw7YTAAAA)">
+            <img src="assets/photos/pbl5-1200.webp" srcset="assets/photos/pbl5-800.webp 800w, assets/photos/pbl5-1200.webp 1200w" sizes="(max-width: 860px) 100vw, 480px" alt="Сурагч төслөө танилцуулж байна" width="1200" height="800" loading="lazy" decoding="async" style="background-image:url(data:image/webp;base64,UklGRuAAAABXRUJQVlA4INQAAADwBACdASoYABAAPu1iqU2ppaOiMAgBMB2JbACsLwEMgmlIiRRh00wm+Awep9Q4ybQA99iUjNXPiFynHDIGYf5nknEM3dZVjK1HmtYV7JBv5fOh8Iz1SkrEZdJ1Jgj50adkNcZ6sVp0tBtKPpfdRUyMvFNhNQt/NDGmUAmK6hmnED3zc8Da76BrzwkV8yj9YqflZv068Tu1XwW5F/gEbr8goiz4u80bJvnL8oZP3km+6LCZ4soOHn1W5vJbuAxfa/6B+D/JxapHBUZVZ9a9z3XRZ8AAAA==)">
           </div>
         </div>
         <div class="prose">
@@ -719,10 +720,10 @@ section[id],article[id]{scroll-margin-top:80px}
         <div class="aside">
           <h2 class="h1">Их сургуулийн өргөдлийн бэлтгэл</h2>
           <div class="photo-slot">
-            <img src="assets/photos/collegeprep.jpg" alt="Сурагчид зөөврийн компьютер дээр хамтран ажиллаж байна" width="1200" height="800" loading="lazy" decoding="async">
-            <img src="assets/photos/collegeprep1.jpg" alt="Үзэсгэлэнгийн танхимд уулзалтад оролцож буй сурагчид" width="1200" height="800" loading="lazy" decoding="async">
-            <img src="assets/photos/collegeprep2.jpg" alt="Их сургуулийн танилцуулгын уулзалтад оролцсон сурагчид" width="1200" height="800" loading="lazy" decoding="async">
-            <img src="assets/photos/collegeprep3.jpg" alt="Сурагч зөвлөхтэйгөө ганцаарчлан уулзаж байна" width="1200" height="800" loading="lazy" decoding="async">
+            <img src="assets/photos/collegeprep-1200.webp" srcset="assets/photos/collegeprep-800.webp 800w, assets/photos/collegeprep-1200.webp 1200w" sizes="(max-width: 860px) 100vw, 480px" alt="Сурагчид зөөврийн компьютер дээр хамтран ажиллаж байна" width="1200" height="800" loading="lazy" decoding="async" style="background-image:url(data:image/webp;base64,UklGRt4AAABXRUJQVlA4INIAAADQBACdASoYABAAPu1iqU2ppaOiMAgBMB2JZgCdDBQHwBnVTKn9FZ1ZEJuTFf2lAAD72wd6+cgfk7KDKJLY9zJvuyeu6TczrkmsWK+gszyS/zNXquTwJh5qepFmp+Ev1LYN9ubQvbDoV4mbakmB19Y5LT2Cx0/AK7AF2+2Jar6StP3jWZAggBvignMeWc+WBvSRuJs4l/TwyEwydvjgcb6orvf0vhXUoKe7UPVIwVZwB6+o6PbBdD9RrWFnnIG8M7WfiaRBJN74GlRYFt1jsIaUwAA=)">
+            <img src="assets/photos/collegeprep1-1200.webp" srcset="assets/photos/collegeprep1-800.webp 800w, assets/photos/collegeprep1-1200.webp 1200w" sizes="(max-width: 860px) 100vw, 480px" alt="Үзэсгэлэнгийн танхимд уулзалтад оролцож буй сурагчид" width="1200" height="800" loading="lazy" decoding="async" style="background-image:url(data:image/webp;base64,UklGRroAAABXRUJQVlA4IK4AAACwBACdASoYABAAPu1iqU2ppaOiMAgBMB2JYgCdMoAlxxNcymVwFtl2NqNfHXMAAP6+c8Ya+iXANh8mK9EV1FguN/84EV9GMh9m8MHVzBOL6T87bCcgYoQ9X91agmstzh7Vf2Qv8mkdHTbYJsumuhH5QaGoCJbWVhJ9AilLNGbvSB4VD1KgGVsosKr3Bmt7KNCYQJ7A3FPcHvWWYWF8A4Sh79RZ6AKssVbWgEwAAAA=)">
+            <img src="assets/photos/collegeprep2-1200.webp" srcset="assets/photos/collegeprep2-800.webp 800w, assets/photos/collegeprep2-1200.webp 1200w" sizes="(max-width: 860px) 100vw, 480px" alt="Их сургуулийн танилцуулгын уулзалтад оролцсон сурагчид" width="1200" height="800" loading="lazy" decoding="async" style="background-image:url(data:image/webp;base64,UklGRtQAAABXRUJQVlA4IMgAAACQBACdASoYABAAPu1iqU2ppaOiMAgBMB2JQBOmXkUarxzGsxAnMM2vZG0xoAAA+N6GrA6+nDASRHFAKVBZ75zIcytRi/ephBOEBQpQ6SvtHIYcaLRAwWsF7zJ/+vtSkGpnpZIcwBhFfC8PMNJ+79SM2VDahRG7UuMp8Hls9QSKr5izbwuVawax4e6cTxW/n/nY50+5Tw8AdmHiXE4akD11hq/qXZjMxBLgxG+6/bvtnQjUiTZi4PEbrHIgiyq9h227/rYObEAAAA==)">
+            <img src="assets/photos/collegeprep3-1200.webp" srcset="assets/photos/collegeprep3-800.webp 800w, assets/photos/collegeprep3-1200.webp 1200w" sizes="(max-width: 860px) 100vw, 480px" alt="Сурагч зөвлөхтэйгөө ганцаарчлан уулзаж байна" width="1200" height="800" loading="lazy" decoding="async" style="background-image:url(data:image/webp;base64,UklGRqwAAABXRUJQVlA4IKAAAAAwBACdASoYABAAPu1iqU2ppaOiMAgBMB2JZgCdMoACjp1fsH75l/SSgOAA2S0/6qlS5qxDLxfn3/QYzjFIPiYRdqw9S0cnYD93Byke5kO6Mmvtv/fpKpKdTh7XVyKz51YlZF5azxp8td0956TJSsvVtC3fcbPJwZxIBe1mjDjNmv7y65PJBcfCzIMxj2LUmUj2q/4wJeHAN7LZS4Lk0gAA)">
           </div>
         </div>
         <div class="prose">
@@ -736,8 +737,8 @@ section[id],article[id]{scroll-margin-top:80px}
         <div class="aside">
           <h2 class="h1">ТОМ ИНК — Томүжин Инкубатор</h2>
           <div class="photo-slot">
-            <img src="assets/photos/tominc1.jpg" alt="ТОМ ИНК тэмцээнд сурагч төслөө танилцуулж байна" width="1200" height="800" loading="lazy" decoding="async">
-            <img src="assets/photos/tominc2.jpg" alt="ТОМ ИНК тэмцээний оролцогчид тайзан дээр" width="1200" height="800" loading="lazy" decoding="async">
+            <img src="assets/photos/tominc1-1200.webp" srcset="assets/photos/tominc1-800.webp 800w, assets/photos/tominc1-1200.webp 1200w" sizes="(max-width: 860px) 100vw, 480px" alt="ТОМ ИНК тэмцээнд сурагч төслөө танилцуулж байна" width="1200" height="800" loading="lazy" decoding="async" style="background-image:url(data:image/webp;base64,UklGRn4AAABXRUJQVlA4IHIAAADwAwCdASoYABAAPu1iqU2ppaQiMAgBMB2JZADKACB0b3MSgQHuMkJAAP70K2d6Qsnbl6kQv9e3NcW+IN4It6P2DFvnK8ISsFvUnnTrEWbGVjJlIDWF80utOGw6yH7qxXqiQZz9kX78xV/PPfj7IfgAAAA=)">
+            <img src="assets/photos/tominc2-1200.webp" srcset="assets/photos/tominc2-800.webp 800w, assets/photos/tominc2-1200.webp 1200w" sizes="(max-width: 860px) 100vw, 480px" alt="ТОМ ИНК тэмцээний оролцогчид тайзан дээр" width="1200" height="800" loading="lazy" decoding="async" style="background-image:url(data:image/webp;base64,UklGRsIAAABXRUJQVlA4ILYAAAAwBACdASoYABAAPu1iqU2ppaQiMAgBMB2JbACdMoMrZEIIMvYzSrGQHwAA/vFP/MeenB8kdtPynozO0gGmeALDxuWigkyPQ9ufXrV8orfTMMHUhtreN3vi1NZnUxsZJ9jM7ERN4wEl/N/AQeDsAer40JwG+iYWsM/lTuc0t8ljrQtgfF706IZV+d3Yz/P/rK4vGPUX+V3/j/VqPmh/AH/5sbB2xsuIcbnymPiJvEqFOyHwV3gAAA==)">
           </div>
         </div>
         <div class="prose">
@@ -756,10 +757,9 @@ section[id],article[id]{scroll-margin-top:80px}
         <div class="aside">
           <h2 class="h1">Дугуйлан</h2>
           <div class="photo-slot">
-            <img src="assets/photos/duguilan.jpg" alt="Дугуйлангийн танилцуулгын ширээний ард сурагчид" width="1200" height="800" loading="lazy" decoding="async">
-            <img src="assets/photos/duguilan1.jpg" alt="Сурагчид цаасаар тогоруу нугалж байна" width="1200" height="800" loading="lazy" decoding="async">
-            <img src="assets/photos/duguilan2.jpg" alt="Сурагчид уран бичлэг хийж байна" width="448" height="299" loading="lazy" decoding="async">
-            <img src="assets/photos/duguilan3.jpg" alt="Хаусын тугны доор лего угсарч буй сурагчид" width="1200" height="800" loading="lazy" decoding="async">
+            <img src="assets/photos/duguilan-1200.webp" srcset="assets/photos/duguilan-800.webp 800w, assets/photos/duguilan-1200.webp 1200w" sizes="(max-width: 860px) 100vw, 480px" alt="Дугуйлангийн танилцуулгын ширээний ард сурагчид" width="1200" height="800" loading="lazy" decoding="async" style="background-image:url(data:image/webp;base64,UklGRs4AAABXRUJQVlA4IMIAAACwBACdASoYABAAPu1iqU2ppaOiMAgBMB2JZgCdAYyoyk0BeDKr8gstHHq2xt7AAP4JbZcwf9K2z+zrWOcUtBtdy+yEYwC9vPiey03W4p9BfmcuOvbNs6T2VB7253G//vTZUU/GRAplVwIUXrwlz33wWVcpfhdyVmTmR3t8EuS38uqfZDegZ7oh1l6eJEt8PhR4/vtvR35GTp2j6/E1pYVInlFH9NtvNKhoWQdWddVUqG2HUdslxQXOFkAy27acQ0AAAA==)">
+            <img src="assets/photos/duguilan1-1200.webp" srcset="assets/photos/duguilan1-800.webp 800w, assets/photos/duguilan1-1200.webp 1200w" sizes="(max-width: 860px) 100vw, 480px" alt="Сурагчид цаасаар тогоруу нугалж байна" width="1200" height="800" loading="lazy" decoding="async" style="background-image:url(data:image/webp;base64,UklGRvgAAABXRUJQVlA4IOwAAACQBACdASoYABAAPu1iqU2ppaOiMAgBMB2JbACdL1yagJm0KeWLjgxXJKnwWegA/qjTIY/t84cVRzKhF+XV6cre3TdhXN46RyX25tNu9ZXCfXw+2ZHJSZRZrgiAx06me2sEJfARdU9g4dA2mAekltxI/r27q/eiwGNRnNAWHXQbYSqReHlROEjoqcqEsEemY/9nXsxVcQS/+eNwTIUFVb45Li5zHfCRrOpyITLfC0uiizWHjnGXUq/14LE4efquhvPZyXvXdlF//TYnXOnQ/PAxwSOeyNY27zZfWlFE5f/jc145v3WN6F2I1v4AAA==)">
+            <img src="assets/photos/duguilan3-1200.webp" srcset="assets/photos/duguilan3-800.webp 800w, assets/photos/duguilan3-1200.webp 1200w" sizes="(max-width: 860px) 100vw, 480px" alt="Хаусын тугны доор лего угсарч буй сурагчид" width="1200" height="800" loading="lazy" decoding="async" style="background-image:url(data:image/webp;base64,UklGRtQAAABXRUJQVlA4IMgAAACwBACdASoYABAAPu1iqU2ppaOiMAgBMB2JbACdMoR3AkgPcCUajclNXvJS3x4AAP3qvbJUl4iuQf/DSwAPvBY5IJVYPfwkCnj5aw3Y1UkKs/lbyAQi7phqbLHKspOfRA3DPFwC6RtAgpPJ3taogatdXqUDsgxGpN2TB+ynWOnE81z+kgw8yVUarWk6/u+QBavs6t2Clr/XPZzOeiNk/kEKki+YaUHsdxkSAiyMp3VDn1tKNllWOEeXhwFUcTFC8UiQlg1kQIWgAA==)">
           </div>
         </div>
         <div class="prose">
@@ -1034,10 +1034,10 @@ section[id],article[id]{scroll-margin-top:80px}
   document.querySelectorAll("[data-unis]").forEach(function(ul){
     /* Equal visual area per logo, so wide lockups and square marks look balanced */
     ul.innerHTML = UNIS.map(function(u){
-      if (u[3]) return '<li class="u-typed" title="'+esc(u[1])+'"><img src="assets/unis/'+u[0]+'.png" alt="" loading="lazy"><span style="color:'+u[3]+'">'+esc(u[1])+'</span></li>';
+      if (u[3]) return '<li class="u-typed" title="'+esc(u[1])+'"><img src="assets/unis/'+u[0]+'.webp" alt="" loading="lazy"><span style="color:'+u[3]+'">'+esc(u[1])+'</span></li>';
       var area = u[2] < 1.5 ? 5000 : 7000;
       var w = Math.round(Math.sqrt(area * u[2]));
-      return '<li title="'+esc(u[1])+'"><img src="assets/unis/'+u[0]+'.png" alt="'+esc(u[1])+'" style="width:'+w+'px" loading="lazy"></li>';
+      return '<li title="'+esc(u[1])+'"><img src="assets/unis/'+u[0]+'.webp" alt="'+esc(u[1])+'" style="width:'+w+'px" loading="lazy"></li>';
     }).join("");
   });
   document.querySelectorAll("[data-fit-list]").forEach(function(ul){

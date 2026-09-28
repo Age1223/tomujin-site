@@ -28,10 +28,11 @@ index.html          the whole site: page text, styles and script
 assets/
   logo-lockup.png   Tomujin logo (header, footer)
   logo-icon.jpg     browser tab icon
-  photos/           school photos, cropped to 3:2 and compressed for the web
-  press/            preview images for the "Хэвлэл дээрх нийтлэлүүд" links
+  photos/           school photos: 3:2 WebP, each in two sizes (-800 and -1200)
+  press/            preview images for the "Хэвлэл дээрх нийтлэлүүд" links (WebP)
   tangrams/         tangram figures from the Tomujin design system
-  unis/             university logos
+  unis/             university logos (WebP)
+vercel.json         lets browsers keep the images for a day, so repeat visits load fast
 ```
 
 ## Editing
@@ -43,9 +44,9 @@ assets/
   - `FIT`: the "Хэрвээ чи:" checklist
   - `FAQ`: questions and answers
 - **Photos:** each photo sits in a `<div class="photo-slot">`.
-  - To fill an empty dashed "Зураг удахгүй нэмэгдэнэ" box, replace its contents with `<img src="assets/photos/…" alt="…">`.
+  - To fill an empty dashed "Зураг удахгүй нэмэгдэнэ" box, replace its contents with `<img src="assets/photos/…" alt="…">`. A plain JPEG works; the site's own photos are WebP in two sizes (the browser picks the smaller one on small or ordinary screens) with a tiny blurred preview in `style`, which shows until the photo arrives.
   - Put several `<img>` in one box and it becomes a small gallery, with arrows in the corner and swiping on phones.
-  - Photo boxes are 3:2 (the shape of most camera photos). Photos about 1200×800 pixels, saved as JPEG, look sharp and load quickly.
+  - Photo boxes are 3:2 (the shape of most camera photos). Photos about 1200×800 pixels look sharp; anything much larger only slows the page down.
 
 ## Fonts
 
