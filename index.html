@@ -265,6 +265,7 @@ section[id],article[id]{scroll-margin-top:80px}
 .fit-list svg{color:var(--tj-golden);margin-top:2px}
 .band:not(.band--brand) .fit-list svg{color:var(--color-primary)}
 .fit-close{font-size:clamp(1.15rem,2vw,1.4rem);font-weight:800;margin-bottom:var(--space-6)}
+.fit-close:has(+ .btn[hidden]){margin-bottom:0}
 
 .press{border-top:1px solid var(--color-border)}
 .press-item{display:grid;grid-template-columns:180px minmax(0,1fr) auto;gap:var(--space-6);align-items:center;padding:var(--space-4) var(--space-3);border-bottom:1px solid var(--color-border);color:var(--text-body);text-decoration:none!important;transition:background-color var(--duration-fast) var(--ease-standard)}
@@ -383,7 +384,19 @@ section[id],article[id]{scroll-margin-top:80px}
 /* ───────── Footer ───────── */
 .site-footer{background:var(--tj-violet-900);color:#fff;padding-block:56px 40px}
 .site-footer .wrap{display:grid;gap:var(--space-10)}
-.footer-top{display:grid;gap:var(--space-10)}
+.footer-top{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,auto);gap:var(--space-10) var(--space-16);align-items:start}
+.footer-top .footer-map{grid-column:1/-1}
+@media (max-width:760px){.footer-top{grid-template-columns:1fr}}
+.footer-contact{display:grid;gap:var(--space-3);max-width:40ch}
+.footer-contact .f-page{color:#fff;font-size:15px;font-weight:700}
+.footer-contact ul{display:grid;gap:10px}
+.footer-contact li{display:grid;grid-template-columns:18px 1fr;gap:10px;align-items:start;font-size:14px;line-height:1.45;color:rgba(255,255,255,.8)}
+.footer-contact li a{color:rgba(255,255,255,.8)}
+.footer-contact svg{width:18px;height:18px;color:var(--tj-golden);margin-top:1px}
+.footer-social{display:flex;gap:var(--space-2);margin-top:var(--space-2)}
+.footer-social a{display:grid;place-items:center;width:38px;height:38px;border-radius:var(--radius-md);border:1px solid rgba(255,255,255,.2);color:#fff}
+.footer-social a:hover{background:rgba(255,255,255,.08)}
+.footer-social svg{width:18px;height:18px;color:#fff;margin:0}
 .footer-top .logo-plate img{height:40px;width:auto}
 .footer-name{margin-top:var(--space-4);font-size:14px;color:rgba(255,255,255,.75);max-width:32ch}
 .footer-map{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:var(--space-8)}
@@ -409,10 +422,11 @@ section[id],article[id]{scroll-margin-top:80px}
       <span class="logo-plate"><img src="assets/logo-lockup.png" alt="Tomujin Alternative School"></span>
     </a>
     <!-- Filled from SITEMAP in the script at the bottom: every page, with a dropdown of its sections -->
-    <nav class="nav" aria-label="Үндсэн цэс" data-nav-root></nav>
+    <!-- Homepage-only launch: everything marked data-later is hidden. Remove "hidden data-later" to bring it back. -->
+    <nav class="nav" aria-label="Үндсэн цэс" data-nav-root hidden data-later></nav>
     <div class="header-actions">
-      <a class="btn btn--accent header-cta" href="https://join.tomujin.edu.mn" target="_blank" rel="noopener">Өргөдлөө илгээгээрэй</a>
-      <button class="menu-btn" id="menu-btn" aria-expanded="false" aria-controls="mobile-nav" aria-label="Бүх хэсгийг харах"><i data-lucide="menu"></i></button>
+      <a class="btn btn--accent header-cta" hidden data-later href="https://join.tomujin.edu.mn" target="_blank" rel="noopener">Өргөдлөө илгээгээрэй</a>
+      <button class="menu-btn" hidden data-later id="menu-btn" aria-expanded="false" aria-controls="mobile-nav" aria-label="Бүх хэсгийг харах"><i data-lucide="menu"></i></button>
     </div>
   </div>
   <nav class="mobile-nav" id="mobile-nav" aria-label="Бүх хэсэг" hidden data-mobile-root></nav>
@@ -427,7 +441,7 @@ section[id],article[id]{scroll-margin-top:80px}
     <div class="wrap">
       <h1 class="display display--lg">Бид зөвхөн сургууль биш боловсролыг шинэчлэх хөдөлгөөн.</h1>
       <p class="lead">Амьдралд бэлэн хүчирхэг хүмүүсийг бэлдэнэ.</p>
-      <div class="btn-row">
+      <div class="btn-row" hidden data-later>
         <a class="btn btn--accent btn--lg" href="https://join.tomujin.edu.mn" target="_blank" rel="noopener">Өргөдлөө илгээгээрэй</a>
         <a class="btn btn--outline btn--lg" href="#program">Хөтөлбөртэй танилцах <i data-lucide="arrow-right"></i></a>
       </div>
@@ -523,7 +537,7 @@ section[id],article[id]{scroll-margin-top:80px}
         <h2 class="h1">Тэнцсэн их сургуулиуд</h2>
       </div>
       <ul class="unis" data-unis></ul>
-      <div class="btn-row" style="margin-top:var(--space-8)">
+      <div class="btn-row" hidden data-later style="margin-top:var(--space-8)">
         <a class="btn btn--outline" href="#outcomes">Бидний үр дүн <i data-lucide="arrow-right"></i></a>
       </div>
     </div>
@@ -579,7 +593,7 @@ section[id],article[id]{scroll-margin-top:80px}
         <p style="margin-top:var(--space-6);font-weight:700;font-size:17px">Хэрвээ чи:</p>
         <ul class="fit-list" data-fit-list></ul>
         <p class="fit-close">Томүжин та 2 бие биендээ төгс тохирч магад.</p>
-        <a class="btn btn--accent btn--lg" href="https://join.tomujin.edu.mn" target="_blank" rel="noopener">Өргөдлөө илгээгээрэй</a>
+        <a class="btn btn--accent btn--lg" hidden data-later href="https://join.tomujin.edu.mn" target="_blank" rel="noopener">Өргөдлөө илгээгээрэй</a>
       </div>
     </div>
   </section>
@@ -912,11 +926,23 @@ section[id],article[id]{scroll-margin-top:80px}
         <span class="logo-plate" style="display:inline-block"><img src="assets/logo-lockup.png" alt="Tomujin Alternative School"></span>
         <p class="footer-name">Томүжин Алтернатив сургууль — бид зөвхөн сургууль биш боловсролыг шинэчлэх хөдөлгөөн.</p>
       </div>
-      <nav class="footer-map" aria-label="Сайтын бүтэц" data-footer-root></nav>
+      <div class="footer-contact">
+        <p class="f-page">Холбоо барих</p>
+        <ul>
+          <li><i data-lucide="phone"></i><a href="tel:+97677773111">+976 7777 3111</a></li>
+          <li><i data-lucide="mail"></i><a href="mailto:admissions@tomujin.edu.mn">admissions@tomujin.edu.mn</a></li>
+          <li><i data-lucide="map-pin"></i><span>Улаанбаатар хот, Баянзүрх дүүрэг, 25-р хороо, Нарны зам, Доктор авто сервисийн хажууд</span></li>
+        </ul>
+        <div class="footer-social">
+          <a href="https://www.facebook.com/TomujinAlternativeSchool" target="_blank" rel="noopener" aria-label="Facebook"><i data-lucide="facebook"></i></a>
+          <a href="https://www.instagram.com/tomujinalternativeschool/" target="_blank" rel="noopener" aria-label="Instagram"><i data-lucide="instagram"></i></a>
+        </div>
+      </div>
+      <nav class="footer-map" aria-label="Сайтын бүтэц" data-footer-root hidden data-later></nav>
     </div>
     <div class="footer-bottom">
       <span>© 2026 Tomujin Alternative School</span>
-      <a href="https://join.tomujin.edu.mn" target="_blank" rel="noopener">join.tomujin.edu.mn</a>
+      <a href="https://join.tomujin.edu.mn" target="_blank" rel="noopener" hidden data-later>join.tomujin.edu.mn</a>
     </div>
   </div>
 </footer>
@@ -1057,6 +1083,8 @@ section[id],article[id]{scroll-margin-top:80px}
   });
 
   /* ── Router: #home #about … opens a page; a section id (e.g. #admissions-faq) opens its page and scrolls to it ── */
+  /* Pages that can be opened. Add "about", "program", "admissions", "outcomes" back when they're ready. */
+  var PUBLISHED = ["home"];
   var pages = Array.prototype.slice.call(document.querySelectorAll("[data-page]"));
   var ids = pages.map(function(p){return p.getAttribute("data-page");});
   var menuBtn = document.getElementById("menu-btn");
@@ -1070,7 +1098,7 @@ section[id],article[id]{scroll-margin-top:80px}
       var owner = target && target.closest("[data-page]");
       if (owner) id = owner.getAttribute("data-page"); else target = null;
     }
-    if (!id) id = "home";
+    if (!id || PUBLISHED.indexOf(id) === -1){ id = "home"; target = null; }
     pages.forEach(function(p){ p.hidden = p.getAttribute("data-page") !== id; });
     document.querySelectorAll("[data-nav]").forEach(function(a){
       if (a.getAttribute("data-nav")===id) a.setAttribute("aria-current","page"); else a.removeAttribute("aria-current");

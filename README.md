@@ -2,6 +2,13 @@
 
 The website for Tomujin Alternative School, built with the Tomujin design system. It's one static page with no build step, so any static host (Vercel, Netlify, GitHub Pages) can serve it as-is.
 
+## Homepage-only launch
+
+For now only the Нүүр page is published. The other four pages are still in `index.html` but can't be opened, and their addresses show the homepage. To bring them back:
+
+1. In the script at the bottom of `index.html`, add the page ids to `PUBLISHED`, e.g. `var PUBLISHED = ["home", "about", "program", "admissions", "outcomes"];`
+2. Remove `hidden data-later` from the elements that carry it: the header menu, the phone menu button, the "Өргөдлөө илгээгээрэй" buttons, the "Хөтөлбөртэй танилцах" and "Бидний үр дүн" buttons, the footer sitemap and the join.tomujin.edu.mn link.
+
 ## Pages
 
 The site has five pages. Each page has its own address, and each section can be linked directly:
