@@ -522,12 +522,8 @@ section[id],article[id]{scroll-margin-top:80px}
 .big-figure .sub b{font-size:32px;font-weight:700;color:#fff;font-variant-numeric:tabular-nums}
 .big-figure .sub span{font-size:14px;color:var(--on-brand-muted);max-width:26ch}
 @media (max-width:760px){.big-figure{grid-template-columns:1fr;gap:var(--space-6)}}
-/* The page's three parts: numbered links under the title, and a number above each part's heading */
-.res-jump{display:flex;flex-wrap:wrap;justify-content:center;gap:var(--space-2)}
-.res-jump a{display:inline-flex;align-items:center;gap:10px;padding:9px 18px 9px 10px;border:1px solid var(--color-border);border-radius:var(--radius-pill);background:#fff;color:var(--text-body);font-size:15px;font-weight:700;text-decoration:none!important;transition:background-color var(--duration-fast) var(--ease-standard)}
-.res-jump a:hover{background:var(--color-muted)}
-.res-jump span,.res-num{display:inline-grid;place-items:center;height:28px;padding:0 9px;border-radius:var(--radius-pill);background:var(--tj-purple);color:#fff;font-size:13px;font-weight:700;font-variant-numeric:tabular-nums}
-.res-num{height:32px;padding:0 12px;font-size:14px;letter-spacing:var(--tracking-wide)}
+/* The page's three parts: a number above each part's heading */
+.res-num{display:inline-grid;place-items:center;height:32px;padding:0 12px;border-radius:var(--radius-pill);background:var(--tj-purple);color:#fff;font-size:14px;font-weight:700;letter-spacing:var(--tracking-wide);font-variant-numeric:tabular-nums}
 .res-head .h1{max-width:34ch}
 .res-sub{margin:var(--space-16) 0 var(--space-6);text-align:center;font-size:clamp(1.25rem,2.2vw,1.5rem);line-height:1.3;font-weight:800;color:var(--text-display);letter-spacing:var(--tracking-tight);text-wrap:balance}
 .res-label{margin:var(--space-10) 0 var(--space-4);font-size:14px;font-weight:700;letter-spacing:var(--tracking-wide);text-transform:uppercase;color:var(--text-muted)}
@@ -549,7 +545,7 @@ section[id],article[id]{scroll-margin-top:80px}
 .res-avatar{display:grid;place-items:center;width:64px;height:64px;border-radius:50%;background:var(--color-muted);border:1px dashed var(--color-border);color:var(--color-primary)}
 @media (max-width:900px){.res-projects,.res-people{grid-template-columns:1fr 1fr}}
 @media (max-width:760px){.res-report{grid-template-columns:1fr}.res-report-body{padding:var(--space-6)}}
-@media (max-width:600px){.res-projects,.res-people{grid-template-columns:1fr}.res-jump{display:grid;justify-content:stretch}}
+@media (max-width:600px){.res-projects,.res-people{grid-template-columns:1fr}}
 .ventures{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:var(--space-4)}
 @media (max-width:1000px){.ventures{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media (max-width:560px){.ventures{grid-template-columns:repeat(2,minmax(0,1fr))}}
@@ -1126,12 +1122,7 @@ section[id],article[id]{scroll-margin-top:80px}
   <section class="page-hero">
     <div class="wrap">
       <h1 class="display display--md">Бидний үр дүн.</h1>
-      <!-- The page's three parts -->
-      <nav class="res-jump" aria-label="Бидний үр дүн">
-        <a href="#outcomes-universities"><span>01</span>Их сургуульд тэнцсэн</a>
-        <a href="#outcomes-projects"><span>02</span>Амжилттай төслүүд</a>
-        <a href="#outcomes-careers"><span>03</span>Амжилттай карьер</a>
-      </nav>
+      <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
     </div>
   </section>
 
