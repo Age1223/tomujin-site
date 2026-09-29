@@ -213,6 +213,8 @@ section[id],article[id]{scroll-margin-top:80px}
 .visually-hidden{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
 .home-hero .display{max-width:15ch}
 .home-hero .wrap{gap:var(--space-6)}
+/* The intro paragraphs under the hero: one centred column, like the hero above */
+.home-intro{margin-inline:auto;text-align:center;font-size:17px}
 
 /* ───────── Home ───────── */
 .commitments{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--space-6);counter-reset:c}
@@ -501,11 +503,8 @@ section[id],article[id]{scroll-margin-top:80px}
 
   <!-- b. Боловсролын талаарх бидний философи -->
   <section id="home-philosophy" class="band" style="padding-top:0">
-    <div class="wrap split">
-      <div class="section-head section-head--left" style="margin:0">
-        <h2 class="h1">Сургууль хүүхдүүдийг амьдралд бэлдэхээ больсон. Болиод удаж байна.</h2>
-      </div>
-      <div class="prose">
+    <div class="wrap">
+      <div class="prose home-intro">
         <p>Өнөөдөр бидэнд тулгарч буй сорилтууд өнгөрсөнөөс тэс өөр бөгөөд төвөгтэй. Эдгээр сорилтуудыг зөвхөн өнөөдөрөөр төсөөлөх боломжгүй, цаг хугацаа өнгөрөхийн хэрээр амьдрал илүү хурднаар өөрчлөгдөж байна.</p>
         <p>Асар хурдацтай хувьсан өөрчлөгдөж буй энэ дэлхийд өсч хөгжихийн тулд сурагчид цаг хугацаа, нөхцөлөөс үл хамааран өөрсдийн хүссэн өөрчлөлтийг авчрах чадварт суралцах хэрэгтэй болоод байна.</p>
         <p><strong>Тиймээс бид боловсролыг дахин томьёолж, сурагчдаа амьдралд бэлтгэх хөтөлбөрийг боловсруулж байна.</strong></p>
