@@ -548,13 +548,22 @@ section[id],article[id]{scroll-margin-top:80px}
 @media (max-width:600px){.res-projects,.res-people{grid-template-columns:1fr}}
 .ventures{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:var(--space-4)}
 @media (max-width:1000px){.ventures{grid-template-columns:repeat(3,minmax(0,1fr))}}
-@media (max-width:560px){.ventures{grid-template-columns:repeat(2,minmax(0,1fr))}}
 .venture{display:grid;gap:var(--space-4);justify-items:start;padding:var(--card-padding);border-radius:var(--radius-xl);background:var(--surface-card);border:1px solid var(--color-border)}
 .venture .mono{display:grid;place-items:center;width:48px;height:48px;border-radius:var(--radius-md);background:var(--tj-purple);color:#fff;font-weight:900;font-size:22px}
 .venture:nth-child(2) .mono{background:var(--tj-teal-deep)}
 .venture:nth-child(3) .mono{background:var(--tj-golden);color:var(--tj-ink)}
 .venture:nth-child(4) .mono{background:var(--tj-orange);color:var(--tj-ink)}
 .venture strong{font-size:17px;font-weight:800}
+/* The graduate who runs the business */
+.venture:has(.venture-who){grid-template-rows:auto 1fr auto}
+.venture-who{justify-self:stretch;display:grid;grid-template-columns:40px minmax(0,1fr);align-items:center;gap:10px;padding-top:var(--space-4);border-top:1px solid var(--color-border);font-size:12px;line-height:1.35;color:var(--text-muted)}
+.venture-who b{display:block;font-size:14px;color:var(--text-display)}
+.venture-who small{display:block;font-size:12px}
+.venture-who .res-avatar{width:40px;height:40px;overflow:hidden}
+.venture-who .res-avatar svg{width:18px;height:18px}
+.res-avatar img{width:100%;height:100%;object-fit:cover}
+/* Phones: one card per row, the logo beside the name and the graduate below */
+@media (max-width:560px){.ventures{grid-template-columns:1fr}.venture:has(.venture-who){grid-template-columns:auto minmax(0,1fr);grid-template-rows:auto auto;align-items:center}.venture-who{grid-column:1/-1}}
 
 /* ───────── Footer ───────── */
 .site-footer{background:var(--tj-violet-900);color:#fff;padding-block:56px 40px}
@@ -1234,12 +1243,19 @@ section[id],article[id]{scroll-margin-top:80px}
         </figure>
       </div>
       <p class="res-label">Төгсөгчдийн хэрэгжүүлж яваа бизнесүүд</p>
+      <!-- Each business and the graduate who runs it. Put in the name and year where it says Төгсөгчийн нэр / 20XX;
+           for a photo, swap the icon in .res-avatar for <img src="..." alt="">. Copy a card to add another business. -->
       <ul class="ventures">
-        <li class="venture"><span class="mono" aria-hidden="true">S</span><strong>Serenity</strong></li>
-        <li class="venture"><span class="mono" aria-hidden="true">Z</span><strong>Zogsoltgui</strong></li>
-        <li class="venture"><span class="mono" aria-hidden="true">S</span><strong>SuriyAI</strong></li>
-        <li class="venture"><span class="mono" aria-hidden="true">A</span><strong>AdmitBoost</strong></li>
-        <li class="venture"><span class="mono" aria-hidden="true">E</span><strong>EssayGo</strong></li>
+        <li class="venture"><span class="mono" aria-hidden="true">S</span><strong>Serenity</strong>
+          <p class="venture-who"><span class="res-avatar" aria-hidden="true"><i data-lucide="user"></i></span><span><b>Төгсөгчийн нэр</b><small>Үүсгэн байгуулагч</small><small>20XX оны төгсөгч</small></span></p></li>
+        <li class="venture"><span class="mono" aria-hidden="true">Z</span><strong>Zogsoltgui</strong>
+          <p class="venture-who"><span class="res-avatar" aria-hidden="true"><i data-lucide="user"></i></span><span><b>Төгсөгчийн нэр</b><small>Үүсгэн байгуулагч</small><small>20XX оны төгсөгч</small></span></p></li>
+        <li class="venture"><span class="mono" aria-hidden="true">S</span><strong>SuriyAI</strong>
+          <p class="venture-who"><span class="res-avatar" aria-hidden="true"><i data-lucide="user"></i></span><span><b>Төгсөгчийн нэр</b><small>Үүсгэн байгуулагч</small><small>20XX оны төгсөгч</small></span></p></li>
+        <li class="venture"><span class="mono" aria-hidden="true">A</span><strong>AdmitBoost</strong>
+          <p class="venture-who"><span class="res-avatar" aria-hidden="true"><i data-lucide="user"></i></span><span><b>Ч.Дөлгөөн</b><small>Үүсгэн байгуулагч</small><small>2023 оны төгсөгч</small></span></p></li>
+        <li class="venture"><span class="mono" aria-hidden="true">E</span><strong>EssayGo</strong>
+          <p class="venture-who"><span class="res-avatar" aria-hidden="true"><i data-lucide="user"></i></span><span><b>Төгсөгчийн нэр</b><small>Үүсгэн байгуулагч</small><small>20XX оны төгсөгч</small></span></p></li>
       </ul>
       <!-- Graduates at big companies (placeholders): put in each graduate's name, year, and role and company -->
       <ul class="res-people">
