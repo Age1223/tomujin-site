@@ -48,6 +48,9 @@ vercel.json         lets browsers keep the images for a day, so repeat visits lo
   - `UNIS`: university logos, in prestige order
   - `FIT`: the "Хэрвээ чи:" checklist
   - `FAQ`: questions and answers
+- **13-year timeline (Хөтөлбөр page):** one column per grade, Бэлтгэл (K) to 12-р анги.
+  - Each programme bar is an `<li data-from="9" data-to="11">` with a link to its section further down the page. Change `data-from` / `data-to` to move a bar (use `K` for Бэлтгэл), and update its grade text to match.
+  - The three stages (Бага, Дунд, Ахлах) have a photo slot and a placeholder paragraph each.
 - **Photos:** each photo sits in a `<div class="photo-slot">`.
   - To fill an empty dashed "Зураг удахгүй нэмэгдэнэ" box, replace its contents with `<img src="assets/photos/…" alt="…">`. A plain JPEG works; the site's own photos are WebP in two sizes (the browser picks the smaller one on small or ordinary screens) with a tiny blurred preview in `style`, which shows until the photo arrives.
   - Put several `<img>` in one box and it becomes a small gallery, with arrows in the corner and swiping on phones.
