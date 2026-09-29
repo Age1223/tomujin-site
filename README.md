@@ -11,7 +11,7 @@ For now only the Нүүр page is published. The other four pages are still in `
 
 ### Previewing the unpublished pages
 
-The Claude artifact preview shows the full site: all five pages, the menu and the buttons, with a small "Урьдчилсан харагдац" label. It's built from `index.html` by `tools/make-preview.py`, which switches everything on in its copy only. `index.html` itself, which is what Vercel serves, stays homepage-only.
+The Claude artifact preview is built from `index.html` by `tools/make-preview.py`. Its homepage is identical to the live one. The only difference is a small bar in the bottom-left corner, which exists only in the preview, for switching between all five pages, so the unpublished ones can be reviewed. `index.html` itself, which is what Vercel serves, stays homepage-only.
 
 ## Pages
 
