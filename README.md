@@ -9,6 +9,10 @@ For now only the Нүүр page is published. The other four pages are still in `
 1. In the script at the bottom of `index.html`, add the page ids to `PUBLISHED`, e.g. `var PUBLISHED = ["home", "about", "program", "admissions", "outcomes"];`
 2. Remove `hidden data-later` from the elements that carry it: the header menu, the phone menu button, the "Өргөдлөө илгээгээрэй" buttons, the "Хөтөлбөртэй танилцах" and "Бидний үр дүн" buttons, the footer sitemap and the join.tomujin.edu.mn link.
 
+### Previewing the unpublished pages
+
+The Claude artifact preview shows the full site: all five pages, the menu and the buttons, with a small "Урьдчилсан харагдац" label. It's built from `index.html` by `tools/make-preview.py`, which switches everything on in its copy only. `index.html` itself, which is what Vercel serves, stays homepage-only.
+
 ## Pages
 
 The site has five pages. Each page has its own address, and each section can be linked directly:
