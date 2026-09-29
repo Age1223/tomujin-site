@@ -23,7 +23,7 @@ The site has five pages. Each page has its own address, and each section can be 
 | Бидний тухай | `#about` | `#about-history` |
 | Хөтөлбөр | `#program` | `#program-house` |
 | Элсэлт | `#admissions` | `#admissions-faq` |
-| Бидний үр дүн | `#outcomes` | `#outcomes-ventures` |
+| Бидний үр дүн | `#outcomes` | `#outcomes-careers` |
 
 ## Files
 

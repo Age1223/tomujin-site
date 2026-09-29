@@ -522,6 +522,33 @@ section[id],article[id]{scroll-margin-top:80px}
 .big-figure .sub b{font-size:32px;font-weight:700;color:#fff;font-variant-numeric:tabular-nums}
 .big-figure .sub span{font-size:14px;color:var(--on-brand-muted);max-width:26ch}
 @media (max-width:760px){.big-figure{grid-template-columns:1fr;gap:var(--space-6)}}
+/* The page's three parts: numbered links under the title, and a number above each part's heading */
+.res-jump{display:flex;flex-wrap:wrap;justify-content:center;gap:var(--space-2)}
+.res-jump a{display:inline-flex;align-items:center;gap:10px;padding:9px 18px 9px 10px;border:1px solid var(--color-border);border-radius:var(--radius-pill);background:#fff;color:var(--text-body);font-size:15px;font-weight:700;text-decoration:none!important;transition:background-color var(--duration-fast) var(--ease-standard)}
+.res-jump a:hover{background:var(--color-muted)}
+.res-jump span,.res-num{display:inline-grid;place-items:center;height:28px;padding:0 9px;border-radius:var(--radius-pill);background:var(--tj-purple);color:#fff;font-size:13px;font-weight:700;font-variant-numeric:tabular-nums}
+.res-num{height:32px;padding:0 12px;font-size:14px;letter-spacing:var(--tracking-wide)}
+.res-sub{margin:var(--space-16) 0 var(--space-6);text-align:center;font-size:clamp(1.25rem,2.2vw,1.5rem);line-height:1.3;font-weight:800;color:var(--text-display);letter-spacing:var(--tracking-tight);text-wrap:balance}
+.res-label{margin:var(--space-10) 0 var(--space-4);font-size:14px;font-weight:700;letter-spacing:var(--tracking-wide);text-transform:uppercase;color:var(--text-muted)}
+/* ТОМ ИНК Impact Report: photos on the left, the report on the right */
+.res-report{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,5fr);align-items:center;border:1px solid var(--color-border);border-radius:var(--radius-xl);background:var(--surface-card);overflow:hidden}
+.res-report .photo-slot{grid-column:auto;margin:0;border-radius:0}
+.res-report-body{display:grid;justify-items:start;gap:var(--space-4);padding:var(--space-8)}
+.res-report-body h3{font-size:clamp(1.3rem,2.2vw,1.6rem);line-height:1.25;font-weight:800;color:var(--text-display)}
+.res-report-body p{line-height:1.65;color:var(--text-muted)}
+.res-more{display:inline-flex;align-items:center;gap:6px;font-weight:700}
+.res-more svg{width:16px;height:16px}
+.res-projects,.res-people{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--space-6)}
+.res-projects{margin-top:var(--space-6)}
+.res-project .photo-slot{grid-column:auto;margin:0;border-radius:var(--radius-md)}
+.res-project h4{font-size:18px;line-height:1.3;font-weight:800}
+.res-project p{font-size:15px;line-height:1.6;color:var(--text-muted)}
+.res-person{grid-template-columns:64px minmax(0,1fr);align-items:center;gap:var(--space-4)}
+.res-person .alum-who{padding-top:0;border-top:0}
+.res-avatar{display:grid;place-items:center;width:64px;height:64px;border-radius:50%;background:var(--color-muted);border:1px dashed var(--color-border);color:var(--color-primary)}
+@media (max-width:900px){.res-projects,.res-people{grid-template-columns:1fr 1fr}}
+@media (max-width:760px){.res-report{grid-template-columns:1fr}.res-report-body{padding:var(--space-6)}}
+@media (max-width:600px){.res-projects,.res-people{grid-template-columns:1fr}.res-jump{display:grid;justify-content:stretch}}
 .ventures{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:var(--space-4)}
 @media (max-width:1000px){.ventures{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media (max-width:560px){.ventures{grid-template-columns:repeat(2,minmax(0,1fr))}}
@@ -1098,20 +1125,46 @@ section[id],article[id]{scroll-margin-top:80px}
   <section class="page-hero">
     <div class="wrap">
       <h1 class="display display--md">Бидний үр дүн.</h1>
+      <!-- The page's three parts -->
+      <nav class="res-jump" aria-label="Бидний үр дүн">
+        <a href="#outcomes-universities"><span>01</span>Их сургуульд тэнцсэн</a>
+        <a href="#outcomes-projects"><span>02</span>Амжилттай төслүүд</a>
+        <a href="#outcomes-careers"><span>03</span>Амжилттай карьер</a>
+      </nav>
     </div>
   </section>
 
-  <!-- a. Тэнцсэн сургуулиуд -->
+  <!-- 1. Их сургуульд тэнцсэн: graduates' stories, the universities they got into, then the scholarship figures -->
   <section id="outcomes-universities" class="band" style="padding-top:0">
     <div class="wrap">
       <div class="section-head">
-        <h2 class="h1">Томүжингийн төгсөгчдийн тэнцсэн сургуулиуд</h2>
+        <span class="res-num">01</span>
+        <h2 class="h1">Их сургуульд тэнцсэн</h2>
+        <p class="lead">Дэлхийн шилдэг их сургуульд суралцах бол нэмэлт хожил, #1 зорилго биш.</p>
       </div>
+      <!-- Graduate stories: add another <figure class="alum"> for more -->
+      <div class="alumni">
+        <figure class="alum">
+          <img src="assets/alumni/anujin-1200.webp" srcset="assets/alumni/anujin-800.webp 800w, assets/alumni/anujin-1200.webp 1200w" sizes="(max-width: 860px) 100vw, 560px" alt="Н.Анужин" width="1200" height="675" loading="lazy" decoding="async" style="background-image:url(data:image/webp;base64,UklGRvYAAABXRUJQVlA4IOoAAADQBQCdASogABIAPu1iqU2ppaOiMAgBMB2JQBWEKcfMH1o6lVJhCX/Er4kf/qb0WrRH117IMOYAAP7XUOyKr0Vvi01rBc7T9jDUW818jvl4Uk1UMdYlHW5pNxGB8/yIuH+tnVHA84NXT1YGAaVfRDfKNATPfeo7d4TRvwo3v75Ve/HPnc/hBjKoQvYlg+ZNaijx/WGfv+m1ZWCiIz/yQ0nFqTGGFIgulmYyqFyOsvglwAPEdi7cXGpwXjRYL26LA0/KcQqbgfC6LYZWD3GDaXSk4L8WRdXDJlMXq9s0CDX0aS9ujokOfPTkAAA=)">
+          <figcaption>
+            <blockquote>“Томүжингаас олж авсан хамгийн чухал зүйл маань болохоор ХҮРЭЭЛЭЛ. Тасралтгүй дэмждэг хүрээлэл байсан. Багш нар маань, дээд ангийн ах эгч нар маань, ангийнхан маань ямар ч хэцүү зүйлс тохиолдсон үргэлж дэмжихэд бэлэн. Өөрт байгаа бүхий л зүйлсээ зориулахад бэлэн байдаг тийм хүрээлэл.”</blockquote>
+            <p class="alum-who"><strong>Н.Анужин</strong><span>2022 оны төгсөгч</span><span>Stanford University, Class of 2027</span></p>
+          </figcaption>
+        </figure>
+        <figure class="alum">
+          <img src="assets/alumni/gandi-1200.webp" srcset="assets/alumni/gandi-800.webp 800w, assets/alumni/gandi-1200.webp 1200w" sizes="(max-width: 860px) 100vw, 560px" alt="Б.Ганди" width="1200" height="675" loading="lazy" decoding="async" style="background-image:url(data:image/webp;base64,UklGRgABAABXRUJQVlA4IPQAAADQBQCdASogABIAPu1iqU2ppaOiMAgBMB2JZAC07AgdgNdAxKnpxcyG17vmBm4HSjcJapriGPzoAPkbkh2hIO92l/7CFQPgdGrL1khAiTrrZq9INdM4ydOGUspk9yZVF7+4o0eDg6prB5ipFv9tsY0GhscX8v1UdL6HBDQMTK/0AL8VYnoRaD6eIm9kNTZnT2d0/8kbMDcGZI1k7bXf0CiQGCUVSwnlb29k2ca55O9nq0Wi4czzmSCqb23sUMz9BAPPiZTqlmGv1BfyP+FEef4I//d6/dniAUOz+zZCvUm9akZ4nu+5cY0xlLw7nwBUcXVAgAAA)">
+          <figcaption>
+            <blockquote>“Томүжин хүрээлэл байсан болохоор Харвард руу өргөдлөө явуулах зориг нь байсан. Тэр хүмүүс чи чадна шүү гээд итгүүлж байсан болохоор. Энэ хүрээлэлд байсан болохоор Харвардын 2028 оны төгсөгч, ХАРВАРДЫН оюутан болох гэж байна.”</blockquote>
+            <p class="alum-who"><strong>Б.Ганди</strong><span>2024 оны төгсөгч</span><span>Harvard University, Class of 2028</span></p>
+          </figcaption>
+        </figure>
+      </div>
+      <h3 class="res-sub">Томүжингийн төгсөгчдийн тэнцсэн сургуулиуд</h3>
       <ul class="unis" data-unis></ul>
     </div>
   </section>
 
-  <!-- b. Сурагчдын нийт тэтгэлгийн дүн -->
+  <!-- Сурагчдын нийт тэтгэлгийн дүн (part of 1) -->
   <section id="outcomes-scholarships" class="band band--brand">
     <div class="wrap big-figure">
       <div class="fig">87+<small>тэрбум ₮</small></div>
@@ -1125,18 +1178,96 @@ section[id],article[id]{scroll-margin-top:80px}
     </div>
   </section>
 
-  <!-- c. Төгсөгчдийн хэрэгжүүлж яваа бизнесүүд -->
-  <section id="outcomes-ventures" class="band">
+  <!-- 2. Амжилттай төслүүд: the ТОМ ИНК Impact Report and the students' projects (placeholders for now) -->
+  <section id="outcomes-projects" class="band">
     <div class="wrap">
       <div class="section-head">
-        <h2 class="h1">Төгсөгчдийн хэрэгжүүлж яваа бизнесүүд</h2>
+        <span class="res-num">02</span>
+        <h2 class="h1">Амжилттай төслүүд</h2>
+        <p class="lead">ТОМ ИНК-ийн хүрээнд сурагчдын хэрэгжүүлсэн төслүүд</p>
       </div>
+      <article class="res-report">
+        <div class="photo-slot">
+            <img src="assets/photos/tominc1-1200.webp" srcset="assets/photos/tominc1-800.webp 800w, assets/photos/tominc1-1200.webp 1200w" sizes="(max-width: 860px) 100vw, 480px" alt="ТОМ ИНК тэмцээнд сурагч төслөө танилцуулж байна" width="1200" height="800" loading="lazy" decoding="async" style="background-image:url(data:image/webp;base64,UklGRn4AAABXRUJQVlA4IHIAAADwAwCdASoYABAAPu1iqU2ppaQiMAgBMB2JZADKACB0b3MSgQHuMkJAAP70K2d6Qsnbl6kQv9e3NcW+IN4It6P2DFvnK8ISsFvUnnTrEWbGVjJlIDWF80utOGw6yH7qxXqiQZz9kX78xV/PPfj7IfgAAAA=)">
+            <img src="assets/photos/tominc2-1200.webp" srcset="assets/photos/tominc2-800.webp 800w, assets/photos/tominc2-1200.webp 1200w" sizes="(max-width: 860px) 100vw, 480px" alt="ТОМ ИНК тэмцээний оролцогчид тайзан дээр" width="1200" height="800" loading="lazy" decoding="async" style="background-image:url(data:image/webp;base64,UklGRsIAAABXRUJQVlA4ILYAAAAwBACdASoYABAAPu1iqU2ppaQiMAgBMB2JbACdMoMrZEIIMvYzSrGQHwAA/vFP/MeenB8kdtPynozO0gGmeALDxuWigkyPQ9ufXrV8orfTMMHUhtreN3vi1NZnUxsZJ9jM7ERN4wEl/N/AQeDsAer40JwG+iYWsM/lTuc0t8ljrQtgfF706IZV+d3Yz/P/rK4vGPUX+V3/j/VqPmh/AH/5sbB2xsuIcbnymPiJvEqFOyHwV3gAAA==)">
+        </div>
+        <div class="res-report-body">
+          <span class="icon-tile icon-tile--gold"><i data-lucide="file-bar-chart"></i></span>
+          <h3>ТОМ ИНК Impact Report</h3>
+          <p>Нөлөөллийн тайлангийн товч танилцуулга: lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.</p>
+          <span class="badge badge--placeholder"><i data-lucide="clock"></i>Тайлан удахгүй нийтлэгдэнэ</span>
+          <a class="res-more" href="#program-tom-ink">ТОМ ИНК-ийн тухай<i data-lucide="arrow-right"></i></a>
+        </div>
+      </article>
+      <!-- Projects: fill in each card's photo, name and text; copy a card for more -->
+      <div class="res-projects">
+        <article class="card res-project">
+          <div class="photo-slot"><i data-lucide="image"></i><span>Зураг удахгүй нэмэгдэнэ</span></div>
+          <h4>Төслийн нэр</h4>
+          <p>Төслийн товч танилцуулга: lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.</p>
+        </article>
+        <article class="card res-project">
+          <div class="photo-slot"><i data-lucide="image"></i><span>Зураг удахгүй нэмэгдэнэ</span></div>
+          <h4>Төслийн нэр</h4>
+          <p>Төслийн товч танилцуулга: lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.</p>
+        </article>
+        <article class="card res-project">
+          <div class="photo-slot"><i data-lucide="image"></i><span>Зураг удахгүй нэмэгдэнэ</span></div>
+          <h4>Төслийн нэр</h4>
+          <p>Төслийн товч танилцуулга: lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. Амжилттай карьер: graduates who run businesses, and graduates at Fortune 500 companies -->
+  <section id="outcomes-careers" class="band band--alt">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="res-num">03</span>
+        <h2 class="h1">Амжилттай карьертай төгсөгчид</h2>
+        <p class="lead">Амжилттай карьер бас өөр нэг нэмэлт хожил.</p>
+      </div>
+      <h3 class="res-sub" style="margin-top:0">Бизнес эрхлэгчид</h3>
+      <div class="alumni">
+        <figure class="alum">
+          <img src="assets/alumni/buyankhishig-1200.webp" srcset="assets/alumni/buyankhishig-800.webp 800w, assets/alumni/buyankhishig-1200.webp 1200w" sizes="(max-width: 860px) 100vw, 560px" alt="О.Буянхишиг" width="1200" height="675" loading="lazy" decoding="async" style="background-image:url(data:image/webp;base64,UklGRuQAAABXRUJQVlA4INgAAABwBQCdASogABIAPu1kqk2ppaQiMAgBMB2JaAC1GzLuzSOAf6k9PsT7jo1j02WKBCPpReIAAP7qmDy30b4t3Agqxi63nsofc8cjRWE6JW9KIP3vJBbgGRNiGOzpk3fl6KY2tiMnEs6FHEsdJ7PaykO0qwRY0I7DL6C6ldcl2ThUbROkfl4TmPLcZfylmHvPO27r9mrqqKlRiSKYGlkSosAFHxj0MMWHGXWwg4/JJVLVCd7wobHOBOB9Lin73jDu9B+CLJZgXvPn+BghG1wc4KLt2IwE/MAAAAA=)">
+          <figcaption>
+            <blockquote>“Би Багануурт улсын сургуулиас Томүжинд шилжиж ирэхэд тэс өөр ертөнцөд ирсэн мэт санагддаг байлаа. Өөрт гарсан эерэг өөрчлөлтөө бодоод орон нутагт суугаа мянга мянган сурагчдад хувь нэмэр оруулахсан гэж хүссэн. Томүжингийнхаа ачаар би 22 насандаа Монгол орны 21 аймгийг 2 удаа тойрон аялж, сургалт хийсэн.”</blockquote>
+            <p class="alum-who"><strong>О.Буянхишиг</strong><span>2021 оны төгсөгч</span><span>Томүжин Академи COO, “Хөтөлье” (@hutli) үүсгэн байгуулагч</span></p>
+          </figcaption>
+        </figure>
+        <figure class="alum">
+          <img src="assets/alumni/dulguun-1200.webp" srcset="assets/alumni/dulguun-800.webp 800w, assets/alumni/dulguun-1200.webp 1200w" sizes="(max-width: 860px) 100vw, 560px" alt="Ч.Дөлгөөн" width="1200" height="675" loading="lazy" decoding="async" style="background-image:url(data:image/webp;base64,UklGRiwBAABXRUJQVlA4ICABAABQBgCdASogABIAPu1iqE2ppaOiMAgBMB2JagCw+iOTsBW/6qVXuc5G+sB7qubLvWAXaFJTHXc28uTyFAD+vDmXjTv3nbCHbWah92I/luTAvSLBhS5SV8IqjCIMVJEzw81gYd0YyCh4y6fofwKCQJovaAQ9ucGlIS6iAbh8EX/gxnE/hLHzS9I0viqPoPhJEXHGhhRGJdJ4FKJF05m8+pLPqQbaY9Jg4o2zzQVwO4o6YwyjepksVPzj6nJSnzKCWJTKciap8lkqZvwYR1QK1uD9VK0bLlEDqUiI+FSfHKPono36UFHPrhnPi+Rxyh5DzGQoeRCvGtCHcmAA3QteYo5mMkOXw3OfWsHQsmV+rvmniiqsX7mzu9vTZSrPjy6wAAA=)">
+          <figcaption>
+            <blockquote>“Би ч болоогүй, мэдэхгүй, чадахгүй гэх бодлуудыг Томүжингийн хүрээлэлд орсноор л эвдэж чадсан. Бусдын түүхээс урам зориг авч, чадах юм байна гэсэн итгэл төрөөд @admitboost-ийг эхлүүлж байсан. Одоо @admitboost маань Монголын хамгийн том гадаадад сурах хүсэлтэй хүүхдүүдийн онлайн коммюнити болсон.”</blockquote>
+            <p class="alum-who"><strong>Ч.Дөлгөөн</strong><span>2023 оны төгсөгч</span><span>“Admit Boost” @admitboost үүсгэн байгуулагч</span></p>
+          </figcaption>
+        </figure>
+      </div>
+      <p class="res-label">Төгсөгчдийн хэрэгжүүлж яваа бизнесүүд</p>
       <ul class="ventures">
         <li class="venture"><span class="mono" aria-hidden="true">S</span><strong>Serenity</strong></li>
         <li class="venture"><span class="mono" aria-hidden="true">Z</span><strong>Zogsoltgui</strong></li>
         <li class="venture"><span class="mono" aria-hidden="true">S</span><strong>SuriyAI</strong></li>
         <li class="venture"><span class="mono" aria-hidden="true">A</span><strong>AdmitBoost</strong></li>
         <li class="venture"><span class="mono" aria-hidden="true">E</span><strong>EssayGo</strong></li>
+      </ul>
+      <h3 class="res-sub">Fortune 500 компаниудад ажилладаг төгсөгчид</h3>
+      <!-- Placeholders: put in each graduate's name, year, and role and company -->
+      <ul class="res-people">
+        <li class="card res-person">
+          <span class="res-avatar" aria-hidden="true"><i data-lucide="user"></i></span>
+          <p class="alum-who"><strong>Төгсөгчийн нэр</strong><span>20XX оны төгсөгч</span><span>Албан тушаал, Компанийн нэр</span></p>
+        </li>
+        <li class="card res-person">
+          <span class="res-avatar" aria-hidden="true"><i data-lucide="user"></i></span>
+          <p class="alum-who"><strong>Төгсөгчийн нэр</strong><span>20XX оны төгсөгч</span><span>Албан тушаал, Компанийн нэр</span></p>
+        </li>
+        <li class="card res-person">
+          <span class="res-avatar" aria-hidden="true"><i data-lucide="user"></i></span>
+          <p class="alum-who"><strong>Төгсөгчийн нэр</strong><span>20XX оны төгсөгч</span><span>Албан тушаал, Компанийн нэр</span></p>
+        </li>
       </ul>
     </div>
   </section>
@@ -1227,7 +1358,7 @@ section[id],article[id]{scroll-margin-top:80px}
       ["admissions-fit","Томүжин чиний сургууль мөн үү?"], ["admissions-grades","Элсэлт авах анги"], ["admissions-process","Элсэлтийн процесс"],
       ["admissions-student","Томүжин ямар хүүхдийг хайдаг вэ?"], ["admissions-fees","Сургалтын төлбөр ба санхүүгийн дэмжлэг"], ["admissions-faq","Түгээмэл асуултууд"]]},
     {id:"outcomes", label:"Бидний үр дүн", sections:[
-      ["outcomes-universities","Тэнцсэн сургуулиуд"], ["outcomes-scholarships","Сурагчдын нийт тэтгэлэг"], ["outcomes-ventures","Төгсөгчдийн бизнесүүд"]]}
+      ["outcomes-universities","Их сургуульд тэнцсэн"], ["outcomes-projects","Амжилттай төслүүд"], ["outcomes-careers","Амжилттай карьер"]]}
   ];
 
   function sectionLinks(pg){ return pg.sections.map(function(x){ return '<a href="#'+x[0]+'">'+x[1]+'</a>'; }).join(""); }
