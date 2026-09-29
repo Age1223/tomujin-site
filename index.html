@@ -335,14 +335,6 @@ section[id],article[id]{scroll-margin-top:80px}
 @media (max-width:640px){.press-item{grid-template-columns:112px minmax(0,1fr);gap:var(--space-4);padding-inline:var(--space-1)}.press-item > svg{display:none}.press-title{font-size:15px}}
 
 /* ───────── About ───────── */
-.team{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:var(--space-4)}
-.member{position:relative;aspect-ratio:4/5;max-width:100%;border-radius:var(--radius-xl);overflow:hidden;background:var(--color-muted);border:1px solid var(--color-border);display:grid;place-items:center;color:var(--color-primary)}
-.member>svg{width:40px;height:40px;opacity:.55}
-.member .info{position:absolute;inset:auto 0 0 0;padding:var(--space-4);background:var(--surface-brand);color:#fff;display:grid;gap:2px;transform:translateY(100%);transition:transform var(--duration) var(--ease-out)}
-.member:hover .info,.member:focus-visible .info,.member:focus-within .info{transform:none}
-.member .info strong{font-size:15px}
-.member .info span{font-size:13px;color:var(--on-brand-muted)}
-.member .idx{position:absolute;top:10px;left:12px;font:500 12px/1 var(--font-sans);color:var(--text-muted)}
 
 .timeline{display:grid;gap:0;position:relative}
 .tl-item{display:grid;grid-template-columns:140px minmax(0,1fr) minmax(200px,280px);gap:var(--space-8);align-items:start;padding-block:var(--space-8);border-top:1px solid var(--color-border)}
@@ -719,9 +711,7 @@ section[id],article[id]{scroll-margin-top:80px}
       <div class="section-head">
         <h2 class="h1">Томүжин Алтернатив сургууль</h2>
         <p class="lead">Багийн танилцуулга</p>
-        <span class="badge badge--placeholder"><i data-lucide="image" style="width:14px;height:14px"></i> 22 хүний зураг, нэр удахгүй нэмэгдэнэ</span>
       </div>
-      <ul class="team" data-team></ul>
     </div>
   </section>
 
@@ -1184,14 +1174,6 @@ section[id],article[id]{scroll-margin-top:80px}
   document.querySelectorAll("[data-fit-list]").forEach(function(ul){
     ul.innerHTML = FIT.map(function(t){return '<li><i data-lucide="circle-check"></i><span>'+esc(t)+"</span></li>";}).join("");
   });
-  var team = document.querySelector("[data-team]");
-  if (team){
-    var html = "";
-    for (var i=1;i<=22;i++){
-      html += '<li class="member" tabindex="0" aria-label="Багийн гишүүн '+i+'"><span class="idx">'+(i<10?"0":"")+i+'</span><i data-lucide="user-round"></i><div class="info"><strong>Нэр</strong><span>Албан тушаал</span></div></li>';
-    }
-    team.innerHTML = html;
-  }
   var faq = document.querySelector("[data-faq]");
   if (faq){
     faq.innerHTML = FAQ.map(function(g, gi){
