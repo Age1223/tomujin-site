@@ -37,6 +37,7 @@ assets/
   press/            preview images for the "Хэвлэл дээрх нийтлэлүүд" links (WebP)
   tangrams/         tangram figures from the Tomujin design system
   unis/             university logos (WebP)
+  ventures/         logos of graduates' businesses (Бидний үр дүн page)
 vercel.json         lets browsers keep the images for a day, so repeat visits load fast
 ```
 

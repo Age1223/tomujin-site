@@ -566,6 +566,9 @@ section[id],article[id]{scroll-margin-top:80px}
 .venture:nth-child(3) .mono{background:var(--tj-golden);color:var(--tj-ink)}
 .venture:nth-child(4) .mono{background:var(--tj-orange);color:var(--tj-ink)}
 .venture strong{font-size:17px;font-weight:800}
+/* Business logos: square marks at 48px; a wide wordmark keeps the same height */
+.venture-logo{width:48px;height:48px;border-radius:var(--radius-md);object-fit:cover}
+.venture-logo--wide{width:auto;max-width:100%;border-radius:0;object-fit:contain}
 /* The graduate who runs the business */
 .venture:has(.venture-who){grid-template-rows:auto 1fr auto}
 .venture-who{justify-self:stretch;display:grid;grid-template-columns:40px minmax(0,1fr);align-items:center;gap:10px;padding-top:var(--space-4);border-top:1px solid var(--color-border);font-size:12px;line-height:1.35;color:var(--text-muted)}
@@ -1299,18 +1302,19 @@ section[id],article[id]{scroll-margin-top:80px}
       </div>
       <p class="res-label">Төгсөгчдийн хэрэгжүүлж яваа бизнесүүд</p>
       <!-- Each business and the graduate who runs it. Put in the name and year where it says Төгсөгчийн нэр / 20XX;
-           for a photo, swap the icon in .res-avatar for <img src="..." alt="">. Copy a card to add another business. -->
+           for a photo, swap the icon in .res-avatar for <img src="..." alt="">. Logos are in assets/ventures/ (a business without one
+           shows its first letter in a .mono square). Copy a card to add another business. -->
       <ul class="ventures">
-        <li class="venture"><span class="mono" aria-hidden="true">S</span><strong>Serenity</strong>
-          <p class="venture-who"><span class="res-avatar" aria-hidden="true"><i data-lucide="user"></i></span><span><b>Төгсөгчийн нэр</b><small>Үүсгэн байгуулагч</small><small>20XX оны төгсөгч</small></span></p></li>
+        <li class="venture"><img class="venture-logo venture-logo--wide" src="assets/ventures/serenity.webp" alt="" width="475" height="144" loading="lazy" decoding="async"><strong>Serenity Magazine</strong>
+          <p class="venture-who"><span class="res-avatar" aria-hidden="true"><i data-lucide="user"></i></span><span><b>О.Эгшиглэн</b><small>Үүсгэн байгуулагч</small><small>2021 оны төгсөгч</small></span></p></li>
         <li class="venture"><span class="mono" aria-hidden="true">Z</span><strong>Zogsoltgui</strong>
           <p class="venture-who"><span class="res-avatar" aria-hidden="true"><i data-lucide="user"></i></span><span><b>Төгсөгчийн нэр</b><small>Үүсгэн байгуулагч</small><small>20XX оны төгсөгч</small></span></p></li>
-        <li class="venture"><span class="mono" aria-hidden="true">S</span><strong>SuriyAI</strong>
-          <p class="venture-who"><span class="res-avatar" aria-hidden="true"><i data-lucide="user"></i></span><span><b>Төгсөгчийн нэр</b><small>Үүсгэн байгуулагч</small><small>20XX оны төгсөгч</small></span></p></li>
-        <li class="venture"><span class="mono" aria-hidden="true">A</span><strong>AdmitBoost</strong>
+        <li class="venture"><img class="venture-logo" src="assets/ventures/suriy.webp" alt="" width="144" height="144" loading="lazy" decoding="async"><strong>Suriy.mn</strong>
+          <p class="venture-who"><span class="res-avatar" aria-hidden="true"><i data-lucide="user"></i></span><span><b>Б.Болд-Эрдэнэ</b><small>Үүсгэн байгуулагч</small><small>2021 оны төгсөгч</small></span></p></li>
+        <li class="venture"><img class="venture-logo" src="assets/ventures/admitboost.webp" alt="" width="144" height="144" loading="lazy" decoding="async"><strong>AdmitBoost</strong>
           <p class="venture-who"><span class="res-avatar" aria-hidden="true"><i data-lucide="user"></i></span><span><b>Ч.Дөлгөөн</b><small>Үүсгэн байгуулагч</small><small>2023 оны төгсөгч</small></span></p></li>
-        <li class="venture"><span class="mono" aria-hidden="true">E</span><strong>EssayGo</strong>
-          <p class="venture-who"><span class="res-avatar" aria-hidden="true"><i data-lucide="user"></i></span><span><b>Төгсөгчийн нэр</b><small>Үүсгэн байгуулагч</small><small>20XX оны төгсөгч</small></span></p></li>
+        <li class="venture"><img class="venture-logo" src="assets/ventures/essaygo.webp" alt="" width="144" height="144" loading="lazy" decoding="async"><strong>EssayGo</strong>
+          <p class="venture-who"><span class="res-avatar" aria-hidden="true"><i data-lucide="user"></i></span><span><b>Төгсөгчийн нэр</b><small>Үүсгэн байгуулагч</small><small>2023 оны төгсөгч</small></span></p></li>
       </ul>
       <!-- Graduates at big companies (placeholders): put in each graduate's name, year, and role and company -->
       <ul class="res-people">
