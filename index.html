@@ -564,15 +564,11 @@ section[id],article[id]{scroll-margin-top:80px}
 .res-project .photo-slot{grid-column:auto;margin:0;border-radius:var(--radius-md)}
 .res-project h4{font-size:18px;line-height:1.3;font-weight:800}
 .res-project p{font-size:15px;line-height:1.6;color:var(--text-muted)}
-/* Photo, place, name, text, then the link along the bottom so the three cards line up */
-.res-project{grid-template-rows:auto auto auto 1fr auto}
-.res-project .res-more{justify-self:start}
 .res-project-meta{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px}
 .res-place{display:inline-flex;align-items:center;gap:6px;height:26px;padding:0 10px;border-radius:var(--radius-pill);background:var(--tj-violet-150);color:var(--tj-violet-800);font-size:13px;font-weight:700}
 .res-place svg{width:14px;height:14px}
 .res-place--1{background:var(--tj-golden);color:var(--tj-ink)}
 .res-fund{font-size:13px;color:var(--text-muted)}
-.res-all{margin-top:var(--space-8);text-align:center}
 .res-person{grid-template-columns:64px minmax(0,1fr);align-items:center;gap:var(--space-4)}
 .res-person .alum-who{padding-top:0;border-top:0}
 .res-avatar{display:grid;place-items:center;width:64px;height:64px;border-radius:50%;background:var(--color-muted);border:1px dashed var(--color-border);color:var(--color-primary)}
@@ -1259,7 +1255,7 @@ section[id],article[id]{scroll-margin-top:80px}
   </section>
 
   <!-- 2. Амжилттай төслүүд: the TOM/INC 2026 Impact Report (a web-sized copy of the PDF is in assets/tominc/) and its
-       three winning projects. Text and figures are from the report; "Дэлгэрэнгүй" opens the report at that project's page. -->
+       three winning projects. Text and figures are from the report. -->
   <section id="outcomes-projects" class="band">
     <div class="wrap">
       <div class="section-head res-head">
@@ -1294,24 +1290,20 @@ section[id],article[id]{scroll-margin-top:80px}
           <div class="res-project-meta"><span class="res-place res-place--1"><i data-lucide="trophy"></i>Тэргүүн байр</span><span class="res-fund">Санхүүжилт: 14,328,050₮</span></div>
           <h4>СОЁЛ</h4>
           <p>Сонгинохайрхан дүүргийн 33-р хорооны хамгийн эрсдэлтэй, харанхуй бүсүүдэд 20 камер суурилуулж, анхны зорилтоо 2 дахин давуулан биелүүлснээр 600 гаруй айл өрхийн аюулгүй орчинд бодит хувь нэмэр оруулсан.</p>
-          <a class="res-more" href="assets/tominc/tominc-2026-impact-report.pdf#page=10" target="_blank" rel="noopener">Дэлгэрэнгүй<i data-lucide="arrow-right"></i></a>
         </article>
         <article class="card res-project">
           <div class="photo-slot"><img src="assets/tominc/flow-1200.webp" srcset="assets/tominc/flow-800.webp 800w, assets/tominc/flow-1200.webp 1200w" sizes="(max-width: 600px) 100vw, (max-width: 900px) 50vw, 340px" alt="FLOW багийн төслийн үйл явцын зургууд" width="1200" height="800" loading="lazy" decoding="async" style="background-image:url(data:image/webp;base64,UklGRtQAAABXRUJQVlA4IMgAAADQBACdASoYABAAPu1iqU2ppaOiMAgBMB2JZgCdMoAvQTNAvWfQwsmp9Ff79W8XQADOPIt8BZgpSSODO88D3wO88r6STOSvFwOd5W5F30sW2W2q4/0+oAsRiD1gHELH7KcQ0m3LjONrQ1HdKWFbRzazSLYIleqND6SLQD+DSk/3+jS9g4Ib08HKCaRCrJg2+bvc7pU6NVogOl2YDHBiI6P3GUFKmQkkZl/1cb7rl5TYPGrDMJXDTi7x9C/P1EPPoX/yZL4AXewAAA==)"></div>
           <div class="res-project-meta"><span class="res-place"><i data-lucide="trophy"></i>Дэд байр</span><span class="res-fund">Санхүүжилт: 4,800,000₮</span></div>
           <h4>FLOW</h4>
           <p>Туул голын Яармагийн гүүр орчимд хог шүүх төхөөрөмж суурилуулж, 1,500 кг хатуу хог хаягдлыг шүүн авснаар 3 тэрбум ширхэг бичил хуванцар болж бутрахаас сэргийлсэн.</p>
-          <a class="res-more" href="assets/tominc/tominc-2026-impact-report.pdf#page=14" target="_blank" rel="noopener">Дэлгэрэнгүй<i data-lucide="arrow-right"></i></a>
         </article>
         <article class="card res-project">
           <div class="photo-slot"><img src="assets/tominc/goyu-1200.webp" srcset="assets/tominc/goyu-800.webp 800w, assets/tominc/goyu-1200.webp 1200w" sizes="(max-width: 600px) 100vw, (max-width: 900px) 50vw, 340px" alt="ГОЁУ багийн төслийн үйл явцын зургууд" width="1200" height="800" loading="lazy" decoding="async" style="background-image:url(data:image/webp;base64,UklGRuAAAABXRUJQVlA4INQAAABwBACdASoYABAAPu1iqU2ppaOiMAgBMB2JbAC06dwLeRUnkDHko5KwCYA74AD9lHk+4loby/i+VtZv1zLBH8TMvETlkdSPN/vcFKAVKbtukcCN5J1e4r7QWnfZHJzIFfkbTTVh/CEd8mlOi/d1PrTbGkvHB4QPoGvaXkWleMWcexBx1fm3u5fbyOrsD9heHWg//94r/t+14RWvelfT/H0KvIenaNSkGXfxPXbroMAOoOMu/jDm04zAqs+J8LVzTMs3MP7P6np3vsMonkX/z6JbmAwAAA==)"></div>
           <div class="res-project-meta"><span class="res-place"><i data-lucide="trophy"></i>Гутгаар байр</span><span class="res-fund">Санхүүжилт: 8,623,315₮</span></div>
           <h4>ГОЁУ</h4>
           <p>Ахлах ангийн сурагчдад үндэсний бичиг сурах сэдэл төрүүлэх 45 хоногийн төсөл: 30 сургуулийн 153 сурагчийг сургалтад хамруулж, 183 цахим контентоороо 3.5 сая гаруй үзэлт авсан.</p>
-          <a class="res-more" href="assets/tominc/tominc-2026-impact-report.pdf#page=18" target="_blank" rel="noopener">Дэлгэрэнгүй<i data-lucide="arrow-right"></i></a>
         </article>
       </div>
-      <p class="res-all"><a class="res-more" href="assets/tominc/tominc-2026-impact-report.pdf" target="_blank" rel="noopener">Бүх 25 төслийн тухай тайлангаас уншаарай<i data-lucide="arrow-right"></i></a></p>
     </div>
   </section>
 
@@ -1338,7 +1330,7 @@ section[id],article[id]{scroll-margin-top:80px}
           </figcaption>
         </figure>
       </div>
-      <p class="res-label">Төгсөгчдийн хэрэгжүүлж яваа бизнесүүд</p>
+      <p class="res-label">Төгсөгчдийн үүсгэн байгуулсан бизнесүүд</p>
       <!-- Each business and the graduate who runs it. Put in the name and year where it says Төгсөгчийн нэр / 20XX;
            for a photo, swap the icon in .res-avatar for <img src="..." alt="">. Logos are in assets/ventures/ (a business without one
            shows its first letter in a .mono square). Copy a card to add another business. -->
@@ -1352,8 +1344,9 @@ section[id],article[id]{scroll-margin-top:80px}
         <li class="venture"><img class="venture-logo" src="assets/ventures/essaygo.webp" alt="" width="144" height="144" loading="lazy" decoding="async"><strong>EssayGo</strong>
           <p class="venture-who"><span class="res-avatar" aria-hidden="true"><i data-lucide="user"></i></span><span><b>Төгсөгчийн нэр</b><small>Үүсгэн байгуулагч</small><small>2023 оны төгсөгч</small></span></p></li>
       </ul>
-      <!-- Graduates at big companies (placeholders): put in each graduate's name, year, and role and company -->
-      <ul class="res-people">
+      <!-- Graduates at big companies (placeholders): put in each graduate's name, year, and role and company.
+           Hidden for now: remove "hidden data-later" to show them again. -->
+      <ul class="res-people" hidden data-later>
         <li class="card res-person">
           <span class="res-avatar" aria-hidden="true"><i data-lucide="user"></i></span>
           <p class="alum-who"><strong>Төгсөгчийн нэр</strong><span>20XX оны төгсөгч</span><span>Албан тушаал, Компанийн нэр</span></p>
