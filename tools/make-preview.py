@@ -28,7 +28,7 @@ assert n == 1, 'PUBLISHED line not found in index.html'
 
 # Preview-only page switcher. The site's router marks the open page's link with aria-current, as it does for the menu.
 PAGES = [('home', 'Нүүр'), ('about', 'Бидний тухай'), ('program', 'Хөтөлбөр'),
-         ('admissions', 'Элсэлт'), ('outcomes', 'Бидний үр дүн')]
+         ('outcomes', 'Бидний үр дүн'), ('admissions', 'Элсэлт')]
 links = ''.join('<a href="#%s" data-nav="%s">%s</a>' % (pid, pid, label) for pid, label in PAGES)
 bar = ('<nav class="preview-bar" aria-label="Урьдчилсан харагдац"><strong>Урьдчилсан харагдац</strong>' + links + '</nav>\n'
        '<style>'

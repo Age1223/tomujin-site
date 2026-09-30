@@ -7,6 +7,47 @@
 <meta property="og:title" content="Томүжин Алтернатив сургууль">
 <meta property="og:description" content="Бид зөвхөн сургууль биш боловсролыг шинэчлэх хөдөлгөөн.">
 <style>[hidden]{display:none!important}</style>
+<!-- Tracking. Paste your IDs between the quotes; an empty one stays off. Only the live site has this part
+     (the Claude preview leaves it out, so reviewing the preview doesn't count as visits). -->
+<script>
+  window.TRACKING = {
+    ga4: "",        // Google Analytics 4 measurement ID, e.g. "G-ABC123XYZ"
+    metaPixel: "",  // Meta (Facebook/Instagram) Pixel ID, e.g. "123456789012345"
+    gtm: ""         // Google Tag Manager container ID, e.g. "GTM-ABCD123" (for any other tools, e.g. TikTok)
+  };
+  /* Loads each tool whose ID is filled in, and gives the site two things to report:
+     trackPage(page) for each page opened (#about → /about) and trackLead() for each waitlist sign-up.
+     No personal details (phone, school) are ever sent to these tools. */
+  (function(t){
+    window.dataLayer = window.dataLayer || [];
+    function load(src){ var el = document.createElement("script"); el.async = true; el.src = src; document.head.appendChild(el); }
+    if (t.gtm){ dataLayer.push({"gtm.start": Date.now(), event: "gtm.js"}); load("https://www.googletagmanager.com/gtm.js?id=" + encodeURIComponent(t.gtm)); }
+    if (t.ga4){
+      window.gtag = function(){ dataLayer.push(arguments); };
+      gtag("js", new Date());
+      gtag("config", t.ga4, {send_page_view: false});
+      load("https://www.googletagmanager.com/gtag/js?id=" + encodeURIComponent(t.ga4));
+    }
+    if (t.metaPixel){
+      var f = window.fbq = function(){ f.callMethod ? f.callMethod.apply(f, arguments) : f.queue.push(arguments); };
+      if (!window._fbq) window._fbq = f;
+      f.push = f; f.loaded = true; f.version = "2.0"; f.queue = [];
+      load("https://connect.facebook.net/en_US/fbevents.js");
+      fbq("init", t.metaPixel);
+    }
+    window.trackPage = function(page){
+      var path = page === "home" ? "/" : "/" + page;
+      if (t.ga4) gtag("event", "page_view", {page_title: document.title, page_location: location.origin + path});
+      if (t.metaPixel) fbq("track", "PageView");
+      dataLayer.push({event: "page_view", page_path: path, page_title: document.title});
+    };
+    window.trackLead = function(){
+      if (t.ga4) gtag("event", "generate_lead", {form_name: "waitlist"});
+      if (t.metaPixel) fbq("track", "Lead");
+      dataLayer.push({event: "waitlist_signup"});
+    };
+  })(window.TRACKING);
+</script>
 <!-- page-head -->
 <title>Tomujin Alternative School</title>
 <meta name="description" content="Томүжин Алтернатив сургууль — бид зөвхөн сургууль биш, боловсролыг шинэчлэх хөдөлгөөн.">
@@ -1443,11 +1484,11 @@ html.reader-open{overflow:hidden}
     {id:"program", label:"Хөтөлбөр", sections:[
       ["program-timeline","13 жилийн аялал"], ["program-pbl","PBL хөтөлбөр"], ["program-house","Хаус систем"],
       ["program-college-prep","Коллеж Преп"], ["program-tom-ink","Том Инк"], ["program-clubs","Дугуйлан"]]},
+    {id:"outcomes", label:"Бидний үр дүн", sections:[
+      ["outcomes-universities","Их сургуульд тэнцсэн"], ["outcomes-projects","Амжилттай төслүүд"], ["outcomes-careers","Амжилттай карьер"]]},
     {id:"admissions", label:"Элсэлт", sections:[
       ["admissions-fit","Томүжин чиний сургууль мөн үү?"], ["admissions-grades","Элсэлт авах анги"], ["admissions-process","Элсэлтийн процесс"],
-      ["admissions-student","Томүжин ямар хүүхдийг хайдаг вэ?"], ["admissions-fees","Сургалтын төлбөр ба санхүүгийн дэмжлэг"], ["admissions-faq","Түгээмэл асуултууд"]]},
-    {id:"outcomes", label:"Бидний үр дүн", sections:[
-      ["outcomes-universities","Их сургуульд тэнцсэн"], ["outcomes-projects","Амжилттай төслүүд"], ["outcomes-careers","Амжилттай карьер"]]}
+      ["admissions-student","Томүжин ямар хүүхдийг хайдаг вэ?"], ["admissions-fees","Сургалтын төлбөр ба санхүүгийн дэмжлэг"], ["admissions-faq","Түгээмэл асуултууд"]]}
   ];
 
   /* Sections hidden for now (hidden data-later) stay out of the menus */
@@ -1568,6 +1609,7 @@ html.reader-open{overflow:hidden}
   var menuBtn = document.getElementById("menu-btn");
   var mobileNav = document.getElementById("mobile-nav");
   function closeMenu(){ mobileNav.hidden = true; menuBtn.setAttribute("aria-expanded","false"); }
+  var trackedPage = null;
   function route(){
     var h = (location.hash || "").replace("#","");
     var id = ids.indexOf(h) !== -1 ? h : null, target = null;
@@ -1582,6 +1624,7 @@ html.reader-open{overflow:hidden}
       if (a.getAttribute("data-nav")===id) a.setAttribute("aria-current","page"); else a.removeAttribute("aria-current");
     });
     document.title = pages[ids.indexOf(id)].getAttribute("data-title");
+    if (id !== trackedPage && window.trackPage){ trackedPage = id; window.trackPage(id); }
     closeMenu();
     if (target){
       if (target.tagName === "DETAILS") target.open = true;
@@ -1636,6 +1679,7 @@ html.reader-open{overflow:hidden}
       fetch(form.action, {method: "POST", body: data}).then(function(r){ return r.json(); }).then(function(res){
         if (!res || !res.ok) throw new Error("not saved");
         form.hidden = true; done.hidden = false;
+        if (window.trackLead) window.trackLead();
       }).catch(function(){
         status.textContent = "Илгээж чадсангүй. Интернэтээ шалгаад дахин оролдоно уу.";
       }).then(function(){ btn.disabled = false; btn.textContent = "Илгээх"; });

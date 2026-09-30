@@ -61,6 +61,23 @@ vercel.json         lets browsers keep the images for a day, so repeat visits lo
   - Put several `<img>` in one box and it becomes a small gallery, with arrows in the corner and swiping on phones.
   - Photo boxes are 3:2 (the shape of most camera photos). Photos about 1200×800 pixels look sharp; anything much larger only slows the page down.
 
+## Tracking (Google Analytics, Meta Pixel, Google Tag Manager)
+
+The IDs go in `window.TRACKING` near the top of `index.html` (in `<head>`). Paste an ID between the quotes to switch that tool on; leave it empty to keep it off.
+
+| Tool | Where to find the ID | Looks like |
+|---|---|---|
+| Google Analytics 4 (`ga4`) | analytics.google.com → Admin → Data streams → your web stream → Measurement ID | `G-ABC123XYZ` |
+| Meta Pixel (`metaPixel`) | business.facebook.com → Events Manager → Data sources → your pixel | `123456789012345` |
+| Google Tag Manager (`gtm`) | tagmanager.google.com → your container | `GTM-ABCD123` |
+
+What the site reports:
+- **Page views:** one each time a page is opened, named like `/about`, `/outcomes`, `/admissions` (the homepage is `/`).
+- **Waitlist sign-ups:** `generate_lead` in Google Analytics and `Lead` in Meta, sent after a sign-up is saved to the Leads sheet. No phone numbers or school names are sent.
+- **Google Tag Manager** gets the same two as `page_view` and `waitlist_signup` events in its data layer. Use it for any other tool (TikTok Pixel, Hotjar, LinkedIn…) without changing the site's code.
+
+The Claude preview doesn't include this part, so looking at the preview is never counted.
+
 ## Lead form
 
 The "Хүлээлгийн жагсаалтад орох" form sits in the homepage hero. Once you scroll past it, a button in the bottom-right corner opens it, and it settles into the "Чамд тохирох сургууль байна уу?" section when you scroll there. It is one form moving between these places, so anything typed stays. Each answer goes to the **Tomujin website leads** Apps Script (a standalone project in the school's Google account; its code is `tools/lead-form.gs`). The script adds a row to the **Leads** tab of "TAS | Admissions Data 2026-2027":
