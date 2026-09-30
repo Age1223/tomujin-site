@@ -38,7 +38,8 @@ assets/
   tangrams/         tangram figures from the Tomujin design system
   unis/             university logos (WebP)
   ventures/         logos of graduates' businesses (Бидний үр дүн page)
-  tominc/           TOM/INC 2026 Impact Report (a web-sized PDF), its cover and the winning projects' pictures
+  tominc/           TOM/INC 2026 Impact Report: a web-sized PDF, its pages as images for the in-page reader (pages/),
+                    the cover and the winning projects' pictures
 vercel.json         lets browsers keep the images for a day, so repeat visits load fast
 ```
 
