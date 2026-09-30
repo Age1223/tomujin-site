@@ -915,8 +915,8 @@ section[id],article[id]{scroll-margin-top:80px}
     </div>
   </section>
 
-  <!-- c. Алсын хараа -->
-  <section id="about-vision" class="band">
+  <!-- c. Алсын хараа. Hidden for now: remove "hidden data-later" to show it again. -->
+  <section id="about-vision" class="band" hidden data-later>
     <div class="wrap">
       <div class="section-head">
         <h2 class="h1">Алсын хараа</h2>
@@ -1391,7 +1391,9 @@ section[id],article[id]{scroll-margin-top:80px}
       ["outcomes-universities","Их сургуульд тэнцсэн"], ["outcomes-projects","Амжилттай төслүүд"], ["outcomes-careers","Амжилттай карьер"]]}
   ];
 
-  function sectionLinks(pg){ return pg.sections.map(function(x){ return '<a href="#'+x[0]+'">'+x[1]+'</a>'; }).join(""); }
+  /* Sections hidden for now (hidden data-later) stay out of the menus */
+  function shownSections(pg){ return pg.sections.filter(function(x){ var el = document.getElementById(x[0]); return !el || !el.hidden; }); }
+  function sectionLinks(pg){ return shownSections(pg).map(function(x){ return '<a href="#'+x[0]+'">'+x[1]+'</a>'; }).join(""); }
   var navRoot = document.querySelector("[data-nav-root]");
   navRoot.innerHTML = SITEMAP.map(function(pg){
     return '<div class="nav-item"><a class="nav-link" href="#'+pg.id+'" data-nav="'+pg.id+'">'+pg.label+'<i data-lucide="chevron-down"></i></a>'+
@@ -1401,7 +1403,7 @@ section[id],article[id]{scroll-margin-top:80px}
     return '<div class="m-group"><a href="#'+pg.id+'" data-nav="'+pg.id+'">'+pg.label+'</a><div class="m-sections">'+sectionLinks(pg)+'</div></div>';
   }).join("") + '<a class="btn btn--accent btn--lg" href="https://join.tomujin.edu.mn" target="_blank" rel="noopener">Өргөдлөө илгээгээрэй</a>';
   document.querySelector("[data-footer-root]").innerHTML = SITEMAP.map(function(pg){
-    return '<div><a class="f-page" href="#'+pg.id+'">'+pg.label+'</a><ul>'+pg.sections.map(function(x){ return '<li><a href="#'+x[0]+'">'+x[1]+'</a></li>'; }).join("")+'</ul></div>';
+    return '<div><a class="f-page" href="#'+pg.id+'">'+pg.label+'</a><ul>'+shownSections(pg).map(function(x){ return '<li><a href="#'+x[0]+'">'+x[1]+'</a></li>'; }).join("")+'</ul></div>';
   }).join("");
 
   /* ── Shared content ── */
