@@ -216,6 +216,11 @@ section[id],article[id]{scroll-margin-top:80px}
 .home-hero{padding-block:40px 88px}
 .home-hero-art{width:100%;max-width:780px;height:auto;background-size:cover;background-position:center}
 .home-hero-sub{font-size:clamp(1.15rem,2.2vw,1.5rem);font-weight:700;color:var(--text-display)}
+/* Hero: the picture and subtitle beside the waitlist form; on narrower screens the form goes under them */
+.home-hero-main{display:grid;justify-items:center;gap:var(--space-6);min-width:0}
+.home-hero .lead-dock--hero{width:100%;max-width:440px;min-height:0;text-align:left}
+.lead-dock--hero .lead-panel{border:1px solid var(--color-border);box-shadow:0 18px 40px -18px rgba(45,27,78,.35)}
+@media (min-width:1000px){.home-hero .wrap{grid-template-columns:minmax(0,1fr) minmax(340px,400px);align-items:center;column-gap:var(--space-12)}}
 .visually-hidden{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
 .home-hero .display{max-width:15ch}
 .home-hero .wrap{gap:var(--space-6)}
@@ -630,15 +635,48 @@ section[id],article[id]{scroll-margin-top:80px}
 
   <section class="page-hero home-hero">
     <div class="wrap">
-      <!-- Hero graphic from join.tomujin.edu.mn; its words are in the picture, so the heading repeats them for screen readers and search -->
-      <h1 class="visually-hidden">Бага, дунд ангитай боллоо.</h1>
-      <img class="home-hero-art" src="assets/hero/join-hero-1280.webp" srcset="assets/hero/join-hero-800.webp 800w, assets/hero/join-hero-1280.webp 1280w" sizes="(max-width: 820px) 100vw, 780px" alt="Бага, дунд ангитай боллоо. Элсэлт авах анги: 1-р анги, 6-р анги" width="1280" height="965" fetchpriority="high" decoding="async" style="background-image:url(data:image/webp;base64,UklGRmoBAABXRUJQVlA4IF4BAABQBwCdASogABgAPu1srVEppiQiqAqpMB2JbAC21BTXx1WB4AaQJnMLznJ3GXERrIurwpu50W0Y7Xs1/3OO/hRrPijAAP7zfeM6U8tXm5PdtZkwDg6cmkZyOUGp0gXCdgUUxbhP0DHVKUlIc5wWEPrxxGOnqek9+415bZtg3t+NW6W5sZdqd09wOaSviAy6CVO/6d0+N9ISHKbvz8EW4BGFu/1uEcKZBzNsdTBk8uv4Zh50gJdsvJY6U0LyWpnSPy36zkIeC0SrxvEA/smBdYZNrgCl/Ae9ntG7mIKn1I45rI/d+gfMx6o4MbyzbxtX7IoMxSycES2EohBrhUXYS3ldk3flPdeueKfXcz/gRma4qxg3b58K+x4+nR47OYtjG/Yp5zTQhgGH6O+7s6o0I71wbm2klvRBSVkiBmUc291Hy7Nl5D19CBx0Gb291U2SKJS4zpw5wtPCnB6otRRQAA==)">
-      <p class="lead home-hero-sub">Амьдралд бэлэн хүчирхэг хүмүүсийг бэлдэнэ.</p>
-      <!-- Opens the waitlist form; once this button scrolls out of view the same button floats in the corner -->
-      <button class="btn btn--accent btn--lg" type="button" data-lead-open><i data-lucide="message-circle"></i>Хүлээлгийн жагсаалтад орох</button>
-      <div class="btn-row" hidden data-later>
-        <a class="btn btn--accent btn--lg" href="https://join.tomujin.edu.mn" target="_blank" rel="noopener">Өргөдлөө илгээгээрэй</a>
-        <a class="btn btn--outline btn--lg" href="#program">Хөтөлбөртэй танилцах <i data-lucide="arrow-right"></i></a>
+      <div class="home-hero-main">
+        <!-- Hero graphic from join.tomujin.edu.mn; its words are in the picture, so the heading repeats them for screen readers and search -->
+        <h1 class="visually-hidden">Бага, дунд ангитай боллоо.</h1>
+        <img class="home-hero-art" src="assets/hero/join-hero-1280.webp" srcset="assets/hero/join-hero-800.webp 800w, assets/hero/join-hero-1280.webp 1280w" sizes="(max-width: 820px) 100vw, 780px" alt="Бага, дунд ангитай боллоо. Элсэлт авах анги: 1-р анги, 6-р анги" width="1280" height="965" fetchpriority="high" decoding="async" style="background-image:url(data:image/webp;base64,UklGRmoBAABXRUJQVlA4IF4BAABQBwCdASogABgAPu1srVEppiQiqAqpMB2JbAC21BTXx1WB4AaQJnMLznJ3GXERrIurwpu50W0Y7Xs1/3OO/hRrPijAAP7zfeM6U8tXm5PdtZkwDg6cmkZyOUGp0gXCdgUUxbhP0DHVKUlIc5wWEPrxxGOnqek9+415bZtg3t+NW6W5sZdqd09wOaSviAy6CVO/6d0+N9ISHKbvz8EW4BGFu/1uEcKZBzNsdTBk8uv4Zh50gJdsvJY6U0LyWpnSPy36zkIeC0SrxvEA/smBdYZNrgCl/Ae9ntG7mIKn1I45rI/d+gfMx6o4MbyzbxtX7IoMxSycES2EohBrhUXYS3ldk3flPdeueKfXcz/gRma4qxg3b58K+x4+nR47OYtjG/Yp5zTQhgGH6O+7s6o0I71wbm2klvRBSVkiBmUc291Hy7Nl5D19CBx0Gb291U2SKJS4zpw5wtPCnB6otRRQAA==)">
+        <p class="lead home-hero-sub">Амьдралд бэлэн хүчирхэг хүмүүсийг бэлдэнэ.</p>
+        <div class="btn-row" hidden data-later>
+          <a class="btn btn--accent btn--lg" href="https://join.tomujin.edu.mn" target="_blank" rel="noopener">Өргөдлөө илгээгээрэй</a>
+          <a class="btn btn--outline btn--lg" href="#program">Хөтөлбөртэй танилцах <i data-lucide="arrow-right"></i></a>
+        </div>
+      </div>
+      <!-- home-hero-form: the waitlist form. It starts here; once it scrolls out of view it moves to the corner button,
+           and at "Чамд тохирох сургууль байна уу?" it settles into that section. It's one form, so anything typed stays. -->
+      <div class="lead-dock lead-dock--hero" data-lead-dock>
+        <div class="lead-panel lead-card" id="lead-panel" role="region" aria-labelledby="lead-title" tabindex="-1">
+          <button class="lead-close" type="button" aria-label="Хаах"><i data-lucide="x"></i></button>
+          <form class="lead" data-lead action="https://script.google.com/macros/s/AKfycbyRRHLedjKYPAqEX9BgxXp13Gy8RJSSJcAPtkto7dB2ybplTJEiBZe53Qh2O5bAwl-K/exec" method="post" novalidate>
+            <h3 id="lead-title">Хүлээлгийн жагсаалтад орох</h3>
+            <div class="field">
+              <label for="lead-phone">Утасны дугаар</label>
+              <input id="lead-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" required data-error="Утасны дугаараа зөв оруулна уу (8 оронтой).">
+              <p class="field-error" hidden></p>
+            </div>
+            <div class="field">
+              <label for="lead-school">Одоо сурч буй сургууль</label>
+              <input id="lead-school" name="school" type="text" autocomplete="off" required data-error="Сургуулийнхаа нэрийг оруулна уу.">
+              <p class="field-error" hidden></p>
+            </div>
+            <div class="field">
+              <label for="lead-grade">Хэддүгээр анги вэ?</label>
+              <select id="lead-grade" name="grade" required data-error="Ангиа сонгоно уу."><option value="" selected disabled>Сонгох</option><option>1-р анги</option><option>2-р анги</option><option>3-р анги</option><option>4-р анги</option><option>5-р анги</option><option>6-р анги</option><option>7-р анги</option><option>8-р анги</option><option>9-р анги</option><option>10-р анги</option><option>11-р анги</option><option>12-р анги</option></select>
+              <p class="field-error" hidden></p>
+            </div>
+            <!-- Hidden from people; spam bots fill it in and the script ignores those -->
+            <div class="lead-hp" aria-hidden="true"><label>Website <input name="website" type="text" tabindex="-1" autocomplete="off"></label></div>
+            <button class="btn btn--accent btn--lg" type="submit">Илгээх</button>
+            <p class="lead-status" role="status" aria-live="polite"></p>
+          </form>
+          <div class="lead-done" hidden>
+            <span class="icon-tile icon-tile--gold"><i data-lucide="check"></i></span>
+            <p>Бид тантай тун удахгүй холбогдох болно. ❤️</p>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -1286,39 +1324,11 @@ section[id],article[id]{scroll-margin-top:80px}
 </main>
 
 <!-- ═════════════════ FLOATING LEAD FORM ═════════════════ -->
-<!-- Floats in the bottom-right corner once the hero's waitlist button has scrolled out of view; the button opens the form above it.
+<!-- The corner button that shows once the hero's form has scrolled out of view; it opens that same form above it.
+     (The form itself starts in the hero, see "home-hero-form".)
      Answers go to the "Tomujin website leads" Apps Script (tools/lead-form.gs), which adds each one
      as a row in the Leads tab of "TAS | Admissions Data 2026-2027". -->
-<div class="lead-float" data-lead-float>
-  <div class="lead-panel lead-card" id="lead-panel" role="dialog" aria-labelledby="lead-title" tabindex="-1" hidden>
-    <button class="lead-close" type="button" aria-label="Хаах"><i data-lucide="x"></i></button>
-    <form class="lead" data-lead action="https://script.google.com/macros/s/AKfycbyRRHLedjKYPAqEX9BgxXp13Gy8RJSSJcAPtkto7dB2ybplTJEiBZe53Qh2O5bAwl-K/exec" method="post" novalidate>
-      <h3 id="lead-title">Хүлээлгийн жагсаалтад орох</h3>
-      <div class="field">
-        <label for="lead-phone">Утасны дугаар</label>
-        <input id="lead-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" required data-error="Утасны дугаараа зөв оруулна уу (8 оронтой).">
-        <p class="field-error" hidden></p>
-      </div>
-      <div class="field">
-        <label for="lead-school">Одоо сурч буй сургууль</label>
-        <input id="lead-school" name="school" type="text" autocomplete="off" required data-error="Сургуулийнхаа нэрийг оруулна уу.">
-        <p class="field-error" hidden></p>
-      </div>
-      <div class="field">
-        <label for="lead-grade">Хэддүгээр анги вэ?</label>
-        <select id="lead-grade" name="grade" required data-error="Ангиа сонгоно уу."><option value="" selected disabled>Сонгох</option><option>1-р анги</option><option>2-р анги</option><option>3-р анги</option><option>4-р анги</option><option>5-р анги</option><option>6-р анги</option><option>7-р анги</option><option>8-р анги</option><option>9-р анги</option><option>10-р анги</option><option>11-р анги</option><option>12-р анги</option></select>
-        <p class="field-error" hidden></p>
-      </div>
-      <!-- Hidden from people; spam bots fill it in and the script ignores those -->
-      <div class="lead-hp" aria-hidden="true"><label>Website <input name="website" type="text" tabindex="-1" autocomplete="off"></label></div>
-      <button class="btn btn--accent btn--lg" type="submit">Илгээх</button>
-      <p class="lead-status" role="status" aria-live="polite"></p>
-    </form>
-    <div class="lead-done" hidden>
-      <span class="icon-tile icon-tile--gold"><i data-lucide="check"></i></span>
-      <p>Бид тантай тун удахгүй холбогдох болно. ❤️</p>
-    </div>
-  </div>
+<div class="lead-float" data-lead-float hidden>
   <button class="lead-fab" type="button" aria-expanded="false" aria-controls="lead-panel"><i data-lucide="message-circle" class="i-open"></i><i data-lucide="x" class="i-close"></i><span>Хүлээлгийн жагсаалтад орох</span></button>
 </div>
 
@@ -1560,23 +1570,25 @@ section[id],article[id]{scroll-margin-top:80px}
     });
   });
 
-  /* ── Lead form. The "Хүлээлгийн жагсаалтад орох" button sits in the hero; once it scrolls out of view the same
-        button floats in the corner and opens the form above it. While the "Чамд тохирох сургууль байна уу?"
-        section is on screen the form sits in that section instead. It's one form moving between places, so
-        anything typed stays. ✕, Esc or the corner button close the floating form. ── */
+  /* ── Lead form. The form starts in the hero. Once it has scrolled out of view it moves into the corner button,
+        which opens it above itself, and while the "Чамд тохирох сургууль байна уу?" section is on screen it sits
+        in that section. It's one form moving between places, so anything typed stays. ✕, Esc or the corner
+        button close the corner form. ── */
   (function(){
-    var root = document.querySelector("[data-lead-float]"), dock = document.querySelector("[data-lead-dock]");
-    if (!root) return;
-    var fab = root.querySelector(".lead-fab"), panel = root.querySelector(".lead-panel");
-    var heroBtn = document.querySelector("[data-lead-open]");
-    var docked = false, heroInView = false, open = false;
-    /* The corner button shows unless the form is docked, or the hero button is on screen and the form is closed */
+    var root = document.querySelector("[data-lead-float]"), panel = document.getElementById("lead-panel");
+    if (!root || !panel) return;
+    var fab = root.querySelector(".lead-fab");
+    var docks = Array.prototype.slice.call(document.querySelectorAll("[data-lead-dock]"));
+    var onScreen = docks.map(function(){ return false; });
+    /* dock: the place in the page holding the form right now; null while it's in the corner */
+    var dock = panel.closest("[data-lead-dock]"), open = false;
+    /* The corner button shows only while the form isn't sitting in the hero or the bottom section */
     function render(){
-      root.hidden = docked || (heroInView && !open);
-      fab.setAttribute("aria-expanded", String(open && !docked));
+      root.hidden = !!dock;
+      fab.setAttribute("aria-expanded", String(open && !dock));
     }
     function setOpen(v){
-      if (docked) return;
+      if (dock) return;
       open = v;
       panel.hidden = !v;
       render();
@@ -1585,31 +1597,37 @@ section[id],article[id]{scroll-margin-top:80px}
       /* On phones, wait for a tap so the keyboard doesn't pop up by itself */
       if (first && window.matchMedia("(pointer: fine)").matches) first.focus(); else panel.focus();
     }
-    function closeAndReturnFocus(){ setOpen(false); (heroInView && heroBtn ? heroBtn : fab).focus(); }
-    function setDocked(on){
-      if (on === docked) return;
-      var active = document.activeElement, keepFocus = panel.contains(active);
-      docked = on;
+    function closeAndReturnFocus(){ setOpen(false); fab.focus(); }
+    /* Put the form in the first place that's on screen, or in the corner when neither is */
+    function place(){
+      var want = null;
+      docks.forEach(function(d, i){ if (onScreen[i] && !want) want = d; });
+      if (want === dock) return;
+      var active = document.activeElement, typing = panel.contains(active);
+      /* Someone is typing in it: leave it where it is until they click away */
+      if (typing && !want) return;
+      /* Keep the spot it leaves the same height, so the page doesn't jump */
+      if (dock && dock.offsetHeight) dock.style.minHeight = dock.offsetHeight + "px";
+      dock = want;
       open = false;
-      if (on){ dock.appendChild(panel); panel.hidden = false; }
+      if (want){ want.appendChild(panel); panel.hidden = false; }
       else { root.insertBefore(panel, fab); panel.hidden = true; }
-      panel.setAttribute("role", on ? "region" : "dialog");
+      panel.setAttribute("role", want ? "region" : "dialog");
       render();
-      if (keepFocus && on) active.focus({preventScroll: true});
+      if (typing && want) active.focus({preventScroll: true});
     }
     fab.addEventListener("click", function(){ setOpen(!open); });
-    root.querySelector(".lead-close").addEventListener("click", closeAndReturnFocus);
-    document.addEventListener("keydown", function(e){ if (e.key === "Escape" && open && !docked) closeAndReturnFocus(); });
-    if (heroBtn) heroBtn.addEventListener("click", function(){ setOpen(true); });
+    panel.querySelector(".lead-close").addEventListener("click", closeAndReturnFocus);
+    panel.addEventListener("focusout", function(){ setTimeout(place, 0); });
+    document.addEventListener("keydown", function(e){ if (e.key === "Escape" && open && !dock) closeAndReturnFocus(); });
     if ("IntersectionObserver" in window){
-      if (heroBtn){
-        var r = heroBtn.getBoundingClientRect();
-        heroInView = r.width > 0 && r.bottom > 0 && r.top < window.innerHeight;
-        new IntersectionObserver(function(entries){ heroInView = entries[0].isIntersecting; render(); }).observe(heroBtn);
-      }
-      /* Dock once the section's top is about two-thirds of the way up the screen */
-      if (dock) new IntersectionObserver(function(entries){ setDocked(entries[0].isIntersecting); },
-        {rootMargin: "0px 0px -35% 0px"}).observe(dock.closest("section"));
+      docks.forEach(function(d, i){
+        /* The hero keeps the form until it has scrolled right out of view; the bottom section takes it once
+           the section's top is about two-thirds of the way up the screen */
+        var hero = !!d.closest(".home-hero");
+        new IntersectionObserver(function(entries){ onScreen[i] = entries[0].isIntersecting; place(); },
+          hero ? {} : {rootMargin: "0px 0px -35% 0px"}).observe(hero ? d : d.closest("section"));
+      });
     }
     render();
   })();
