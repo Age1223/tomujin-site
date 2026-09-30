@@ -2,16 +2,18 @@
 
 The website for Tomujin Alternative School, built with the Tomujin design system. It's one static page with no build step, so any static host (Vercel, Netlify, GitHub Pages) can serve it as-is.
 
-## Homepage-only launch
+## What's public
 
-For now only the Нүүр page is published. The other four pages are still in `index.html` but can't be opened, and their addresses show the homepage. To bring them back:
+Нүүр, Бидний тухай, Элсэлт and Бидний үр дүн are public. Хөтөлбөр is still in `index.html`, but it can't be opened: its address shows the homepage, and the menus and footer leave it out. To publish it:
 
-1. In the script at the bottom of `index.html`, add the page ids to `PUBLISHED`, e.g. `var PUBLISHED = ["home", "about", "program", "admissions", "outcomes"];`
-2. Remove `hidden data-later` from the elements that carry it: the header menu, the phone menu button, the "Өргөдлөө илгээгээрэй" buttons, the "Хөтөлбөртэй танилцах" and "Бидний үр дүн" buttons, the footer sitemap and the join.tomujin.edu.mn link.
+1. In the script at the bottom of `index.html`, add `"program"` to `PUBLISHED` (near the top of the script): `var PUBLISHED = ["home", "about", "program", "admissions", "outcomes"];`
+2. Optionally show the homepage's "Хөтөлбөртэй танилцах" button (remove `hidden data-later` from its `btn-row` in the hero).
+
+Other things hidden for now carry `hidden data-later`; remove it to show them again. They include the "Өргөдлөө илгээгээрэй" buttons in the header and on the homepage, the homepage intro, "Алсын хараа", the graduate placeholder cards on Бидний үр дүн and the footer's join.tomujin.edu.mn link. Sections hidden this way are left out of the menus automatically.
 
 ### Previewing the unpublished pages
 
-The Claude artifact preview is built from `index.html` by `tools/make-preview.py`. Its homepage is identical to the live one. The only difference is a small bar in the bottom-left corner, which exists only in the preview, for switching between all five pages, so the unpublished ones can be reviewed. `index.html` itself, which is what Vercel serves, stays homepage-only.
+The Claude artifact preview is built from `index.html` by `tools/make-preview.py`. It is the same site with every page allowed to open (Хөтөлбөр included), plus a small bar in the bottom-left corner, which exists only in the preview, for switching between all five pages. `index.html` itself is what Vercel serves.
 
 ## Pages
 

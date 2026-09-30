@@ -650,11 +650,11 @@ html.reader-open{overflow:hidden}
       <span class="logo-plate"><img src="assets/logo-lockup.png" alt="Tomujin Alternative School"></span>
     </a>
     <!-- Filled from SITEMAP in the script at the bottom: every page, with a dropdown of its sections -->
-    <!-- Homepage-only launch: everything marked data-later is hidden. Remove "hidden data-later" to bring it back. -->
-    <nav class="nav" aria-label="Үндсэн цэс" data-nav-root hidden data-later></nav>
+    <!-- Anything marked data-later is hidden for now. Remove "hidden data-later" to bring it back. -->
+    <nav class="nav" aria-label="Үндсэн цэс" data-nav-root></nav>
     <div class="header-actions">
       <a class="btn btn--accent header-cta" hidden data-later href="https://join.tomujin.edu.mn" target="_blank" rel="noopener">Өргөдлөө илгээгээрэй</a>
-      <button class="menu-btn" hidden data-later id="menu-btn" aria-expanded="false" aria-controls="mobile-nav" aria-label="Бүх хэсгийг харах"><i data-lucide="menu"></i></button>
+      <button class="menu-btn" id="menu-btn" aria-expanded="false" aria-controls="mobile-nav" aria-label="Бүх хэсгийг харах"><i data-lucide="menu"></i></button>
     </div>
   </div>
   <nav class="mobile-nav" id="mobile-nav" aria-label="Бүх хэсэг" hidden data-mobile-root></nav>
@@ -799,7 +799,7 @@ html.reader-open{overflow:hidden}
         <h2 class="h1">Тэнцсэн их сургуулиуд</h2>
       </div>
       <ul class="unis" data-unis></ul>
-      <div class="btn-row" hidden data-later style="margin-top:var(--space-8)">
+      <div class="btn-row" style="margin-top:var(--space-8)">
         <a class="btn btn--outline" href="#outcomes">Бидний үр дүн <i data-lucide="arrow-right"></i></a>
       </div>
     </div>
@@ -1364,7 +1364,7 @@ html.reader-open{overflow:hidden}
         <li class="venture"><img class="venture-logo" src="assets/ventures/admitboost.webp" alt="" width="144" height="144" loading="lazy" decoding="async"><strong>AdmitBoost</strong>
           <p class="venture-who"><span class="res-avatar" aria-hidden="true"><i data-lucide="user"></i></span><span><b>Ч.Дөлгөөн</b><small>Үүсгэн байгуулагч</small><small>2023 оны төгсөгч</small></span></p></li>
         <li class="venture"><img class="venture-logo" src="assets/ventures/essaygo.webp" alt="" width="144" height="144" loading="lazy" decoding="async"><strong>EssayGo</strong>
-          <p class="venture-who"><span class="res-avatar" aria-hidden="true"><i data-lucide="user"></i></span><span><b>Төгсөгчийн нэр</b><small>Үүсгэн байгуулагч</small><small>2023 оны төгсөгч</small></span></p></li>
+          <p class="venture-who"><span class="res-avatar" aria-hidden="true"><i data-lucide="user"></i></span><span><b>Үүсгэн байгуулагч</b><small>2023 оны төгсөгч</small></span></p></li>
       </ul>
       <!-- Graduates at big companies (placeholders): put in each graduate's name, year, and role and company.
            Hidden for now: remove "hidden data-later" to show them again. -->
@@ -1417,7 +1417,7 @@ html.reader-open{overflow:hidden}
           <a href="https://www.instagram.com/tomujinalternativeschool/" target="_blank" rel="noopener" aria-label="Instagram"><i data-lucide="instagram"></i></a>
         </div>
       </div>
-      <nav class="footer-map" aria-label="Сайтын бүтэц" data-footer-root hidden data-later></nav>
+      <nav class="footer-map" aria-label="Сайтын бүтэц" data-footer-root></nav>
     </div>
     <div class="footer-bottom">
       <span>© 2026 Tomujin Alternative School</span>
@@ -1429,6 +1429,10 @@ html.reader-open{overflow:hidden}
 <script src="https://cdn.jsdelivr.net/npm/lucide@0.474.0/dist/umd/lucide.min.js"></script>
 <script>
 (function(){
+  /* ── Pages that can be opened (the others' addresses show the homepage). Хөтөлбөр isn't public yet:
+        add "program" here when it is. The menus and the footer list only these pages. ── */
+  var PUBLISHED = ["home", "about", "admissions", "outcomes"];
+
   /* ── Site map: every page and its sections. Drives the header, the menu and the footer. ── */
   var SITEMAP = [
     {id:"home", label:"Нүүр", sections:[
@@ -1449,15 +1453,18 @@ html.reader-open{overflow:hidden}
   /* Sections hidden for now (hidden data-later) stay out of the menus */
   function shownSections(pg){ return pg.sections.filter(function(x){ var el = document.getElementById(x[0]); return !el || !el.hidden; }); }
   function sectionLinks(pg){ return shownSections(pg).map(function(x){ return '<a href="#'+x[0]+'">'+x[1]+'</a>'; }).join(""); }
+  var PAGES = SITEMAP.filter(function(pg){ return PUBLISHED.indexOf(pg.id) !== -1; });
   var navRoot = document.querySelector("[data-nav-root]");
-  navRoot.innerHTML = SITEMAP.map(function(pg){
+  navRoot.innerHTML = PAGES.map(function(pg){
     return '<div class="nav-item"><a class="nav-link" href="#'+pg.id+'" data-nav="'+pg.id+'">'+pg.label+'<i data-lucide="chevron-down"></i></a>'+
       '<div class="dropdown" aria-label="'+pg.label+'">'+sectionLinks(pg)+'</div></div>';
   }).join("");
-  document.querySelector("[data-mobile-root]").innerHTML = SITEMAP.map(function(pg){
+  /* The phone menu ends with the header's apply button, while that button is shown */
+  var headerCta = document.querySelector(".header-cta");
+  document.querySelector("[data-mobile-root]").innerHTML = PAGES.map(function(pg){
     return '<div class="m-group"><a href="#'+pg.id+'" data-nav="'+pg.id+'">'+pg.label+'</a><div class="m-sections">'+sectionLinks(pg)+'</div></div>';
-  }).join("") + '<a class="btn btn--accent btn--lg" href="https://join.tomujin.edu.mn" target="_blank" rel="noopener">Өргөдлөө илгээгээрэй</a>';
-  document.querySelector("[data-footer-root]").innerHTML = SITEMAP.map(function(pg){
+  }).join("") + (headerCta && !headerCta.hidden ? '<a class="btn btn--accent btn--lg" href="'+headerCta.getAttribute("href")+'" target="_blank" rel="noopener">'+headerCta.textContent+'</a>' : "");
+  document.querySelector("[data-footer-root]").innerHTML = PAGES.map(function(pg){
     return '<div><a class="f-page" href="#'+pg.id+'">'+pg.label+'</a><ul>'+shownSections(pg).map(function(x){ return '<li><a href="#'+x[0]+'">'+x[1]+'</a></li>'; }).join("")+'</ul></div>';
   }).join("");
 
@@ -1556,8 +1563,6 @@ html.reader-open{overflow:hidden}
   });
 
   /* ── Router: #home #about … opens a page; a section id (e.g. #admissions-faq) opens its page and scrolls to it ── */
-  /* Pages that can be opened. Add "about", "program", "admissions", "outcomes" back when they're ready. */
-  var PUBLISHED = ["home"];
   var pages = Array.prototype.slice.call(document.querySelectorAll("[data-page]"));
   var ids = pages.map(function(p){return p.getAttribute("data-page");});
   var menuBtn = document.getElementById("menu-btn");

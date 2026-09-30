@@ -1,13 +1,14 @@
 """Builds the Claude artifact preview from index.html.
 
-The live site (index.html on Vercel) shows only the homepage. The preview is the same page with the
-other four pages allowed to open, so they can be reviewed and commented on. Everything else is left
+The live site (index.html on Vercel) opens only the pages listed in PUBLISHED. The preview is the same
+page with every page allowed to open, so the unpublished ones can be reviewed and commented on. Everything else is left
 exactly as on the live site, so the preview's homepage matches the published one. A small preview-only
 bar in the bottom-left corner switches between the pages.
 
     python3 tools/make-preview.py OUTPUT_PATH
 """
 import os
+import re
 import sys
 
 root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -21,10 +22,9 @@ page = head + body
 # Keep things marked hidden actually hidden (index.html sets this above the copied part of its head)
 page = '<style>[hidden]{display:none!important}</style>\n' + page
 
-# Every page can be opened (on the live site only the homepage can)
-live = 'var PUBLISHED = ["home"];'
-assert live in page, 'PUBLISHED line not found in index.html'
-page = page.replace(live, 'var PUBLISHED = ["home", "about", "program", "admissions", "outcomes"];')
+# Every page can be opened, including the ones not public yet on the live site
+page, n = re.subn(r'var PUBLISHED = \[[^\]]*\];', 'var PUBLISHED = ["home", "about", "program", "admissions", "outcomes"];', page)
+assert n == 1, 'PUBLISHED line not found in index.html'
 
 # Preview-only page switcher. The site's router marks the open page's link with aria-current, as it does for the menu.
 PAGES = [('home', 'Нүүр'), ('about', 'Бидний тухай'), ('program', 'Хөтөлбөр'),
