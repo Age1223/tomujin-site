@@ -8,7 +8,8 @@
 <meta property="og:description" content="Бид зөвхөн сургууль биш боловсролыг шинэчлэх хөдөлгөөн.">
 <style>[hidden]{display:none!important}</style>
 <!-- Tracking. Paste your IDs between the quotes; an empty one stays off. Only the live site has this part
-     (the Claude preview leaves it out, so reviewing the preview doesn't count as visits). -->
+     (the Claude preview leaves it out, so reviewing the preview doesn't count as visits), and it only switches on
+     at tomujin.edu.mn, so opening a copy on your own computer or a test deploy doesn't count either. -->
 <script>
   window.TRACKING = {
     ga4: "G-E6WJCDTWQ5",           // Google Analytics 4 measurement ID
@@ -46,7 +47,7 @@
       if (t.metaPixel) fbq("track", "Lead");
       dataLayer.push({event: "waitlist_signup"});
     };
-  })(window.TRACKING);
+  })(/(^|\.)tomujin\.edu\.mn$/.test(location.hostname) ? window.TRACKING : {});
 </script>
 <!-- page-head -->
 <title>Tomujin Alternative School</title>
@@ -340,10 +341,14 @@ section[id],article[id]{scroll-margin-top:80px}
 .field-error{font-size:13px;font-weight:600;color:#c62828}
 .lead .btn{width:100%;margin-top:var(--space-1)}
 .lead .btn[disabled]{opacity:.7;cursor:progress}
+.lead .btn.is-sending{opacity:1}
+.lead .btn.is-sending::before{content:"";flex:none;width:18px;height:18px;border-radius:50%;border:2.5px solid currentColor;border-right-color:transparent;animation:btn-spin .7s linear infinite}
+@keyframes btn-spin{to{transform:rotate(360deg)}}
 .lead-hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
 .lead-status{font-size:14px;color:#c62828;text-align:center}
 .lead-status:empty{display:none}
 .lead-done{display:grid;justify-items:center;gap:var(--space-4);padding-block:var(--space-8);text-align:center;font-size:18px;font-weight:700}
+.lead-done:not([hidden]){animation:lead-in var(--duration-slow) var(--ease-out)}
 /* Floating lead form: a button near the bottom-right corner that opens the form above it. It sits a little in from
    the corner, further in on wider screens (up to 80px from the side). */
 .lead-float{position:fixed;right:clamp(20px,5vw,80px);bottom:clamp(20px,2.5vw,32px);z-index:60;display:flex;flex-direction:column;align-items:flex-end;gap:12px;pointer-events:none}
@@ -1679,7 +1684,7 @@ html.reader-open{overflow:hidden}
       var bad = null;
       fields.forEach(function(el){ var m = problem(el); show(el, m); if (m && !bad) bad = el; });
       if (bad){ bad.focus(); return; }
-      btn.disabled = true; btn.textContent = "Илгээж байна…"; status.textContent = "";
+      btn.disabled = true; btn.classList.add("is-sending"); btn.textContent = "Илгээж байна…"; status.textContent = "";
       var data = new URLSearchParams();
       fields.forEach(function(el){ data.append(el.name, el.value.trim()); });
       data.append("website", form.querySelector('[name="website"]').value);
@@ -1690,7 +1695,7 @@ html.reader-open{overflow:hidden}
         if (window.trackLead) window.trackLead();
       }).catch(function(){
         status.textContent = "Илгээж чадсангүй. Интернэтээ шалгаад дахин оролдоно уу.";
-      }).then(function(){ btn.disabled = false; btn.textContent = "Илгээх"; });
+      }).then(function(){ btn.disabled = false; btn.classList.remove("is-sending"); btn.textContent = "Илгээх"; });
     });
   });
 

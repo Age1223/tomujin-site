@@ -76,7 +76,7 @@ What the site reports:
 - **Waitlist sign-ups:** `generate_lead` in Google Analytics and `Lead` in Meta, sent after a sign-up is saved to the Leads sheet. No phone numbers or school names are sent.
 - **Google Tag Manager** gets the same two as `page_view` and `waitlist_signup` events in its data layer. Use it for any other tool (TikTok Pixel, Hotjar, LinkedIn…) without changing the site's code.
 
-The Claude preview doesn't include this part, so looking at the preview is never counted.
+The Claude preview doesn't include this part, so looking at the preview is never counted. Tracking also only switches on at tomujin.edu.mn, so opening the site from your own computer or a Vercel test link isn't counted either.
 
 ## Lead form
 
