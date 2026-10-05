@@ -635,12 +635,19 @@ html.reader-open{overflow:hidden}
 @media (max-width:600px){.res-projects,.res-people{grid-template-columns:1fr}}
 .ventures{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--space-4)}
 @media (max-width:1000px){.ventures{grid-template-columns:repeat(2,minmax(0,1fr))}}
-.venture{display:grid;gap:var(--space-4);justify-items:start;padding:var(--card-padding);border-radius:var(--radius-xl);background:var(--surface-card);border:1px solid var(--color-border)}
+.venture{position:relative;display:grid;gap:var(--space-4);justify-items:start;transition:border-color var(--duration-fast) var(--ease-standard);padding:var(--card-padding);border-radius:var(--radius-xl);background:var(--surface-card);border:1px solid var(--color-border)}
 .venture .mono{display:grid;place-items:center;width:48px;height:48px;border-radius:var(--radius-md);background:var(--tj-purple);color:#fff;font-weight:900;font-size:22px}
 .venture:nth-child(2) .mono{background:var(--tj-teal-deep)}
 .venture:nth-child(3) .mono{background:var(--tj-golden);color:var(--tj-ink)}
 .venture:nth-child(4) .mono{background:var(--tj-orange);color:var(--tj-ink)}
 .venture strong{font-size:17px;font-weight:800}
+.venture-link{display:inline-flex;align-items:center;gap:6px;color:inherit;text-decoration:none!important}
+.venture-link::after{content:"";position:absolute;inset:0;border-radius:var(--radius-xl)}
+.venture-link svg{width:16px;height:16px;color:var(--text-muted);transition:color var(--duration-fast) var(--ease-standard)}
+.venture-link:hover svg{color:var(--color-primary)}
+.venture:has(.venture-link:hover){border-color:var(--color-primary)}
+.venture-link:focus-visible{box-shadow:none}
+.venture:has(.venture-link:focus-visible){box-shadow:var(--focus-ring)}
 /* Business logos: square marks at 48px; a wide wordmark keeps the same height */
 .venture-logo{width:48px;height:48px;border-radius:var(--radius-md);object-fit:cover}
 .venture-logo--wide{width:auto;max-width:100%;border-radius:0;object-fit:contain}
@@ -1409,15 +1416,16 @@ html.reader-open{overflow:hidden}
       <p class="res-label">Төгсөгчдийн үүсгэн байгуулсан бизнесүүд</p>
       <!-- Each business and the graduate who runs it. Put in the name and year where it says Төгсөгчийн нэр / 20XX;
            for a photo, swap the icon in .res-avatar for <img src="..." alt="">. Logos are in assets/ventures/ (a business without one
-           shows its first letter in a .mono square). Copy a card to add another business. -->
+           shows its first letter in a .mono square). The business name links to its Instagram page (the whole card is clickable);
+           change the href to send it somewhere else. Copy a card to add another business. -->
       <ul class="ventures">
-        <li class="venture"><img class="venture-logo venture-logo--wide" src="assets/ventures/serenity.webp" alt="" width="475" height="144" loading="lazy" decoding="async"><strong>Serenity Magazine</strong>
+        <li class="venture"><img class="venture-logo venture-logo--wide" src="assets/ventures/serenity.webp" alt="" width="475" height="144" loading="lazy" decoding="async"><strong><a class="venture-link" href="https://www.instagram.com/serenity.magazine/" target="_blank" rel="noopener">Serenity Magazine<i data-lucide="instagram"></i></a></strong>
           <p class="venture-who"><span class="res-avatar" aria-hidden="true"><i data-lucide="user"></i></span><span><b>О.Эгшиглэн</b><small>Үүсгэн байгуулагч</small><small>2021 оны төгсөгч</small></span></p></li>
-        <li class="venture"><img class="venture-logo" src="assets/ventures/suriy.webp" alt="" width="144" height="144" loading="lazy" decoding="async"><strong>Suriy.mn</strong>
+        <li class="venture"><img class="venture-logo" src="assets/ventures/suriy.webp" alt="" width="144" height="144" loading="lazy" decoding="async"><strong><a class="venture-link" href="https://www.instagram.com/suriy.mn/" target="_blank" rel="noopener">Suriy.mn<i data-lucide="instagram"></i></a></strong>
           <p class="venture-who"><span class="res-avatar" aria-hidden="true"><i data-lucide="user"></i></span><span><b>Б.Болд-Эрдэнэ</b><small>Үүсгэн байгуулагч</small><small>2021 оны төгсөгч</small></span></p></li>
-        <li class="venture"><img class="venture-logo" src="assets/ventures/admitboost.webp" alt="" width="144" height="144" loading="lazy" decoding="async"><strong>AdmitBoost</strong>
+        <li class="venture"><img class="venture-logo" src="assets/ventures/admitboost.webp" alt="" width="144" height="144" loading="lazy" decoding="async"><strong><a class="venture-link" href="https://www.instagram.com/admitboost/" target="_blank" rel="noopener">AdmitBoost<i data-lucide="instagram"></i></a></strong>
           <p class="venture-who"><span class="res-avatar" aria-hidden="true"><i data-lucide="user"></i></span><span><b>Ч.Дөлгөөн</b><small>Үүсгэн байгуулагч</small><small>2023 оны төгсөгч</small></span></p></li>
-        <li class="venture"><img class="venture-logo" src="assets/ventures/essaygo.webp" alt="" width="144" height="144" loading="lazy" decoding="async"><strong>EssayGo</strong>
+        <li class="venture"><img class="venture-logo" src="assets/ventures/essaygo.webp" alt="" width="144" height="144" loading="lazy" decoding="async"><strong><a class="venture-link" href="https://www.instagram.com/essaygo/" target="_blank" rel="noopener">EssayGo<i data-lucide="instagram"></i></a></strong>
           <p class="venture-who"><span class="res-avatar" aria-hidden="true"><i data-lucide="user"></i></span><span><b>М.Доржсүрэн</b><small>Үүсгэн байгуулагч</small><small>2023 оны төгсөгч</small></span></p></li>
       </ul>
       <!-- Graduates at big companies (placeholders): put in each graduate's name, year, and role and company.
