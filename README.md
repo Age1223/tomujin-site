@@ -80,7 +80,7 @@ The Claude preview doesn't include this part, so looking at the preview is never
 
 ## Lead form
 
-The "Хүлээлгийн жагсаалтад орох" form sits in the homepage hero. Once you scroll past it, a button in the bottom-right corner opens it, and it settles into the "Чамд тохирох сургууль байна уу?" section when you scroll there. It is one form moving between these places, so anything typed stays. Each answer goes to the **Tomujin website leads** Apps Script (a standalone project in the school's Google account; its code is `tools/lead-form.gs`). The script adds a row to the **Leads** tab of "TAS | Admissions Data 2026-2027":
+The "Дэлгэрэнгүй мэдээлэл авах" form sits in the homepage hero. Once you scroll past it, a button in the bottom-right corner opens it, and it settles into the "Чамд тохирох сургууль байна уу?" section when you scroll there. It is one form moving between these places, so anything typed stays. Each answer goes to the **Tomujin website leads** Apps Script (a standalone project in the school's Google account; its code is `tools/lead-form.gs`). The script adds a row to the **Leads** tab of "TAS | Admissions Data 2026-2027":
 
 | Leads column | What goes in |
 |---|---|
