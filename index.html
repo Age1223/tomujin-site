@@ -351,14 +351,14 @@ section[id],article[id]{scroll-margin-top:80px}
 .lead-done:not([hidden]){animation:lead-in var(--duration-slow) var(--ease-out)}
 /* Floating lead form: a button near the bottom-right corner that opens the form above it. It sits a little in from
    the corner, further in on wider screens (up to 80px from the side). */
-.lead-float{position:fixed;right:clamp(20px,5vw,80px);bottom:clamp(20px,2.5vw,32px);z-index:60;display:flex;flex-direction:column;align-items:flex-end;gap:12px;pointer-events:none}
+.lead-float{position:fixed;right:clamp(20px,5vw,80px);bottom:clamp(36px,4vw,56px);z-index:60;display:flex;flex-direction:column;align-items:flex-end;gap:12px;pointer-events:none}
 .lead-float > *{pointer-events:auto}
 .lead-fab{display:inline-flex;align-items:center;gap:10px;height:52px;padding:0 22px 0 18px;border-radius:var(--radius-pill);border:1px solid var(--accent-border);background:var(--color-accent);color:var(--tj-ink);font:700 15px/1 var(--font-sans);box-shadow:0 12px 28px -10px rgba(0,0,0,.45);cursor:pointer;transition:transform var(--duration) var(--ease-standard),box-shadow var(--duration) var(--ease-standard)}
 .lead-fab:hover{transform:translateY(-2px);box-shadow:0 16px 32px -10px rgba(0,0,0,.5)}
 .lead-fab svg{width:20px;height:20px}
 .lead-fab .i-close,.lead-fab[aria-expanded="true"] .i-open{display:none}
 .lead-fab[aria-expanded="true"] .i-close{display:block}
-.lead-panel{position:relative;width:min(380px,calc(100vw - 40px));max-height:calc(100vh - 110px);overflow:auto;padding:var(--space-6);border:1px solid var(--color-border);transform-origin:bottom right;animation:lead-in var(--duration-slow) var(--ease-out)}
+.lead-panel{position:relative;width:min(380px,calc(100vw - 40px));max-height:calc(100vh - 134px);overflow:auto;padding:var(--space-6);border:1px solid var(--color-border);transform-origin:bottom right;animation:lead-in var(--duration-slow) var(--ease-out)}
 .lead-panel:focus{outline:none}
 .lead-panel .lead h3{padding-right:32px}
 .lead-close{position:absolute;top:14px;right:14px;display:grid;place-items:center;width:32px;height:32px;padding:0;border:0;border-radius:var(--radius-pill);background:transparent;color:var(--text-muted);cursor:pointer}
@@ -370,7 +370,7 @@ section[id],article[id]{scroll-margin-top:80px}
 @keyframes lead-in{from{opacity:0;transform:translateY(8px) scale(.98)}to{opacity:1;transform:none}}
 .lead-float:not([hidden]) .lead-fab{animation:fab-in var(--duration-slow) var(--ease-out)}
 @keyframes fab-in{from{opacity:0;transform:translateY(14px) scale(.96)}to{opacity:1;transform:none}}
-@media (max-width:640px){.lead-float{left:12px;right:12px;bottom:12px}.lead-panel{width:100%;max-height:calc(100vh - 90px)}.lead-fab{height:48px;font-size:14px}}
+@media (max-width:640px){.lead-float{left:12px;right:12px;bottom:28px}.lead-panel{width:100%;max-height:calc(100vh - 106px)}.lead-fab{height:48px;font-size:14px}}
 
 .alumni{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--space-6)}
 @media (max-width:860px){.alumni{grid-template-columns:1fr}}
@@ -1448,7 +1448,7 @@ html.reader-open{overflow:hidden}
      Answers go to the "Tomujin website leads" Apps Script (tools/lead-form.gs), which adds each one
      as a row in the Leads tab of "TAS | Admissions Data 2026-2027". -->
 <div class="lead-float" data-lead-float hidden>
-  <button class="lead-fab" type="button" aria-expanded="false" aria-controls="lead-panel"><i data-lucide="message-circle" class="i-open"></i><i data-lucide="x" class="i-close"></i><span>Хүлээлгийн жагсаалтад орох</span></button>
+  <button class="lead-fab" type="button" aria-expanded="false" aria-controls="lead-panel"><i data-lucide="message-circle" class="i-open"></i><i data-lucide="x" class="i-close"></i><span>Дэлгэрэнгүй мэдээлэл авах</span></button>
 </div>
 
 <!-- ═════════════════ FOOTER ═════════════════ -->
