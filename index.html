@@ -326,7 +326,9 @@ section[id],article[id]{scroll-margin-top:80px}
 .tj-hero-overlay .site-header .nav-item:focus-within .nav-link{background:rgba(255,255,255,.14);color:#fff}
 .tj-hero-overlay .site-header .nav-link[aria-current="page"]::after{background:#f2cd30}
 .tj-hero-overlay .site-header .menu-btn{border-color:rgba(255,255,255,.5)}
-.tj-hero-overlay .site-header .logo-plate img{filter:grayscale(1) brightness(.6) contrast(100) invert(1);mix-blend-mode:screen}
+.brand-logo--white{display:none}
+.tj-hero-overlay .site-header .brand-logo--dark{display:none}
+.tj-hero-overlay .site-header .brand-logo--white{display:block}
 /* Responsive */
 @media (max-width:900px){
   .tj-title-line1{white-space:normal;min-height:1.9em;display:flex;align-items:flex-end;justify-content:center;flex-wrap:wrap}
@@ -776,7 +778,7 @@ html.reader-open{overflow:hidden}
 <header class="site-header">
   <div class="wrap">
     <a class="brand" href="#home" aria-label="Tomujin Alternative School — нүүр хуудас">
-      <span class="logo-plate"><img src="assets/logo-lockup.png" alt="Tomujin Alternative School"></span>
+      <span class="logo-plate"><img class="brand-logo brand-logo--dark" src="assets/logo-lockup.png" alt="Tomujin Alternative School"><img class="brand-logo brand-logo--white" src="assets/logo-lockup-white.webp" alt="" aria-hidden="true"></span>
     </a>
     <!-- Filled from SITEMAP in the script at the bottom: every page, with a dropdown of its sections -->
     <!-- Anything marked data-later is hidden for now. Remove "hidden data-later" to bring it back. -->
@@ -871,7 +873,7 @@ html.reader-open{overflow:hidden}
   </section>
 
   <!-- c. Томүжингийн арга барил -->
-  <section id="home-approach" class="band" style="padding-top:0">
+  <section id="home-approach" class="band">
     <div class="wrap">
       <div class="section-head">
         <h2 class="h1">Бид:</h2>
