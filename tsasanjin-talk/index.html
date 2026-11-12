@@ -88,10 +88,10 @@
 .part strong{font-weight:800;color:var(--tj-purple)}
 .part--side{display:flex;flex-wrap:wrap;gap:40px 56px;align-items:center}
 .part--side .part-text{flex:999 1 380px;min-width:0}
-.part--side figure{flex:1 1 300px;max-width:400px}
-.photo{display:block;width:100%;object-fit:cover;border-radius:var(--radius-xl);box-shadow:0 20px 40px -18px rgba(45,27,78,.45);background:var(--color-muted)}
-.r-wide{aspect-ratio:16/9}.r-43{aspect-ratio:4/3}.r-34{aspect-ratio:3/4}
-.photos{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
+.part--side figure{flex:1 1 280px;max-width:340px}
+/* Photos keep their own shape (no cropping to a fixed ratio) and stay no wider than the text */
+.photo{display:block;width:100%;max-width:760px;height:auto;object-fit:cover;border-radius:var(--radius-xl);box-shadow:0 20px 40px -18px rgba(45,27,78,.45);background:var(--color-muted)}
+.photos{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;max-width:760px;align-items:start}
 .quote{margin:0;padding:32px 36px;border-radius:var(--radius-xl);background:var(--tj-purple);color:#fff;font-size:clamp(1.3rem,2.4vw,1.875rem);line-height:1.3;font-weight:800;letter-spacing:-.01em}
 .quote cite{display:block;margin-top:16px;font-size:14px;font-style:normal;font-weight:700;letter-spacing:var(--tracking-wider);text-transform:uppercase;color:var(--tj-golden)}
 @media (max-width:760px){
@@ -103,7 +103,7 @@
   .part--side{gap:14px}
   .part--side figure{order:2;max-width:none}
   /* Several photos: swipe sideways */
-  .photos{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;margin-inline:-16px;padding-inline:16px;scrollbar-width:none}
+  .photos{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;margin-inline:-16px;padding-inline:16px;scrollbar-width:none;align-items:flex-start;max-width:none}
   .photos::-webkit-scrollbar{display:none}
   .photos .photo{flex:none;width:82%;scroll-snap-align:start;border-radius:var(--radius-lg)}
   .quote{padding:20px 22px}
@@ -180,7 +180,7 @@ html.is-unlocking .site-header,html.is-unlocking main,html.is-unlocking .site-fo
         <p>Цасанжин маань өргөдөлдөө хичээлээс гадуурх үйл ажиллагаагаа бичихдээ юу хийсэн, хэдэн хүн оролцсон гэх мэт тоо жагсаахаас илүүтэй тэр зүйлд оролцоод <strong>юуг ойлгосон, юуг бодсоноо</strong> эргэцүүлж бичих нь чухал гэдгийг дурдаад авсан.</p>
         <p>Эссэгээ ч мөн адил асар ихээр тунгаан бичсэнээ хуваалцаж, өргөдөл явуулж буй тэр олон хүүхдүүдийн дундаас зөвхөн өөрийнхөө л бичиж чадах зүйл юу вэ гэдгийг эргэцүүлж байж. Ингэхдээ өөрийнхөө Увс аймгаас ирсэн, аялгатай ярьдаг тухайгаа бичсэн нь түүний хувьд хамгийн оносон зүйл болсныг хуваалцсан. Мөн түүнчлэн энэ өөрийн онцлогоо Swarthmore College-ийнхоо аялга судалдаг хичээлтэй холбож, <strong>тэр хичээлийн “судлагдахуун” нь “би” байна</strong> гэж оруулж өгчээ.</p>
       </div>
-      <img class="photo r-wide" src="/assets/talks/tsasanjin/photos/img_1937.jpg" alt="Swarthmore College-ийн гол байрны үүд, шинэ оюутнуудыг угтсан WELCOME тугууд" width="1400" height="1050" loading="lazy" decoding="async">
+      <img class="photo" src="/assets/talks/tsasanjin/photos/img_1937.jpg" alt="Swarthmore College-ийн гол байрны үүд, шинэ оюутнуудыг угтсан WELCOME тугууд" width="1400" height="1050" loading="lazy" decoding="async">
     </section>
 
     <blockquote class="quote">“Хүн бүрд л хийсэн зүйл байгаа, харин би тэр зүйлээсээ юуг ойлгосон бэ гэдгээ бичих нь чухал.”<cite>— З.Цасанжин</cite></blockquote>
@@ -202,8 +202,8 @@ html.is-unlocking .site-header,html.is-unlocking main,html.is-unlocking .site-fo
         <p>Их сургуульд ирээд харин мэдэрсэн чухал хоёр зүйлээс нь хуваалцвал... Нэгдүгээрт, 10н жилд байхдаа математикийн гүнзгий хичээлд суудаг байж дээ гэж бага зэргийн харамсал төрж, хоёрдугаарт, англи хэлээ мэддэг гэж бодож байсан ч хичээл бүр өөрийн чиглэлээсээ шалтгаалаад өөр өөр үг хэллэг ашигладгийг ойлгож, мэдэрч буй. Тиймээс <strong>тэр болгонд дасан зохицож, хичээл бүрийнхээ өнгө аясыг олж авах</strong> хэрэгтэй санагдсан гэнэ.</p>
       </div>
       <div class="photos">
-        <img class="photo r-43" src="/assets/talks/tsasanjin/photos/img_8950.jpg" alt="Swarthmore-ийн кампус, намрын өдөр" width="1400" height="1050" loading="lazy" decoding="async">
-        <img class="photo r-43" src="/assets/talks/tsasanjin/photos/img_2003.jpg" alt="Swarthmore-ийн танхимд болж буй уулзалт" width="1400" height="1050" loading="lazy" decoding="async">
+        <img class="photo" src="/assets/talks/tsasanjin/photos/img_8950.jpg" alt="Swarthmore-ийн кампус, намрын өдөр" width="1400" height="1050" loading="lazy" decoding="async">
+        <img class="photo" src="/assets/talks/tsasanjin/photos/img_2003.jpg" alt="Swarthmore-ийн танхимд болж буй уулзалт" width="1400" height="1050" loading="lazy" decoding="async">
       </div>
     </section>
 
@@ -215,13 +215,13 @@ html.is-unlocking .site-header,html.is-unlocking main,html.is-unlocking .site-fo
         <p>Цасанжин маань одоогоор сургуулийнхаа олон улсын сурагчдын клубын удирдах зөвлөлд ажиллаж, 200 орчим гишүүнтэй энэ клубын удирдах зөвлөлийн 10 гишүүнийх нь нэг болж чаджээ.</p>
       </div>
       <div class="photos">
-        <img class="photo r-34" src="/assets/talks/tsasanjin/photos/img_7172_original.jpg" alt="Ойн дундах амфитеатрт лаа барин цугларсан оюутнууд" width="1050" height="1400" loading="lazy" decoding="async">
-        <img class="photo r-34" src="/assets/talks/tsasanjin/photos/img_8809.jpg" alt="Кампусын зүлгэн дээрх Swarthmore малгай" width="1050" height="1400" loading="lazy" decoding="async">
+        <img class="photo" src="/assets/talks/tsasanjin/photos/img_7172_original.jpg" alt="Ойн дундах амфитеатрт лаа барин цугларсан оюутнууд" width="1050" height="1400" loading="lazy" decoding="async">
+        <img class="photo" src="/assets/talks/tsasanjin/photos/img_8809.jpg" alt="Кампусын зүлгэн дээрх Swarthmore малгай" width="1050" height="1400" loading="lazy" decoding="async">
       </div>
     </section>
 
     <section class="part part--side">
-      <figure style="margin:0"><img class="photo r-34" src="/assets/talks/tsasanjin/photos/img_7558.jpg" alt="Номын сангийн ширээн дээр хичээлээ хийж буй нь" width="1050" height="1400" loading="lazy" decoding="async"></figure>
+      <figure style="margin:0"><img class="photo" src="/assets/talks/tsasanjin/photos/img_7558.jpg" alt="Номын сангийн ширээн дээр хичээлээ хийж буй нь" width="1050" height="1400" loading="lazy" decoding="async"></figure>
       <div class="part-text">
         <span class="part-num">05</span>
         <h2>Шалгалт юуг харуулдаг вэ?</h2>
