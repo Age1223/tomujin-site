@@ -227,5 +227,8 @@
 
   window.TJEvents = {card: card, sorted: sorted, nextEvent: nextEvent, when: when, duration: duration, isPast: isPast, isOpen: isOpen,
     isTbc: isTbc, placeShort: placeShort, seriesLabel: seriesLabel, startMs: startMs, openSignup: openSignup, icons: icons, esc: esc, FORMATS: FORMATS,
-    signedUp: function(){ return store("tj-events-signed-up") === "1"; }, store: store};
+    signedUp: function(){ return store("tj-events-signed-up") === "1"; }, store: store,
+    mountForm: mountForm,
+    /* false on the live site while SIGNUP_URL is empty: nothing can be saved, so don't lock anything behind a sign-up */
+    canSave: !!SIGNUP_URL || !LIVE};
 })();
