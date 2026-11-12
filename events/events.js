@@ -4,10 +4,9 @@
    - Event dates and the event card used on both pages
    Sign-ups go to the "Tomujin event sign-ups" Apps Script (tools/events-signups.gs), which adds a row to its sheet. */
 (function(){
-  /* Paste the Apps Script web app URL (ends in /exec) here. See tools/events-signups.gs for the setup steps.
-     While it's empty, the form only pretends to send on a test copy (your computer or a Vercel preview),
-     so you can see the whole flow; on tomujin.edu.mn it says it couldn't send. */
-  var SIGNUP_URL = "";
+  /* The "Tomujin — Event sign-ups" Apps Script web app (tools/events-signups.gs). When the script changes,
+     redeploy it with Deploy → Manage deployments → Edit → New version so this address stays the same. */
+  var SIGNUP_URL = "https://script.google.com/macros/s/AKfycbxfpevYPDFA6Vw47ZqZYJkayFNPEB2Nivh2v4gRIf1CyIGHIubdyFeZLRymfsGiCtKh/exec";
 
   var LIVE = /(^|\.)tomujin\.edu\.mn$/.test(location.hostname);
   var TZ = 8 * 3600 * 1000;   /* Ulaanbaatar is UTC+8, all year */
