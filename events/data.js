@@ -11,14 +11,17 @@
      start     date and time in Ulaanbaatar time, written like "2026-11-22T11:00"
      minutes   how long it lasts
      format    "in-person", "online" or "hybrid"
-     place     the address, or for online events how people get the link
+     place     where: the address, or "Онлайн"
+     placeNote optional: a second line under place, e.g. "холбоосыг бүртгүүлсний дараа илгээнэ"
+     series    optional: the series name shown above the title (else the type's name)
      closed    true = registration closed even though it hasn't happened yet (e.g. it's full)
      page      optional: a page about the event, e.g. its recording ("/tsasanjin-talk")
+     pageLabel optional: the button to that page once the event is over, e.g. "Ярилцлагыг унших"
      featured  optional: true = show this one in the /events hero instead of the nearest event
 
    Optional, shown when the event is the one at the top of /events:
-     image     a square poster, e.g. "/assets/events/open-house.webp" (about 1200×1200). Without one, the page
-               draws a purple poster with the event's name and date.
+     image     the poster, 4:5 (e.g. 1080×1350), in /assets/events/. Without one, the page draws a purple
+               poster with the event's name and date.
      subtitle  a short line under the title, e.g. "Цуврал 01 · «Юуны төлөө?»"
      details   a longer description; each item in the list is its own paragraph (used instead of summary)
      speaker   who speaks, e.g. "Б.Ганди, 2024 оны төгсөгч" (shown as "Илтгэгч")
@@ -39,37 +42,39 @@ window.EVENT_TYPES = {
 };
 
 window.EVENTS = [
-  /* Зочин илтгэгчийн цуврал #1 — TODO: real date, place and title */
+  /* Tomujin is Talking #1 */
   {
     id: "tsasanjin-talk",
     type: "speaker",
-    title: "Цасанжин: зочин илтгэгчийн яриа",
-    summary: "Зочин илтгэгчийн цувралын яриа. Бичлэг болон дэлгэрэнгүйг үзээрэй.",
-    start: "2026-11-01T15:00", minutes: 90, format: "in-person",
-    place: "Томүжин Алтернатив сургууль",
-    page: "/tsasanjin-talk"
+    series: "Tomujin is Talking series",
+    title: "З.Цасанжин · Swarthmore College",
+    summary: "Томүжингийн 2026 оны төгсөгч, Swarthmore College-ийн оюутан З.Цасанжин туршлагаасаа хуваалцав.",
+    start: "2026-11-08T20:30", minutes: 60, format: "online",
+    place: "Онлайн",
+    speaker: "З.Цасанжин, 2026 оны төгсөгч",
+    page: "/tsasanjin-talk", pageLabel: "Ярилцлагыг унших"
   },
-  /* #2 — date and time confirmed. TODO: add the poster (image) when it arrives; check format and place. */
+  /* Tomujin is Talking #2 */
   {
     id: "speaker-02-gandi",
     type: "speaker",
+    series: "Tomujin is Talking series",
     title: "Б.Ганди · Harvard University",
-    subtitle: "Зочин илтгэгчийн цуврал #2",
-    summary: "Томүжингийн 2024 оны төгсөгч, Харвардын их сургуулийн оюутан Б.Ганди туршлагаасаа хуваалцана.",
+    summary: "Томүжин Алтернатив сургуулийн 2024 оны төгсөгч, Харвардын их сургуульд 100% тэтгэлэгтэй тэнцэж суралцаж буй оюутан Б.Ганди маань өөрийн туршлагаасаа хуваалцах дараагийн TOMUJIN IS TALKING!",
+    image: "/assets/events/tomujin-is-talking-02-gandi.webp",
     start: "2026-11-14T21:00", minutes: 60, format: "online",
-    place: "Онлайн · холбоосыг бүртгүүлсний дараа илгээнэ",
+    place: "Онлайн", placeNote: "холбоосыг бүртгүүлсний дараа илгээнэ",
     speaker: "Б.Ганди, 2024 оны төгсөгч"
   },
-  /* #3 — Мөнхжин has agreed to take part; date and time still to be confirmed (tbc). */
+  /* Tomujin is Talking #3 */
   {
     id: "speaker-03-munkhjin",
     type: "speaker",
-    title: "Мөнхжин · NYU Abu Dhabi",
-    subtitle: "Зочин илтгэгчийн цуврал #3",
+    series: "Tomujin is Talking series",
+    title: "М.Мөнхжин · NYU Abu Dhabi",
     summary: "Томүжингийн 2026 оны төгсөгч, NYU Abu Dhabi-гийн оюутан Мөнхжин туршлагаасаа хуваалцана.",
     start: "2026-11-21T20:00", minutes: 60, format: "online",
-    place: "Онлайн · холбоосыг бүртгүүлсний дараа илгээнэ",
-    speaker: "Мөнхжин, 2026 оны төгсөгч",
-    tbc: true
+    place: "Онлайн", placeNote: "холбоосыг бүртгүүлсний дараа илгээнэ",
+    speaker: "М.Мөнхжин, 2026 оны төгсөгч"
   }
 ];

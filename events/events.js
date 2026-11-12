@@ -28,7 +28,9 @@
     return {
       year: d.getUTCFullYear(), month: d.getUTCMonth() + 1, day: d.getUTCDate(),
       weekday: WEEKDAYS[d.getUTCDay()], time: pad(d.getUTCHours()) + ":" + pad(d.getUTCMinutes()),
-      long: d.getUTCFullYear() + " оны " + (d.getUTCMonth() + 1) + "-р сарын " + d.getUTCDate() + ", " + WEEKDAYS[d.getUTCDay()] + " гараг"
+      long: d.getUTCFullYear() + " оны " + (d.getUTCMonth() + 1) + "-р сарын " + d.getUTCDate() + ", " + WEEKDAYS[d.getUTCDay()] + " гараг",
+      dot: d.getUTCFullYear() + "." + pad(d.getUTCMonth() + 1) + "." + pad(d.getUTCDate()),
+      day_name: WEEKDAYS[d.getUTCDay()] + " гараг"
     };
   }
   function duration(min){ return min >= 60 ? (min % 60 ? Math.floor(min / 60) + " цаг " + (min % 60) + " мин" : (min / 60) + " цаг") : min + " мин"; }
@@ -54,24 +56,33 @@
       "&details=" + encodeURIComponent((ev.summary || "") + "\n\nhttps://tomujin.edu.mn/events");
   }
 
-  /* ── Event card ── */
+  /* Where, short: "Онлайн" for online events, else the place */
+  function placeShort(ev){ return ev.format === "online" ? FORMATS.online : (ev.place || FORMATS[ev.format] || ""); }
+  /* The series line above the title: the event's series, else its type */
+  function seriesLabel(ev){ return ev.series || (window.EVENT_TYPES || {})[ev.type] || ""; }
+
+  /* ── Event card (the list on /events, and talk pages) ── */
+  var ICON_CAL = '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>';
+  var ICON_PIN = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>';
   function card(ev, opts){
     opts = opts || {};
     var w = when(ev), past = isPast(ev), open = isOpen(ev);
-    var type = (window.EVENT_TYPES || {})[ev.type] || "";
     var action;
-    if (open) action = '<button class="btn btn--accent btn--lg" type="button" data-register="' + esc(ev.id) + '">Бүртгүүлэх</button><small>' + esc(duration(ev.minutes || 60)) + '</small>';
+    if (open) action = '<button class="btn btn--accent btn--lg" type="button" data-register="' + esc(ev.id) + '">Бүртгүүлэх</button>';
     else if (isTbc(ev)) action = '<button class="btn btn--outline btn--lg" type="button" data-register="' + esc(ev.id) + '">Мэдэгдэл авах</button><small>Огноо батлагдаагүй</small>';
-    else if (past && ev.page) action = '<a class="btn btn--outline btn--lg" href="' + esc(ev.page) + '"><i data-lucide="play"></i>Бичлэг үзэх</a><small>Дууссан</small>';
+    else if (past && ev.page) action = '<a class="btn btn--outline btn--lg" href="' + esc(ev.page) + '">' + esc(ev.pageLabel || "Дэлгэрэнгүй") + '</a>';
+    else if (past) action = '<button class="btn btn--outline btn--lg" type="button" data-register="' + esc(ev.id) + '">Дараагийнхыг мэдэх</button>';
     else action = '<button class="btn btn--outline btn--lg" type="button" data-register="' + esc(ev.id) + '">Дараагийнхыг мэдэх</button><small>Бүртгэл хаагдсан</small>';
+    var h = opts.h || "h3";
     return '<article class="ev' + (past ? " is-past" : "") + '" data-type="' + esc(ev.type) + '">' +
-      '<div class="ev-date" aria-hidden="true"><small>' + w.month + '-р сар</small><b>' + w.day + '</b></div>' +
+      '<div class="ev-date" aria-hidden="true"><small>' + w.month + ' сарын</small><b>' + w.day + '</b></div>' +
       '<div class="ev-body">' +
-        '<div class="ev-labels">' + (type ? '<span class="kind">' + esc(type) + '</span>' : "") + '<span class="badge">' + esc(FORMATS[ev.format] || "") + '</span></div>' +
-        '<' + (opts.h || "h3") + '>' + (ev.page ? '<a href="' + esc(ev.page) + '" style="color:inherit">' + esc(ev.title) + '</a>' : esc(ev.title)) + '</' + (opts.h || "h3") + '>' +
+        '<div class="ev-labels"><span class="kind">' + esc(seriesLabel(ev)) + '</span><span class="badge badge--teal">' + esc(FORMATS[ev.format] || "") + '</span>' +
+          (isTbc(ev) ? '<span class="badge badge--gold">Урьдчилсан</span>' : "") + '</div>' +
+        '<' + h + '>' + (ev.page ? '<a href="' + esc(ev.page) + '">' + esc(ev.title) + '</a>' : esc(ev.title)) + '</' + h + '>' +
         (ev.summary ? '<p class="sum">' + esc(ev.summary) + '</p>' : "") +
-        '<div class="meta"><span><i data-lucide="calendar"></i>' + esc(w.long + " · " + w.time + " · " + duration(ev.minutes || 60)) + (past ? " · Дууссан" : isTbc(ev) ? " · урьдчилсан" : "") + '</span>' +
-        (ev.place ? '<span><i data-lucide="map-pin"></i>' + esc(ev.place) + '</span>' : "") + '</div>' +
+        '<div class="meta"><span>' + ICON_CAL + esc(w.dot + ", " + w.day_name + " · " + w.time) + (past ? " · Өнгөрсөн" : isTbc(ev) ? " · урьдчилсан" : "") + '</span>' +
+        '<span>' + ICON_PIN + esc(placeShort(ev)) + '</span></div>' +
       '</div>' +
       '<div class="ev-act">' + action + '</div>' +
     '</article>';
@@ -79,12 +90,12 @@
 
   /* ── Sign-up form ── */
   var uid = 0;
-  function formHtml(button){
+  function formHtml(button, noNote){
     var n = ++uid;
     function f(id, label, input, wide){ return '<div class="field' + (wide ? " field--wide" : "") + '"><label for="su' + n + "-" + id + '">' + label + '</label>' + input.replace("{id}", "su" + n + "-" + id) + '<p class="field-error" hidden></p></div>'; }
     return '<form class="su" novalidate>' +
       '<div class="su-grid">' +
-        f("name", "Овог нэр", '<input id="{id}" name="name" type="text" autocomplete="name" maxlength="120" required data-error="Нэрээ оруулна уу.">', true) +
+        f("name", "Нэр", '<input id="{id}" name="name" type="text" autocomplete="name" maxlength="120" required data-error="Нэрээ оруулна уу.">', true) +
         f("phone", "Утасны дугаар", '<input id="{id}" name="phone" type="tel" inputmode="tel" autocomplete="tel" maxlength="20" required data-error="Утасны дугаараа зөв оруулна уу (8 оронтой).">') +
         f("email", "Имэйл хаяг", '<input id="{id}" name="email" type="email" inputmode="email" autocomplete="email" maxlength="160" required data-error="Имэйл хаягаа зөв оруулна уу.">') +
         f("school", "Одоо сурч буй сургууль", '<input id="{id}" name="school" type="text" autocomplete="off" maxlength="120" required data-error="Сургуулийнхаа нэрийг оруулна уу.">') +
@@ -94,7 +105,7 @@
       '<div class="su-hp" aria-hidden="true"><label>Website <input name="website" type="text" tabindex="-1" autocomplete="off"></label></div>' +
       '<button class="btn btn--accent" type="submit">' + esc(button) + '</button>' +
       '<p class="su-status" role="status" aria-live="polite"></p>' +
-      '<p class="su-note">Таны мэдээллийг зөвхөн Томүжингийн эвент, элсэлтийн мэдээлэл илгээхэд ашиглана.</p>' +
+      (noNote ? "" : '<p class="su-note">Таны мэдээллийг зөвхөн Томүжингийн эвент, элсэлтийн мэдээлэл илгээхэд ашиглана.</p>') +
     '</form>' +
     '<div class="su-done" hidden role="status"><span class="icon-tile icon-tile--gold"><i data-lucide="check"></i></span><h3></h3><p></p><div class="su-done-act"></div></div>';
   }
@@ -113,7 +124,7 @@
 
   /* opts: {button, getEvent(), interest, onDone(ev)} */
   function mountForm(box, opts){
-    box.innerHTML = formHtml(opts.button || "Бүртгүүлэх");
+    box.innerHTML = formHtml(opts.button || "Бүртгүүлэх", opts.noNote);
     var form = box.querySelector("form"), done = box.querySelector(".su-done");
     var btn = form.querySelector('button[type="submit"]'), status = form.querySelector(".su-status");
     var fields = Array.prototype.slice.call(form.querySelectorAll(".field input, .field select"));
@@ -211,10 +222,10 @@
   function icons(){ if (window.lucide) window.lucide.createIcons(); }
 
   document.querySelectorAll("[data-signup]").forEach(function(box){
-    mountForm(box, {button: box.getAttribute("data-button") || "Бүртгүүлэх", interest: box.getAttribute("data-signup") || "Мэдээлэл авах"});
+    mountForm(box, {button: box.getAttribute("data-button") || "Бүртгүүлэх", interest: box.getAttribute("data-signup") || "Мэдээлэл авах", noNote: box.hasAttribute("data-no-note")});
   });
 
   window.TJEvents = {card: card, sorted: sorted, nextEvent: nextEvent, when: when, duration: duration, isPast: isPast, isOpen: isOpen,
-    isTbc: isTbc, startMs: startMs, openSignup: openSignup, icons: icons, esc: esc, FORMATS: FORMATS,
+    isTbc: isTbc, placeShort: placeShort, seriesLabel: seriesLabel, startMs: startMs, openSignup: openSignup, icons: icons, esc: esc, FORMATS: FORMATS,
     signedUp: function(){ return store("tj-events-signed-up") === "1"; }, store: store};
 })();

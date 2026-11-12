@@ -45,56 +45,67 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400..700&text=0123456789%25%2B&display=swap">
 <link rel="stylesheet" href="/events/events.css">
 <style>
-/* Featured (nearest) event: poster on the left, details on the right, inside one large site card */
-.feature{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:var(--space-12);align-items:center;padding:var(--space-10);text-align:left}
-.feature--empty{grid-template-columns:1fr}
-.poster{position:relative;aspect-ratio:1;border-radius:var(--radius-xl);overflow:hidden;background:var(--tj-purple);color:#fff;box-shadow:0 20px 40px -18px rgba(45,27,78,.45)}
-.poster > img.photo{width:100%;height:100%;object-fit:cover}
+/* Page title */
+.page-hero{padding-block:88px 56px}
+.page-hero .display{font-size:clamp(2.5rem,5vw,4rem)}
+
+/* Featured (nearest) event: the poster beside its details, in one large card */
+.feature{display:flex;flex-wrap:wrap;gap:var(--space-12);align-items:center;padding:var(--space-10);text-align:left}
+.poster{flex:1 1 300px;max-width:400px;aspect-ratio:4/5;position:relative;border-radius:var(--radius-xl);overflow:hidden;background:var(--tj-purple);color:#fff;box-shadow:0 20px 40px -18px rgba(45,27,78,.45)}
+.poster > img{width:100%;height:100%;object-fit:cover}
 /* Drawn poster, used until the event has its own image */
 .poster-art{position:absolute;inset:0;display:grid;grid-template-rows:auto 1fr auto;gap:var(--space-4);padding:var(--space-8)}
 .poster-art .p-kind{padding-right:72px;font-size:12px;font-weight:700;letter-spacing:var(--tracking-wider);text-transform:uppercase;color:var(--tj-golden)}
-.poster-art .p-title{align-self:center;font-size:clamp(1.9rem,3.6vw,3rem);font-weight:900;line-height:.98;letter-spacing:-.02em;text-transform:uppercase;text-wrap:balance;max-width:11ch}
+.poster-art .p-title{align-self:center;font-size:clamp(1.9rem,3.2vw,2.75rem);font-weight:900;line-height:.98;letter-spacing:-.02em;text-transform:uppercase;text-wrap:balance}
 .poster-art .p-foot{display:flex;align-items:flex-end;justify-content:space-between;gap:var(--space-4)}
 .poster-art .p-date{display:grid;gap:2px}
 .poster-art .p-date b{font-size:clamp(1.6rem,3vw,2.25rem);font-weight:700;line-height:1}
 .poster-art .p-date span{font-size:14px;font-weight:600;opacity:.85}
-.poster-art .p-logo{width:112px;height:auto;opacity:.95}
+.poster-art .p-logo{width:112px;height:auto}
 .poster-art .p-tangram{position:absolute;top:var(--space-6);right:var(--space-6);width:64px;height:auto}
-.poster .p-count{position:absolute;left:var(--space-4);top:var(--space-4);display:none}
-.poster:has(img.photo) .p-count{display:inline-flex}
-.p-count{align-items:center;gap:6px;height:30px;white-space:nowrap;padding:0 12px;border-radius:var(--radius-pill);background:var(--tj-golden);color:var(--tj-ink);font-size:13px;font-weight:700}
-.poster-art .p-count{position:static;display:inline-flex;justify-self:start}
-.feature-body{display:grid;gap:var(--space-5);align-content:center;min-width:0}
-.pill{display:inline-flex;align-items:center;height:32px;padding:0 14px;border-radius:var(--radius-pill);font-size:14px;font-weight:700;background:#fff;border:1px solid var(--color-border);color:var(--text-body)}
-.pill--brand{background:var(--tj-purple);border-color:var(--tj-purple);color:#fff}
-.feature-body .labels{display:flex;flex-wrap:wrap;gap:var(--space-2)}
-.feature-body h2{font-size:clamp(2rem,4.2vw,3.25rem);line-height:1.05;font-weight:800;letter-spacing:var(--tracking-display);color:var(--text-display);text-wrap:balance}
-.feature-body .sub{margin-top:calc(-1 * var(--space-2));font-size:clamp(1.1rem,1.8vw,1.4rem);font-weight:700;color:var(--text-muted)}
+.feature-body{flex:999 1 460px;min-width:0;display:grid;gap:var(--space-5);align-content:center}
+.feature-body h2{font-size:clamp(2rem,3.6vw,3rem);line-height:1.05;font-weight:800;letter-spacing:var(--tracking-display);color:var(--text-display);text-wrap:balance}
 .feature-body .desc{display:grid;gap:var(--space-3);max-width:60ch}
-.feature-body .desc p{font-size:17px;line-height:1.65;color:var(--text-body)}
-.facts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--space-5) var(--space-8);margin:0;padding-block:var(--space-6);border-block:1px solid var(--color-border)}
-.facts div{display:grid;gap:4px;min-width:0}
+.feature-body .desc p{font-size:17px;line-height:1.65}
+.facts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--space-5) var(--space-8);align-items:center;margin:0;padding-block:var(--space-6);border-block:1px solid var(--color-border)}
+.facts > div{display:grid;gap:4px;min-width:0}
 .facts dt{font-size:14px;font-weight:600;color:var(--text-muted)}
-.facts dd{margin:0;font-size:17px;line-height:1.35;font-weight:700;color:var(--text-body)}
-.facts dd small{display:block;margin-top:2px;font-size:13px;font-weight:600;color:var(--tj-purple)}
-@media (max-width:960px){
-  .feature{grid-template-columns:1fr;gap:var(--space-8);padding:var(--space-6)}
-  .poster{max-width:520px;width:100%;justify-self:center}
+.facts dd{margin:0;font-size:17px;line-height:1.35;font-weight:700}
+.facts dd span{display:block;font-weight:400}
+.facts .btn{justify-self:start}
+.feature--empty{display:grid}
+@media (max-width:860px){
+  .feature{padding:var(--space-4);gap:var(--space-5)}
+  .poster{max-width:none;flex-basis:100%;border-radius:var(--radius-lg)}
+  .feature-body{padding:0 var(--space-1) var(--space-1);gap:var(--space-4)}
+  .feature-body .desc p{font-size:16px}
+  .facts{gap:var(--space-4) var(--space-5);padding-block:var(--space-5)}
+  .facts dd{font-size:16px}
+  .facts .seats{grid-column:1/-1}
+  .facts .btn{grid-column:1/-1;justify-self:stretch}
 }
-@media (max-width:560px){
-  .feature{padding:var(--space-4);gap:var(--space-6)}
-  .poster-art{padding:var(--space-6)}
-  .poster-art .p-tangram{width:44px;top:var(--space-5);right:var(--space-5)}
-  .poster-art .p-kind{padding-right:56px}
-  .poster-art .p-logo{width:88px}
-  .p-count{font-size:12px;height:28px;padding:0 10px}
-  .facts{grid-template-columns:1fr;gap:var(--space-4)}
-  .feature-body .btn-row .btn{flex:1 1 auto}
-}
-.filters{display:flex;justify-content:center;margin:calc(-1 * var(--space-6)) 0 var(--space-8)}
+@media (max-width:560px){.poster-art{padding:var(--space-6)}.poster-art .p-tangram{width:48px;top:var(--space-5);right:var(--space-5)}.poster-art .p-kind{padding-right:56px}.poster-art .p-logo{width:88px}}
+
+/* List */
+.filters{display:flex;justify-content:center;margin:calc(-1 * var(--space-6)) 0 var(--space-10)}
 @media (max-width:640px){.filters{justify-content:flex-start;overflow-x:auto;margin-inline:-16px;padding-inline:16px;scrollbar-width:none}.filters::-webkit-scrollbar{display:none}.tablist{flex-wrap:nowrap}.tablist button{flex:none}}
 .past-head{margin:var(--space-12) 0 var(--space-4);font-size:18px;line-height:28px;font-weight:700;color:var(--text-muted)}
 .none{padding:var(--space-10) var(--space-6);border:1px dashed var(--color-border);border-radius:var(--radius-xl);text-align:center;color:var(--text-muted)}
+/* Phone: the date tile sits beside the series line, the button goes full width */
+@media (max-width:640px){
+  .ev{display:grid;grid-template-columns:auto minmax(0,1fr);gap:var(--space-3) var(--space-4);padding:var(--space-5)}
+  .ev-body{display:contents}
+  .ev-date{grid-row:1;grid-column:1;width:72px;height:72px;grid-auto-flow:row;padding:0;align-items:center;justify-self:auto}
+  .ev-date small{font-size:10px}
+  .ev-date b{font-size:28px}
+  .ev-labels{grid-row:1;grid-column:2;flex-direction:column;align-items:flex-start;gap:6px}
+  .ev-body > h3,.ev-body > .sum,.ev-body > .meta,.ev-act{grid-column:1/-1}
+  .ev .meta{flex-direction:column}
+}
+
+/* Sign-up section */
+.signup-head{font-size:clamp(2rem,3.6vw,3rem)!important;line-height:1.15}
+.signup-intro{margin-top:var(--space-6);font-size:17px;line-height:1.55;color:rgba(255,255,255,.88);max-width:52ch}
 </style>
 </head>
 <body>
@@ -112,20 +123,19 @@
 <main>
   <section class="page-hero">
     <div class="wrap">
-      <h1 class="display display--md">Эвентүүд.</h1>
-      <p class="lead">Томүжинтэй биечлэн болон онлайнаар танилцах уулзалт, эцэг эхийн яриа, зочин илтгэгчийн цуврал.</p>
+      <h1 class="display">Онцлох эвент ✨</h1>
     </div>
   </section>
 
   <!-- Featured: filled by the script below with the nearest upcoming event (or one marked featured: true in data.js) -->
-  <section id="events-next" class="band" style="padding-top:0" aria-label="Дараагийн эвент">
+  <section id="events-next" class="band" style="padding-top:0" aria-label="Онцлох эвент">
     <div class="wrap" data-feature></div>
   </section>
 
   <section id="events-list" class="band band--alt" aria-labelledby="list-title">
     <div class="wrap">
       <div class="section-head">
-        <h2 class="h1" id="list-title">Удахгүй болох эвентүүд</h2>
+        <h2 class="h1" id="list-title">Удахгүй болох дараагийн эвентүүд</h2>
       </div>
       <div class="filters"><div class="tablist" role="group" aria-label="Төрлөөр шүүх" data-chips></div></div>
       <div class="ev-list" data-upcoming></div>
@@ -134,21 +144,16 @@
     </div>
   </section>
 
-  <!-- Sign-up for the series in general (not one event). Same layout as the homepage's last section. -->
+  <!-- Sign-up for the series in general (not one event) -->
   <section id="signup" class="band band--brand" aria-labelledby="signup-title">
     <div class="wrap fit">
       <div>
-        <h2 class="h1" id="signup-title">Дараагийн эвентийг хамгийн түрүүнд мэдээрэй.</h2>
-        <p class="fit-intro">Шинэ эвент зарлагдмагц урилгыг тань руу илгээнэ. Суудал хязгаартай эвентэд бүртгүүлэгчид түрүүлж хэлнэ.</p>
-        <ul class="fit-list">
-          <li><i data-lucide="circle-check"></i><span>Нээлттэй хаалганы өдөр, мэдээллийн уулзалтын урилга</span></li>
-          <li><i data-lucide="circle-check"></i><span>Зочин илтгэгчийн цувралын шинэ яриа, бичлэг</span></li>
-          <li><i data-lucide="circle-check"></i><span>Элсэлт эхлэх үеийн чухал мэдээлэл</span></li>
-        </ul>
+        <h2 class="h1 signup-head" id="signup-title">Дараагийн эвентийг хамгийн түрүүнд мэдээрэй. 💌</h2>
+        <p class="signup-intro">Зарим эвентийн суудал хязгаартай байдаг тул бүртгэлээ үлдээгээд шинэ эвент зарлагдмагц хамгийн түрүүнд мэдээлэл аваарай!</p>
       </div>
       <div class="lead-card">
-        <h3>Мэдээлэл авах</h3>
-        <div data-signup="Events page form" data-button="Илгээх"></div>
+        <h3>Бүртгүүлэх 🖇️</h3>
+        <div data-signup="Events page form" data-button="Илгээх" data-no-note></div>
       </div>
     </div>
   </section>
@@ -187,57 +192,41 @@
   var E = window.TJEvents, esc = E.esc;
   var lists = E.sorted();
 
-  /* ── Featured event: the poster (the event's image, or a drawn one), then its details ── */
+  /* ── Featured event: its poster (or a drawn one), then its details ── */
   var hero = document.querySelector("[data-feature]");
   var ev = E.nextEvent();
   if (ev){
     var w = E.when(ev), open = E.isOpen(ev), tbc = E.isTbc(ev);
-    var kind = EVENT_TYPES[ev.type] || "";
     var poster = ev.image
-      ? '<img class="photo" src="' + esc(ev.image) + '" alt="' + esc(ev.title) + '" fetchpriority="high"><span class="p-count" data-countdown></span>'
+      ? '<img src="' + esc(ev.image) + '" alt="' + esc(ev.title + ". " + w.month + "/" + w.day + ", " + w.time) + '" fetchpriority="high">'
       : '<div class="poster-art" aria-hidden="true">' +
-          '<span class="p-kind">' + esc(kind) + '</span>' +
+          '<span class="p-kind">' + esc(E.seriesLabel(ev)) + '</span>' +
           '<span class="p-title">' + esc(ev.title) + '</span>' +
-          '<div class="p-foot"><div class="p-date"><b>' + w.month + '.' + (w.day < 10 ? "0" : "") + w.day + '</b><span>' + esc(w.weekday) + ' · ' + w.time + '</span>' +
-            '<span class="p-count" data-countdown style="margin-top:8px"></span></div>' +
+          '<div class="p-foot"><div class="p-date"><b>' + w.month + '/' + w.day + '</b><span>' + esc(w.weekday) + ' · ' + w.time + '</span></div>' +
             '<img class="p-logo" src="/assets/logo-lockup-white.webp" alt=""></div>' +
           '<img class="p-tangram" src="/assets/tangrams/star.png" alt="">' +
         '</div>';
     var desc = (ev.details && ev.details.length ? ev.details : ev.summary ? [ev.summary] : [])
       .map(function(t){ return '<p>' + esc(t) + '</p>'; }).join("");
     var status = open ? "Бүртгэл нээлттэй" : tbc ? "Огноо батлагдмагц нээгдэнэ" : "Бүртгэл хаагдсан";
-    var who = ev.speaker ? ["Илтгэгч", ev.speaker] : ev.host ? ["Хөтлөгч", ev.host] : null;
+    var label = open ? 'Бүртгүүлэх →' : tbc ? "Огноо батлагдмагц мэдэх" : "Дараагийнхыг мэдэх";
     hero.innerHTML = '<article class="card feature">' +
       '<div class="poster">' + poster + '</div>' +
       '<div class="feature-body">' +
-        '<div class="labels"><span class="pill pill--brand">' + esc(kind) + '</span><span class="pill">' + esc(E.FORMATS[ev.format] || "") + '</span></div>' +
         '<h2>' + esc(ev.title) + '</h2>' +
-        (ev.subtitle ? '<p class="sub">' + esc(ev.subtitle) + '</p>' : "") +
         (desc ? '<div class="desc">' + desc + '</div>' : "") +
         '<dl class="facts">' +
-          '<div><dt>Хэзээ</dt><dd>' + esc(w.long + " · " + w.time) + (tbc ? '<small>Урьдчилсан, батлагдаагүй</small>' : "") + '</dd></div>' +
-          '<div><dt>Хаана</dt><dd>' + esc(ev.place || E.FORMATS[ev.format] || "") + '</dd></div>' +
-          '<div><dt>Суудал</dt><dd>' + esc(ev.seats ? ev.seats + " · " + status : status) + '</dd></div>' +
-          (who ? '<div><dt>' + who[0] + '</dt><dd>' + esc(who[1]) + '</dd></div>' : '<div><dt>Үргэлжлэх хугацаа</dt><dd>' + esc(E.duration(ev.minutes || 60)) + '</dd></div>') +
+          '<div><dt>Хэзээ</dt><dd>' + esc(w.dot) + '<span>' + esc(w.day_name + " · " + w.time + " цагаас") + (tbc ? " (урьдчилсан)" : "") + '</span></dd></div>' +
+          '<div><dt>Хаана</dt><dd>' + esc(ev.place || E.FORMATS[ev.format] || "") + (ev.placeNote ? '<span>' + esc(ev.placeNote) + '</span>' : "") + '</dd></div>' +
+          '<div class="seats"><dt>Суудал</dt><dd>' + esc(ev.seats ? ev.seats + " · " + status : status) + '</dd></div>' +
+          '<button class="btn btn--accent btn--lg" type="button" data-register="' + esc(ev.id) + '">' + label + '</button>' +
         '</dl>' +
-        '<div class="btn-row">' +
-          '<button class="btn btn--accent btn--lg" type="button" data-register="' + esc(ev.id) + '">' + (open ? 'Бүртгүүлэх <i data-lucide="arrow-right"></i>' : tbc ? "Огноо батлагдмагц мэдэх" : "Дараагийнхыг мэдэх") + '</button>' +
-          '<a class="btn btn--outline btn--lg" href="#events-list">Бүх эвентүүд</a>' +
-        '</div>' +
       '</div>' +
     '</article>';
-    var cd = hero.querySelector("[data-countdown]"), start = E.startMs(ev);
-    (function tick(){
-      var s = Math.max(0, Math.floor((start - Date.now()) / 1000));
-      var d = Math.floor(s / 86400), h = Math.floor(s % 86400 / 3600), m = Math.floor(s % 3600 / 60);
-      cd.textContent = !s ? "Одоо явагдаж байна" : d ? d + " өдөр " + h + " цагийн дараа" : h ? h + " цаг " + m + " минутын дараа" : m + " минутын дараа";
-      cd.hidden = tbc;
-      if (s) setTimeout(tick, 30000);
-    })();
   } else {
-    hero.innerHTML = '<div class="card feature feature--empty"><div class="feature-body"><div class="labels"><span class="pill pill--brand">Удахгүй</span></div><h2>Шинэ эвент удахгүй зарлагдана.</h2>' +
+    hero.innerHTML = '<div class="card feature feature--empty"><div class="feature-body"><h2>Шинэ эвент удахгүй зарлагдана.</h2>' +
       '<div class="desc"><p>Бүртгүүлээрэй, зарлагдмагц урилгыг тань руу хамгийн түрүүнд илгээнэ.</p></div>' +
-      '<div class="btn-row"><button class="btn btn--accent btn--lg" type="button" data-open-signup>Мэдээлэл авах <i data-lucide="arrow-right"></i></button></div></div></div>';
+      '<div class="btn-row"><button class="btn btn--accent btn--lg" type="button" data-open-signup>Мэдээлэл авах →</button></div></div></div>';
   }
 
   /* ── List: upcoming (except the featured one), then past ones ── */
@@ -252,10 +241,9 @@
     var up = upcoming.filter(function(e){ return !type || e.type === type; });
     var past = lists.past.filter(function(e){ return !type || e.type === type; });
     upBox.innerHTML = up.length ? up.map(function(e){ return E.card(e); }).join("") :
-      '<div class="none">Энэ төрлийн удахгүй болох эвент одоогоор алга. <a href="#signup">Бүртгүүлээрэй</a>, зарлагдмагц хэлье.</div>';
+      '<div class="none">Удахгүй болох эвент одоогоор алга. <a href="#signup">Бүртгүүлээрэй</a>, зарлагдмагц хэлье.</div>';
     pastBox.innerHTML = past.map(function(e){ return E.card(e); }).join("");
     pastHead.hidden = !past.length;
-    E.icons();
   }
   chips.addEventListener("click", function(e){
     var c = e.target.closest("[data-chip]");
