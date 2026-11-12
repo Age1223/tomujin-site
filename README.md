@@ -94,6 +94,21 @@ It finds the columns by their header names, so moving columns around is fine, bu
 
 The form sends to the web app address in its `action` attribute in `index.html`. If you change the script, publish it with **Deploy → Manage deployments → Edit → New version** so that address stays the same.
 
+## Events and talk pages
+
+Two separate pages, each its own file (not part of `index.html`):
+
+| Page | Address | File |
+|---|---|---|
+| Эвентүүд (in the main menu) | `/events` | `events/index.html` |
+| Цасанжингийн яриа (not in any menu, link only) | `/tsasanjin-talk` | `tsasanjin-talk/index.html` |
+
+- **Events list:** `events/data.js`, one entry per event. `/events` puts the nearest upcoming one in the hero; finished events move to "Өнгөрсөн" by themselves. The filter buttons come from `EVENT_TYPES`.
+- **Talk page:** the recording goes in `data-youtube` on the video box, and the article goes in `<article class="article">`. Instructions are in comments in the file. To make another talk page, copy the `tsasanjin-talk` folder and change `THIS_EVENT`.
+- **Sign-ups:** every form on these pages (event registration, the pop-up, the bottom section) sends name, phone, email, school, grade and which event it was for to the Apps Script in `tools/events-signups.gs`. Its web app URL goes in `SIGNUP_URL` at the top of `events/events.js`. Until then, test copies only pretend to send.
+- The shared files (`events/events.css`, `events.js`, `data.js`) live outside `assets/` so browsers don't cache old event lists for a day.
+- Tracking reports `generate_lead` / `Lead` with the event's id (never personal details).
+
 ## Fonts
 
 - **Raleway** (text) and **Google Sans** (numbers) load from Google Fonts.

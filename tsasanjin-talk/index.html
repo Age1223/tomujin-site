@@ -1,0 +1,347 @@
+<!doctype html>
+<html lang="mn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>З.Цасанжин · Tomujin is Talking · Томүжин</title>
+<meta name="description" content="Tomujin is Talking #1: Томүжингийн 2026 оны төгсөгч, Swarthmore College-ийн оюутан З.Цасанжингийн ярилцлага.">
+<link rel="icon" href="/assets/logo-icon.jpg">
+<meta property="og:title" content="Tomujin is Talking #1 · З.Цасанжин, Swarthmore College">
+<meta property="og:description" content="Өргөдлөө хэрхэн бичсэн, liberal arts коллежийн амьдрал, өргөдөл гаргах гэж буй дүү нартаа өгөх зөвлөгөө.">
+<meta property="og:image" content="https://tomujin.edu.mn/assets/talks/tsasanjin/event-poster.jpg">
+<meta property="og:url" content="https://tomujin.edu.mn/tsasanjin-talk">
+<meta name="twitter:card" content="summary_large_image">
+<!-- Not in the menus on purpose; people reach it by link. -->
+<style>[hidden]{display:none!important}</style>
+<!-- Tracking: same IDs as the main site. Only switches on at tomujin.edu.mn. -->
+<script>
+  window.TRACKING = { ga4: "G-E6WJCDTWQ5", metaPixel: "2024830894853717", gtm: "" };
+  (function(t){
+    window.dataLayer = window.dataLayer || [];
+    function load(src){ var el = document.createElement("script"); el.async = true; el.src = src; document.head.appendChild(el); }
+    if (t.gtm){ dataLayer.push({"gtm.start": Date.now(), event: "gtm.js"}); load("https://www.googletagmanager.com/gtm.js?id=" + encodeURIComponent(t.gtm)); }
+    if (t.ga4){ window.gtag = function(){ dataLayer.push(arguments); }; gtag("js", new Date()); gtag("config", t.ga4, {send_page_view: false}); load("https://www.googletagmanager.com/gtag/js?id=" + encodeURIComponent(t.ga4)); }
+    if (t.metaPixel){
+      var f = window.fbq = function(){ f.callMethod ? f.callMethod.apply(f, arguments) : f.queue.push(arguments); };
+      if (!window._fbq) window._fbq = f;
+      f.push = f; f.loaded = true; f.version = "2.0"; f.queue = [];
+      load("https://connect.facebook.net/en_US/fbevents.js"); fbq("init", t.metaPixel);
+    }
+    var path = "/tsasanjin-talk";
+    window.trackPage = function(){
+      if (t.ga4) gtag("event", "page_view", {page_title: document.title, page_location: location.origin + path});
+      if (t.metaPixel) fbq("track", "PageView");
+      dataLayer.push({event: "page_view", page_path: path, page_title: document.title});
+    };
+    /* No personal details are sent: only which form it was */
+    window.trackLead = function(what){
+      if (t.ga4) gtag("event", "generate_lead", {form_name: "event_signup", event_id: what});
+      if (t.metaPixel) fbq("track", "Lead", {content_name: what});
+      dataLayer.push({event: "event_signup", event_id: what, page_path: path});
+    };
+    window.trackPage();
+  })(/(^|\.)tomujin\.edu\.mn$/.test(location.hostname) ? window.TRACKING : {});
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400..700&text=0123456789%25%2B&display=swap">
+<link rel="stylesheet" href="/events/events.css">
+<style>
+.back{display:inline-flex;align-items:center;gap:6px;margin-top:32px;font-size:14px;font-weight:600;color:var(--text-muted)}
+.back svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+
+/* Hero: purple banner with the speaker */
+.talk-hero{padding-block:32px 88px}
+.talk-hero .banner{display:flex;flex-wrap:wrap;align-items:center;gap:var(--space-12) var(--space-16);padding:56px 64px;border-radius:var(--radius-xl);background:var(--tj-purple);color:#fff;box-shadow:0 30px 60px -30px rgba(45,27,78,.6)}
+.speaker-photo{flex:none;width:340px;aspect-ratio:1;border-radius:50%;overflow:hidden;background:#fff;box-shadow:0 0 0 6px var(--tj-golden),0 0 0 12px rgba(255,255,255,.18),0 30px 60px -20px rgba(0,0,0,.45)}
+.speaker-photo img{width:100%;height:100%;object-fit:cover;transform:scale(1.04)}
+.banner-body{flex:999 1 420px;min-width:0;display:grid;gap:18px;justify-items:start}
+.banner-body h1{font-size:clamp(2rem,4vw,3rem);font-weight:800;line-height:.98;letter-spacing:var(--tracking-display);text-transform:uppercase}
+.banner-body .label{margin-top:8px;font-size:15px;font-weight:700;letter-spacing:var(--tracking-wider);text-transform:uppercase;color:rgba(255,255,255,.75)}
+.namebox{display:inline-flex;align-items:stretch;box-shadow:0 12px 24px -12px rgba(0,0,0,.4)}
+.namebox img{display:block;height:60px;width:auto;background:#fff}
+.namebox span{display:flex;align-items:center;padding:0 22px;background:#ef5b27;color:#fff;font-size:30px;font-weight:800;letter-spacing:-.01em;white-space:nowrap}
+.banner-body p.who{max-width:44ch;font-size:17px;line-height:1.55;color:rgba(255,255,255,.88)}
+@media (max-width:760px){
+  .talk-hero{padding-block:20px 48px}
+  .talk-hero .banner{flex-direction:column;text-align:center;padding:32px 20px;gap:16px}
+  /* Title, then the photo, then the name box and the rest */
+  .banner-body{display:contents}
+  .speaker-photo{width:220px;order:1;margin-block:8px}
+  .banner-body h1{order:0}
+  .banner-body .label,.namebox,.banner-body p.who{order:2}
+  .banner-body .label{margin-top:4px;font-size:12px}
+  .namebox img{height:46px}
+  .namebox span{font-size:22px;padding:0 16px}
+  .banner-body p.who{font-size:15px}
+}
+
+/* Article */
+.article{max-width:1080px;margin-inline:auto;padding:0 24px 96px;display:grid;gap:80px}
+.article .intro{max-width:62ch;margin-inline:auto;text-align:center;font-size:20px;line-height:1.65;font-weight:500;color:var(--text-muted)}
+.part{display:grid;gap:32px}
+.part-text{max-width:760px;display:grid;gap:16px}
+.part-num{font-size:12px;font-weight:700;letter-spacing:var(--tracking-wider);text-transform:uppercase;color:var(--tj-teal)}
+.part h2{font-size:30px;line-height:1.15;font-weight:800;letter-spacing:var(--tracking-tight);color:var(--text-display);text-wrap:balance}
+.part p{font-size:18px;line-height:1.75}
+.part strong{font-weight:800;color:var(--tj-purple)}
+.part--side{display:flex;flex-wrap:wrap;gap:40px 56px;align-items:center}
+.part--side .part-text{flex:999 1 380px;min-width:0}
+.part--side figure{flex:1 1 300px;max-width:400px}
+.photo{display:block;width:100%;object-fit:cover;border-radius:var(--radius-xl);box-shadow:0 20px 40px -18px rgba(45,27,78,.45);background:var(--color-muted)}
+.r-wide{aspect-ratio:16/9}.r-43{aspect-ratio:4/3}.r-34{aspect-ratio:3/4}
+.photos{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
+.quote{margin:0;padding:32px 36px;border-radius:var(--radius-xl);background:var(--tj-purple);color:#fff;font-size:clamp(1.3rem,2.4vw,1.875rem);line-height:1.3;font-weight:800;letter-spacing:-.01em}
+.quote cite{display:block;margin-top:16px;font-size:14px;font-style:normal;font-weight:700;letter-spacing:var(--tracking-wider);text-transform:uppercase;color:var(--tj-golden)}
+@media (max-width:760px){
+  .article{padding:0 16px 56px;gap:48px}
+  .article .intro{text-align:left;font-size:18px;line-height:1.6}
+  .part{gap:14px}
+  .part h2{font-size:24px}
+  .part p{font-size:17px;line-height:1.7}
+  .part--side{gap:14px}
+  .part--side figure{order:2;max-width:none}
+  /* Several photos: swipe sideways */
+  .photos{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;margin-inline:-16px;padding-inline:16px;scrollbar-width:none}
+  .photos::-webkit-scrollbar{display:none}
+  .photos .photo{flex:none;width:82%;scroll-snap-align:start;border-radius:var(--radius-lg)}
+  .quote{padding:20px 22px}
+}
+
+/* Thanks, in place of the bottom form once someone has signed up */
+.signed{display:grid;justify-items:center;gap:var(--space-4);padding-block:var(--space-6);text-align:center}
+.signed h3{margin:0}
+.signed p{color:var(--text-muted);max-width:36ch}
+
+/* ───────── Lock: until someone signs up, the page is blurred behind the sign-up card ───────── */
+.gate{position:fixed;inset:0;z-index:80;display:grid;place-items:center;padding:16px;background:rgba(26,11,46,.45);overflow-y:auto}
+html.is-locked{overflow:hidden}
+html.is-locked .site-header,html.is-locked main,html.is-locked .site-footer{filter:blur(10px);pointer-events:none;user-select:none}
+html.is-unlocking .site-header,html.is-unlocking main,html.is-unlocking .site-footer{transition:filter .6s var(--ease-out)}
+.gate-card{width:min(560px,100%);background:#fff;border-radius:var(--radius-xl);box-shadow:0 20px 25px -5px rgba(0,0,0,.25),0 8px 10px -6px rgba(0,0,0,.2);overflow:hidden;animation:lead-in var(--duration-slow) var(--ease-out)}
+.gate-head{display:flex;align-items:center;gap:18px;padding:24px 32px;background:var(--tj-purple);color:#fff}
+.gate-head img{flex:none;width:72px;height:72px;border-radius:50%;object-fit:cover;box-shadow:0 0 0 3px var(--tj-golden)}
+.gate-head small{display:block;font-size:12px;font-weight:700;letter-spacing:var(--tracking-wider);text-transform:uppercase;color:var(--tj-golden)}
+.gate-head b{display:block;margin-top:4px;font-size:20px;font-weight:800;line-height:1.2}
+.gate-body{padding:28px 32px 32px}
+.gate-body h2{font-size:24px;line-height:1.25;font-weight:800;letter-spacing:-.01em;color:var(--text-display)}
+.gate-body > p{margin:6px 0 18px;font-size:15px;line-height:1.5;color:var(--text-muted)}
+.gate.is-out{opacity:0;transition:opacity .4s var(--ease-out)}
+@media (max-width:640px){
+  /* Phone: the card comes up from the bottom of the screen */
+  .gate{place-items:end stretch;padding:0}
+  .gate-card{width:100%;border-radius:20px 20px 0 0;max-height:92dvh;overflow-y:auto}
+  .gate-head{padding:18px 20px;gap:14px}
+  .gate-head img{width:52px;height:52px}
+  .gate-head b{font-size:16px}
+  .gate-body{padding:20px 20px 28px}
+  .gate-body h2{font-size:21px}
+  .gate-body > p{font-size:14px;margin-bottom:14px}
+}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="/" aria-label="Tomujin Alternative School — нүүр хуудас"><span class="logo-plate" style="padding:0;background:transparent"><img src="/assets/logo-lockup.png" alt="Tomujin Alternative School"></span></a>
+    <nav class="nav" aria-label="Үндсэн цэс">
+      <a href="/#home">Нүүр</a><a href="/#about">Бидний тухай</a><a href="/#outcomes">Бидний үр дүн</a><a href="/#admissions">Элсэлт</a><a href="/events" aria-current="page">Эвентүүд</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="wrap"><a class="back" href="/events"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>Бүх эвентүүд</a></div>
+
+  <section class="talk-hero" aria-label="Tomujin is Talking #1">
+    <div class="wrap">
+      <div class="banner">
+        <div class="speaker-photo"><img src="/assets/talks/tsasanjin/speaker.jpg" alt="З.Цасанжин Swarthmore College-ийн далбаа барьсан нь" width="444" height="444"></div>
+        <div class="banner-body">
+          <h1>Tomujin is talking 💬</h1>
+          <p class="label">Зочин илтгэгч</p>
+          <div class="namebox"><img src="/assets/talks/tsasanjin/swarthmore-seal.png" alt="Swarthmore College" width="130" height="80"><span>З.Цасанжин</span></div>
+          <p class="who">Swarthmore College-ийн оюутан, Томүжин Алтернатив сургуулийн 2026 оны төгсөгч</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ARTICLE. Text from the approved Claude Design canvas. Photos are in /assets/talks/tsasanjin/photos/. -->
+  <article class="article" aria-label="Ярилцлага">
+    <p class="intro">TOMUJIN IS TALKING цувралын маань энэ оны анхны зочноор Томүжингийн 2026 оны төгсөгч, одоо Swarthmore College-д суралцаж буй З.Цасанжин оролцлоо. Тэрээр ярилцлагын үеэр өргөдлөө хэрхэн бэлдсэн, liberal arts коллежийн амьдрал ямар байдаг, өргөдөл гаргах гэж буй дүү нартаа юу зөвлөх талаараа хуваалцлаа.</p>
+
+    <section class="part">
+      <div class="part-text">
+        <span class="part-num">01</span>
+        <h2>Өргөдөл чинь зөвхөн тоон үзүүлэлтээр биш, аливаа зүйлсээс юу ойлгосноор чинь, хэн болж өөрчлөгдсөнөөр чинь илэрхийлэгдэнэ.</h2>
+        <p>Цасанжин маань өргөдөлдөө хичээлээс гадуурх үйл ажиллагаагаа бичихдээ юу хийсэн, хэдэн хүн оролцсон гэх мэт тоо жагсаахаас илүүтэй тэр зүйлд оролцоод <strong>юуг ойлгосон, юуг бодсоноо</strong> эргэцүүлж бичих нь чухал гэдгийг дурдаад авсан.</p>
+        <p>Эссэгээ ч мөн адил асар ихээр тунгаан бичсэнээ хуваалцаж, өргөдөл явуулж буй тэр олон хүүхдүүдийн дундаас зөвхөн өөрийнхөө л бичиж чадах зүйл юу вэ гэдгийг эргэцүүлж байж. Ингэхдээ өөрийнхөө Увс аймгаас ирсэн, аялгатай ярьдаг тухайгаа бичсэн нь түүний хувьд хамгийн оносон зүйл болсныг хуваалцсан. Мөн түүнчлэн энэ өөрийн онцлогоо Swarthmore College-ийнхоо аялга судалдаг хичээлтэй холбож, <strong>тэр хичээлийн “судлагдахуун” нь “би” байна</strong> гэж оруулж өгчээ.</p>
+      </div>
+      <img class="photo r-wide" src="/assets/talks/tsasanjin/photos/img_1937.jpg" alt="Swarthmore College-ийн гол байрны үүд, шинэ оюутнуудыг угтсан WELCOME тугууд" width="1400" height="1050" loading="lazy" decoding="async">
+    </section>
+
+    <blockquote class="quote">“Хүн бүрд л хийсэн зүйл байгаа, харин би тэр зүйлээсээ юуг ойлгосон бэ гэдгээ бичих нь чухал.”<cite>— З.Цасанжин</cite></blockquote>
+
+    <section class="part" style="max-width:760px">
+      <div class="part-text">
+        <span class="part-num">02</span>
+        <h2>Тэнцээгүй гэсэн хариу авбал...</h2>
+        <p>Их сургуулиас тэнцээгүй гэсэн хариу авбал үүнийг хэт хүндээр хүлээж авах хэрэггүй. Ихэнхдээ тэнцэх эсэх нь чамаас шалтгаалахгүй маш олон хүчин зүйлээс хамаардаг.</p>
+        <p>Харин их сургуулиа судлахдаа <strong>тэнцэх эсэхээ мэдэхгүй сурагчийн өнцгөөс бус, аль хэдийн тэнд сурдаг мэт</strong> өөриймсөг хандаж сэтгэлгээгээ өөрчилж судалж үзээрэй гэж Цасанжин маань зөвлөнө лээ. ❤️</p>
+      </div>
+    </section>
+
+    <section class="part">
+      <div class="part-text">
+        <span class="part-num">03</span>
+        <h2>Liberal Arts коллежид суралцах нь...</h2>
+        <p>Swarthmore-г төгсөхийн тулд 4 жилд 32 кредитийн хичээл үзсэн байх ёстой байдаг. Нэг мэргэжилтэй болоход 8 кредит хичээл л хангалттай бөгөөд үлдсэн кредитээрээ үзэхийг хүссэн хичээлээ сонгон суралцдаг. Liberal arts коллежийн онцлог нь энэ: <strong>төгсөхийн тулд мэргэжлээсээ гадна өөр өөр зүйл хийж үзэх ёстой.</strong> Цасанжин маань энэ давуу талын ачаар одоо өөрөө astronomy буюу сансар судлалын хичээл авч байгаагаа дурдаад авсан.</p>
+        <p>Их сургуульд ирээд харин мэдэрсэн чухал хоёр зүйлээс нь хуваалцвал... Нэгдүгээрт, 10н жилд байхдаа математикийн гүнзгий хичээлд суудаг байж дээ гэж бага зэргийн харамсал төрж, хоёрдугаарт, англи хэлээ мэддэг гэж бодож байсан ч хичээл бүр өөрийн чиглэлээсээ шалтгаалаад өөр өөр үг хэллэг ашигладгийг ойлгож, мэдэрч буй. Тиймээс <strong>тэр болгонд дасан зохицож, хичээл бүрийнхээ өнгө аясыг олж авах</strong> хэрэгтэй санагдсан гэнэ.</p>
+      </div>
+      <div class="photos">
+        <img class="photo r-43" src="/assets/talks/tsasanjin/photos/img_8950.jpg" alt="Swarthmore-ийн кампус, намрын өдөр" width="1400" height="1050" loading="lazy" decoding="async">
+        <img class="photo r-43" src="/assets/talks/tsasanjin/photos/img_2003.jpg" alt="Swarthmore-ийн танхимд болж буй уулзалт" width="1400" height="1050" loading="lazy" decoding="async">
+      </div>
+    </section>
+
+    <section class="part">
+      <div class="part-text">
+        <span class="part-num">04</span>
+        <h2>Хичээлээс гадуурх амьдрал</h2>
+        <p>Нэгдүгээр курсээс эхлэн хичээлээс гадуурх үйл ажиллагаанд ороод явбал <strong>дараа дараагийн жилүүдэд удирдах албан тушаалд орох</strong> боломжтой байдаг.</p>
+        <p>Цасанжин маань одоогоор сургуулийнхаа олон улсын сурагчдын клубын удирдах зөвлөлд ажиллаж, 200 орчим гишүүнтэй энэ клубын удирдах зөвлөлийн 10 гишүүнийх нь нэг болж чаджээ.</p>
+      </div>
+      <div class="photos">
+        <img class="photo r-34" src="/assets/talks/tsasanjin/photos/img_7172_original.jpg" alt="Ойн дундах амфитеатрт лаа барин цугларсан оюутнууд" width="1050" height="1400" loading="lazy" decoding="async">
+        <img class="photo r-34" src="/assets/talks/tsasanjin/photos/img_8809.jpg" alt="Кампусын зүлгэн дээрх Swarthmore малгай" width="1050" height="1400" loading="lazy" decoding="async">
+      </div>
+    </section>
+
+    <section class="part part--side">
+      <figure style="margin:0"><img class="photo r-34" src="/assets/talks/tsasanjin/photos/img_7558.jpg" alt="Номын сангийн ширээн дээр хичээлээ хийж буй нь" width="1050" height="1400" loading="lazy" decoding="async"></figure>
+      <div class="part-text">
+        <span class="part-num">05</span>
+        <h2>Шалгалт юуг харуулдаг вэ?</h2>
+        <p>SAT, IELTS, TOEFL гэх мэт шалгалтууд бол зөвхөн сургуульд тэнцэхийн төлөө биш. Шалгалтад бэлдээд өгч чадаж байна гэдэг бол <strong>чи их сургуульд орсны дараа сурч чадна гэсэн үг</strong> гэдгийг харуулдаг.</p>
+      </div>
+    </section>
+  </article>
+
+  <section id="more" class="band band--alt" aria-labelledby="more-title" data-more hidden>
+    <div class="wrap">
+      <div class="section-head"><h2 class="h1" id="more-title">Удахгүй болох дараагийн эвентүүд</h2></div>
+      <div class="ev-list" data-more-list></div>
+    </div>
+  </section>
+
+  <section id="signup" class="band band--brand" aria-labelledby="signup-title">
+    <div class="wrap fit">
+      <div>
+        <h2 class="h1" id="signup-title" style="font-size:clamp(2rem,3.6vw,3rem);line-height:1.15">Дараагийн эвентийг хамгийн түрүүнд мэдээрэй. 💌</h2>
+        <p class="fit-intro">Зарим эвентийн суудал хязгаартай байдаг тул бүртгэлээ үлдээгээд шинэ эвент зарлагдмагц хамгийн түрүүнд мэдээлэл аваарай!</p>
+      </div>
+      <div class="lead-card" data-signup-card>
+        <h3>Бүртгүүлэх 🖇️</h3>
+        <div data-signup="Tsasanjin talk page form" data-button="Илгээх" data-no-note></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-top">
+      <div>
+        <span class="logo-plate"><img src="/assets/logo-lockup.png" alt="Tomujin Alternative School"></span>
+        <p class="footer-name">Томүжин Алтернатив сургууль — бид зөвхөн сургууль биш боловсролыг шинэчлэх хөдөлгөөн.</p>
+      </div>
+      <div class="footer-contact">
+        <p class="f-page">Холбоо барих</p>
+        <ul>
+          <li><i data-lucide="phone"></i><a href="tel:+97677773111">+976 7777 3111</a></li>
+          <li><i data-lucide="mail"></i><a href="mailto:admissions@tomujin.edu.mn">admissions@tomujin.edu.mn</a></li>
+          <li><i data-lucide="map-pin"></i><span>Улаанбаатар хот, Баянзүрх дүүрэг, 25-р хороо, Нарны зам, Доктор авто сервисийн хажууд</span></li>
+        </ul>
+        <div class="footer-social">
+          <a href="https://www.facebook.com/TomujinAlternativeSchool" target="_blank" rel="noopener" aria-label="Facebook"><i data-lucide="facebook"></i></a>
+          <a href="https://www.instagram.com/tomujinalternativeschool/" target="_blank" rel="noopener" aria-label="Instagram"><i data-lucide="instagram"></i></a>
+        </div>
+      </div>
+    </div>
+    <nav class="footer-links" aria-label="Сайтын бүтэц"><a href="/#home">Нүүр</a><a href="/#about">Бидний тухай</a><a href="/#outcomes">Бидний үр дүн</a><a href="/#admissions">Элсэлт</a><a href="/events">Эвентүүд</a></nav>
+    <div class="footer-bottom">© 2026 Tomujin Alternative School</div>
+  </div>
+</footer>
+
+<!-- Lock: shown until the visitor signs up (once per browser). Signing up here counts as the sign-up at the bottom too. -->
+<div class="gate" data-gate role="dialog" aria-modal="true" aria-labelledby="gate-title" hidden>
+  <div class="gate-card">
+    <div class="gate-head">
+      <img src="/assets/talks/tsasanjin/speaker.jpg" alt="">
+      <div><small>Tomujin is talking #1</small><b>З.Цасанжин · Swarthmore College</b></div>
+    </div>
+    <div class="gate-body">
+      <h2 id="gate-title">Ярилцлагыг уншихын тулд бүртгүүлээрэй 📖</h2>
+      <p>Бүртгүүлмэгц ярилцлага шууд нээгдэнэ. Дараагийн TOMUJIN IS TALKING-ийн мэдээллийг ч хамгийн түрүүнд хүргэнэ.</p>
+      <div data-gate-form></div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/lucide@0.474.0/dist/umd/lucide.min.js"></script>
+<script src="/events/data.js"></script>
+<script src="/events/events.js"></script>
+<script>
+(function(){
+  var E = window.TJEvents;
+  var THIS_EVENT = "tsasanjin-talk";   /* this talk's id in events/data.js */
+
+  /* ── Upcoming events below the article, from events/data.js ── */
+  var up = E.sorted().upcoming.filter(function(e){ return e.id !== THIS_EVENT; });
+  if (up.length){
+    document.querySelector("[data-more-list]").innerHTML = up.slice(0, 3).map(function(e){ return E.card(e); }).join("");
+    document.querySelector("[data-more]").hidden = false;
+  }
+
+  /* ── Once signed up (here, in the lock, or anywhere on /events), the bottom form says thanks instead ── */
+  var card = document.querySelector("[data-signup-card]");
+  function showSigned(){
+    card.innerHTML = '<div class="signed"><span class="icon-tile icon-tile--gold"><i data-lucide="check"></i></span>' +
+      '<h3>Та бүртгүүлсэн байна</h3><p>Дараагийн эвентийн урилгыг танд хамгийн түрүүнд илгээнэ.</p></div>';
+    E.icons();
+  }
+  if (E.signedUp()) showSigned();
+
+  /* ── Lock: the page stays blurred behind the sign-up card until the visitor signs up.
+        Skipped when they've signed up before in this browser, and (on the live site) while
+        SIGNUP_URL in events.js is empty, so nobody gets locked out when sign-ups can't be saved. ── */
+  var gate = document.querySelector("[data-gate]"), root = document.documentElement;
+  if (!E.signedUp() && E.canSave){
+    root.classList.add("is-locked");
+    gate.hidden = false;
+    E.mountForm(gate.querySelector("[data-gate-form]"), {
+      button: "Бүртгүүлээд унших →",
+      interest: "Ярилцлага унших (Цасанжин)",
+      onDone: function(){
+        /* Short "thanks", then the page comes into focus */
+        setTimeout(function(){
+          root.classList.add("is-unlocking");
+          root.classList.remove("is-locked");
+          gate.classList.add("is-out");
+          setTimeout(function(){ gate.hidden = true; root.classList.remove("is-unlocking"); }, 450);
+          showSigned();
+        }, 900);
+      }
+    });
+    var first = gate.querySelector("input");
+    if (first && window.matchMedia("(pointer: fine)").matches) first.focus();
+  }
+
+  E.icons();
+})();
+</script>
+</body>
+</html>

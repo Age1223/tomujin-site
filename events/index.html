@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="mn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Эвентүүд · Томүжин</title>
+<meta name="description" content="Томүжин Алтернатив сургуулийн удахгүй болох эвентүүд: нээлттэй хаалганы өдөр, мэдээллийн уулзалт, эцэг эхийн яриа, зочин илтгэгчийн цуврал.">
+<link rel="icon" href="/assets/logo-icon.jpg">
+<meta property="og:title" content="Эвентүүд · Томүжин Алтернатив сургууль">
+<meta property="og:description" content="Нээлттэй хаалганы өдөр, мэдээллийн уулзалт, зочин илтгэгчийн цуврал. Бүртгүүлээд урилгаа хамгийн түрүүнд аваарай.">
+<meta property="og:url" content="https://tomujin.edu.mn/events">
+<style>[hidden]{display:none!important}</style>
+<!-- Tracking: same IDs as the main site. Only switches on at tomujin.edu.mn. -->
+<script>
+  window.TRACKING = { ga4: "G-E6WJCDTWQ5", metaPixel: "2024830894853717", gtm: "" };
+  (function(t){
+    window.dataLayer = window.dataLayer || [];
+    function load(src){ var el = document.createElement("script"); el.async = true; el.src = src; document.head.appendChild(el); }
+    if (t.gtm){ dataLayer.push({"gtm.start": Date.now(), event: "gtm.js"}); load("https://www.googletagmanager.com/gtm.js?id=" + encodeURIComponent(t.gtm)); }
+    if (t.ga4){ window.gtag = function(){ dataLayer.push(arguments); }; gtag("js", new Date()); gtag("config", t.ga4, {send_page_view: false}); load("https://www.googletagmanager.com/gtag/js?id=" + encodeURIComponent(t.ga4)); }
+    if (t.metaPixel){
+      var f = window.fbq = function(){ f.callMethod ? f.callMethod.apply(f, arguments) : f.queue.push(arguments); };
+      if (!window._fbq) window._fbq = f;
+      f.push = f; f.loaded = true; f.version = "2.0"; f.queue = [];
+      load("https://connect.facebook.net/en_US/fbevents.js"); fbq("init", t.metaPixel);
+    }
+    var path = "/events";
+    window.trackPage = function(){
+      if (t.ga4) gtag("event", "page_view", {page_title: document.title, page_location: location.origin + path});
+      if (t.metaPixel) fbq("track", "PageView");
+      dataLayer.push({event: "page_view", page_path: path, page_title: document.title});
+    };
+    /* No personal details are sent: only which event (or "series") it was for */
+    window.trackLead = function(what){
+      if (t.ga4) gtag("event", "generate_lead", {form_name: "event_signup", event_id: what});
+      if (t.metaPixel) fbq("track", "Lead", {content_name: what});
+      dataLayer.push({event: "event_signup", event_id: what, page_path: path});
+    };
+    window.trackPage();
+  })(/(^|\.)tomujin\.edu\.mn$/.test(location.hostname) ? window.TRACKING : {});
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700;800;900&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400..700&text=0123456789%25%2B&display=swap">
+<link rel="stylesheet" href="/events/events.css">
+<style>
+/* Page title */
+.page-hero{padding-block:88px 56px}
+.page-hero .display{font-size:clamp(2.5rem,5vw,4rem)}
+
+/* Featured (nearest) event: the poster beside its details, in one large card */
+.feature{display:flex;flex-wrap:wrap;gap:var(--space-12);align-items:center;padding:var(--space-10);text-align:left}
+.poster{flex:1 1 300px;max-width:400px;aspect-ratio:4/5;position:relative;border-radius:var(--radius-xl);overflow:hidden;background:var(--tj-purple);color:#fff;box-shadow:0 20px 40px -18px rgba(45,27,78,.45)}
+.poster > img{width:100%;height:100%;object-fit:cover}
+/* Drawn poster, used until the event has its own image */
+.poster-art{position:absolute;inset:0;display:grid;grid-template-rows:auto 1fr auto;gap:var(--space-4);padding:var(--space-8)}
+.poster-art .p-kind{padding-right:72px;font-size:12px;font-weight:700;letter-spacing:var(--tracking-wider);text-transform:uppercase;color:var(--tj-golden)}
+.poster-art .p-title{align-self:center;font-size:clamp(1.9rem,3.2vw,2.75rem);font-weight:900;line-height:.98;letter-spacing:-.02em;text-transform:uppercase;text-wrap:balance}
+.poster-art .p-foot{display:flex;align-items:flex-end;justify-content:space-between;gap:var(--space-4)}
+.poster-art .p-date{display:grid;gap:2px}
+.poster-art .p-date b{font-size:clamp(1.6rem,3vw,2.25rem);font-weight:700;line-height:1}
+.poster-art .p-date span{font-size:14px;font-weight:600;opacity:.85}
+.poster-art .p-logo{width:112px;height:auto}
+.poster-art .p-tangram{position:absolute;top:var(--space-6);right:var(--space-6);width:64px;height:auto}
+.feature-body{flex:999 1 460px;min-width:0;display:grid;gap:var(--space-5);align-content:center}
+.feature-body h2{font-size:clamp(2rem,3.6vw,3rem);line-height:1.05;font-weight:800;letter-spacing:var(--tracking-display);color:var(--text-display);text-wrap:balance}
+.feature-body .desc{display:grid;gap:var(--space-3);max-width:60ch}
+.feature-body .desc p{font-size:17px;line-height:1.65}
+.facts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--space-5) var(--space-8);align-items:center;margin:0;padding-block:var(--space-6);border-block:1px solid var(--color-border)}
+.facts > div{display:grid;gap:4px;min-width:0}
+.facts dt{font-size:14px;font-weight:600;color:var(--text-muted)}
+.facts dd{margin:0;font-size:17px;line-height:1.35;font-weight:700}
+.facts dd span{display:block;font-weight:400}
+.facts .btn{justify-self:start}
+.feature--empty{display:grid}
+@media (max-width:860px){
+  .feature{padding:var(--space-4);gap:var(--space-5)}
+  .poster{max-width:none;flex-basis:100%;border-radius:var(--radius-lg)}
+  .feature-body{padding:0 var(--space-1) var(--space-1);gap:var(--space-4)}
+  .feature-body .desc p{font-size:16px}
+  .facts{gap:var(--space-4) var(--space-5);padding-block:var(--space-5)}
+  .facts dd{font-size:16px}
+  .facts .seats{grid-column:1/-1}
+  .facts .btn{grid-column:1/-1;justify-self:stretch}
+}
+@media (max-width:560px){.poster-art{padding:var(--space-6)}.poster-art .p-tangram{width:48px;top:var(--space-5);right:var(--space-5)}.poster-art .p-kind{padding-right:56px}.poster-art .p-logo{width:88px}}
+
+/* List */
+.filters{display:flex;justify-content:center;margin:calc(-1 * var(--space-6)) 0 var(--space-10)}
+@media (max-width:640px){.filters{justify-content:flex-start;overflow-x:auto;margin-inline:-16px;padding-inline:16px;scrollbar-width:none}.filters::-webkit-scrollbar{display:none}.tablist{flex-wrap:nowrap}.tablist button{flex:none}}
+.past-head{margin:var(--space-12) 0 var(--space-4);font-size:18px;line-height:28px;font-weight:700;color:var(--text-muted)}
+.none{padding:var(--space-10) var(--space-6);border:1px dashed var(--color-border);border-radius:var(--radius-xl);text-align:center;color:var(--text-muted)}
+/* Phone: the date tile sits beside the series line, the button goes full width */
+@media (max-width:640px){
+  .ev{display:grid;grid-template-columns:auto minmax(0,1fr);gap:var(--space-3) var(--space-4);padding:var(--space-5)}
+  .ev-body{display:contents}
+  .ev-date{grid-row:1;grid-column:1;width:72px;height:72px;grid-auto-flow:row;padding:0;align-items:center;justify-self:auto}
+  .ev-date small{font-size:10px}
+  .ev-date b{font-size:28px}
+  .ev-labels{grid-row:1;grid-column:2;flex-direction:column;align-items:flex-start;gap:6px}
+  .ev-body > h3,.ev-body > .sum,.ev-body > .meta,.ev-act{grid-column:1/-1}
+  .ev .meta{flex-direction:column}
+}
+
+/* Sign-up section */
+.signup-head{font-size:clamp(2rem,3.6vw,3rem)!important;line-height:1.15}
+.signup-intro{margin-top:var(--space-6);font-size:17px;line-height:1.55;color:rgba(255,255,255,.88);max-width:52ch}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="/" aria-label="Tomujin Alternative School — нүүр хуудас"><span class="logo-plate" style="padding:0;background:transparent"><img src="/assets/logo-lockup.png" alt="Tomujin Alternative School"></span></a>
+    <!-- Same pages as the main site's menu -->
+    <nav class="nav" aria-label="Үндсэн цэс">
+      <a href="/#home">Нүүр</a><a href="/#about">Бидний тухай</a><a href="/#outcomes">Бидний үр дүн</a><a href="/#admissions">Элсэлт</a><a href="/events" aria-current="page">Эвентүүд</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="page-hero">
+    <div class="wrap">
+      <h1 class="display">Онцлох эвент ✨</h1>
+    </div>
+  </section>
+
+  <!-- Featured: filled by the script below with the nearest upcoming event (or one marked featured: true in data.js) -->
+  <section id="events-next" class="band" style="padding-top:0" aria-label="Онцлох эвент">
+    <div class="wrap" data-feature></div>
+  </section>
+
+  <section id="events-list" class="band band--alt" aria-labelledby="list-title">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 class="h1" id="list-title">Удахгүй болох дараагийн эвентүүд</h2>
+      </div>
+      <div class="filters"><div class="tablist" role="group" aria-label="Төрлөөр шүүх" data-chips></div></div>
+      <div class="ev-list" data-upcoming></div>
+      <h3 class="past-head" data-past-head hidden>Өнгөрсөн эвентүүд</h3>
+      <div class="ev-list" data-past></div>
+    </div>
+  </section>
+
+  <!-- Sign-up for the series in general (not one event) -->
+  <section id="signup" class="band band--brand" aria-labelledby="signup-title">
+    <div class="wrap fit">
+      <div>
+        <h2 class="h1 signup-head" id="signup-title">Дараагийн эвентийг хамгийн түрүүнд мэдээрэй. 💌</h2>
+        <p class="signup-intro">Зарим эвентийн суудал хязгаартай байдаг тул бүртгэлээ үлдээгээд шинэ эвент зарлагдмагц хамгийн түрүүнд мэдээлэл аваарай!</p>
+      </div>
+      <div class="lead-card">
+        <h3>Бүртгүүлэх 🖇️</h3>
+        <div data-signup="Events page form" data-button="Илгээх" data-no-note></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-top">
+      <div>
+        <span class="logo-plate"><img src="/assets/logo-lockup.png" alt="Tomujin Alternative School"></span>
+        <p class="footer-name">Томүжин Алтернатив сургууль — бид зөвхөн сургууль биш боловсролыг шинэчлэх хөдөлгөөн.</p>
+      </div>
+      <div class="footer-contact">
+        <p class="f-page">Холбоо барих</p>
+        <ul>
+          <li><i data-lucide="phone"></i><a href="tel:+97677773111">+976 7777 3111</a></li>
+          <li><i data-lucide="mail"></i><a href="mailto:admissions@tomujin.edu.mn">admissions@tomujin.edu.mn</a></li>
+          <li><i data-lucide="map-pin"></i><span>Улаанбаатар хот, Баянзүрх дүүрэг, 25-р хороо, Нарны зам, Доктор авто сервисийн хажууд</span></li>
+        </ul>
+        <div class="footer-social">
+          <a href="https://www.facebook.com/TomujinAlternativeSchool" target="_blank" rel="noopener" aria-label="Facebook"><i data-lucide="facebook"></i></a>
+          <a href="https://www.instagram.com/tomujinalternativeschool/" target="_blank" rel="noopener" aria-label="Instagram"><i data-lucide="instagram"></i></a>
+        </div>
+      </div>
+    </div>
+    <nav class="footer-links" aria-label="Сайтын бүтэц"><a href="/#home">Нүүр</a><a href="/#about">Бидний тухай</a><a href="/#outcomes">Бидний үр дүн</a><a href="/#admissions">Элсэлт</a><a href="/events">Эвентүүд</a></nav>
+    <div class="footer-bottom">© 2026 Tomujin Alternative School</div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/lucide@0.474.0/dist/umd/lucide.min.js"></script>
+<script src="/events/data.js"></script>
+<script src="/events/events.js"></script>
+<script>
+(function(){
+  var E = window.TJEvents, esc = E.esc;
+  var lists = E.sorted();
+
+  /* ── Featured event: its poster (or a drawn one), then its details ── */
+  var hero = document.querySelector("[data-feature]");
+  var ev = E.nextEvent();
+  if (ev){
+    var w = E.when(ev), open = E.isOpen(ev), tbc = E.isTbc(ev);
+    var poster = ev.image
+      ? '<img src="' + esc(ev.image) + '" alt="' + esc(ev.title + ". " + w.month + "/" + w.day + ", " + w.time) + '" fetchpriority="high">'
+      : '<div class="poster-art" aria-hidden="true">' +
+          '<span class="p-kind">' + esc(E.seriesLabel(ev)) + '</span>' +
+          '<span class="p-title">' + esc(ev.title) + '</span>' +
+          '<div class="p-foot"><div class="p-date"><b>' + w.month + '/' + w.day + '</b><span>' + esc(w.weekday) + ' · ' + w.time + '</span></div>' +
+            '<img class="p-logo" src="/assets/logo-lockup-white.webp" alt=""></div>' +
+          '<img class="p-tangram" src="/assets/tangrams/star.png" alt="">' +
+        '</div>';
+    var desc = (ev.details && ev.details.length ? ev.details : ev.summary ? [ev.summary] : [])
+      .map(function(t){ return '<p>' + esc(t) + '</p>'; }).join("");
+    var status = open ? "Бүртгэл нээлттэй" : tbc ? "Огноо батлагдмагц нээгдэнэ" : "Бүртгэл хаагдсан";
+    var label = open ? 'Бүртгүүлэх →' : tbc ? "Огноо батлагдмагц мэдэх" : "Дараагийнхыг мэдэх";
+    hero.innerHTML = '<article class="card feature">' +
+      '<div class="poster">' + poster + '</div>' +
+      '<div class="feature-body">' +
+        '<h2>' + esc(ev.title) + '</h2>' +
+        (desc ? '<div class="desc">' + desc + '</div>' : "") +
+        '<dl class="facts">' +
+          '<div><dt>Хэзээ</dt><dd>' + esc(w.dot) + '<span>' + esc(w.day_name + " · " + w.time + " цагаас") + (tbc ? " (урьдчилсан)" : "") + '</span></dd></div>' +
+          '<div><dt>Хаана</dt><dd>' + esc(ev.place || E.FORMATS[ev.format] || "") + (ev.placeNote ? '<span>' + esc(ev.placeNote) + '</span>' : "") + '</dd></div>' +
+          '<div class="seats"><dt>Суудал</dt><dd>' + esc(ev.seats ? ev.seats + " · " + status : status) + '</dd></div>' +
+          '<button class="btn btn--accent btn--lg" type="button" data-register="' + esc(ev.id) + '">' + label + '</button>' +
+        '</dl>' +
+      '</div>' +
+    '</article>';
+  } else {
+    hero.innerHTML = '<div class="card feature feature--empty"><div class="feature-body"><h2>Шинэ эвент удахгүй зарлагдана.</h2>' +
+      '<div class="desc"><p>Бүртгүүлээрэй, зарлагдмагц урилгыг тань руу хамгийн түрүүнд илгээнэ.</p></div>' +
+      '<div class="btn-row"><button class="btn btn--accent btn--lg" type="button" data-open-signup>Мэдээлэл авах →</button></div></div></div>';
+  }
+
+  /* ── List: upcoming (except the featured one), then past ones ── */
+  var upcoming = lists.upcoming.filter(function(e){ return !ev || e.id !== ev.id; });
+  var all = upcoming.concat(lists.past);
+  var upBox = document.querySelector("[data-upcoming]"), pastBox = document.querySelector("[data-past]"), pastHead = document.querySelector("[data-past-head]");
+  var chips = document.querySelector("[data-chips]");
+  var types = Object.keys(EVENT_TYPES).filter(function(t){ return all.some(function(e){ return e.type === t; }); });
+  chips.innerHTML = '<button type="button" aria-pressed="true" data-chip="">Бүгд <small>' + all.length + '</small></button>' +
+    types.map(function(t){ return '<button type="button" aria-pressed="false" data-chip="' + esc(t) + '">' + esc(EVENT_TYPES[t]) + ' <small>' + all.filter(function(e){ return e.type === t; }).length + '</small></button>'; }).join("");
+  function render(type){
+    var up = upcoming.filter(function(e){ return !type || e.type === type; });
+    var past = lists.past.filter(function(e){ return !type || e.type === type; });
+    upBox.innerHTML = up.length ? up.map(function(e){ return E.card(e); }).join("") :
+      '<div class="none">Удахгүй болох эвент одоогоор алга. <a href="#signup">Бүртгүүлээрэй</a>, зарлагдмагц хэлье.</div>';
+    pastBox.innerHTML = past.map(function(e){ return E.card(e); }).join("");
+    pastHead.hidden = !past.length;
+  }
+  chips.addEventListener("click", function(e){
+    var c = e.target.closest("[data-chip]");
+    if (!c) return;
+    chips.querySelectorAll("[data-chip]").forEach(function(x){ x.setAttribute("aria-pressed", String(x === c)); });
+    render(c.getAttribute("data-chip"));
+  });
+  render("");
+  E.icons();
+})();
+</script>
+</body>
+</html>
