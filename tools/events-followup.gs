@@ -61,6 +61,9 @@ function onOpen() {
     .addItem('Хүлээгдэж буй имэйлүүдийг одоо илгээх…', 'sendPendingNow')
     .addItem('Нэг эвентийн сануулгыг одоо илгээх…', 'sendReminderNow')
     .addSeparator()
+    .addItem('Google Form-ын бүртгэлийг оруулах…', 'importFormRegistrations')
+    .addItem('Google Form-ыг автоматаар шалгахыг зогсоох…', 'stopFormSync')
+    .addSeparator()
     .addItem('Автомат илгээлтийг асаах (10 мин тутам)', 'turnOnAutoEmails')
     .addItem('Автомат илгээлтийг унтраах', 'turnOffAutoEmails')
     .addToUi();
@@ -115,9 +118,10 @@ function sendPendingNow() {
   const ui = SpreadsheetApp.getUi();
   const ss = SpreadsheetApp.getActiveSpreadsheet();
   const events = eeLoadEvents_(true);
+  eeSyncForms_(ss, events);
   eeSyncEventsSheet_(ss, events);
   const jobs = eePlan_(ss, events, Date.now());
-  if (!jobs.length) { ui.alert('Илгээх имэйл алга.'); return; }
+  if (!jobs.length) { ui.alert('Илгээх имэйл алга. "' + EE_EVENTS + '" табд эвентийн чагт тэмдэглэгдсэн эсэхийг шалгана уу.'); return; }
   if (ui.alert('Одоо илгээх үү?', eeSummary_(jobs), ui.ButtonSet.YES_NO) !== ui.Button.YES) return;
   const sent = eeRun_(ss, events, jobs);
   ui.alert(sent + ' имэйл илгээлээ.' + (sent < jobs.length ? ' Үлдсэнийг дараагийн удаа илгээнэ.' : ''));
@@ -147,6 +151,155 @@ function sendReminderNow() {
   ui.alert(eeRun_(ss, events, jobs) + ' имэйл илгээлээ.');
 }
 
+/* Copies registrations from an old Google Form's responses sheet into "Sign-ups" as registrations for one
+   event, so they get the details and reminder emails like everyone else. Asks for: the responses sheet's
+   link, the event, and the date the form started taking sign-ups for that event (when one form was reused
+   for several events). People already registered for that event (same email or phone) are skipped, so
+   running it twice is safe. The form's columns are found by their questions: Нэр, И-Мэйл / Email, Утас, Анги. */
+const EE_FORM_DEFAULT = 'https://docs.google.com/spreadsheets/d/1RB9vLPrVCGiID1w-UljfxULbXnt-LTrwKPigTvNjvBM/edit';
+
+function importFormRegistrations() {
+  const ui = SpreadsheetApp.getUi();
+  const ss = SpreadsheetApp.getActiveSpreadsheet();
+  const events = eeLoadEvents_(true);
+  const upcoming = eeUpcoming_(events, Date.now());
+  if (!upcoming.length) { ui.alert('Удахгүй болох эвент алга.'); return; }
+
+  let r = ui.prompt('1/3 · Google Form-ын хариултын хүснэгт', 'Хүснэгтийн холбоосыг оруулна уу (хоосон орхивол: "Tomujin is Talking бүртгэл (Responses)").', ui.ButtonSet.OK_CANCEL);
+  if (r.getSelectedButton() !== ui.Button.OK) return;
+  const url = r.getResponseText().trim() || EE_FORM_DEFAULT;
+  let src;
+  try { src = SpreadsheetApp.openByUrl(url); } catch (e) { ui.alert('Хүснэгтийг нээж чадсангүй: ' + e.message); return; }
+
+  const list = upcoming.map((e, i) => (i + 1) + '. ' + e.title + ' (' + eeWhen_(e).short + ')').join('\n');
+  r = ui.prompt('2/3 · Аль эвентэд бүртгэх вэ?', list + '\n\nДугаарыг бичнэ үү:', ui.ButtonSet.OK_CANCEL);
+  if (r.getSelectedButton() !== ui.Button.OK) return;
+  const ev = upcoming[parseInt(r.getResponseText(), 10) - 1];
+  if (!ev) { ui.alert('Ийм дугаартай эвент алга.'); return; }
+
+  r = ui.prompt('3/3 · Аль өдрөөс хойших хариулт вэ?', 'Энэ эвентийн бүртгэл эхэлсэн өдөр, жишээ нь 2026-11-10. Хоосон орхивол бүх хариултыг авна.', ui.ButtonSet.OK_CANCEL);
+  if (r.getSelectedButton() !== ui.Button.OK) return;
+  const fromText = r.getResponseText().trim();
+  let from = 0;
+  if (fromText) {
+    const m = /^(\d{4})-(\d{1,2})-(\d{1,2})$/.exec(fromText);
+    if (!m) { ui.alert('Огноог 2026-11-10 гэх мэтээр бичнэ үү.'); return; }
+    from = Date.UTC(+m[1], m[2] - 1, +m[3]) - EE_TZ;   // midnight in Ulaanbaatar
+  }
+
+  const plan = eeFormRows_(src, ev, from, ss);
+  if (plan.error) { ui.alert(plan.error); return; }
+  const msg = '"' + ev.title + '"-д ' + plan.add.length + ' хүн нэмнэ.\n' +
+    (plan.dup ? plan.dup + ' хүн аль хэдийн бүртгэлтэй тул алгасна.\n' : '') +
+    (plan.bad.length ? 'Имэйлгүй тул алгасах: ' + plan.bad.join(', ') + '\n' : '') +
+    '\nАвтомат илгээлт асаалттай бол 10 минутын дотор тэдэнд дэлгэрэнгүй мэдээлэл очно.';
+  if (ui.alert('Оруулах уу?', msg, ui.ButtonSet.YES_NO) !== ui.Button.YES) return;
+  const n = eeAppendSignups_(ss, ev, plan.add);
+
+  // Keep checking the form: every 10-minute run adds its new answers, until the event is over
+  const keep = ui.alert('Цаашид шалгах уу?', 'Энэ Google Form-оор шинээр бүртгүүлсэн хүмүүсийг 10 минут тутам автоматаар нэмж, ' +
+    'имэйл илгээх үү? (Эвент дуусмагц өөрөө зогсоно.)', ui.ButtonSet.YES_NO) === ui.Button.YES;
+  if (keep) {
+    const links = eeFormLinks_().filter(l => !(l.url === url && l.eventId === ev.id));
+    links.push({ url: url, eventId: ev.id, from: from });
+    eeSaveFormLinks_(links);
+  }
+  ui.alert(n + ' хүнийг "' + EE_SIGNUPS + '" табд нэмлээ.' + (keep ? '\nШинэ бүртгэлийг 10 минут тутам нэмнэ (автомат илгээлт асаалттай үед).' : ''));
+}
+
+/* The Google Forms being watched: [{url, eventId, from}] */
+function eeFormLinks_() {
+  try { return JSON.parse(PropertiesService.getScriptProperties().getProperty('ee-form-links') || '[]'); } catch (e) { return []; }
+}
+function eeSaveFormLinks_(links) { PropertiesService.getScriptProperties().setProperty('ee-form-links', JSON.stringify(links)); }
+
+/* Run by the 10-minute trigger: new answers on watched forms go into Sign-ups. Forms for events that are over are dropped. */
+function eeSyncForms_(ss, events) {
+  const now = Date.now();
+  const links = eeFormLinks_();
+  const keep = [];
+  links.forEach(l => {
+    const ev = events.filter(e => e.id === l.eventId)[0];
+    if (!ev || eeIsPast_(ev, now)) return;
+    keep.push(l);
+    try {
+      const plan = eeFormRows_(SpreadsheetApp.openByUrl(l.url), ev, l.from, ss);
+      if (!plan.error) eeAppendSignups_(ss, ev, plan.add);
+    } catch (err) {
+      console.error('Google Form ' + l.url + ': ' + err.message);
+    }
+  });
+  if (keep.length !== links.length) eeSaveFormLinks_(keep);
+}
+
+function stopFormSync() {
+  const ui = SpreadsheetApp.getUi();
+  const links = eeFormLinks_();
+  if (!links.length) { ui.alert('Автоматаар шалгаж буй Google Form алга.'); return; }
+  const list = links.map(l => '• ' + l.eventId + ' ← ' + l.url).join('\n');
+  if (ui.alert('Зогсоох уу?', 'Одоо шалгаж буй:\n' + list + '\n\nБүгдийг зогсоох уу? (Аль хэдийн нэмсэн хүмүүс хэвээр үлдэнэ.)', ui.ButtonSet.YES_NO) !== ui.Button.YES) return;
+  eeSaveFormLinks_([]);
+  ui.alert('Зогсоолоо.');
+}
+
+function eeAppendSignups_(ss, ev, people) {
+  if (!people.length) return 0;
+  const sh = ss.getSheetByName(EE_SIGNUPS);
+  const head = sh.getRange(1, 1, 1, sh.getLastColumn()).getValues()[0].map(h => String(h).trim());
+  const rows = people.map(p => head.map(h => ({
+    'Огноо': p.date, 'Овог нэр': p.name, 'Утасны дугаар': p.phone, 'Имэйл': p.email, 'Одоогийн сургууль': '',
+    'Анги': p.grade, 'Юунд': EE_REGISTERED, 'Эвент': ev.title, 'Эвентийн id': ev.id, 'Хуудас': 'Google Form'
+  }[h] ?? '')));
+  const start = sh.getLastRow() + 1;
+  const phoneCol = head.indexOf('Утасны дугаар') + 1;
+  if (phoneCol) sh.getRange(start, phoneCol, rows.length, 1).setNumberFormat('@');
+  sh.getRange(start, 1, rows.length, head.length).setValues(rows);
+  SpreadsheetApp.flush();
+  return rows.length;
+}
+
+function eeFormRows_(src, ev, from, ss) {
+  const sheet = src.getSheets().filter(s => s.getLastRow() > 1 && /timestamp|цаг/i.test(String(s.getRange(1, 1).getValue())))[0];
+  if (!sheet) return { error: 'Хариултын таб олдсонгүй (эхний багана нь "Timestamp" байх ёстой).' };
+  const values = sheet.getDataRange().getValues();
+  const head = values[0].map(h => String(h).trim());
+  const find = re => head.findIndex(h => re.test(h));
+  const c = {
+    date: 0, name: find(/^нэр|^name|овог/i), typed: find(/^(и-?мэйл|имэйл|e-?mail)(?!\s*address)/i),
+    collected: find(/^email address$/i), phone: find(/утас|phone/i), grade: find(/^анги|grade/i)
+  };
+  if (c.typed < 0 && c.collected < 0) return { error: 'Имэйлийн багана олдсонгүй.' };
+
+  // Who's already registered for this event
+  const digits = v => String(v || '').replace(/\D/g, '').replace(/^976(?=\d{8}$)/, '');
+  const known = new Set();
+  const t = eeRows_(ss.getSheetByName(EE_SIGNUPS));
+  t.rows.forEach(r => {
+    if (String(r[t.head['Эвентийн id']]).trim() !== ev.id) return;
+    const e = eeEmail_(r[t.head['Имэйл']]), p = digits(r[t.head['Утасны дугаар']]);
+    if (e) known.add(e);
+    if (p) known.add('tel:' + p);
+  });
+
+  const add = [], bad = [];
+  let dup = 0;
+  values.slice(1).forEach(r => {
+    const date = r[c.date] instanceof Date ? r[c.date] : null;
+    if (!date || date.getTime() < from) return;
+    const typed = c.typed >= 0 ? eeEmail_(r[c.typed]) : '', collected = c.collected >= 0 ? eeEmail_(r[c.collected]) : '';
+    const email = typed || collected;   // the address they typed for the link, else the one Google collected
+    const name = c.name >= 0 ? String(r[c.name]).trim() : '';
+    if (!email) { bad.push(name || '(нэргүй)'); return; }
+    const phone = c.phone >= 0 ? String(r[c.phone]).trim() : '';
+    const keys = [email, collected, phone && 'tel:' + digits(phone)].filter(Boolean);
+    if (keys.some(k => known.has(k))) { dup++; return; }
+    keys.forEach(k => known.add(k));
+    const g = c.grade >= 0 ? parseInt(r[c.grade], 10) : NaN;
+    add.push({ date: date, name: name, email: email, phone: phone, grade: isNaN(g) ? (c.grade >= 0 ? String(r[c.grade]) : '') : g });
+  });
+  return { add: add, dup: dup, bad: bad };
+}
+
 function turnOnAutoEmails() {
   eeCheckSender_();
   turnOffAutoEmails(true);
@@ -166,6 +319,7 @@ function autoEmailsTick() {
   try {
     const ss = SpreadsheetApp.getActiveSpreadsheet();
     const events = eeLoadEvents_(false);
+    eeSyncForms_(ss, events);
     eeSyncEventsSheet_(ss, events);
     eeRun_(ss, events, eePlan_(ss, events, Date.now()));
   } finally {

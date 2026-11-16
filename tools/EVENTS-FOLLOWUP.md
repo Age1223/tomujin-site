@@ -44,6 +44,7 @@ The automatic sending runs as whoever turned it on, so that has to be admin@tomu
 - **Нэг эвентийн сануулгыг одоо илгээх…**: pick an event and send the reminder (with the link) to everyone registered, now instead of 3 hours before. People who already got it are skipped.
 - **Хүлээгдэж буй имэйлүүдийг одоо илгээх…**: sends whatever is waiting without waiting for the 10-minute check.
 - **Автомат илгээлтийг унтраах**: stops all automatic emails.
+- **Google Form-ын бүртгэлийг оруулах…**: copies registrations from an old Google Form's responses sheet into Sign-ups for one event, so they get the same emails. It asks for the responses sheet's link, the event, and the date that event's sign-ups started (one form was reused for several talks). It uses the email typed in the form, or the Google-collected one if that isn't a valid address. People already registered for that event (same email or phone) are skipped, so running it twice adds no one twice. Their rows say "Google Form" in the Хуудас column. At the end it asks whether to keep checking that form: say yes and every 10-minute run adds new answers too (and "send now" does as well), until the event is over. **Google Form-ыг автоматаар шалгахыг зогсоох…** stops that.
 
 ## Settings
 
