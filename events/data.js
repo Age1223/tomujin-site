@@ -24,6 +24,8 @@
                poster with the event's name and date.
      subtitle  a short line under the title, e.g. "Цуврал 01 · «Юуны төлөө?»"
      details   a longer description; each item in the list is its own paragraph (used instead of summary)
+     emailSummary  optional: the description in the emails (invitation, details, reminder) when it should
+               read differently from the site; without it the emails use details or summary
      speaker   who speaks, e.g. "Б.Ганди, 2024 оны төгсөгч" (shown as "Илтгэгч")
      host      who leads it, e.g. "Батжин, үүсгэн байгуулагч" (shown as "Хөтлөгч" when there's no speaker)
      tbc       true = the date and time aren't confirmed yet: they show as "урьдчилсан", and people can
@@ -73,6 +75,8 @@ window.EVENTS = [
     series: "Tomujin is Talking series",
     title: "М.Мөнхжин · NYU Abu Dhabi",
     summary: "Томүжингийн 2026 оны төгсөгч, NYU Abu Dhabi-гийн оюутан Мөнхжин туршлагаасаа хуваалцана.",
+    emailSummary: "Томүжингийн 2026 оны төгсөгч, дэлхийн шилдэг NYU Abu Dhabi-гийн их сургуульд тэтгэлэгтэй суралцаж буй оюутан Мөнхжин туршлагаасаа хуваалцах гэж байна.",
+    image: "/assets/events/tomujin-is-talking-03-munkhjin.webp",
     start: "2026-11-21T20:00", minutes: 60, format: "online",
     place: "Онлайн", placeNote: "холбоосыг бүртгүүлсний дараа илгээнэ",
     speaker: "М.Мөнхжин, 2026 оны төгсөгч"

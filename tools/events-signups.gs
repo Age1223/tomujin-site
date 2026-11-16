@@ -2,7 +2,8 @@
  * Event sign-ups (tomujin.edu.mn/events and talk pages such as /tsasanjin-talk) → a Google Sheet.
  *
  * Every form on those pages sends here: registering for one event, "Дараагийнхыг мэдэх" on a past one,
- * the pop-up, and the sign-up section at the bottom of each page. One row per sign-up.
+ * the pop-up, and the sign-up section at the bottom of each page. One row per person per sign-up: if the
+ * same person signs up for the same thing again, their existing row is updated instead of adding another.
  *
  * Setup (once):
  *   1. Make a new Google Sheet, e.g. "Tomujin — Event sign-ups". Extensions → Apps Script.
@@ -45,16 +46,42 @@ function doPost(e) {
       sheet.setFrozenRows(1);
     }
     const gradeNumber = parseInt(grade, 10);
-    sheet.appendRow([new Date(), name, phone, email, school, isNaN(gradeNumber) ? grade : gradeNumber,
-      clean(p.interest, 60), clean(p.eventTitle, 200), clean(p.eventId, 80), clean(p.page, 120)]);
+    const gradeValue = isNaN(gradeNumber) ? grade : gradeNumber;
+    const interest = clean(p.interest, 60), eventId = clean(p.eventId, 80);
+
+    // Same person signing up for the same thing again: update their row instead of adding a second one
+    const row = findSameSignup(sheet, email, phone, name, interest, eventId);
+    if (row) {
+      sheet.getRange(row, 2, 1, 4).setValues([[name, phone, email, school]]);
+      sheet.getRange(row, 6).setValue(gradeValue);
+    } else {
+      sheet.appendRow([new Date(), name, phone, email, school, gradeValue,
+        interest, clean(p.eventTitle, 200), eventId, clean(p.page, 120)]);
+    }
     // Phone as text, so leading zeros and +976 stay as typed
-    sheet.getRange(sheet.getLastRow(), 3).setNumberFormat('@').setValue(phone.replace(/^'/, ''));
+    sheet.getRange(row || sheet.getLastRow(), 3).setNumberFormat('@').setValue(phone.replace(/^'/, ''));
     SpreadsheetApp.flush();
   } finally {
     lock.releaseLock();
   }
   return json({ ok: true });
 }
+
+/* The row number of an earlier sign-up by the same person for the same thing (same "Юунд" and event), or 0.
+   Same person = same email, or same phone and same name (siblings can share a parent's phone). */
+function findSameSignup(sheet, email, phone, name, interest, eventId) {
+  if (sheet.getLastRow() < 2) return 0;
+  const rows = sheet.getRange(2, 1, sheet.getLastRow() - 1, HEADERS.length).getValues();
+  const e = email.toLowerCase(), ph = digits(phone), nm = plainName(name);
+  for (let i = rows.length - 1; i >= 0; i--) {
+    const r = rows[i];
+    if (String(r[6]).trim() !== interest || String(r[8]).trim() !== eventId) continue;
+    if (String(r[3]).trim().toLowerCase() === e || (ph && digits(r[2]) === ph && plainName(r[1]) === nm)) return i + 2;
+  }
+  return 0;
+}
+function digits(v) { return String(v || '').replace(/\D/g, '').replace(/^976(?=\d{8}$)/, ''); }
+function plainName(v) { return String(v || '').toLowerCase().replace(/[^\p{L}]/gu, ''); }
 
 // Lets you open the /exec URL in a browser to check the deployment is live
 function doGet() {
