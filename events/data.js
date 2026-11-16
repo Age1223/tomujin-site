@@ -73,6 +73,7 @@ window.EVENTS = [
     series: "Tomujin is Talking series",
     title: "М.Мөнхжин · NYU Abu Dhabi",
     summary: "Томүжингийн 2026 оны төгсөгч, NYU Abu Dhabi-гийн оюутан Мөнхжин туршлагаасаа хуваалцана.",
+    image: "/assets/events/tomujin-is-talking-03-munkhjin.webp",
     start: "2026-11-21T20:00", minutes: 60, format: "online",
     place: "Онлайн", placeNote: "холбоосыг бүртгүүлсний дараа илгээнэ",
     speaker: "М.Мөнхжин, 2026 оны төгсөгч"
