@@ -60,9 +60,11 @@ function onOpen() {
     .addItem('Туршилтын имэйлүүдийг надад илгээх', 'sendTestEmailsToMe')
     .addItem('Хүлээгдэж буй имэйлүүдийг одоо илгээх…', 'sendPendingNow')
     .addItem('Нэг эвентийн сануулгыг одоо илгээх…', 'sendReminderNow')
+    .addItem('Нэг эвентийн урилгыг захиалагчдад илгээх…', 'sendInvitationNow')
     .addSeparator()
     .addItem('Google Form-ын бүртгэлийг оруулах…', 'importFormRegistrations')
     .addItem('Google Form-ыг автоматаар шалгахыг зогсоох…', 'stopFormSync')
+    .addItem('Давхардсан бүртгэлийг арилгах…', 'removeDuplicateSignups')
     .addSeparator()
     .addItem('Автомат илгээлтийг асаах (10 мин тутам)', 'turnOnAutoEmails')
     .addItem('Автомат илгээлтийг унтраах', 'turnOffAutoEmails')
@@ -148,6 +150,38 @@ function sendReminderNow() {
     .map(p => ({ kind: 'reminder', ev: ev, person: p }));
   if (!jobs.length) { ui.alert('Бүх бүртгүүлэгч сануулгаа авсан байна.'); return; }
   if (ui.alert('Илгээх үү?', jobs.length + ' хүнд "' + ev.title + '"-ийн сануулга илгээнэ.', ui.ButtonSet.YES_NO) !== ui.Button.YES) return;
+  ui.alert(eeRun_(ss, events, jobs) + ' имэйл илгээлээ.');
+}
+
+/* The invitation for one event, as its own email, to every subscriber who isn't registered for it and hasn't
+   had it yet. People whose subscription confirmation only listed the event (log note "Баталгаажуулах имэйлд
+   багтсан") get it too: that's for when the event was announced after they subscribed, or has news since. */
+function sendInvitationNow() {
+  const ui = SpreadsheetApp.getUi();
+  const ss = SpreadsheetApp.getActiveSpreadsheet();
+  const events = eeLoadEvents_(true);
+  eeSyncEventsSheet_(ss, events);
+  const now = Date.now();
+  const open = eeUpcoming_(events, now).filter(e => eeIsOpen_(e, now));
+  if (!open.length) { ui.alert('Бүртгэл нээлттэй эвент алга.'); return; }
+  const list = open.map((e, i) => (i + 1) + '. ' + e.title + ' (' + eeWhen_(e).short + ')').join('\n');
+  const r = ui.prompt('Аль эвентийн урилгыг илгээх вэ?', list + '\n\nДугаарыг бичнэ үү:', ui.ButtonSet.OK_CANCEL);
+  if (r.getSelectedButton() !== ui.Button.OK) return;
+  const ev = open[parseInt(r.getResponseText(), 10) - 1];
+  if (!ev) { ui.alert('Ийм дугаартай эвент алга.'); return; }
+
+  const unsub = eeUnsubscribed_(ss);
+  const registered = new Set(eeRegistrants_(ss).filter(p => p.eventId === ev.id).map(p => p.email));
+  const invited = new Set();
+  eeRows_(ss.getSheetByName(EE_LOG)).rows.forEach(row => {
+    const note = String(row[5] || '');
+    if (String(row[1]) === 'invitation' && String(row[2]) === ev.id && !note) invited.add(eeEmail_(row[3]));
+  });
+  const jobs = eeSubscribers_(ss).filter(p => !unsub.has(p.email) && !registered.has(p.email) && !invited.has(p.email))
+    .map(p => ({ kind: 'invitation', ev: ev, person: p }));
+  if (!jobs.length) { ui.alert('Бүх захиалагч энэ урилгыг авсан эсвэл бүртгүүлсэн байна.'); return; }
+  if (ui.alert('Илгээх үү?', jobs.length + ' захиалагчид "' + ev.title + '"-ийн урилга илгээнэ:\n' +
+      jobs.map(j => '• ' + (j.person.name || j.person.email)).join('\n'), ui.ButtonSet.YES_NO) !== ui.Button.YES) return;
   ui.alert(eeRun_(ss, events, jobs) + ' имэйл илгээлээ.');
 }
 
@@ -240,6 +274,54 @@ function stopFormSync() {
   if (ui.alert('Зогсоох уу?', 'Одоо шалгаж буй:\n' + list + '\n\nБүгдийг зогсоох уу? (Аль хэдийн нэмсэн хүмүүс хэвээр үлдэнэ.)', ui.ButtonSet.YES_NO) !== ui.Button.YES) return;
   eeSaveFormLinks_([]);
   ui.alert('Зогсоолоо.');
+}
+
+/* Finds people who signed up for the same thing more than once (same "Юунд" and event; same email, or same
+   phone and same name) and keeps one row each: the one highest in the sheet, with any blank cells filled in from the later
+   ones. The other rows are deleted. Emails already sent are in "Email log" and aren't affected. */
+function removeDuplicateSignups() {
+  const ui = SpreadsheetApp.getUi();
+  const sh = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(EE_SIGNUPS);
+  const t = eeRows_(sh), h = t.head;
+  const groups = eeDuplicateGroups_(t);
+  if (!groups.length) { ui.alert('Давхардсан бүртгэл алга.'); return; }
+  const list = groups.map(g => '• ' + (String(t.rows[g[0]][h['Овог нэр']]).trim() || '(нэргүй)') + ' · ' +
+    (String(t.rows[g[0]][h['Эвентийн id']]).trim() || String(t.rows[g[0]][h['Юунд']]).trim()) + ' (' + g.length + ' мөр)').join('\n');
+  const extra = groups.reduce((n, g) => n + g.length - 1, 0);
+  if (ui.alert('Давхардлыг арилгах уу?', list + '\n\nХүн бүрт нэг мөр үлдэж, ' + extra + ' мөр устна.', ui.ButtonSet.YES_NO) !== ui.Button.YES) return;
+
+  const width = sh.getLastColumn();
+  const del = [];
+  groups.forEach(g => {
+    const keep = t.rows[g[0]].slice(0, width);
+    g.slice(1).forEach(i => {
+      t.rows[i].slice(0, width).forEach((v, c) => { if (keep[c] === '' && v !== '') keep[c] = v; });
+      del.push(i + 2);
+    });
+    sh.getRange(g[0] + 2, 1, 1, width).setValues([keep]);
+  });
+  del.sort((a, b) => b - a).forEach(r => sh.deleteRow(r));
+  SpreadsheetApp.flush();
+  ui.alert(extra + ' давхардсан мөрийг устгалаа.');
+}
+
+/* Groups of row indexes (into t.rows) that are the same person signing up for the same thing, in sheet order */
+function eeDuplicateGroups_(t) {
+  const h = t.head;
+  const digits = v => String(v || '').replace(/\D/g, '').replace(/^976(?=\d{8}$)/, '');
+  const plainName = v => String(v || '').toLowerCase().replace(/[^\p{L}]/gu, '');
+  const groupOf = {}, groups = [];
+  t.rows.forEach((r, i) => {
+    const what = String(r[h['Юунд']]).trim() + '|' + String(r[h['Эвентийн id']]).trim();
+    const e = eeEmail_(r[h['Имэйл']]), ph = digits(r[h['Утасны дугаар']]), nm = plainName(r[h['Овог нэр']]);
+    const keys = [e && what + '|' + e, ph && nm && what + '|' + ph + '|' + nm].filter(Boolean);
+    if (!keys.length) return;
+    const found = keys.map(k => groupOf[k]).filter(g => g !== undefined)[0];
+    const g = found !== undefined ? found : groups.push([]) - 1;
+    groups[g].push(i);
+    keys.forEach(k => groupOf[k] = g);
+  });
+  return groups.filter(g => g.length > 1);
 }
 
 function eeAppendSignups_(ss, ev, people) {
@@ -716,7 +798,8 @@ function eeEventFacts_(ev, inf, withLink) {
 }
 
 function eeDescription_(ev) {
-  const paras = Array.isArray(ev.details) && ev.details.length ? ev.details : ev.summary ? [ev.summary] : [];
+  const paras = ev.emailSummary ? [ev.emailSummary]
+    : Array.isArray(ev.details) && ev.details.length ? ev.details : ev.summary ? [ev.summary] : [];
   return paras.map(t => eeP_(eeEsc_(t))).join('');
 }
 
@@ -808,12 +891,12 @@ function eeRenderInvitation_(ev, inf, person, now) {
                   : 'Бүртгүүлсэн хүмүүст ' + (ev.format === 'in-person' ? 'хаяг' : 'нэгдэх холбоос') + ', бэлдэх зүйлсийг имэйлээр илгээнэ.',
       'font-size:14px;line-height:22px;color:' + EE_C.muted + ';margin:0');
   const html = eeLayout_({
-    subject: subject, preheader: (ev.summary || '').slice(0, 120),
+    subject: subject, preheader: (ev.emailSummary || ev.summary || '').slice(0, 120),
     eyebrow: ev.series || ev.typeName, title: ev.title, subtitle: ev.subtitle || (w.long + ' · ' + w.time),
     image: eeAbs_(ev.image), body: body,
     why: 'Та tomujin.edu.mn дээр эвентийн мэдээлэл авахаар бүртгүүлсэн. Цаашид авахыг хүсэхгүй бол энэ имэйлд "STOP" гэж хариу бичээрэй.'
   });
-  const text = ['Сайн байна уу' + (first ? ', ' + first : '') + '?', '', ev.summary || null, '',
+  const text = ['Сайн байна уу' + (first ? ', ' + first : '') + '?', '', ev.emailSummary || ev.summary || null, '',
     ev.title, 'Хэзээ: ' + w.long + ', ' + w.range + ' (Улаанбаатарын цагаар)',
     'Хаана: ' + (ev.format === 'online' ? 'Онлайн' : (inf.address || ev.place || '')),
     ev.speaker ? 'Илтгэгч: ' + ev.speaker : null, '', 'Бүртгүүлэх: ' + EE_SITE + '/events', '',
