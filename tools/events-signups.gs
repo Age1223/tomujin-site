@@ -34,6 +34,7 @@ function doPost(e) {
   const grade = clean(p.grade, 20);
   if (!name || !phone || !email || !school || !grade) return json({ ok: false, error: 'missing' });
 
+  let known = false;
   const lock = LockService.getScriptLock();
   lock.waitLock(20000);
   try {
@@ -48,6 +49,9 @@ function doPost(e) {
     const gradeNumber = parseInt(grade, 10);
     const gradeValue = isNaN(gradeNumber) ? grade : gradeNumber;
     const interest = clean(p.interest, 60), eventId = clean(p.eventId, 80);
+
+    // Already on the sheet for anything at all? Talk pages then say "you're already registered"
+    known = isKnownPerson(sheet, email, phone, name);
 
     // Same person signing up for the same thing again: update their row instead of adding a second one
     const row = findSameSignup(sheet, email, phone, name, interest, eventId);
@@ -64,7 +68,17 @@ function doPost(e) {
   } finally {
     lock.releaseLock();
   }
-  return json({ ok: true });
+  return json({ ok: true, known: known });
+}
+
+/* True if the same person (same rule as below) has any earlier sign-up, whatever it was for */
+function isKnownPerson(sheet, email, phone, name) {
+  if (sheet.getLastRow() < 2) return false;
+  const rows = sheet.getRange(2, 2, sheet.getLastRow() - 1, 3).getValues();   // name, phone, email
+  const e = email.toLowerCase(), ph = digits(phone), nm = plainName(name);
+  return rows.some(function (r) {
+    return String(r[2]).trim().toLowerCase() === e || (ph && digits(r[1]) === ph && plainName(r[0]) === nm);
+  });
 }
 
 /* The row number of an earlier sign-up by the same person for the same thing (same "Юунд" and event), or 0.

@@ -146,7 +146,7 @@
       data.append("eventTitle", ev ? ev.title : "");
       data.append("interest", ev ? (isOpen(ev) ? "Бүртгүүлсэн" : isTbc(ev) ? "Огноо батлагдмагц мэдэх" : "Дараагийнхыг мэдэх") : (opts.interest || "Мэдээлэл авах"));
       data.append("page", location.pathname);
-      send(data).then(function(){
+      send(data).then(function(res){
         form.hidden = true; done.hidden = false;
         var registered = ev && isOpen(ev);
         done.querySelector("h3").textContent = registered ? "Та бүртгүүллээ!" : "Баярлалаа!";
@@ -158,7 +158,8 @@
         icons();
         store("tj-events-signed-up", "1");
         if (window.trackLead) window.trackLead(ev ? ev.id : (opts.interest || "series"));
-        if (opts.onDone) opts.onDone(ev);
+        /* res.known: this person was already on the sign-up sheet (talk pages say so) */
+        if (opts.onDone) opts.onDone(ev, res || {}, done);
       }).catch(function(){
         status.textContent = "Илгээж чадсангүй. Интернэтээ шалгаад дахин оролдоно уу.";
       }).then(function(){ btn.disabled = false; btn.classList.remove("is-sending"); btn.textContent = label; });
@@ -175,8 +176,8 @@
       console.warn("events.js: SIGNUP_URL is empty, so this sign-up was not saved (test copy only).", Object.fromEntries(data));
       return new Promise(function(res){ setTimeout(res, 600); });
     }
-    /* The script replies {"ok":true} once the row is in the sheet */
-    return fetch(SIGNUP_URL, {method: "POST", body: data}).then(function(r){ return r.json(); }).then(function(res){ if (!res || !res.ok) throw new Error("not saved"); });
+    /* The script replies {"ok":true, "known":true|false} once the row is in the sheet */
+    return fetch(SIGNUP_URL, {method: "POST", body: data}).then(function(r){ return r.json(); }).then(function(res){ if (!res || !res.ok) throw new Error("not saved"); return res; });
   }
 
   /* ── Pop-up ── */
