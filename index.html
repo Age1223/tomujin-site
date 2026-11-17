@@ -461,6 +461,56 @@ section[id],article[id]{scroll-margin-top:80px}
 .alum-who{display:grid;gap:2px;padding-top:var(--space-4);border-top:1px solid var(--color-border);font-size:14px;line-height:1.45;color:var(--text-muted)}
 .alum-who strong{font-size:16px;color:var(--text-display)}
 
+/* Tomujin is Talking: interview cards (built from events/data.js) */
+.talks-intro{max-width:60ch;margin:0;font-size:clamp(1.05rem,1.6vw,1.25rem);line-height:1.55;color:var(--text-muted);font-weight:500}
+.talks{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:var(--space-6)}
+.talk{position:relative;display:grid;justify-items:center;align-content:start;gap:10px;padding:32px 24px 28px;text-align:center;background:var(--surface-card);border:1px solid var(--color-border);border-radius:var(--radius-xl);transition:transform var(--duration-fast) var(--ease-out),box-shadow var(--duration-fast) var(--ease-out)}
+.talk:hover{transform:translateY(-3px);box-shadow:0 20px 40px -24px rgba(45,27,78,.5)}
+.talk img{width:132px;height:132px;margin-bottom:8px;border-radius:50%;object-fit:cover;box-shadow:0 0 0 4px #fff,0 0 0 7px var(--tj-golden)}
+.talk-no{font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--tj-teal-deep)}
+.talk h3{margin:0;font-size:22px;font-weight:800;line-height:1.2;color:var(--text-display)}
+.talk-org{font-size:15px;font-weight:700;color:var(--tj-purple)}
+.talk p{margin:4px 0 8px;font-size:15px;line-height:1.55;color:var(--text-muted)}
+.talk .btn{margin-top:auto}
+/* The whole card is the link */
+.talk a.talk-link::after{content:"";position:absolute;inset:0;border-radius:inherit}
+.talk--soon{background:transparent;border-style:dashed}
+.talk--soon img{filter:saturate(.85)}
+.talk-soon{display:inline-flex;align-items:center;gap:6px;padding:4px 12px;border-radius:var(--radius-pill);background:var(--tj-golden);color:#2d1b4e;font-size:13px;font-weight:800}
+
+/* Tomujin is Talking: the home page pop-up with the newest interview */
+.talk-pop{width:min(440px,calc(100vw - 32px));padding:0;border:0;border-radius:20px;background:#fff;color:inherit;overflow:hidden;box-shadow:0 30px 60px -20px rgba(26,11,46,.6)}
+.talk-pop[open]{animation:pop-in .45s var(--ease-out)}
+.talk-pop::backdrop{background:rgba(26,11,46,.6);-webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px)}
+@keyframes pop-in{from{opacity:0;transform:translateY(16px) scale(.97)}to{opacity:1;transform:none}}
+.tp-head{position:relative;display:grid;justify-items:center;gap:14px;padding:28px 24px 64px;background:var(--tj-purple);color:#fff;text-align:center}
+.tp-head small{font-size:12px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--tj-golden)}
+.tp-head b{font-size:26px;font-weight:900;letter-spacing:-.01em;line-height:1}
+.tp-close{position:absolute;top:10px;right:10px;display:grid;place-items:center;width:36px;height:36px;padding:0;border:0;border-radius:50%;background:rgba(255,255,255,.12);color:#fff;font-size:18px;cursor:pointer}
+.tp-close:hover{background:rgba(255,255,255,.24)}
+.tp-body{display:grid;justify-items:center;gap:8px;padding:0 28px 24px;text-align:center}
+.tp-body img{width:150px;height:150px;margin-top:-56px;margin-bottom:6px;border-radius:50%;object-fit:cover;background:#fff;box-shadow:0 0 0 5px #fff,0 0 0 9px var(--tj-golden),0 18px 30px -12px rgba(0,0,0,.4)}
+.tp-new{font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--tj-teal-deep)}
+.tp-body h2{margin:0;font-size:24px;font-weight:800;line-height:1.2;color:var(--text-display)}
+.tp-org{font-size:15px;font-weight:700;color:var(--tj-purple)}
+.tp-body p{margin:4px 0 10px;font-size:15px;line-height:1.55;color:var(--text-muted)}
+.tp-body .btn{width:100%;justify-content:center}
+.tp-later{padding:8px;border:0;background:none;color:var(--text-muted);font:inherit;font-size:14px;font-weight:600;cursor:pointer}
+.tp-later:hover{color:var(--text-display)}
+.tp-next{display:flex;align-items:center;justify-content:center;gap:10px;padding:14px 20px;border-top:1px solid var(--color-border);background:var(--color-muted);font-size:14px;color:var(--text-muted)}
+.tp-next img{width:32px;height:32px;border-radius:50%;object-fit:cover}
+.tp-next a{font-weight:700;color:var(--tj-purple)}
+@media (max-width:640px){
+  .talks{grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:80%;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-inline:var(--space-4);margin-inline:calc(var(--space-4) * -1);padding:4px var(--space-4) 8px;scrollbar-width:none}
+  .talks::-webkit-scrollbar{display:none}
+  .talk{scroll-snap-align:start}
+  .talk:hover{transform:none}
+  .talk-pop{width:100vw;max-width:100vw;margin:auto 0 0;border-radius:20px 20px 0 0}
+  .tp-head{padding:22px 20px 56px}
+  .tp-head b{font-size:22px}
+  .tp-body img{width:124px;height:124px}
+}
+
 .press{border-top:1px solid var(--color-border)}
 .press-item{display:grid;grid-template-columns:180px minmax(0,1fr) auto;gap:var(--space-6);align-items:center;padding:var(--space-4) var(--space-3);border-bottom:1px solid var(--color-border);color:var(--text-body);text-decoration:none!important;transition:background-color var(--duration-fast) var(--ease-standard)}
 .press-item:hover{background:var(--color-muted)}
@@ -993,6 +1043,21 @@ html.reader-open{overflow:hidden}
             <p class="alum-who"><strong>Ч.Дөлгөөн</strong><span>2023 оны төгсөгч</span><span>“Admit Boost” @admitboost үүсгэн байгуулагч</span></p>
           </figcaption>
         </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- f2. Tomujin is Talking: interview cards, built from /events/data.js (talks with a "photo") -->
+  <section id="home-talks" class="band" aria-labelledby="talks-title" data-talks hidden>
+    <div class="wrap">
+      <div class="section-head">
+        <p class="talk-no" style="margin:0">Tomujin is Talking 💬</p>
+        <h2 class="h1" id="talks-title">Төгсөгчидтэйгээ хийсэн ярилцлага</h2>
+        <p class="talks-intro">Дэлхийн өнцөг булан бүрт суралцаж буй төгсөгчид маань өргөдөл, тэтгэлэг, оюутны амьдралынхаа тухай ярьж байна.</p>
+      </div>
+      <div class="talks" data-talks-list></div>
+      <div class="btn-row" style="margin-top:var(--space-8)">
+        <a class="btn btn--outline" href="/events">Бүх эвентүүд <i data-lucide="arrow-right"></i></a>
       </div>
     </div>
   </section>
@@ -2151,6 +2216,93 @@ html.reader-open{overflow:hidden}
   })();
 
   if (window.lucide) window.lucide.createIcons();
+})();
+</script>
+<!-- Tomujin is Talking: the home page cards and pop-up both come from the events list -->
+<script src="/events/data.js"></script>
+<script>
+(function(){
+  var talks = (window.EVENTS || []).filter(function(e){ return e.photo; });
+  var section = document.querySelector("[data-talks]");
+  if (!talks.length || !section) return;
+
+  var TZ = 8 * 3600 * 1000;   /* event times are Ulaanbaatar time */
+  function startMs(e){ var m = /^(\d{4})-(\d\d)-(\d\d)T(\d\d):(\d\d)/.exec(e.start); return Date.UTC(+m[1], m[2] - 1, +m[3], +m[4], +m[5]) - TZ; }
+  function isPast(e){ return Date.now() > startMs(e) + (e.minutes || 60) * 60000; }
+  function whenShort(e){ var d = new Date(startMs(e) + TZ), p = function(n){ return (n < 10 ? "0" : "") + n; };
+    return (d.getUTCMonth() + 1) + "/" + d.getUTCDate() + ", " + p(d.getUTCHours()) + ":" + p(d.getUTCMinutes()); }
+  function esc(s){ return String(s == null ? "" : s).replace(/[&<>"]/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"}[c]; }); }
+  /* "Б.Ганди · Harvard University" → name and university */
+  function who(e){ var t = String(e.title).split(" · "); return {name: t[0], org: t.slice(1).join(" · ")}; }
+  function store(k, v){ try { if (v === undefined) return localStorage.getItem(k); localStorage.setItem(k, v); } catch(err){ return null; } }
+  function track(action, e){
+    if (window.gtag) gtag("event", "talk_promo", {promo_action: action, talk_id: e.id});
+    (window.dataLayer = window.dataLayer || []).push({event: "talk_promo", promo_action: action, talk_id: e.id});
+  }
+
+  /* Numbered in date order: #1, #2, … */
+  var byDate = talks.slice().sort(function(a, b){ return startMs(a) - startMs(b); });
+  var published = byDate.filter(function(e){ return isPast(e) && e.page; }).reverse();   /* newest first */
+  var next = byDate.filter(function(e){ return !isPast(e); })[0];
+  function no(e){ return "Tomujin is Talking #" + (byDate.indexOf(e) + 1); }
+
+  /* ── Cards ── */
+  var html = published.map(function(e){
+    var w = who(e);
+    return '<article class="talk"><img src="' + esc(e.photo) + '" alt="' + esc(w.name) + '" width="132" height="132" loading="lazy" decoding="async">' +
+      '<span class="talk-no">' + esc(no(e)) + '</span><h3>' + esc(w.name) + '</h3><span class="talk-org">' + esc(w.org) + '</span>' +
+      (e.teaser ? '<p>' + esc(e.teaser) + '</p>' : "") +
+      '<a class="btn btn--accent talk-link" href="' + esc(e.page) + '" data-talk="' + esc(e.id) + '">Ярилцлагыг унших →</a></article>';
+  }).join("");
+  if (next){
+    var nw = who(next);
+    html += '<article class="talk talk--soon"><img src="' + esc(next.photo) + '" alt="' + esc(nw.name) + '" width="132" height="132" loading="lazy" decoding="async">' +
+      '<span class="talk-soon">Удахгүй · ' + esc(whenShort(next)) + '</span><h3>' + esc(nw.name) + '</h3><span class="talk-org">' + esc(nw.org) + '</span>' +
+      '<p>' + esc(next.teaser || next.summary || "") + '</p>' +
+      '<a class="btn btn--outline talk-link" href="/events">Бүртгүүлэх</a></article>';
+  }
+  section.querySelector("[data-talks-list]").innerHTML = html;
+  section.hidden = false;
+  section.addEventListener("click", function(ev){
+    var a = ev.target.closest && ev.target.closest("[data-talk]");
+    if (a) track("card_click", {id: a.getAttribute("data-talk")});
+  });
+
+  /* ── Pop-up: the newest interview, once per visitor per interview, a few seconds after the home page opens.
+        Waits while someone is typing in a form or another window (e.g. the report reader) is open. ── */
+  var latest = published[0], SEEN = "tj-talk-popup-seen";
+  if (!latest || store(SEEN) === latest.id || !window.HTMLDialogElement) return;
+  function busy(){
+    var home = document.querySelector('[data-page="home"]'), a = document.activeElement;
+    return document.hidden || !home || home.hidden || document.querySelector("dialog[open]") ||
+      (a && /^(INPUT|SELECT|TEXTAREA)$/.test(a.tagName));
+  }
+  function show(){
+    if (busy()){ setTimeout(show, 4000); return; }
+    var w = who(latest), dlg = document.createElement("dialog");
+    dlg.className = "talk-pop";
+    dlg.setAttribute("aria-labelledby", "tp-title");
+    dlg.innerHTML =
+      '<div class="tp-head"><small>Tomujin is Talking 💬</small><b>Шинэ ярилцлага</b>' +
+        '<button class="tp-close" type="button" aria-label="Хаах" data-tp-close>✕</button></div>' +
+      '<div class="tp-body"><img src="' + esc(latest.photo) + '" alt="' + esc(w.name) + '" width="150" height="150">' +
+        '<h2 id="tp-title">' + esc(w.name) + '</h2><span class="tp-org">' + esc(w.org) + '</span>' +
+        (latest.teaser ? '<p>' + esc(latest.teaser) + '</p>' : "") +
+        '<a class="btn btn--accent" href="' + esc(latest.page) + '" data-tp-read>Ярилцлагыг унших →</a>' +
+        '<button class="tp-later" type="button" data-tp-close>Дараа унших</button></div>' +
+      (next ? '<div class="tp-next"><img src="' + esc(next.photo) + '" alt="" width="32" height="32"><span>Дараагийнх нь: <b>' + esc(who(next).name) + '</b> · ' +
+        esc(whenShort(next)) + '</span><a href="/events">Бүртгүүлэх</a></div>' : "");
+    document.body.appendChild(dlg);
+    dlg.addEventListener("click", function(ev){
+      if (ev.target === dlg || (ev.target.closest && ev.target.closest("[data-tp-close]"))) dlg.close();
+      if (ev.target.closest && ev.target.closest("[data-tp-read]")) track("popup_read", latest);
+    });
+    dlg.addEventListener("close", function(){ dlg.remove(); });
+    store(SEEN, latest.id);
+    dlg.showModal();
+    track("popup_open", latest);
+  }
+  setTimeout(show, 5000);
 })();
 </script>
 </body>
