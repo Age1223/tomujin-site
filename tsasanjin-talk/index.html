@@ -7,7 +7,7 @@
 <meta name="description" content="Tomujin is Talking #1: Томүжингийн 2026 оны төгсөгч, Swarthmore College-ийн оюутан З.Цасанжингийн ярилцлага.">
 <link rel="icon" href="/assets/logo-icon.jpg">
 <meta property="og:title" content="Tomujin is Talking #1 · З.Цасанжин, Swarthmore College">
-<meta property="og:description" content="Өргөдлөө хэрхэн бичсэн, liberal arts коллежийн амьдрал, өргөдөл гаргах гэж буй дүү нартаа өгөх зөвлөгөө.">
+<meta property="og:description" content="Өргөдлөө хэрхэн бичсэн, liberal arts коллежийн амьдрал, анги ангидаа юу хийх вэ гэсэн зөвлөгөө.">
 <meta property="og:image" content="https://tomujin.edu.mn/assets/talks/tsasanjin/event-poster.jpg">
 <meta property="og:url" content="https://tomujin.edu.mn/tsasanjin-talk">
 <meta name="twitter:card" content="summary_large_image">
@@ -92,6 +92,25 @@
 /* Photos keep their own shape (no cropping to a fixed ratio) and stay no wider than the text */
 .photo{display:block;width:100%;max-width:760px;height:auto;object-fit:cover;border-radius:var(--radius-xl);box-shadow:0 20px 40px -18px rgba(45,27,78,.45);background:var(--color-muted)}
 .photos{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;max-width:760px;align-items:start}
+.part a{color:var(--tj-purple);font-weight:700;text-decoration:underline;text-underline-offset:3px}
+/* Advice by grade: stacked steps, joined by a line with an arrow down to the next grade (same as /gandi-talk) */
+.grades{list-style:none;margin:0;padding:0;display:grid;max-width:760px;--num:56px;--gap:28px}
+.grades li{position:relative;display:grid;grid-template-columns:var(--num) minmax(0,1fr);gap:20px;align-items:start;padding-bottom:var(--gap)}
+.grades li:last-child{padding-bottom:0}
+.g-num{position:relative;z-index:1;display:grid;place-items:center;width:var(--num);height:var(--num);border-radius:50%;background:var(--tj-purple);color:#fff;font-size:22px;font-weight:800;box-shadow:0 0 0 5px #fff,0 0 0 7px var(--tj-golden)}
+.g-num--sm{font-size:15px;letter-spacing:-.02em}
+.grades li:not(:last-child)::before{content:"";position:absolute;left:calc(var(--num) / 2 - 1.5px);top:calc(var(--num) + 10px);bottom:12px;width:3px;border-radius:3px;background:linear-gradient(var(--tj-golden),var(--tj-purple))}
+.grades li:not(:last-child)::after{content:"";position:absolute;left:calc(var(--num) / 2 - 7px);bottom:4px;border:7px solid transparent;border-bottom:0;border-top:10px solid var(--tj-purple)}
+.g-card{display:grid;gap:8px;padding:18px 22px;border-radius:var(--radius-xl);background:var(--color-muted)}
+.g-card b{font-size:13px;font-weight:800;letter-spacing:var(--tracking-wider);text-transform:uppercase;color:var(--tj-purple)}
+.g-card p{margin:0;font-size:16px;line-height:1.6}
+@media (max-width:760px){
+  .grades{--num:44px;--gap:22px}
+  .grades li{gap:14px}
+  .g-num{font-size:18px;box-shadow:0 0 0 4px #fff,0 0 0 6px var(--tj-golden)}
+  .g-num--sm{font-size:12px}
+  .g-card{padding:14px 16px}
+}
 .quote{margin:0;padding:32px 36px;border-radius:var(--radius-xl);background:var(--tj-purple);color:#fff;font-size:clamp(1.3rem,2.4vw,1.875rem);line-height:1.3;font-weight:800;letter-spacing:-.01em}
 .quote cite{display:block;margin-top:16px;font-size:14px;font-style:normal;font-weight:700;letter-spacing:var(--tracking-wider);text-transform:uppercase;color:var(--tj-golden)}
 @media (max-width:760px){
@@ -169,16 +188,15 @@ html.is-unlocking .site-header,html.is-unlocking main,html.is-unlocking .site-fo
     </div>
   </section>
 
-  <!-- ARTICLE. Text from the approved Claude Design canvas. Photos are in /assets/talks/tsasanjin/photos/. -->
+  <!-- ARTICLE. Text from the full interview notes. Photos are in /assets/talks/tsasanjin/photos/. -->
   <article class="article" aria-label="Ярилцлага">
-    <p class="intro">TOMUJIN IS TALKING цувралын маань энэ оны анхны зочноор Томүжингийн 2026 оны төгсөгч, одоо Swarthmore College-д суралцаж буй З.Цасанжин оролцлоо. Тэрээр ярилцлагын үеэр өргөдлөө хэрхэн бэлдсэн, liberal arts коллежийн амьдрал ямар байдаг, өргөдөл гаргах гэж буй дүү нартаа юу зөвлөх талаараа хуваалцлаа.</p>
+    <p class="intro">TOMUJIN IS TALKING цувралын маань энэ оны анхны зочноор Томүжингийн 2026 оны төгсөгч, одоо Swarthmore College-ийн нэгдүгээр курст антропологи, социологийн мэргэжлээр суралцаж буй З.Цасанжин оролцлоо. Тэрээр өргөдлөө хэрхэн бэлдсэн, liberal arts коллежийн амьдрал ямар байдаг, өргөдөл гаргах гэж буй дүү нартаа юу зөвлөх талаараа хуваалцлаа.</p>
 
     <section class="part">
       <div class="part-text">
         <span class="part-num">01</span>
-        <h2>Өргөдөл чинь зөвхөн тоон үзүүлэлтээр биш, аливаа зүйлсээс юу ойлгосноор чинь, хэн болж өөрчлөгдсөнөөр чинь илэрхийлэгдэнэ.</h2>
-        <p>Цасанжин маань өргөдөлдөө хичээлээс гадуурх үйл ажиллагаагаа бичихдээ юу хийсэн, хэдэн хүн оролцсон гэх мэт тоо жагсаахаас илүүтэй тэр зүйлд оролцоод <strong>юуг ойлгосон, юуг бодсоноо</strong> эргэцүүлж бичих нь чухал гэдгийг дурдаад авсан.</p>
-        <p>Эссэгээ ч мөн адил асар ихээр тунгаан бичсэнээ хуваалцаж, өргөдөл явуулж буй тэр олон хүүхдүүдийн дундаас зөвхөн өөрийнхөө л бичиж чадах зүйл юу вэ гэдгийг эргэцүүлж байж. Ингэхдээ өөрийнхөө Увс аймгаас ирсэн, аялгатай ярьдаг тухайгаа бичсэн нь түүний хувьд хамгийн оносон зүйл болсныг хуваалцсан. Мөн түүнчлэн энэ өөрийн онцлогоо Swarthmore College-ийнхоо аялга судалдаг хичээлтэй холбож, <strong>тэр хичээлийн “судлагдахуун” нь “би” байна</strong> гэж оруулж өгчээ.</p>
+        <h2>“Музейд ажиллаад шал угаахад мастер болсон?”</h2>
+        <p>Цасанжин маань өргөдөлдөө хичээлээс гадуурх үйл ажиллагаагаа бичихдээ юу хийсэн, хэдэн хүн оролцсон гэх мэт тоо жагсаахаас илүүтэй тэр зүйлд оролцоод <strong>яг юуг ойлгосон, юуг бодсоноо</strong> эргэцүүлж бичсэн гэнэ. Өргөдөл чинь зөвхөн тоон үзүүлэлтээр биш, аливаа зүйлсээс юу ойлгосноор чинь, хэн болж өөрчлөгдсөнөөр чинь илэрхийлэгдэнэ.</p>
       </div>
       <img class="photo" src="/assets/talks/tsasanjin/photos/img_1937.jpg" alt="Swarthmore College-ийн гол байрны үүд, шинэ оюутнуудыг угтсан WELCOME тугууд" width="1400" height="1050" loading="lazy" decoding="async">
     </section>
@@ -188,18 +206,28 @@ html.is-unlocking .site-header,html.is-unlocking main,html.is-unlocking .site-fo
     <section class="part" style="max-width:760px">
       <div class="part-text">
         <span class="part-num">02</span>
+        <h2>Увс аймгийн аялга?</h2>
+        <p>Эссэгээ бичихдээ өргөдөл явуулж буй олон мянган хүүхдүүдийн дундаас <strong>зөвхөн өөрийнхөө л бичиж чадах зүйл</strong> юу вэ гэдгийг эргэцүүлж бодсон. Увс аймагт төрж өссөн нь түүнийг бусдаас ялгаатай болгодог гэж үзээд, өөрийнхөө аялгатай ярьдаг тухайгаа бичжээ.</p>
+        <p>Мөн энэ онцлогоо Swarthmore College-ийн аялга судалдаг хичээлтэй холбож, <strong>тэр хичээлийн “судлагдахуун” нь “би” байна</strong> гэж оруулж өгсөн нь хамгийн оносон зүйл болсон.</p>
+      </div>
+    </section>
+
+    <section class="part" style="max-width:760px">
+      <div class="part-text">
+        <span class="part-num">03</span>
         <h2>Тэнцээгүй гэсэн хариу авбал...</h2>
-        <p>Их сургуулиас тэнцээгүй гэсэн хариу авбал үүнийг хэт хүндээр хүлээж авах хэрэггүй. Ихэнхдээ тэнцэх эсэх нь чамаас шалтгаалахгүй маш олон хүчин зүйлээс хамаардаг.</p>
-        <p>Харин их сургуулиа судлахдаа <strong>тэнцэх эсэхээ мэдэхгүй сурагчийн өнцгөөс бус, аль хэдийн тэнд сурдаг мэт</strong> өөриймсөг хандаж сэтгэлгээгээ өөрчилж судалж үзээрэй гэж Цасанжин маань зөвлөнө лээ. ❤️</p>
+        <p>Их сургуулиас тэнцээгүй гэсэн хариу авбал үүнийг хэт хүндээр хүлээж авах хэрэггүй. Тэнцэх эсэх нь чамаас шалтгаалахгүй маш олон хүчин зүйлээс хамаардаг.</p>
+        <p>Харин их сургуулиа судлахдаа <strong>тэнцэх эсэхээ мэдэхгүй сурагчийн өнцгөөс бус, аль хэдийн тэнд сурдаг мэт</strong> өөриймсөг хандаж, сэтгэлгээгээ өөрчилж үзээрэй гэж Цасанжин маань зөвлөнө лээ. ❤️</p>
       </div>
     </section>
 
     <section class="part">
       <div class="part-text">
-        <span class="part-num">03</span>
-        <h2>Liberal Arts коллежид суралцах нь...</h2>
-        <p>Swarthmore-г төгсөхийн тулд 4 жилд 32 кредитийн хичээл үзсэн байх ёстой байдаг. Нэг мэргэжилтэй болоход 8 кредит хичээл л хангалттай бөгөөд үлдсэн кредитээрээ үзэхийг хүссэн хичээлээ сонгон суралцдаг. Liberal arts коллежийн онцлог нь энэ: <strong>төгсөхийн тулд мэргэжлээсээ гадна өөр өөр зүйл хийж үзэх ёстой.</strong> Цасанжин маань энэ давуу талын ачаар одоо өөрөө astronomy буюу сансар судлалын хичээл авч байгаагаа дурдаад авсан.</p>
-        <p>Их сургуульд ирээд харин мэдэрсэн чухал хоёр зүйлээс нь хуваалцвал... Нэгдүгээрт, 10н жилд байхдаа математикийн гүнзгий хичээлд суудаг байж дээ гэж бага зэргийн харамсал төрж, хоёрдугаарт, англи хэлээ мэддэг гэж бодож байсан ч хичээл бүр өөрийн чиглэлээсээ шалтгаалаад өөр өөр үг хэллэг ашигладгийг ойлгож, мэдэрч буй. Тиймээс <strong>тэр болгонд дасан зохицож, хичээл бүрийнхээ өнгө аясыг олж авах</strong> хэрэгтэй санагдсан гэнэ.</p>
+        <span class="part-num">04</span>
+        <h2>Astronomy буюу одон орон судлалын хичээл авч байгаа?</h2>
+        <p>Swarthmore-г төгсөхийн тулд 4 жилд 32 кредитийн хичээл үзсэн байх ёстой. Нэг мэргэжилтэй болоход 8 кредит хичээл л хангалттай бөгөөд үлдсэн кредитээрээ үзэхийг хүссэн хичээлээ сонгон суралцдаг. Liberal arts коллежийн онцлог нь энэ: <strong>төгсөхийн тулд мэргэжлээсээ гадна өөр өөр зүйл хийж үзэх ёстой.</strong> Тиймээс антропологи, социологийн оюутан Цасанжин маань одоо одон орон судлалын хичээл авч байна.</p>
+        <p>Swarthmore-ийн оюутнууд мөн <a href="https://www.haverford.edu/" target="_blank" rel="noopener">Haverford College</a>, <a href="https://www.brynmawr.edu/" target="_blank" rel="noopener">Bryn Mawr College</a>, <a href="https://www.upenn.edu/" target="_blank" rel="noopener">University of Pennsylvania</a> гэсэн <strong>гурван сургуулиас хичээл авч</strong>, тэр сургууль дээр нь очиж хичээллэх боломжтой.</p>
+        <p>Харин их сургуульд ирээд арван жилд байхдаа <strong>“математикийн гүнзгий хичээлд суудаг байж дээ!”</strong> гэж бага зэрэг харамссан гэнэ.</p>
       </div>
       <div class="photos">
         <img class="photo" src="/assets/talks/tsasanjin/photos/img_8950.jpg" alt="Swarthmore-ийн кампус, намрын өдөр" width="1400" height="1050" loading="lazy" decoding="async">
@@ -207,9 +235,17 @@ html.is-unlocking .site-header,html.is-unlocking main,html.is-unlocking .site-fo
       </div>
     </section>
 
+    <section class="part" style="max-width:760px">
+      <div class="part-text">
+        <span class="part-num">05</span>
+        <h2>Миний мэдэхгүй англи хэл байсан?</h2>
+        <p>Англи хэлээ мэддэг гэж бодож байсан ч их сургуульд хичээл бүр өөрийн чиглэлээсээ шалтгаалаад өөр өөр үг хэллэг ашигладаг гэдгийг ойлгожээ. Тиймээс <strong>тэр болгонд дасан зохицож, хичээл бүрийнхээ өнгө аясыг олж авах</strong> хэрэгтэй санагдсан гэнэ.</p>
+      </div>
+    </section>
+
     <section class="part">
       <div class="part-text">
-        <span class="part-num">04</span>
+        <span class="part-num">06</span>
         <h2>Хичээлээс гадуурх амьдрал</h2>
         <p>Нэгдүгээр курсээс эхлэн хичээлээс гадуурх үйл ажиллагаанд ороод явбал <strong>дараа дараагийн жилүүдэд удирдах албан тушаалд орох</strong> боломжтой байдаг.</p>
         <p>Цасанжин маань одоогоор сургуулийнхаа олон улсын сурагчдын клубын удирдах зөвлөлд ажиллаж, 200 орчим гишүүнтэй энэ клубын удирдах зөвлөлийн 10 гишүүнийх нь нэг болж чаджээ.</p>
@@ -220,14 +256,47 @@ html.is-unlocking .site-header,html.is-unlocking main,html.is-unlocking .site-fo
       </div>
     </section>
 
+    <section class="part" style="max-width:760px">
+      <div class="part-text">
+        <span class="part-num">07</span>
+        <h2>Хөдлөхгүй бол үхнэ?</h2>
+        <p>Биеэ хөдөлгөж дасгал хийхгүй бол <strong>тархи маань сайн амрахгүй</strong> байгаа мэт санагдсан гэж Цасанжин хэлэв. Swarthmore бүх төрлийн спортын клуб, хичээлтэй тул энэ боломжоор сайн хангаж өгдөг.</p>
+      </div>
+    </section>
+
+    <section class="part" style="max-width:760px">
+      <div class="part-text">
+        <span class="part-num">08</span>
+        <h2>Swarthmore-д амьдрах нь</h2>
+        <p>Дотуур байрны өрөөг хоёрдугаар курсээс эхлэн сугалаагаар хуваарилдаг бөгөөд оюутнууд өрөөгөө өөрсдөө сонгодог. Цасанжингийн хувьд <strong>хоол, унаа зэрэг нэмэлт зардал огт гардаггүй</strong>, харин өвлийн амралтаар эх орондоо буцахгүй бол сургуулиас нь 500 ам.доллар өгдөг аж.</p>
+        <p>Оюутнууд багш нартайгаа ойр дотно байж, <strong>хамтдаа судалгаа хийх</strong> боломжтой. Багш нар нь дээд түвшинд хичээлээ заадаг төдийгүй оюутнууд хоорондоо бие биедээ хичээл заадаг мэт санагддаг гэнэ. Бүгд өөрийн гэсэн үзэл бодолтой хүмүүс.</p>
+      </div>
+    </section>
+
     <section class="part part--side">
       <figure style="margin:0"><img class="photo" src="/assets/talks/tsasanjin/photos/img_7558.jpg" alt="Номын сангийн ширээн дээр хичээлээ хийж буй нь" width="1050" height="1400" loading="lazy" decoding="async"></figure>
       <div class="part-text">
-        <span class="part-num">05</span>
+        <span class="part-num">09</span>
         <h2>Шалгалт юуг харуулдаг вэ?</h2>
         <p>SAT, IELTS, TOEFL гэх мэт шалгалтууд бол зөвхөн сургуульд тэнцэхийн төлөө биш. Шалгалтад бэлдээд өгч чадаж байна гэдэг бол <strong>чи их сургуульд орсны дараа сурч чадна гэсэн үг</strong> гэдгийг харуулдаг.</p>
+        <p>Хийх юмаа хийгээд л явж байх хэрэгтэй. Академик хичээл, дүн бол угаасаа л хийх ёстой зүйл.</p>
       </div>
     </section>
+
+    <section class="part">
+      <div class="part-text">
+        <span class="part-num">10</span>
+        <h2>Анги ангидаа юу хийх вэ?</h2>
+        <p>Гадаадад суралцах хүсэлтэй дүү нартаа Цасанжин ангиар нь ингэж зөвлөсөн:</p>
+      </div>
+      <ol class="grades">
+        <li><span class="g-num" aria-hidden="true">9</span><div class="g-card"><b>9-р анги</b><p>Дуртай зүйлээ барьж аваад, тууштай араас нь яваарай. Шинэ зүйлс оролдож үзээрэй. Шалгалтууддаа эртнээс бэлдэж, англи хэлээ сууриас нь сайн сураарай.</p></div></li>
+        <li><span class="g-num g-num--sm" aria-hidden="true">10–11</span><div class="g-card"><b>10, 11-р анги</b><p>Шинэ зүйл оролдохоос илүү аль хэдийн сонирхсон зүйлээ сайжруулж, дараагийн түвшинд гаргахад анхаараарай. Хичээлүүдийнхээ суурь мэдлэгийг бататгаж, сайн сураарай.</p></div></li>
+        <li><span class="g-num" aria-hidden="true">12</span><div class="g-card"><b>12-р анги</b><p>Ирээдүйд яг юу хиймээр байгаагаа одооноос төлөвлөөрэй. “Их сургуульд ороод мэргэжлээ сольж болно” гэж бодолгүй, сонгосон зүйлдээ сайн түвшинд хүрч “expert” болоход анхаараарай.</p><p>Чин сэтгэлээсээ гадаадад сурмаар байгаа бол завсар жил аваад дахин оролдож үзсэн ч болно. Өөрийгөө голохгүйгээр, завсар жилээ <strong>өөрийгөө таньж мэдэх цаг хугацаа</strong> гэж хараарай.</p></div></li>
+      </ol>
+    </section>
+
+    <blockquote class="quote">“Амьдралын зорилгоо их сургуульд орохын төлөө болгож болохгүй. Их сургуульд ороод л амьдрал сайхан болчихгүй.”<cite>— З.Цасанжин</cite></blockquote>
   </article>
 
   <section id="more" class="band band--alt" aria-labelledby="more-title" data-more hidden>
