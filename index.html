@@ -489,7 +489,8 @@ section[id],article[id]{scroll-margin-top:80px}
 .tp-close{position:absolute;top:10px;right:10px;display:grid;place-items:center;width:36px;height:36px;padding:0;border:0;border-radius:50%;background:rgba(255,255,255,.12);color:#fff;font-size:18px;cursor:pointer}
 .tp-close:hover{background:rgba(255,255,255,.24)}
 .tp-body{display:grid;justify-items:center;gap:8px;padding:0 28px 24px;text-align:center}
-.tp-body img{width:150px;height:150px;margin-top:-56px;margin-bottom:6px;border-radius:50%;object-fit:cover;background:#fff;box-shadow:0 0 0 5px #fff,0 0 0 9px var(--tj-golden),0 18px 30px -12px rgba(0,0,0,.4)}
+/* Positioned so it sits on top of the (positioned) purple header it overlaps */
+.tp-body img{position:relative;z-index:1;width:150px;height:150px;margin-top:-56px;margin-bottom:6px;border-radius:50%;object-fit:cover;background:#fff;box-shadow:0 0 0 5px #fff,0 0 0 9px var(--tj-golden),0 18px 30px -12px rgba(0,0,0,.4)}
 .tp-new{font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--tj-teal-deep)}
 .tp-body h2{margin:0;font-size:24px;font-weight:800;line-height:1.2;color:var(--text-display)}
 .tp-org{font-size:15px;font-weight:700;color:var(--tj-purple)}
