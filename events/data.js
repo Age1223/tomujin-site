@@ -19,6 +19,12 @@
      pageLabel optional: the button to that page once the event is over, e.g. "Ярилцлагыг унших"
      featured  optional: true = show this one in the /events hero instead of the nearest event
 
+   Tomujin is Talking on the home page (cards after the alumni quotes, and the pop-up):
+     photo     a square photo of the speaker, e.g. "/assets/talks/gandi/speaker.jpg". Talks with a photo get a card.
+               Once a talk is over and has a page, its card says "Ярилцлагыг унших", and the newest one is shown
+               in the home page pop-up (once per visitor). An upcoming talk's card says "Удахгүй" and links to /events.
+     teaser    one sentence about the interview, for the card and the pop-up
+
    Optional, shown when the event is the one at the top of /events:
      image     the poster, 4:5 (e.g. 1080×1350), in /assets/events/. Without one, the page draws a purple
                poster with the event's name and date.
@@ -54,7 +60,9 @@ window.EVENTS = [
     start: "2026-11-08T20:30", minutes: 60, format: "online",
     place: "Онлайн",
     speaker: "З.Цасанжин, 2026 оны төгсөгч",
-    page: "/tsasanjin-talk", pageLabel: "Ярилцлагыг унших"
+    page: "/tsasanjin-talk", pageLabel: "Ярилцлагыг унших",
+    photo: "/assets/talks/tsasanjin/speaker.jpg",
+    teaser: "Өргөдлөө хэрхэн бичсэн, liberal arts коллежийн амьдрал, тэнцээгүй гэсэн хариу авбал юу хийх вэ."
   },
   /* Tomujin is Talking #2 */
   {
@@ -67,7 +75,9 @@ window.EVENTS = [
     start: "2026-11-14T21:00", minutes: 60, format: "online",
     place: "Онлайн", placeNote: "холбоосыг бүртгүүлсний дараа илгээнэ",
     speaker: "Б.Ганди, 2024 оны төгсөгч",
-    page: "/gandi-talk", pageLabel: "Ярилцлагыг унших"
+    page: "/gandi-talk", pageLabel: "Ярилцлагыг унших",
+    photo: "/assets/talks/gandi/speaker.jpg",
+    teaser: "Хэнтийн Баян-Адаргаас Харвард хүртэл: тэтгэлэг, коллежийн амьдрал, анги ангидаа юу хийх вэ."
   },
   /* Tomujin is Talking #3 */
   {
@@ -80,6 +90,7 @@ window.EVENTS = [
     image: "/assets/events/tomujin-is-talking-03-munkhjin.webp",
     start: "2026-11-21T20:00", minutes: 60, format: "online",
     place: "Онлайн", placeNote: "холбоосыг бүртгүүлсний дараа илгээнэ",
-    speaker: "М.Мөнхжин, 2026 оны төгсөгч"
+    speaker: "М.Мөнхжин, 2026 оны төгсөгч",
+    photo: "/assets/talks/munkhjin/speaker.jpg"
   }
 ];
