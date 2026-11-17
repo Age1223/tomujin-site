@@ -6,7 +6,7 @@
 (function(){
   /* The "Tomujin — Event sign-ups" Apps Script web app (tools/events-signups.gs). When the script changes,
      redeploy it with Deploy → Manage deployments → Edit → New version so this address stays the same. */
-  var SIGNUP_URL = "https://script.google.com/macros/s/AKfycbzoXC9qVI8ZhDKB__HehyNpf18HlsWx9ChkwD6b_K2g3HiP8y4CO7GQdTBls2eI6H1uVw/exec";
+  var SIGNUP_URL = "https://script.google.com/macros/s/AKfycbxuxyIb3VbsEgfNQRD7sA6UAQAXKlpkILOB3XyjbbQi8Uo3tZYkaHQWO3sP7mbmvAuoMw/exec";
 
   var LIVE = /(^|\.)tomujin\.edu\.mn$/.test(location.hostname);
   var TZ = 8 * 3600 * 1000;   /* Ulaanbaatar is UTC+8, all year */
