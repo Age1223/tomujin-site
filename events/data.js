@@ -66,7 +66,8 @@ window.EVENTS = [
     image: "/assets/events/tomujin-is-talking-02-gandi.webp",
     start: "2026-11-14T21:00", minutes: 60, format: "online",
     place: "Онлайн", placeNote: "холбоосыг бүртгүүлсний дараа илгээнэ",
-    speaker: "Б.Ганди, 2024 оны төгсөгч"
+    speaker: "Б.Ганди, 2024 оны төгсөгч",
+    page: "/gandi-talk", pageLabel: "Ярилцлагыг унших"
   },
   /* Tomujin is Talking #3 */
   {

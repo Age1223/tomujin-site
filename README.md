@@ -102,6 +102,7 @@ Two separate pages, each its own file (not part of `index.html`):
 |---|---|---|
 | Эвентүүд (in the main menu) | `/events` | `events/index.html` |
 | Цасанжингийн яриа (not in any menu, link only) | `/tsasanjin-talk` | `tsasanjin-talk/index.html` |
+| Гандигийн яриа (not in any menu, link only) | `/gandi-talk` | `gandi-talk/index.html` |
 
 - **Events list:** `events/data.js`, one entry per event. `/events` puts the nearest upcoming one in the hero; finished events move to "Өнгөрсөн" by themselves. The filter buttons come from `EVENT_TYPES`.
 - **Talk page:** the recording goes in `data-youtube` on the video box, and the article goes in `<article class="article">`. Instructions are in comments in the file. To make another talk page, copy the `tsasanjin-talk` folder and change `THIS_EVENT`.

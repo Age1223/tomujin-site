@@ -6,7 +6,7 @@
 (function(){
   /* The "Tomujin — Event sign-ups" Apps Script web app (tools/events-signups.gs). When the script changes,
      redeploy it with Deploy → Manage deployments → Edit → New version so this address stays the same. */
-  var SIGNUP_URL = "https://script.google.com/macros/s/AKfycbzoXC9qVI8ZhDKB__HehyNpf18HlsWx9ChkwD6b_K2g3HiP8y4CO7GQdTBls2eI6H1uVw/exec";
+  var SIGNUP_URL = "https://script.google.com/macros/s/AKfycbxuxyIb3VbsEgfNQRD7sA6UAQAXKlpkILOB3XyjbbQi8Uo3tZYkaHQWO3sP7mbmvAuoMw/exec";
 
   var LIVE = /(^|\.)tomujin\.edu\.mn$/.test(location.hostname);
   var TZ = 8 * 3600 * 1000;   /* Ulaanbaatar is UTC+8, all year */
@@ -146,7 +146,7 @@
       data.append("eventTitle", ev ? ev.title : "");
       data.append("interest", ev ? (isOpen(ev) ? "Бүртгүүлсэн" : isTbc(ev) ? "Огноо батлагдмагц мэдэх" : "Дараагийнхыг мэдэх") : (opts.interest || "Мэдээлэл авах"));
       data.append("page", location.pathname);
-      send(data).then(function(){
+      send(data).then(function(res){
         form.hidden = true; done.hidden = false;
         var registered = ev && isOpen(ev);
         done.querySelector("h3").textContent = registered ? "Та бүртгүүллээ!" : "Баярлалаа!";
@@ -158,7 +158,8 @@
         icons();
         store("tj-events-signed-up", "1");
         if (window.trackLead) window.trackLead(ev ? ev.id : (opts.interest || "series"));
-        if (opts.onDone) opts.onDone(ev);
+        /* res.known: this person was already on the sign-up sheet (talk pages say so) */
+        if (opts.onDone) opts.onDone(ev, res || {}, done);
       }).catch(function(){
         status.textContent = "Илгээж чадсангүй. Интернэтээ шалгаад дахин оролдоно уу.";
       }).then(function(){ btn.disabled = false; btn.classList.remove("is-sending"); btn.textContent = label; });
@@ -175,8 +176,8 @@
       console.warn("events.js: SIGNUP_URL is empty, so this sign-up was not saved (test copy only).", Object.fromEntries(data));
       return new Promise(function(res){ setTimeout(res, 600); });
     }
-    /* The script replies {"ok":true} once the row is in the sheet */
-    return fetch(SIGNUP_URL, {method: "POST", body: data}).then(function(r){ return r.json(); }).then(function(res){ if (!res || !res.ok) throw new Error("not saved"); });
+    /* The script replies {"ok":true, "known":true|false} once the row is in the sheet */
+    return fetch(SIGNUP_URL, {method: "POST", body: data}).then(function(r){ return r.json(); }).then(function(res){ if (!res || !res.ok) throw new Error("not saved"); return res; });
   }
 
   /* ── Pop-up ── */
