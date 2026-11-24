@@ -478,7 +478,7 @@ section[id],article[id]{scroll-margin-top:80px}
 .talk--soon img{filter:saturate(.85)}
 .talk-soon{display:inline-flex;align-items:center;gap:6px;padding:4px 12px;border-radius:var(--radius-pill);background:var(--tj-golden);color:#2d1b4e;font-size:13px;font-weight:800}
 
-/* Tomujin is Talking: the home page pop-up with the newest interview */
+/* Tomujin is Talking: the home page pop-up with the next talk (or the newest interview) */
 .talk-pop{width:min(440px,calc(100vw - 32px));padding:0;border:0;border-radius:20px;background:#fff;color:inherit;overflow:hidden;box-shadow:0 30px 60px -20px rgba(26,11,46,.6)}
 .talk-pop[open]{animation:pop-in .45s var(--ease-out)}
 .talk-pop::backdrop{background:rgba(26,11,46,.6);-webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px)}
@@ -507,7 +507,7 @@ section[id],article[id]{scroll-margin-top:80px}
   .talk{scroll-snap-align:start}
   .talk:hover{transform:none}
   .talk-pop{width:100vw;max-width:100vw;margin:auto 0 0;border-radius:20px 20px 0 0}
-  .tp-head{padding:22px 20px 56px}
+  .tp-head{padding:22px 20px 68px}
   .tp-head b{font-size:22px}
   .tp-body img{width:124px;height:124px}
 }
@@ -2269,10 +2269,11 @@ html.reader-open{overflow:hidden}
     if (a) track("card_click", {id: a.getAttribute("data-talk")});
   });
 
-  /* ── Pop-up: the newest interview, once per visitor per interview, a few seconds after the home page opens.
+  /* ── Pop-up: the next upcoming talk (with a sign-up button), or the newest interview when none is coming up.
+        Once per visitor per talk, a few seconds after the home page opens.
         Waits while someone is typing in a form or another window (e.g. the report reader) is open. ── */
-  var latest = published[0], SEEN = "tj-talk-popup-seen";
-  if (!latest || store(SEEN) === latest.id || !window.HTMLDialogElement) return;
+  var latest = published[0], promo = next || latest, SEEN = "tj-talk-popup-seen";
+  if (!promo || store(SEEN) === promo.id || !window.HTMLDialogElement) return;
   function busy(){
     var home = document.querySelector('[data-page="home"]'), a = document.activeElement;
     return document.hidden || !home || home.hidden || document.querySelector("dialog[open]") ||
@@ -2280,28 +2281,35 @@ html.reader-open{overflow:hidden}
   }
   function show(){
     if (busy()){ setTimeout(show, 4000); return; }
-    var w = who(latest), dlg = document.createElement("dialog");
+    var w = who(promo), soon = promo === next, dlg = document.createElement("dialog");
+    var text = soon ? (promo.teaser || promo.summary) : promo.teaser;
     dlg.className = "talk-pop";
     dlg.setAttribute("aria-labelledby", "tp-title");
     dlg.innerHTML =
-      '<div class="tp-head"><small>Tomujin is Talking 💬</small><b>Шинэ ярилцлага</b>' +
+      '<div class="tp-head"><small>Tomujin is Talking 💬</small><b>' + (soon ? "Удахгүй болох ярилцлага" : "Шинэ ярилцлага") + '</b>' +
         '<button class="tp-close" type="button" aria-label="Хаах" data-tp-close>✕</button></div>' +
-      '<div class="tp-body"><img src="' + esc(latest.photo) + '" alt="' + esc(w.name) + '" width="150" height="150">' +
+      '<div class="tp-body"><img src="' + esc(promo.photo) + '" alt="' + esc(w.name) + '" width="150" height="150">' +
+        (soon ? '<span class="tp-new">' + esc(whenShort(promo)) + ' · Онлайн</span>' : "") +
         '<h2 id="tp-title">' + esc(w.name) + '</h2><span class="tp-org">' + esc(w.org) + '</span>' +
-        (latest.teaser ? '<p>' + esc(latest.teaser) + '</p>' : "") +
-        '<a class="btn btn--accent" href="' + esc(latest.page) + '" data-tp-read>Ярилцлагыг унших →</a>' +
-        '<button class="tp-later" type="button" data-tp-close>Дараа унших</button></div>' +
-      (next ? '<div class="tp-next"><img src="' + esc(next.photo) + '" alt="" width="32" height="32"><span>Дараагийнх нь: <b>' + esc(who(next).name) + '</b> · ' +
-        esc(whenShort(next)) + '</span><a href="/events">Бүртгүүлэх</a></div>' : "");
+        (text ? '<p>' + esc(text) + '</p>' : "") +
+        (soon
+          ? '<a class="btn btn--accent" href="/events" data-tp-read>Бүртгүүлэх →</a>' +
+            '<button class="tp-later" type="button" data-tp-close>Дараа</button></div>'
+          : '<a class="btn btn--accent" href="' + esc(promo.page) + '" data-tp-read>Ярилцлагыг унших →</a>' +
+            '<button class="tp-later" type="button" data-tp-close>Дараа унших</button></div>') +
+      (soon && latest
+        ? '<div class="tp-next"><img src="' + esc(latest.photo) + '" alt="" width="32" height="32"><span>Сүүлийн ярилцлага: <b>' + esc(who(latest).name) + '</b></span>' +
+          '<a href="' + esc(latest.page) + '">Унших</a></div>'
+        : "");
     document.body.appendChild(dlg);
     dlg.addEventListener("click", function(ev){
       if (ev.target === dlg || (ev.target.closest && ev.target.closest("[data-tp-close]"))) dlg.close();
-      if (ev.target.closest && ev.target.closest("[data-tp-read]")) track("popup_read", latest);
+      if (ev.target.closest && ev.target.closest("[data-tp-read]")) track(soon ? "popup_register" : "popup_read", promo);
     });
     dlg.addEventListener("close", function(){ dlg.remove(); });
-    store(SEEN, latest.id);
+    store(SEEN, promo.id);
     dlg.showModal();
-    track("popup_open", latest);
+    track("popup_open", promo);
   }
   setTimeout(show, 5000);
 })();
