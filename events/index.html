@@ -229,8 +229,8 @@
       '<div class="btn-row"><button class="btn btn--accent btn--lg" type="button" data-open-signup>Мэдээлэл авах →</button></div></div></div>';
   }
 
-  /* ── List: upcoming (except the featured one), then past ones ── */
-  var upcoming = lists.upcoming.filter(function(e){ return !ev || e.id !== ev.id; });
+  /* ── List: all upcoming ones (the featured one too), then past ones ── */
+  var upcoming = lists.upcoming;
   var all = upcoming.concat(lists.past);
   var upBox = document.querySelector("[data-upcoming]"), pastBox = document.querySelector("[data-past]"), pastHead = document.querySelector("[data-past-head]");
   var chips = document.querySelector("[data-chips]");
