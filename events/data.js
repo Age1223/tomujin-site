@@ -92,5 +92,19 @@ window.EVENTS = [
     place: "Онлайн", placeNote: "холбоосыг бүртгүүлсний дараа илгээнэ",
     speaker: "М.Мөнхжин, 2026 оны төгсөгч",
     photo: "/assets/talks/munkhjin/speaker.jpg"
+  },
+  /* Tomujin is Talking #4 */
+  {
+    id: "speaker-04-anungoo",
+    type: "speaker",
+    series: "Tomujin is Talking series",
+    title: "Б.Анунгоо · Albion College",
+    summary: "Томүжин Алтернатив сургуулийн 2025 оны төгсөгч, Albion их сургуулийн оюутан Б.Анунгоо туршлагаасаа хуваалцана.",
+    image: "/assets/events/tomujin-is-talking-04-anungoo.webp",
+    start: "2026-11-28T21:00", minutes: 60, format: "online",
+    place: "Онлайн", placeNote: "холбоосыг бүртгүүлсний дараа илгээнэ",
+    speaker: "Б.Анунгоо, 2025 оны төгсөгч",
+    photo: "/assets/talks/anungoo/speaker.jpg",
+    featured: true
   }
 ];
