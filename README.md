@@ -89,6 +89,7 @@ The "Дэлгэрэнгүй мэдээлэл авах" form sits in the homepage
 | Одоогийн сургууль | the school from the form |
 | Хаагуур холбогдсон | Website |
 | Утасны дугаар | the phone number |
+| Имэйл хаяг | the email address (from the hero form; the column is optional, add it to the sheet to collect emails) |
 
 It finds the columns by their header names, so moving columns around is fine, but renaming one of those headers breaks it. It fills the first row where those columns are empty and adds rows when the sheet runs out.
 

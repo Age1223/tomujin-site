@@ -284,13 +284,14 @@ section[id],article[id]{scroll-margin-top:80px}
   vertical-align:-.04em;animation:tj-blink .9s steps(1) infinite}
 @keyframes tj-blink{0%,49%{opacity:1}50%,100%{opacity:0}}
 /* Form pill */
-.tj-form{margin:0;width:100%;max-width:760px}
+.tj-form{margin:0;width:100%;max-width:920px}
 .tj-pill{display:flex;align-items:center;padding:6px 6px 6px 8px;background:#fff;
   border:1px solid #e5d8f5;border-radius:999px;box-shadow:0 18px 40px rgba(63,11,99,.10);
   transition:box-shadow 180ms,border-color 180ms}
 .tj-pill:focus-within{border-color:#5c1090;box-shadow:0 0 0 3px rgba(92,16,144,.14),0 18px 40px rgba(63,11,99,.12)}
 .tj-cell{min-width:0;padding:0 16px;display:flex;align-items:center;position:relative}
-.tj-cell--phone{flex:1 1 160px}
+.tj-cell--phone{flex:1 1 150px}
+.tj-cell--email{flex:1.3 1 190px}
 .tj-cell--school{flex:1.3 1 200px}
 .tj-cell--grade{flex:.8 1 120px}
 .tj-div{flex:0 0 1px;height:24px;background:#e5d8f5}
@@ -878,6 +879,11 @@ html.reader-open{overflow:hidden}
           <div class="tj-cell tj-cell--phone">
             <label class="tj-sr" for="tj-phone">Утасны дугаар</label>
             <input class="tj-input" id="tj-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="Утасны дугаар" required>
+          </div>
+          <span class="tj-div" aria-hidden="true"></span>
+          <div class="tj-cell tj-cell--email">
+            <label class="tj-sr" for="tj-email">Имэйл хаяг</label>
+            <input class="tj-input" id="tj-email" name="email" type="email" inputmode="email" autocomplete="email" autocapitalize="off" spellcheck="false" placeholder="Имэйл хаяг" required>
           </div>
           <span class="tj-div" aria-hidden="true"></span>
           <div class="tj-cell tj-cell--school">
@@ -2198,8 +2204,11 @@ html.reader-open{overflow:hidden}
       if (!form.reportValidity()) return;                 /* empty required fields → native prompt */
       var phone = form.phone.value.trim();
       if (!phoneOk(phone)){ errEl.textContent = "Утасны дугаараа зөв оруулна уу (8 оронтой)."; form.phone.focus(); return; }
+      var email = form.email.value.trim();
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)){ errEl.textContent = "Имэйл хаягаа зөв оруулна уу."; form.email.focus(); return; }
       var data = new URLSearchParams();
       data.append("phone", phone);
+      data.append("email", email);
       data.append("school", form.school.value.trim());
       data.append("grade", form.grade.value);
       data.append("website", form.querySelector('[name="website"]').value);

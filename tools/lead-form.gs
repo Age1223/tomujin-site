@@ -20,7 +20,8 @@ const COL = {
   channel: 'Хаагуур холбогдсон',
   phone: 'Утасны дугаар',
   school: 'Одоогийн сургууль',
-  name: 'Холбогдсон хүний нэр'
+  name: 'Холбогдсон хүний нэр',
+  email: 'Имэйл хаяг'           // optional: filled only if the Leads table has this column
 };
 
 function doPost(e) {
@@ -32,6 +33,7 @@ function doPost(e) {
   const phone = clean(p.phone, 20);
   const school = clean(p.school, 120);
   const grade = clean(p.grade, 20);
+  const email = clean(p.email, 120);   // the hero form sends it; older forms may not
   if (!phone || !school || !grade) return json({ ok: false, error: 'missing' });
 
   const lock = LockService.getScriptLock();
@@ -62,6 +64,7 @@ function doPost(e) {
     if (t.cols.channel) sheet.getRange(row, t.cols.channel).setValue(CHANNEL);
     sheet.getRange(row, t.cols.phone).setNumberFormat('@').setValue(phone.replace(/^'/, ''));
     if (t.cols.school) sheet.getRange(row, t.cols.school).setValue(school);
+    if (t.cols.email && email) sheet.getRange(row, t.cols.email).setValue(email);
     SpreadsheetApp.flush();
   } finally {
     lock.releaseLock();
@@ -90,11 +93,11 @@ function findTable(sheet) {
   return null;
 }
 
-// First row below the header where the date, name, grade, channel, phone and school columns are all empty
+// First row below the header where the date, name, grade, channel, phone, school and email columns are all empty
 function firstEmptyRow(sheet, t) {
   const start = t.headerRow + 1;
   const last = Math.max(sheet.getLastRow(), start);
-  const keys = ['date', 'name', 'grade', 'channel', 'phone', 'school'].filter(k => t.cols[k]);
+  const keys = ['date', 'name', 'grade', 'channel', 'phone', 'school', 'email'].filter(k => t.cols[k]);
   const values = keys.map(k => sheet.getRange(start, t.cols[k], last - start + 1, 1).getDisplayValues());
   for (let i = 0; i <= last - start; i++) {
     if (values.every(v => String(v[i][0]).trim() === '')) return start + i;
